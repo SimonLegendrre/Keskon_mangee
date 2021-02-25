@@ -1,25 +1,26 @@
-plugins {
+ plugins {
     id 'com.android.application'
 }
 
-android {
-    compileSdkVersion 30
+android { // configuration du projet
+    compileSdkVersion 30 // API numéro 30
     buildToolsVersion "30.0.3"
 
     defaultConfig {
         applicationId "com.example.keskonmange"
         minSdkVersion 16
         targetSdkVersion 30
-        versionCode 1
-        versionName "1.0"
+        versionCode 1 // version interne à l'application
+        versionName "1.0" // verion montrée sur le playstore
 
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
 
-    buildTypes {
+    buildTypes { // ofuscation. on va pas minifier le code (i.e. compacter le code source au maximum)
         release {
             minifyEnabled false
-            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro' // permet de changer noms de methodes et de classe ==> ameliore securité (reverse engineering de l'aaplication  + difficile)
+        // lien avec proguard_rule files
         }
     }
     compileOptions {
@@ -28,14 +29,19 @@ android {
     }
 }
 
-dependencies {
+dependencies { // inclus dépendance qui finisse par .jar
+                // fichier libs
+                // C'est là dedans qu'on met des implémentations correspondant à des fonctionnalités. Par exemple 'design' ici correpond à l'intégratio nde material design
 
     implementation 'com.android.support:appcompat-v7:28.0.0'
     implementation 'com.android.support:design:28.0.0'
     implementation 'com.android.support.constraint:constraint-layout:1.1.3'
     implementation 'android.arch.navigation:navigation-fragment:1.0.0'
     implementation 'android.arch.navigation:navigation-ui:1.0.0'
+    implementation 'com.android.support:support-v4:28.0.0'
+    implementation 'com.android.support:recyclerview-v7:28.0.0'
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'com.android.support.test:runner:1.0.2'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    // le resultats des dépendances ajoutées se trouvent dans 'External libraries'.
 }
