@@ -9,8 +9,14 @@ import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
 
 import androidx.navigation.fragment.NavHostFragment;
+
+import java.util.Timer;
+
 // COUCOU SIMON COMMENT CA VA ?? <3 _ <3
+// TestSimon
 public class FirstFragment extends Fragment {
+
+    Timer timer;
 
     @Override
     public View onCreateView(
@@ -21,8 +27,13 @@ public class FirstFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_first, container, false);
     }
 
+
+
+
+
     public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
 
         view.findViewById(R.id.button_first).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -31,5 +42,20 @@ public class FirstFragment extends Fragment {
                         .navigate(R.id.action_FirstFragment_to_SecondFragment);
             }
         });
+
+
+
+
     }
+
+
+
+
+
+
 }
+
+
+
+
+

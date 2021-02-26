@@ -4,9 +4,14 @@
     <!-- Strings used for fragments for navigation -->
     <string name="first_fragment_label">First Fragment</string>
     <string name="second_fragment_label">Second Fragment</string>
-    <string name="next">Next</string>
+    <string name="next">Truc suivant</string>
     <string name="previous">Previous</string>
 
     <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="button">Création de recette</string>
+    <string name="page_de_creation_de_recette">Aller à la page de création de recette</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+    <string name="invalid_name">Entrez un nom de recette valide svp</string>
+    <string name="invalid_ingredient">Ecrivez les nom d\'ingrédients séparés d\'un point virgule \';\' svp</string>
+    <string name="invalid_recipe_description">Veuillez ne pas être insultant svp</string>
 </resources>
