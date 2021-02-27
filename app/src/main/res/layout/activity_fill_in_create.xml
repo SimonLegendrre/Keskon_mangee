@@ -9,14 +9,16 @@
     android:background="?attr/colorPrimary"
     tools:context=".Fill_In_creator">
 
+
     <EditText
         android:id="@+id/nom_recette"
-        android:background="@android:color/white"
-        android:padding="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@android:color/white"
         android:hint="Nom de recette"
-        android:inputType="textPersonName" />
+        android:inputType="textPersonName"
+        android:layout_marginTop="150dp"
+        android:padding="10dp" />
 
     <EditText
         android:id="@+id/ingredient"

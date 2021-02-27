@@ -22,7 +22,11 @@
         tools:layout="@layout/fragment_second">
 
         <action
-            android:id="@+id/action_SecondFragment_to_FirstFragment"
-            app:destination="@id/FirstFragment" />
+            android:id="@+id/action_SecondFragment_to_fill_in_create"
+            app:destination="@id/fill_in_create" />
     </fragment>
+    <activity
+        android:id="@+id/fill_in_create"
+        android:name="com.example.keskonmange.Fill_in_create"
+        android:label="Fill_in_create" />
 </navigation>

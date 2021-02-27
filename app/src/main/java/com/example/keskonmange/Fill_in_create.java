@@ -1,4 +1,5 @@
 package com.example.keskonmange;
+
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -10,18 +11,20 @@ import com.basgeekball.awesomevalidation.AwesomeValidation;
 import com.basgeekball.awesomevalidation.ValidationStyle;
 import com.basgeekball.awesomevalidation.utility.RegexTemplate;
 
-
-public class Fill_In_creator extends AppCompatActivity {
+public class Fill_in_create extends AppCompatActivity {
     // Initialize variable
     EditText etnom_recette, etingredient, etdescription;
     Button btSubmit;
+
 
     AwesomeValidation awesomeValidation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_fill_in_creator);
+        setContentView(R.layout.activity_fill_in_create);
+
+
 
         // Assign variable
         etnom_recette = findViewById(R.id.nom_recette);
@@ -58,7 +61,11 @@ public class Fill_In_creator extends AppCompatActivity {
             }
         });
 
+
+
     }
+
+
 }
 
 

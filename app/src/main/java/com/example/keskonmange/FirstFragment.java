@@ -12,8 +12,6 @@ import androidx.navigation.fragment.NavHostFragment;
 
 import java.util.Timer;
 
-// COUCOU SIMON COMMENT CA VA ?? <3 _ <3
-// TestSimon
 public class FirstFragment extends Fragment {
 
     Timer timer;
@@ -26,8 +24,6 @@ public class FirstFragment extends Fragment {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_first, container, false);
     }
-
-
 
 
 

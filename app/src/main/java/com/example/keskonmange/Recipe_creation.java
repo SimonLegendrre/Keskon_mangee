@@ -19,7 +19,7 @@ public class Recipe_creation extends AppCompatActivity {
         acceuil_create_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Recipe_creation.this, Fill_In_creator.class);
+                Intent intent = new Intent(Recipe_creation.this, Fill_in_create.class);
                 startActivity(intent);
             }
         });
