@@ -29,4 +29,8 @@
         android:id="@+id/fill_in_create"
         android:name="com.example.keskonmange.Fill_in_create"
         android:label="Fill_in_create" />
+    <activity
+        android:id="@+id/welcome"
+        android:name="com.example.keskonmange.Welcome"
+        android:label="Welcome" />
 </navigation>
