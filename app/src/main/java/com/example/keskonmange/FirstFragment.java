@@ -5,12 +5,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import android.support.annotation.NonNull;
-import android.support.v4.app.Fragment;
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
 
 import androidx.navigation.fragment.NavHostFragment;
-
-import java.util.Timer;
 
 public class FirstFragment extends Fragment {
 
@@ -31,7 +29,7 @@ public class FirstFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 NavHostFragment.findNavController(FirstFragment.this)
-                        .navigate(R.id.action_FirstFragment_to_SecondFragment);
+                        .navigate(R.id.action_FirstFragment_to_bouton_creation);
             }
         });
     }
