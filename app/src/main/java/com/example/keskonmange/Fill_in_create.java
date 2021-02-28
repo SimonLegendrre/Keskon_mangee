@@ -15,8 +15,6 @@ public class Fill_in_create extends AppCompatActivity {
     // Initialize variable
     EditText etnom_recette, etingredient, etdescription;
     Button btSubmit;
-
-
     AwesomeValidation awesomeValidation;
 
     @Override
@@ -35,7 +33,6 @@ public class Fill_in_create extends AppCompatActivity {
         // Initialize Validation style
 
         awesomeValidation = new AwesomeValidation(ValidationStyle.BASIC);
-
         // Add Validation for Name
         awesomeValidation.addValidation(this, R.id.nom_recette,
                 RegexTemplate.NOT_EMPTY,R.string.invalid_name);
@@ -61,10 +58,7 @@ public class Fill_in_create extends AppCompatActivity {
             }
         });
 
-
-
     }
-
 
 }
 

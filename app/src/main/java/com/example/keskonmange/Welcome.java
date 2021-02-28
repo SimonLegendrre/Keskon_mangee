@@ -11,7 +11,6 @@ public class Welcome extends AppCompatActivity {
 
     Timer timer;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,7 +25,7 @@ public class Welcome extends AppCompatActivity {
                 finish();
 
             }
-        },5000);
+        },3000);
 
     }
 

@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/purple_700"
     android:clickable="false"
-    tools:context=".Recipe_creation">
+    tools:context=".CreationOrconsulationPage">
 
     <Button
         android:id="@+id/acceuil_create_button"
