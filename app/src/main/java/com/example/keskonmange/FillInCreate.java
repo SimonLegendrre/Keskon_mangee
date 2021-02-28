@@ -11,7 +11,7 @@ import com.basgeekball.awesomevalidation.AwesomeValidation;
 import com.basgeekball.awesomevalidation.ValidationStyle;
 import com.basgeekball.awesomevalidation.utility.RegexTemplate;
 
-public class Fill_in_create extends AppCompatActivity {
+public class FillInCreate extends AppCompatActivity {
     // Initialize variable
     EditText etnom_recette, etingredient, etdescription;
     Button btSubmit;
@@ -37,7 +37,7 @@ public class Fill_in_create extends AppCompatActivity {
         awesomeValidation.addValidation(this, R.id.nom_recette,
                 RegexTemplate.NOT_EMPTY,R.string.invalid_name);
         // Add Validation for Ingredient
-        awesomeValidation.addValidation(this,R.id.ingredient,
+        awesomeValidation.addValidation(this, R.id.ingredient,
                 RegexTemplate.NOT_EMPTY,R.string.invalid_ingredient);
         // Add Validation
         awesomeValidation.addValidation(this, R.id.description,
