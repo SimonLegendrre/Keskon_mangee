@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "92912895881",
+    "firebase_url": "https://keskonmange-d6981-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "keskonmange-d6981",
+    "storage_bucket": "keskonmange-d6981.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:92912895881:android:b523d45fcca763c39f4358",
+        "android_client_info": {
+          "package_name": "com.example.keskonmange"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "92912895881-ciim6jkasq23r1ln33gfko9d5apbdoe0.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAaCTFkwaCyhsykO7g_xAAXelj8zRLDGuA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "92912895881-ciim6jkasq23r1ln33gfko9d5apbdoe0.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
