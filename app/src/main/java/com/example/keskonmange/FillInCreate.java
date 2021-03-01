@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+import android.content.Intent;
 
 import com.basgeekball.awesomevalidation.AwesomeValidation;
 import com.basgeekball.awesomevalidation.ValidationStyle;
@@ -65,10 +66,12 @@ public class FillInCreate extends AppCompatActivity {
                     reff.child(recipe.getRecette()).setValue(recipe);
 
                     Toast.makeText(getApplicationContext()
-                            ,"Form Validate succefully..", Toast.LENGTH_SHORT).show();
+                            ,"Recette enregistrée", Toast.LENGTH_SHORT).show();
+                    Intent intent = new Intent(FillInCreate.this, CreationOrConsulationPage.class);
+                    startActivity(intent);
                 } else {
                     Toast.makeText(getApplicationContext()
-                            , "Validation failed", Toast.LENGTH_SHORT).show();
+                            , "Il y a eu un problème d'encodage", Toast.LENGTH_SHORT).show();
                 }
             }
         });
