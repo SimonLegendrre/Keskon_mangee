@@ -7,4 +7,11 @@
     <string name="invalid_name">Veuillez remplir le champ</string>
     <string name="invalid_ingredient">Ecrivez les nom d\'ingrédients séparés d\'un point virgule \';\' svp</string>
     <string name="invalid_recipe_description">Veuillez remplir le champ</string>
+    <string name="remplissez_ici_les_informations_correspondant_votre_recette">Remplissez ici les informations correspondant à votre recette</string>
+    <string name="nom_de_recette">Nom de recette</string>
+    <string name="ingr_dients_s_par_par_un_point_virgule">Ingrédients, séparé par un point virgule \';\'</string>
+    <string name="description">Description</string>
+    <string name="submit">submit</string>
+    <string name="bienvenue_sur_keskonmange">Bienvenue sur Keskonmange!</string>
+    <string name="todo">TODO</string>
 </resources>
