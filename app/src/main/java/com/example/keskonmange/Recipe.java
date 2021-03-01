@@ -5,6 +5,7 @@ private String recette;
 private String ingredient;
 private String description;
 
+// miam miam des bonne recettes de cuisine
     public String getRecette() {
         return recette;
     }
