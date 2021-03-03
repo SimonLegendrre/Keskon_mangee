@@ -2,7 +2,6 @@
     <string name="app_name">Keskonmange</string>
     <string name="action_settings">Paramètres</string>
     <!-- Strings used for fragments for navigation -->
-    <string name="button">Création de recette</string>
     <string name="page_de_creation_de_recette">Aller à la page de création de recette</string>
     <string name="invalid_name">Veuillez remplir le champ</string>
     <string name="invalid_ingredient">Ecrivez les nom d\'ingrédients séparés d\'un point virgule \';\' svp</string>
@@ -14,4 +13,12 @@
     <string name="submit">submit</string>
     <string name="bienvenue_sur_keskonmange">Bienvenue sur Keskonmange!</string>
     <string name="todo">TODO</string>
+    <string name="liste_ingredients">Liste d\'ingrédients</string>
+    <!-- On met tous les boutons dans cette sous-section-->
+    <string name="button_acceuil_create_recipe">Création de recette</string>
+    <string name="button_acceuil_consult_recipe">Consulter les recettes</string>
+    <string name="enregister_nouvelle_recette">Enregistrer ma recette</string>
+    <string name="enregister_ingredients_consultor">Rechercher une recette</string>
+
+
 </resources>

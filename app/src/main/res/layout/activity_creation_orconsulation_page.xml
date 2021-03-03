@@ -9,16 +9,29 @@
     tools:context=".CreationOrConsulationPage">
 
     <Button
-        android:id="@+id/acceuil_create_button"
+        android:id="@+id/acceuil_to_create_recipe_button"
         android:layout_width="371dp"
         android:layout_height="56dp"
         android:layout_marginBottom="424dp"
-        android:text="@string/button"
+        android:text="@string/button_acceuil_create_recipe"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2" />
+
+    <Button
+        android:id="@+id/acceuil_to_consult_recipe_button"
+        android:layout_width="371dp"
+        android:layout_height="56dp"
+        android:layout_marginBottom="300dp"
+        android:text="@string/button_acceuil_consult_recipe"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/acceuil_to_create_recipe_button"
+        app:layout_constraintVertical_bias="0.278" />
 
     <TextView
         android:id="@+id/textView2"

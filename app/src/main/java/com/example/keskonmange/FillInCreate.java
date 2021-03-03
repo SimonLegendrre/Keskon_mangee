@@ -1,17 +1,17 @@
 package com.example.keskonmange;
 
-import androidx.appcompat.app.AppCompatActivity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-import android.content.Intent;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.basgeekball.awesomevalidation.AwesomeValidation;
 import com.basgeekball.awesomevalidation.ValidationStyle;
 import com.basgeekball.awesomevalidation.utility.RegexTemplate;
-
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -28,13 +28,15 @@ public class FillInCreate extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fill_in_create);
 
-
-
-        // Assign variable
+        // Assign variable edit text
         etnom_recette = findViewById(R.id.nom_recette);
         etingredient = findViewById(R.id.ingredient);
         etdescription = findViewById(R.id.description);
+
+        // Assign variable button
         btSubmit = findViewById(R.id.submit_recipe_creator);
+
+        //Assign Variable database
         recipe = new Recipe();
         reff = FirebaseDatabase.getInstance().getReference().child("Recipes");
 
