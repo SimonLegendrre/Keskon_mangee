@@ -24,9 +24,6 @@ public class Welcome extends AppCompatActivity {
                 finish();
             }
         }, SPLASH_TIME_OUT);
-
-
-
     }
 
 }
