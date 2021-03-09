@@ -87,7 +87,14 @@ public class Register extends AppCompatActivity {
                         }
                     }
                 });
-
+            }
+        });
+        // Ici on prend en compte l'endroit où il est marqué: "Déjà un compte ? connectez vous ici"
+        mLoginBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), Login.class));
+                // dans le cideo il ne met pas finish()
             }
         });
     }

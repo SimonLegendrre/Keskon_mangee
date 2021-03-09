@@ -82,6 +82,14 @@ public class Login extends AppCompatActivity {
 
             }
         });
+        // Ca c'est l'endroid où on met " Ah en fait vous êtes nouveau, créer vous un compte ici!"
+        mCreateBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(getApplicationContext(), Register.class));
+                // dans le cideo il ne met pas finish()
+            }
+        });
 
     }
 }
