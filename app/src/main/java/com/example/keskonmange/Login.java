@@ -62,6 +62,7 @@ public class Login extends AppCompatActivity {
                     mPassword.setError("Le mot de passe doit faire au moins 6 charactères");
                     return;
                 }
+
                 // on remet la barre de prgrès visible (initiallement invisible dans le XML)
                 progressBar.setVisibility(View.VISIBLE);
 
@@ -76,6 +77,7 @@ public class Login extends AppCompatActivity {
                             startActivity(new Intent(getApplicationContext(), MainActivity.class));
                         }else{
                             Toast.makeText(Login.this, "Erreur lors de votre connection. "+ task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                            progressBar.setVisibility(View.GONE); // Ca permet de retirer le fait que la progress bar tourne sans arrêt.
                         }
                     }
                 });

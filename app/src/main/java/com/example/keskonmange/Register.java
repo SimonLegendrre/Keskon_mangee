@@ -83,7 +83,7 @@ public class Register extends AppCompatActivity {
                             startActivity(new Intent(getApplicationContext(), MainActivity.class));
                         }else {
                             Toast.makeText(Register.this, "Erreur lors de la création de compte. "+ task.getException().getMessage(), Toast.LENGTH_SHORT).show();
-
+                            progressB.setVisibility(View.GONE); // si on ne met pas ça, la progress bar va continuer sans arrêt.
                         }
                     }
                 });
