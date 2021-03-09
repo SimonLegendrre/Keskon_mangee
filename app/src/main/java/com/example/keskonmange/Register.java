@@ -43,11 +43,11 @@ public class Register extends AppCompatActivity {
 
 
         // Prendre en compte si l'utilisateur a déjà un compte. Dans ce cas, on ne veut pas qu'il tombe sur l'écran de Registration
+
         if (fAuth.getCurrentUser()!= null){
             startActivity(new Intent(getApplicationContext(), MainActivity.class));
             finish();
         }
-
 
         mRegisterBtn.setOnClickListener(new View.OnClickListener() {
             @Override
