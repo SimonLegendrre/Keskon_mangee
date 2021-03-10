@@ -36,9 +36,7 @@ public class Consultation extends AppCompatActivity {
             public void onClick(View v) {
 
                 if (awesomeValidation.validate()){
-                    Toast.makeText(getApplicationContext(), "recettes trouvées", Toast.LENGTH_SHORT).show();
-                    Intent intent = new Intent(Consultation.this, CreationOrConsulationPage.class);
-                    startActivity(intent);
+
                 }else{
                     Toast.makeText(getApplicationContext(),"Vous n'avez pas entré d'ingédient valide",
                             Toast.LENGTH_SHORT).show();

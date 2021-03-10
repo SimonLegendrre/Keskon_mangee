@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Keskonmange">
-        <activity android:name=".Consultation"></activity>
+        <activity android:name=".consultation_2"></activity>
+        <activity android:name=".Consultation" />
         <activity android:name=".CreationOrConsulationPage" />
         <activity android:name=".FillInCreate" />
         <activity android:name=".Welcome" />

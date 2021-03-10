@@ -30,7 +30,7 @@ public class CreationOrConsulationPage extends AppCompatActivity {
         acceuil_consult_button.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v2) {
-                Intent intent2 = new Intent(CreationOrConsulationPage.this, Consultation.class);
+                Intent intent2 = new Intent(CreationOrConsulationPage.this, consultation_2.class);
                 startActivity(intent2);
             }
         });
