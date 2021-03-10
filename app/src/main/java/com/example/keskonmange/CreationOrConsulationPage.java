@@ -7,6 +7,8 @@ import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.firebase.auth.FirebaseAuth;
+
 public class CreationOrConsulationPage extends AppCompatActivity {
     public Button acceuil_create_button;
     public Button acceuil_consult_button;
@@ -34,5 +36,12 @@ public class CreationOrConsulationPage extends AppCompatActivity {
                 startActivity(intent2);
             }
         });
+    }
+
+    // C'est ici qu'on gère le bouton LOG OUT. dans le futur il faudra bouger ce truc pour le mettre dans la toolbar
+    public void LogOut1(View view) {
+        FirebaseAuth.getInstance().signOut(); //logout
+        startActivity(new Intent(getApplicationContext(), Login.class));
+        finish();
     }
 }
