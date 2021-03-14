@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -14,9 +15,17 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class Register extends AppCompatActivity {
     // first activity seen when the user opens the application
@@ -25,6 +34,9 @@ public class Register extends AppCompatActivity {
     TextView mLoginBtn;
     FirebaseAuth fAuth; // where we're gonnga registrer de user
     ProgressBar progressB;
+
+    FirebaseFirestore fstore_account; // BDD où on stocke les comptes
+    String userID;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +51,7 @@ public class Register extends AppCompatActivity {
         mLoginBtn = findViewById(R.id.AlreadyAccount_registration);
 
         fAuth = FirebaseAuth.getInstance(); // get current status of the database
+        fstore_account = FirebaseFirestore.getInstance();
         progressB = findViewById(R.id.progressBar_registration);
 
 
@@ -52,8 +65,11 @@ public class Register extends AppCompatActivity {
         mRegisterBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                // trucs suivant qu'on va stocker dans la BDD
                 String email = mEmail.getText().toString().trim();
                 String password = mPassowrd.getText().toString().trim();
+                String fullName = mFullname.getText().toString();
+
 
                 if (TextUtils.isEmpty(email)){
                     mEmail.setError("Une adresse email est requise.");
@@ -75,11 +91,44 @@ public class Register extends AppCompatActivity {
 
                 // Ici on va registrer le user in Firebase
                 fAuth.createUserWithEmailAndPassword(email, password). addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                    private static final String TAG = "succès registration";
+
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         // Ici on check si la registration est succesful ou pas = task succesful
                         if (task.isSuccessful()) {
+                            /*
+                            FirebaseUser user = fAuth.getCurrentUser(); // retrieve user
+                            user.sendEmailVerification().addOnSuccessListener(new OnSuccessListener<Void>() {
+                                @Override
+                                public void onSuccess(Void aVoid) {
+
+                                }
+                            }).addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    log.d(TAG, "OnFailure: Email not sent "+ e.getMessage());
+                                }
+                            });
+
+                             */
+
                             Toast.makeText(Register.this, "Utilisteur créé", Toast.LENGTH_SHORT).show(); //LENGTH_SHORT ==> short period of time
+                            // ici on créé la collection pour les compte:
+                            userID = fAuth.getCurrentUser().getUid(); // prend l'id du User
+                            DocumentReference documentReference = fstore_account.collection("Users").document(userID);
+                            // enregistrement via une map
+                            Map<String, Object> user = new HashMap<>();
+                            // going to insert the data: c'est là qu'on pourra ajouter des trucs si on veut plus de données
+                            user.put("FullName", fullName);
+                            user.put("Email", email);
+                            // now, want to insert to the cloud
+                            documentReference.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                @Override
+                                public void onSuccess(Void aVoid) {
+                                    Log.d(TAG, "Succès: Le profil a été créé pour l'utilisateur "+userID);
+                                }
+                            });
                             startActivity(new Intent(getApplicationContext(), MainActivity.class));
                         }else {
                             Toast.makeText(Register.this, "Erreur lors de la création de compte. "+ task.getException().getMessage(), Toast.LENGTH_SHORT).show();
