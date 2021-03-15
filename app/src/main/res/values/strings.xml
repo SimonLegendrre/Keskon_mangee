@@ -15,6 +15,7 @@
     <string name="bienvenue_sur_keskonmange">Bienvenue sur Keskonmange!</string>
     <string name="todo">TODO</string>
     <string name="liste_ingredients">Liste d\'ingrédients</string>
+
     <!-- On met tous les boutons dans cette sous-section-->
     <string name="button_acceuil_create_recipe">Créer une recette</string>
     <string name="button_acceuil_consult_recipe">Consulter les recettes</string>
