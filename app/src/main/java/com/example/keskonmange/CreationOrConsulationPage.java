@@ -2,6 +2,7 @@ package com.example.keskonmange;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
 
@@ -37,6 +38,14 @@ public class CreationOrConsulationPage extends AppCompatActivity {
             }
         });
     }
+    /*
+    @Override // 3 points à droite de la toolbar avec options.
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        return true;
+    }
+     */
 
     // C'est ici qu'on gère le bouton LOG OUT. dans le futur il faudra bouger ce truc pour le mettre dans la toolbar
     public void LogOut1(View view) {

@@ -7,4 +7,9 @@
         android:orderInCategory="100"
         android:title="@string/action_settings"
         app:showAsAction="never" />
+    <item
+        android:id="@+id/DeconnectionFromToolbar"
+        android:orderInCategory="100"
+        android:title="@string/DeconnectionFromToolbar"
+        app:showAsAction="never" />
 </menu>
