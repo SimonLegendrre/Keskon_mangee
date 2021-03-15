@@ -62,6 +62,7 @@
         android:layout_height="55dp"
         android:layout_marginBottom="300dp"
         android:text="@string/enregister_nouvelle_recette"
+        android:onClick="SaveRecette"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
