@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -7,64 +6,134 @@
     android:orientation="vertical"
     tools:context=".Choix_ing_consult">
 
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
         <EditText
-            android:id="@+id/premier_ingredient"
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:layout_marginLeft="10dp"
-            android:layout_marginRight="105dp"
-            android:layout_marginTop="10dp"
-            android:hint="Ingredient"
-            android:textSize="14sp"
-            android:paddingLeft="10dp"
-            android:textColor="@color/black"
-            android:layout_weight="1"
-            android:background="@drawable/round_grey"></EditText>
-
-        <LinearLayout
-            android:id="@+id/layout_consultation"
+            android:id="@+id/et_ing"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"></LinearLayout>
+            android:hint="Ingrédient" />
 
-        <TableRow
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center">
 
-        <Button
-            android:id="@+id/button_add_ingredient"
-            android:background="@drawable/round_primary"
-            android:layout_width="wrap_content"
-            android:layout_height="40dp"
-            android:text="Ajouter"
-            android:layout_marginTop="10dp"
-            android:layout_marginLeft="15dp"
-            android:textColor="@color/white"
-            android:textAllCaps="false"
-            android:drawableRight="@drawable/add_ingredient"
-            android:paddingLeft="15dp"
-            android:paddingRight="10dp"
+            <Button
+                android:id="@+id/btn_add_ing"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="10dp"
+                android:text="Ajouter" />
 
-            ></Button>
+            <Button
+                android:id="@+id/btn_rm_ing"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="10dp"
+                android:text="Supprimer" />
 
-        <Button
-            android:id="@+id/button_ing_to_recipe_consult"
-            android:layout_width="wrap_content"
-            android:layout_height="40dp"
-            android:layout_marginLeft="15dp"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/round_secondary"
-            android:paddingLeft="10dp"
-            android:paddingRight="10dp"
-            android:text="Chercher Recette"
-            android:textAllCaps="false"
-            android:textColor="@color/white"></Button>
-        </TableRow>
+            <Button
+                android:id="@+id/btn_search_recipe"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="10dp"
+                android:text="rechercher" />
+            <Button
+                android:id="@+id/button_all_recipe"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="10dp"
+                android:text="Toutes les recettes"></Button>
+
         </LinearLayout>
-                </ScrollView>
+
+        <ListView
+            android:id="@+id/list_ing"
+            android:layout_width="wrap_content"
+            android:layout_height="508dp"
+            android:visibility="visible"></ListView>
+
+
+        <!--
+                <EditText
+                    android:id="@+id/premier_ingredient"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="105dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/round_grey"
+                    android:hint="Ingredient"
+                    android:paddingLeft="10dp"
+                    android:textColor="@color/black"
+                    android:textSize="14sp"></EditText>
+
+
+                <LinearLayout
+                    android:id="@+id/layout_consultation"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+                </LinearLayout>
+
+                <TableRow
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <Button
+                        android:id="@+id/button_add_ingredient"
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/round_primary"
+                        android:drawableRight="@drawable/add_ingredient"
+                        android:paddingLeft="15dp"
+                        android:paddingRight="10dp"
+                        android:text="Ajouter"
+                        android:textAllCaps="false"
+                        android:textColor="@color/white"
+
+                        ></Button>
+
+                    <Button
+                        android:id="@+id/button_ing_to_recipe_consult"
+                        android:layout_width="wrap_content"
+                        android:layout_height="40dp"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/round_secondary"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+                        android:text="Chercher Recette"
+                        android:textAllCaps="false"
+                        android:textColor="@color/white"></Button>
+
+                    <Button
+                        android:id="@+id/button_all_recipe"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="15dp"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/round_secondary"
+                        android:paddingLeft="10dp"
+                        android:paddingRight="10dp"
+                        android:text="Toutes les recettes"
+                        android:textAllCaps="false"
+                        android:textColor="@color/white"></Button>
+                </TableRow>
+
+                -->
+
+
+    </LinearLayout>
+
+
+</ScrollView>
+
 

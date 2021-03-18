@@ -11,7 +11,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Keskonmange">
-        <activity android:name=".Choix_recipe_consult"></activity>
+        <activity android:name=".Choice_recipe_consult"></activity>
+        <activity android:name=".Recipes_Scrolling" />
         <activity android:name=".Login" />
         <activity android:name=".Register">
             <intent-filter>
@@ -20,9 +21,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".AuthentificatorApp" />
+        <activity android:name=".AuthenticatorApp" />
         <activity android:name=".Choix_ing_consult" />
-        <activity android:name=".Consultation" />
         <activity android:name=".CreationOrConsulationPage" />
         <activity android:name=".FillInCreate" />
         <activity android:name=".Welcome" />

@@ -37,7 +37,7 @@
         android:padding="10dp" />
 
     <EditText
-        android:id="@+id/ingredient"
+        android:id="@+id/ingredients"
         android:background="@android:color/white"
         android:padding="10dp"
         android:layout_width="match_parent"
@@ -62,7 +62,7 @@
         android:layout_height="55dp"
         android:layout_marginBottom="300dp"
         android:text="@string/enregister_nouvelle_recette"
-        android:onClick="SaveRecette"
+        android:onClick="SaveRecipe"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
