@@ -11,7 +11,6 @@ import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 public class FillInCreate extends AppCompatActivity {

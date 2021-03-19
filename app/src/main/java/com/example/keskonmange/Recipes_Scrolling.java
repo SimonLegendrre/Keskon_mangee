@@ -7,7 +7,6 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.firestore.CollectionReference;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
@@ -21,13 +20,9 @@ public class Recipes_Scrolling extends AppCompatActivity {
     private TextView textViewData;
     private TextView textViewTest;
     private EditText editTextRecipe;
-    //String st;
-    //ArrayList<String> ingredients;
-
 
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private CollectionReference AllRecipe = db.collection("Recette");
-    private DocumentReference thatRecipe = db.collection("Recette").document();
 
 
     @Override
@@ -35,14 +30,6 @@ public class Recipes_Scrolling extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recipes_scrolling);
         textViewData = findViewById(R.id.text_recipe);
-        //editTextRecipe = findViewById(R.id.premier_ingredient);
-
-
-        //st = getIntent().getExtras().getString("Nom");
-
-        //ingredients = (ArrayList<String>) getIntent().getSerializableExtra("ingredients_to_pass");
-
-
     }
 
 
@@ -62,10 +49,12 @@ public class Recipes_Scrolling extends AppCompatActivity {
                     //String documentId = recette.getDocumentId();
                     String titre = recette.getTitre();
                     String description = recette.getDescription();
-                    data += "Titre: " + titre +"\n Ingrédients:";
+                    data += "Titre: " + titre + "\n Ingrédients:";
+
                     for (String ing : recette.getIngredients()) {
                         data += "\n- " + ing;
                     }
+
                     data += "\n Description: " + description;
                     data += "\n\n";
                 }

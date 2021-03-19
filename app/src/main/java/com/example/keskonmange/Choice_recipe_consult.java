@@ -31,63 +31,59 @@ public class Choice_recipe_consult extends AppCompatActivity {
         textViewData = findViewById(R.id.text_array);
         ingredients_list = (ArrayList<String>) getIntent().getSerializableExtra("ingredients_to_pass");
         Collections.sort(ingredients_list);
-
     }
-
 
 
     @Override
     protected void onStart() {
         super.onStart();
-        AllRecipe.whereEqualTo("ingredients", ingredients_list)
+        AllRecipe//.whereEqualTo("ingredients", ingredients_list)
                 .addSnapshotListener(this, new EventListener<QuerySnapshot>() {
-            @Override
-            public void onEvent(QuerySnapshot queryDocumentSnapshots, FirebaseFirestoreException e) {
-                if (e != null) {
-                    return;
-                }
-                String data = "";
-                for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
-                    Recettes recette = documentSnapshot.toObject(Recettes.class);
-                    recette.setDocumentId(documentSnapshot.getId());
-                    //String documentId = recette.getDocumentId();
-                    String titre = recette.getTitre();
-                    String description = recette.getDescription();
-                    data += "Titre: " + titre +"\n Ingrédients:";
-                    for (String ing : recette.getIngredients()) {
-                        data += "\n- " + ing;
+                    @Override
+                    public void onEvent(QuerySnapshot queryDocumentSnapshots, FirebaseFirestoreException e) {
+                        if (e != null) {
+                            return;
+                        }
+                        String data = "";
+                        String titre;
+                        String description;
+
+                        for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
+                            Recettes recette = documentSnapshot.toObject(Recettes.class);
+                            recette.setDocumentId(documentSnapshot.getId());
+
+                            int count = 0;
+
+                            while (count < (recette.getIngredients().size())
+                                    && ingredients_list.contains(recette.getIngredients().get(count))) {
+                                count++;
+                            }
+
+                            if ((count) == recette.getIngredients().size()) {
+                                titre = recette.getTitre();
+                                description = recette.getDescription();
+                                data += "Titre: " + titre + "\n Ingrédients:";
+
+                                for (String ing : recette.getIngredients()) {
+                                    data += "\n- " + ing;
+                                }
+
+                                data += "\n Description: " + description;
+                                data += "\n\n";
+
+                            }
+
+
+                        }
+                        System.out.println("data recette " + "\n"+data);
+
+                        textViewData.setText(data);
+
                     }
-                    data += "\n Description: " + description;
-                    data += "\n\n";
-                }
-                textViewData.setText(data);
 
-            }
 
-        });
+                });
     }
-
-
-
-
-
-
-/*
-
-    // Ce bout de code fonctionne, ce qui signifie que l'on a bien réussi à envoyer la liste d'une activité à l'autre
-    @Override
-    protected void onStart() {
-        super.onStart();
-        String data = "";
-        data+= "\n- " + ingredients_list;
-        textViewData.setText(data);
-    }
-
- */
-
-
-
-
-
-
 }
+
+
