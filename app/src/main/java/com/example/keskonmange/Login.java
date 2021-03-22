@@ -24,6 +24,11 @@ import com.google.firebase.auth.FirebaseAuth;
 
 
 public class Login extends AppCompatActivity {
+    /*
+    Fonctionnalité qui permet de se LOG-IN via son adresse email et son mot de passe. 
+     */
+
+
     // Variables needed for the loggin activity
     EditText mEmail, mPassword;
     Button mLoginBtn;

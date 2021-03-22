@@ -16,6 +16,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 public class Choice_recipe_consult extends AppCompatActivity {
+    /*
+     Page sur laquelle le consulteur fait sa recherche de recette.
+     */
 
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private CollectionReference AllRecipe = db.collection("Recette");

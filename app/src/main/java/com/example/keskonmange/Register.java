@@ -28,6 +28,14 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Register extends AppCompatActivity {
+    /*
+    C'est la classe qui permet à un nouvel utilisateur de créer un compte.
+    Pour le moment, la personne a la possiblité de rentrer son nom + prénom, puis son adresse email qui va jouer le role
+    de username, ainsi qu'un mot de passe (sans confirmation)
+     */
+
+
+
     // first activity seen when the user opens the application
     EditText mFullname, mEmail, mPassowrd;
     Button mRegisterBtn;
@@ -97,6 +105,8 @@ public class Register extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         // Ici on check si la registration est succesful ou pas = task succesful
                         if (task.isSuccessful()) {
+
+                            // @TODO: à fignoler dans le sprint 3
                             /*
                             FirebaseUser user = fAuth.getCurrentUser(); // retrieve user
                             user.sendEmailVerification().addOnSuccessListener(new OnSuccessListener<Void>() {
