@@ -8,12 +8,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import java.util.ArrayList;
 
 
-public class Choix_ing_consult extends AppCompatActivity {
+public class Choix_ing_consult extends OptionsMenuActivity {
 
     public Button buttonAddIng;
     public Button buttonRemoveIng;

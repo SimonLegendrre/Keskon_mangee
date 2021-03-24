@@ -5,11 +5,12 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import com.google.firebase.auth.FirebaseAuth;
 
-public class CreationOrConsulationPage extends AppCompatActivity {
+// Dès maintenant, on extends par la classe OptionsMenuActivity et non AuthenticatorApp : Voir classe OptionsMenuActivity
+// Pour l'explication
+
+public class CreationOrConsulationPage extends OptionsMenuActivity {
     public Button acceuil_create_button;
     public Button acceuil_consult_button;
     public Button acceuil_myProfile_button;
@@ -50,21 +51,14 @@ public class CreationOrConsulationPage extends AppCompatActivity {
         });
 
 
-        acceuil_myProfile_button.setVisibility(View.GONE);
+        //acceuil_myProfile_button.setVisibility(View.GONE);
 
 
 
 
 
     }
-    /*
-    @Override // 3 points à droite de la toolbar avec options.
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
-     */
+
 
     // C'est ici qu'on gère le bouton LOG OUT. dans le futur il faudra bouger ce truc pour le mettre dans la toolbar
     public void LogOut1(View view) {

@@ -1,10 +1,7 @@
 package com.example.keskonmange;
 
 import android.os.Bundle;
-import android.widget.EditText;
 import android.widget.TextView;
-
-import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.EventListener;
@@ -14,12 +11,10 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 
-public class Recipes_Scrolling extends AppCompatActivity {
+public class Recipes_Scrolling extends OptionsMenuActivity {
 
     private static final String TAG = "Choix_recipe_consult";
     private TextView textViewData;
-    private TextView textViewTest;
-    private EditText editTextRecipe;
 
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private CollectionReference AllRecipe = db.collection("Recette");
