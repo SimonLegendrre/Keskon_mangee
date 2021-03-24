@@ -2,14 +2,20 @@ package com.example.keskonmange;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
@@ -22,17 +28,19 @@ import com.google.firebase.firestore.QuerySnapshot;
 public class AuthenticatorApp extends AppCompatActivity {
 
 
-    TextView fullName, email;
+    TextView fullName, email, verifyMsg, InformationIfVerificationAlreadySent;
 
     private FirebaseFirestore fstore = FirebaseFirestore.getInstance();
     private FirebaseAuth fAuth = FirebaseAuth.getInstance();
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private CollectionReference AllRecipe = db.collection("Recette");
-    //private TextView text_my_recipes;
+    private Button ConsultMyREcipes, ReconnectionAttempt;
     private TextView text_my_recipes;
 
 
     String userId;
+    // boutons pour renvoyer un email et bouton pour retenter de se connecter lorsque le compte n'est pas vérifié.
+    Button resendEmail;
 
 
     @Override
@@ -42,10 +50,48 @@ public class AuthenticatorApp extends AppCompatActivity {
         fullName = findViewById(R.id.textViewProfileName);
         email= findViewById(R.id.textViewProfileEmail);
         text_my_recipes = findViewById(R.id.text_my_recipes);
-
+        ConsultMyREcipes = findViewById(R.id.Consult_my_recipes);
+        ReconnectionAttempt = findViewById(R.id.ButtonReconnectionAttempt);
         fstore = FirebaseFirestore.getInstance();
 
+        // vérification de compte
+        resendEmail=findViewById(R.id.ButtonVerifyAccount);
+        verifyMsg = findViewById(R.id.TextViewVerifyAccount);
+        // textView suivant:  message d'information expliquant que si a déjà pressé sur le bouton d'envoie d'meil de cérification, alors on peut appuyer sur le bouton suivant pour se connecter
+        InformationIfVerificationAlreadySent = findViewById(R.id.InformationIfVerificationAlreadySent);
+
         userId = fAuth.getCurrentUser().getUid();
+
+        // Avant tout, on check si l'utilisateur a un compte vérifié. On chope alors d'abord l'instance de l'utilisateur
+        final FirebaseUser user = fAuth.getCurrentUser();
+
+        if(!user.isEmailVerified()){ // if the email is NOT verified --> see '!' want to display the message
+            resendEmail.setVisibility(View.VISIBLE);
+            verifyMsg.setVisibility(View.VISIBLE);
+            ConsultMyREcipes.setVisibility(View.GONE);
+            ReconnectionAttempt.setVisibility(View.VISIBLE);
+            InformationIfVerificationAlreadySent.setVisibility(View.VISIBLE);
+
+
+            resendEmail.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    user.sendEmailVerification().addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void aVoid) {
+                            Toast.makeText(v.getContext(), "Lien de vérification d'adresse email envoyé", Toast.LENGTH_SHORT).show();
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Log.d("tag_issue_email_sending", "Problème encouru. L'email n'a pas été envoyé. " +e.getMessage()); // le message sera potentiellement en anglais s'il y a ce probleme
+                        }
+                    });
+                }
+            });
+        }
+
+
         // retrieve the data from the DB
         DocumentReference documentReference = fstore.collection("Users").document(userId);
 
@@ -91,10 +137,9 @@ public class AuthenticatorApp extends AppCompatActivity {
                 });
     }
 
-    
-    public void LogOut(View view) {
-        FirebaseAuth.getInstance().signOut(); //logout
-        startActivity(new Intent(getApplicationContext(), Login.class));
+    public void ReconnectionAttempt(View view){
+        Intent reconnectionIntent = new Intent(AuthenticatorApp.this, Login.class);
+        startActivity(reconnectionIntent);
         finish();
     }
 

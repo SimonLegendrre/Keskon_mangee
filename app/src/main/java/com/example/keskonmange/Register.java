@@ -108,20 +108,28 @@ public class Register extends AppCompatActivity {
 
                             // @TODO: à fignoler dans le sprint 3
                             /*
-                            FirebaseUser user = fAuth.getCurrentUser(); // retrieve user
-                            user.sendEmailVerification().addOnSuccessListener(new OnSuccessListener<Void>() {
+                            1) Once the user gets registred to the application, an email is automatically
+                                sent to the user with a validation link. The user is noticed in the application
+                                ==> Send verification link
+                             */
+
+
+                            FirebaseUser fuser = fAuth.getCurrentUser(); // retrieve user instance
+                            fuser.sendEmailVerification().addOnSuccessListener(new OnSuccessListener<Void>() {
                                 @Override
                                 public void onSuccess(Void aVoid) {
-
+                                    Toast.makeText(Register.this, "Lien de vérification d'adresse email envoyé", Toast.LENGTH_SHORT).show();
                                 }
                             }).addOnFailureListener(new OnFailureListener() {
                                 @Override
                                 public void onFailure(@NonNull Exception e) {
-                                    log.d(TAG, "OnFailure: Email not sent "+ e.getMessage());
+                                    Log.d(TAG, "Problème encouru. L'email n'a pas été envoyé. " +e.getMessage()); // le message sera potentiellement en anglais s'il y a ce probleme
                                 }
                             });
 
-                             */
+
+
+
 
                             Toast.makeText(Register.this, "Utilisteur créé", Toast.LENGTH_SHORT).show(); //LENGTH_SHORT ==> short period of time
                             // ici on créé la collection pour les compte:
@@ -139,7 +147,7 @@ public class Register extends AppCompatActivity {
                                     Log.d(TAG, "Succès: Le profil a été créé pour l'utilisateur "+userID);
                                 }
                             });
-                            startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                            startActivity(new Intent(getApplicationContext(), Login.class));
                         }else {
                             Toast.makeText(Register.this, "Erreur lors de la création de compte. "+ task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                             progressB.setVisibility(View.GONE); // si on ne met pas ça, la progress bar va continuer sans arrêt.

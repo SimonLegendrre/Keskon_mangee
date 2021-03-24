@@ -21,6 +21,7 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 
 public class Login extends AppCompatActivity {
@@ -37,10 +38,12 @@ public class Login extends AppCompatActivity {
     FirebaseAuth firebaseAuth;
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
 
         // connection to the XML file :)
         mEmail = findViewById(R.id.email_connection);
@@ -83,8 +86,13 @@ public class Login extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         // check if the login is succesful
                         if(task.isSuccessful()){
-                            Toast.makeText(Login.this, "Heureux de vous revoir!", Toast.LENGTH_SHORT).show(); //LENGTH_SHORT ==> short period of time
-                            startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                            FirebaseUser user = firebaseAuth.getCurrentUser();
+                            if(!user.isEmailVerified()) { // if the email is NOT verified, goes to MY Pprofile where account verification is required
+                                startActivity(new Intent(getApplicationContext(), AuthenticatorApp.class));
+                                }
+                            else {
+                                Toast.makeText(Login.this, "Heureux de vous revoir!", Toast.LENGTH_SHORT).show(); //LENGTH_SHORT ==> short period of time
+                                startActivity(new Intent(getApplicationContext(), MainActivity.class));}
                         }else{
                             Toast.makeText(Login.this, "Erreur lors de votre connection. "+ task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                             progressBar.setVisibility(View.GONE); // Ca permet de retirer le fait que la progress bar tourne sans arrêt.

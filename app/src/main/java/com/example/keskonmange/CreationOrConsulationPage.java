@@ -6,6 +6,7 @@ import android.view.View;
 import android.widget.Button;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 // Dès maintenant, on extends par la classe OptionsMenuActivity et non AuthenticatorApp : Voir classe OptionsMenuActivity
 // Pour l'explication
@@ -15,11 +16,16 @@ public class CreationOrConsulationPage extends OptionsMenuActivity {
     public Button acceuil_consult_button;
     public Button acceuil_myProfile_button;
 
-    public Button acceuil_test;
+    //public Button acceuil_test;
+
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        /*
+        2) lorsque la vérification d'email est OK, alors on peut afficher les truc qu'on veut :)
+         */
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_creation_orconsulation_page);
         acceuil_create_button = (Button) findViewById(R.id.acceuil_to_create_recipe_button);

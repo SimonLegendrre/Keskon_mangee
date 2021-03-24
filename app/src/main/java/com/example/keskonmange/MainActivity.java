@@ -1,13 +1,18 @@
 package com.example.keskonmange;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 
 import androidx.appcompat.widget.Toolbar;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
 public class MainActivity extends OptionsMenuActivity {
 
+    FirebaseAuth firebaseAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -15,6 +20,19 @@ public class MainActivity extends OptionsMenuActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        /*
+        1)  Cette page-ci est la page d'accueil pour le moment. On veut donc que, lorsque l'email n'est pas vérifié,
+            la personne soit redirrigé vers la page qui dit que le compte n'est pas vérifié
+            A mon avis, il y a moyen d'ooptimiser le code car pour le moment, c'est juste du copier/coller
+         */
+
+        firebaseAuth = FirebaseAuth.getInstance();
+        FirebaseUser user = firebaseAuth.getCurrentUser();
+        if(!user.isEmailVerified()) { // if the email is NOT verified, goes to MY Pprofile where account verification is required
+            startActivity(new Intent(getApplicationContext(), AuthenticatorApp.class));
+        }
+
 
         /*
 
