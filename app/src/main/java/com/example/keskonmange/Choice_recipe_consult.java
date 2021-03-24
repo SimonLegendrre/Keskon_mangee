@@ -3,8 +3,6 @@ package com.example.keskonmange;
 import android.os.Bundle;
 import android.widget.TextView;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -15,10 +13,7 @@ import com.google.firebase.firestore.QuerySnapshot;
 import java.util.ArrayList;
 import java.util.Collections;
 
-public class Choice_recipe_consult extends AppCompatActivity {
-    /*
-     Page sur laquelle le consulteur fait sa recherche de recette.
-     */
+public class Choice_recipe_consult extends OptionsMenuActivity {
 
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private CollectionReference AllRecipe = db.collection("Recette");
@@ -40,7 +35,7 @@ public class Choice_recipe_consult extends AppCompatActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        AllRecipe//.whereEqualTo("ingredients", ingredients_list)
+        AllRecipe
                 .addSnapshotListener(this, new EventListener<QuerySnapshot>() {
                     @Override
                     public void onEvent(QuerySnapshot queryDocumentSnapshots, FirebaseFirestoreException e) {
@@ -78,7 +73,6 @@ public class Choice_recipe_consult extends AppCompatActivity {
 
 
                         }
-                        System.out.println("data recette " + "\n"+data);
 
                         textViewData.setText(data);
 

@@ -8,31 +8,21 @@ public class Recettes {
     private String documentId;
     private String titre;
     private String description;
+    private String userID; // userID ajouté pour associer à chaque recette l'ID de l'utilisateur qui la crée
     private List<String> ingredients;
-
-
-    /*public void setTitre(String titre) {
-        Titre = titre;
-    }
-
-    public void setIngredient(String ingredient) {
-        Ingredient = ingredient;
-    }
-
-    public void setDescription(String description) {
-        Description = description;
-    }*/
-
 
     public Recettes(){
         // Obligatoire de crée un object vide pour que ca fonctionne
+
     }
 
 
-    public Recettes(String titre, String description, List<String> ingredients){
+    public Recettes(String titre, String description, String userID, List<String> ingredients){
         this.titre = titre;
         this.description = description;
+        this.userID = userID;
         this.ingredients = ingredients;
+
     }
 
 
@@ -51,9 +41,11 @@ public class Recettes {
     public String getDescription(){
         return description;
     }
+
+    public String getUserID() { return userID; } // getter pour UserID
+
     public List<String> getIngredients() {
         return ingredients;
     }
-
 
 }

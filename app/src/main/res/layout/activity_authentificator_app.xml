@@ -27,6 +27,7 @@
         app:srcCompat="@mipmap/ic_launcher"
         tools:layout_editor_absoluteX="47dp"
         tools:layout_editor_absoluteY="99dp"
+        android:visibility="invisible"
         android:contentDescription="@string/todo2" />
 
     <TextView
@@ -43,12 +44,36 @@
         android:text="@string/email" />
 
     <Button
+        android:id="@+id/Consult_my_recipes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:text="@string/Consult_my_recipes"
+        android:onClick="Consult_my_recipes"/>
+
+    <Button
         android:id="@+id/buttonLogOut"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:text="@string/se_d_connecter"
         android:onClick="LogOut"/>
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="vertical"
+        android:fillViewport="true">
+    <TextView
+        android:id="@+id/text_my_recipes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"
+        tools:ignore="MissingConstraints" />
+    </ScrollView>
+
+
+
 
 
 </LinearLayout>
