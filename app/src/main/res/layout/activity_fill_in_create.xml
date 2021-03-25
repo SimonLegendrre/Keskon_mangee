@@ -13,18 +13,17 @@
 
     <TextView
         android:id="@+id/textView3"
-        android:textColor="@color/white"
-        android:textSize="20dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginHorizontal="20dp"
         android:layout_marginStart="20dp"
         android:layout_marginLeft="20dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="70dp"
         android:layout_marginEnd="20dp"
         android:layout_marginRight="20dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Remplissez ici les informations correspondant à votre recette" />
-
+        android:text="Remplissez ici les informations correspondant à votre recette"
+        android:textColor="@color/white"
+        android:textSize="20dp" />
 
     <EditText
         android:id="@+id/nom_recette"
@@ -37,16 +36,6 @@
         android:padding="10dp" />
 
     <EditText
-        android:id="@+id/ingredients"
-        android:background="@android:color/white"
-        android:padding="10dp"
-        android:layout_width="match_parent"
-        android:hint="Ingrédients, séparé par un point virgule ';'"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:inputType="text" />
-
-    <EditText
         android:id="@+id/description"
         android:background="@android:color/white"
         android:padding="10dp"
@@ -56,13 +45,66 @@
         android:hint="Description"
         android:inputType="textPersonName" />
 
+    <EditText
+        android:id="@+id/ingredients"
+        android:background="@android:color/white"
+        android:padding="10dp"
+        android:layout_width="match_parent"
+        android:hint="Ingrédients'"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:inputType="text" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center">
+
+        <Button
+            android:id="@+id/btn_ajouter"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="10dp"
+            android:text="Ajouter" />
+
+        <Button
+            android:id="@+id/btn_supprimer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="10dp"
+            android:text="Supprimer" ></Button>
+
+
+    </LinearLayout>
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        tools:context=".Recipes_Scrolling">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <ListView
+                android:id="@+id/list_ingredients"
+                android:layout_width="wrap_content"
+                android:layout_height="193dp"
+                android:visibility="visible"
+                android:background="@color/cardview_light_background"></ListView>
+        </LinearLayout>
+    </ScrollView>
+
     <Button
         android:id="@+id/submit_recipe_creator"
         android:layout_width="250dp"
         android:layout_height="55dp"
-        android:layout_marginBottom="300dp"
-        android:text="@string/enregister_nouvelle_recette"
+        android:layout_marginBottom="90dp"
         android:onClick="SaveRecipe"
+        android:text="@string/enregister_nouvelle_recette"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
