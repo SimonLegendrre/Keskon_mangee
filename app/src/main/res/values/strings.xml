@@ -5,7 +5,7 @@
     <!-- Strings used for fragments for navigation -->
     <string name="page_de_creation_de_recette">Aller à la page de création de recette</string>
     <string name="invalid_name">Veuillez remplir le champ</string>
-    <string name="invalid_ingredient">Ecrivez les nom d\'ingrédients séparés d\'un point virgule \';\' svp</string>
+    <string name="invalid_ingredient">Veuilez entrer un ingrédient</string>
     <string name="invalid_recipe_description">Veuillez remplir le champ</string>
     <string name="remplissez_ici_les_informations_correspondant_votre_recette">Remplissez ici les informations correspondant à votre recette</string>
     <string name="nom_de_recette">Nom de recette</string>
@@ -18,7 +18,7 @@
 
     <!-- On met tous les boutons dans cette sous-section-->
     <string name="button_acceuil_create_recipe">Créer une recette</string>
-    <string name="button_acceuil_consult_recipe">Consulter les recettes</string>
+    <string name="button_acceuil_consult_recipe">Qu\'est ce qu\'on mange ?</string>
     <string name="enregister_nouvelle_recette">Enregistrer ma recette</string>
     <string name="enregister_ingredients_consultor">Rechercher une recette</string>
     <string name="votre_profil">Votre profil</string>
@@ -27,6 +27,8 @@
     <string name="se_d_connecter">Se déconnecter</string>
     <string name="Consult_my_recipes">Consulter mes recettes</string>
     <string name="todo">TODO</string>
+    <string name="invalid_titre">Veuillez entrer un titre à votre recette</string>
+    <string name="invalid_description">"Veuillez entrer une description "</string>
 
 
 </resources>

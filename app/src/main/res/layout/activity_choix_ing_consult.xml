@@ -42,12 +42,6 @@
                 android:layout_height="wrap_content"
                 android:textSize="10dp"
                 android:text="rechercher" />
-            <Button
-                android:id="@+id/button_all_recipe"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textSize="10dp"
-                android:text="Toutes les recettes"></Button>
 
         </LinearLayout>
 

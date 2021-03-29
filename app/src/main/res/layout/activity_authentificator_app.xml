@@ -80,7 +80,7 @@
         android:layout_marginTop="30dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Si vous avez déjà demandé un envoie d'email de vérification, vous pouvez vous connecter en appuaynt sur le bouton suivant "
+        android:text="Si vous avez déjà demandé un envoi d'email de vérification, vous pouvez vous connecter en appuyant sur le bouton suivant "
         android:textColor="@android:color/holo_red_dark"
         android:textSize="20dp"
         android:visibility="gone"

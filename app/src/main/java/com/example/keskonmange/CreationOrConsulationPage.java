@@ -6,7 +6,6 @@ import android.view.View;
 import android.widget.Button;
 
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 
 // Dès maintenant, on extends par la classe OptionsMenuActivity et non AuthenticatorApp : Voir classe OptionsMenuActivity
 // Pour l'explication
@@ -15,6 +14,7 @@ public class CreationOrConsulationPage extends OptionsMenuActivity {
     public Button acceuil_create_button;
     public Button acceuil_consult_button;
     public Button acceuil_myProfile_button;
+    public Button acceuil_Allrecipes_button;
 
     //public Button acceuil_test;
 
@@ -31,6 +31,8 @@ public class CreationOrConsulationPage extends OptionsMenuActivity {
         acceuil_create_button = (Button) findViewById(R.id.acceuil_to_create_recipe_button);
         acceuil_consult_button = (Button) findViewById(R.id.acceuil_to_consult_recipe_button);
         acceuil_myProfile_button =(Button) findViewById(R.id.MyProfile);
+        acceuil_Allrecipes_button = (Button) findViewById(R.id.Consult_all_recipes);
+
         acceuil_create_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -56,8 +58,13 @@ public class CreationOrConsulationPage extends OptionsMenuActivity {
             }
         });
 
-
-        //acceuil_myProfile_button.setVisibility(View.GONE);
+        acceuil_Allrecipes_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent4 = new Intent(CreationOrConsulationPage.this, Recipes_Scrolling.class);
+                startActivity(intent4);
+            }
+        });
 
 
 

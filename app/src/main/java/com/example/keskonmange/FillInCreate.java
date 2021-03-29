@@ -7,17 +7,19 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Toast;
 
+import com.basgeekball.awesomevalidation.AwesomeValidation;
+import com.basgeekball.awesomevalidation.ValidationStyle;
+import com.basgeekball.awesomevalidation.utility.RegexTemplate;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
-public class FillInCreate extends OptionsMenuActivity {
+public class  FillInCreate extends OptionsMenuActivity {
 
 
     private EditText editTextTitre;
@@ -35,7 +37,10 @@ public class FillInCreate extends OptionsMenuActivity {
     // Ce code permet de rajouter l'ID de l'utilisateur qui crée la recette au champ de la recette
     private FirebaseFirestore fstore = FirebaseFirestore.getInstance();
     private FirebaseAuth fAuth = FirebaseAuth.getInstance();
-    // FIN
+
+    AwesomeValidation awesomeValidation;
+    AwesomeValidation awesomeValidationIngredients;
+
 
 
 
@@ -57,6 +62,13 @@ public class FillInCreate extends OptionsMenuActivity {
         fstore = FirebaseFirestore.getInstance();
         userId = fAuth.getCurrentUser().getUid();
 
+        // Awesome validation
+        awesomeValidation = new AwesomeValidation(ValidationStyle.BASIC);
+        awesomeValidationIngredients = new AwesomeValidation(ValidationStyle.BASIC);
+        awesomeValidation.addValidation(this,R.id.nom_recette, RegexTemplate.NOT_EMPTY,R.string.invalid_titre);
+        awesomeValidation.addValidation(this,R.id.description, RegexTemplate.NOT_EMPTY,R.string.invalid_description);
+        awesomeValidationIngredients.addValidation(this, R.id.ingredients, RegexTemplate.NOT_EMPTY,R.string.invalid_ingredient);
+
 
         ListeIngredients = new ArrayList<>();
         // fait le lien entre le XML EditText et arrayList "ingredientList"
@@ -68,25 +80,36 @@ public class FillInCreate extends OptionsMenuActivity {
             @Override
             public void onClick(View v) {
 
-                // stock  les Strings
-                String strIngredient = editTextIngredients.getText().toString();
-                // on ajouter le editText format String dans le ArrayList
-                ListeIngredients.add(strIngredient);
-                // on update arrayAdapter
-                listView.setAdapter(arrayAdapterListeIngredients);
-                // on update Listview grace à ArrayAdapter
-                arrayAdapterListeIngredients.notifyDataSetChanged();
-                // on vide EditText
-                editTextIngredients.getText().clear();
+                if(awesomeValidationIngredients.validate()) {
+
+                    // stock  les Strings
+                    String strIngredient = editTextIngredients.getText().toString();
+                    // on ajouter le editText format String dans le ArrayList
+                    ListeIngredients.add(strIngredient);
+                    // on update arrayAdapter
+                    listView.setAdapter(arrayAdapterListeIngredients);
+                    // on update Listview grace à ArrayAdapter
+                    arrayAdapterListeIngredients.notifyDataSetChanged();
+                    // on vide EditText
+                    editTextIngredients.getText().clear();
+                }
+                else{return;}
+
             }
         });
         //Bouton pour supprimer le dernier ingrédient qui a été entré.
         buttonSupprimer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ListeIngredients.remove(ListeIngredients.size() - 1);
-                listView.setAdapter(arrayAdapterListeIngredients);
-                arrayAdapterListeIngredients.notifyDataSetChanged();
+                if (ListeIngredients.size()> 0) {
+                    ListeIngredients.remove(ListeIngredients.size() - 1);
+                    listView.setAdapter(arrayAdapterListeIngredients);
+                    arrayAdapterListeIngredients.notifyDataSetChanged();
+                }
+                else{
+                    Toast.makeText(FillInCreate.this,"La liste d'ingrédients est vide", Toast.LENGTH_SHORT).show();
+
+                }
             }
         });
         // FIN
@@ -96,20 +119,29 @@ public class FillInCreate extends OptionsMenuActivity {
 
     public void SaveRecipe(View view) {
 
-        // Adding Recipe
-        String titre = editTextTitre.getText().toString();
-        String description = editTextDescription.getText().toString();
-        String userID = userId;
-        Recettes recette = new Recettes(titre, description,userID, ListeIngredients); // User ID ajouté pour ajouter l'ID utilisatuer
-        AllRecipe.add(recette);
+        if(awesomeValidation.validate() && ListeIngredients.size()> 0){
+            // Adding Recipe
+            String titre = editTextTitre.getText().toString();
+            String description = editTextDescription.getText().toString();
+            String userID = userId;
+            Recettes recette = new Recettes(titre, description,userID, ListeIngredients); // User ID ajouté pour ajouter l'ID utilisatuer
+            AllRecipe.add(recette);
+            // Rediriger vers le menu lorsque l'on clique
+            Toast.makeText(getApplicationContext(),"Recette crée",Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(FillInCreate.this, CreationOrConsulationPage.class);
+            startActivity(intent);
+            finish();
+
+        }
+        else{
+            if (ListeIngredients.size()!=0){
+                Toast.makeText(getApplicationContext(),"Vous n'avez pas rempli tous les champs", Toast.LENGTH_SHORT).show();
+            }
+            else {Toast.makeText(getApplicationContext(),"Vous n'avez pas entré d'ingrédient",Toast.LENGTH_SHORT).show();}
+
+        }
 
 
-
-        // Rediriger vers le menu lorsque l'on clique
-
-        Intent intent = new Intent(FillInCreate.this, CreationOrConsulationPage.class);
-        startActivity(intent);
-        finish();
 
 
     }
