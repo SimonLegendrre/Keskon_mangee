@@ -24,6 +24,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.google.gson.internal.$Gson$Preconditions;
 
 public class AuthenticatorApp extends AppCompatActivity {
 
@@ -113,26 +114,34 @@ public class AuthenticatorApp extends AppCompatActivity {
                 .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                     @Override
                     public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                        String data = "";
-                        String titre;
-                        String description;
-
-                        for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
-                            Recettes recette = documentSnapshot.toObject(Recettes.class);
-                            recette.setDocumentId(documentSnapshot.getId());
-                            String documentId = recette.getDocumentId();
-                            titre = recette.getTitre();
-                            description = recette.getDescription();
-                            data += "Titre: " + titre + "\n Ingrédients:";
-
-                            for (String ing : recette.getIngredients()) {
-                                data += "\n- " + ing;
-                            }
-
-                            data += "\n Description: " + description;
-                            data += "\n\n";
+                        //Si on n'a pas créé de recette
+                        if (queryDocumentSnapshots.isEmpty()){
+                            text_my_recipes.setText("Vous n'avez pas créé de recette.");
                         }
-                        text_my_recipes.setText(data);
+                        //Si on en a créé des recettes
+                        else{
+                            String data = "";
+                            String titre;
+                            String description;
+
+                            for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
+                                Recettes recette = documentSnapshot.toObject(Recettes.class);
+                                recette.setDocumentId(documentSnapshot.getId());
+                                String documentId = recette.getDocumentId();
+                                titre = recette.getTitre();
+                                description = recette.getDescription();
+                                data += "Titre: " + titre + "\n Ingrédients:";
+
+                                for (String ing : recette.getIngredients()) {
+                                    data += "\n- " + ing;
+                                }
+
+                                data += "\n Description: " + description;
+                                data += "\n\n";
+                            }
+                            text_my_recipes.setText(data);
+                        }
+
                     }
                 });
     }
