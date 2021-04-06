@@ -45,13 +45,15 @@
         android:hint="Description"
         android:inputType="textPersonName" />
 
-    <EditText
+    <AutoCompleteTextView
         android:id="@+id/ingredients"
+        android:completionThreshold="2"
+        android:completionHint="Ajouter cet ingrédient"
         android:background="@android:color/white"
         android:padding="10dp"
         android:layout_width="match_parent"
-        android:hint="Ingrédients"
         android:layout_height="wrap_content"
+        android:hint="Ingrédients"
         android:layout_marginTop="10dp"
         android:inputType="text" />
 
@@ -92,7 +94,7 @@
             <ListView
                 android:id="@+id/list_ingredients"
                 android:layout_width="wrap_content"
-                android:layout_height="193dp"
+                android:layout_height="200dp"
                 android:visibility="visible"
                 android:background="@color/cardview_light_background"></ListView>
         </LinearLayout>
