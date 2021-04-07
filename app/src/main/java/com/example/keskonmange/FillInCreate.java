@@ -30,6 +30,7 @@ public class  FillInCreate extends OptionsMenuActivity {
     ArrayList<String> ListeIngredients;
     ArrayAdapter<String> arrayAdapterListeIngredients;
     ListView listView;
+    String userId;
 
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private CollectionReference AllRecipe = db.collection("Recette");
@@ -58,9 +59,10 @@ public class  FillInCreate extends OptionsMenuActivity {
         listView = findViewById(R.id.list_ingredients);
         // Ce code permet de rajouter l'ID de l'utilisateur qui crée la recette au champ de la recette
         // retrieve the data from the DB
+        userId = fAuth.getCurrentUser().getUid();
         DocumentReference documentReference = fstore.collection("Users").document(userId);
         fstore = FirebaseFirestore.getInstance();
-        userId = fAuth.getCurrentUser().getUid();
+
 
         // Awesome validation
         awesomeValidation = new AwesomeValidation(ValidationStyle.BASIC);
@@ -124,7 +126,8 @@ public class  FillInCreate extends OptionsMenuActivity {
             String titre = editTextTitre.getText().toString();
             String description = editTextDescription.getText().toString();
             String userID = userId;
-            Recettes recette = new Recettes(titre, description,userID, ListeIngredients); // User ID ajouté pour ajouter l'ID utilisatuer
+            Double note = null;
+            Recettes recette = new Recettes(titre, description,userID, note, ListeIngredients); // User ID ajouté pour ajouter l'ID utilisatuer
             AllRecipe.add(recette);
             // Rediriger vers le menu lorsque l'on clique
             Toast.makeText(getApplicationContext(),"Recette crée",Toast.LENGTH_SHORT).show();

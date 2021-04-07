@@ -9,6 +9,7 @@ public class Recettes {
     private String titre;
     private String description;
     private String userID; // userID ajouté pour associer à chaque recette l'ID de l'utilisateur qui la crée
+    private Double note;
     private List<String> ingredients;
 
     public Recettes(){
@@ -17,10 +18,11 @@ public class Recettes {
     }
 
 
-    public Recettes(String titre, String description, String userID, List<String> ingredients){
+    public Recettes(String titre, String description, String userID, Double note, List<String> ingredients){
         this.titre = titre;
         this.description = description;
         this.userID = userID;
+        this.note = note;
         this.ingredients = ingredients;
 
     }
@@ -43,6 +45,8 @@ public class Recettes {
     }
 
     public String getUserID() { return userID; } // getter pour UserID
+
+    public Double getNote() { return note; }
 
     public List<String> getIngredients() {
         return ingredients;

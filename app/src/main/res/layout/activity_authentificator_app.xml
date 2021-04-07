@@ -71,8 +71,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:text="@string/Consult_my_recipes"
-        android:onClick="Consult_my_recipes"/>
+        android:text="@string/Consult_my_recipes" />
 
     <TextView
 
@@ -98,20 +97,19 @@
         android:onClick="ReconnectionAttempt"
         />
 
-    <ScrollView
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:scrollbars="vertical"
-        android:fillViewport="true">
-    <TextView
+
+    <ListView
         android:id="@+id/text_my_recipes"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="400dp"
         android:textSize="20sp"
         tools:ignore="MissingConstraints" />
-    </ScrollView>
 
-
+    <TextView
+        android:id="@+id/text_no_recipe"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="20sp"/>
 
 
 
