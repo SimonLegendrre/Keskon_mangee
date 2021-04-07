@@ -43,9 +43,6 @@ public class  FillInCreate extends OptionsMenuActivity {
     AwesomeValidation awesomeValidationIngredients;
 
 
-
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
