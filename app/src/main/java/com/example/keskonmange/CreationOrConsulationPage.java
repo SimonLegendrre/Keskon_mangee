@@ -16,8 +16,7 @@ public class CreationOrConsulationPage extends OptionsMenuActivity {
     public Button acceuil_myProfile_button;
     public Button acceuil_Allrecipes_button;
 
-    //public Button acceuil_test;
-
+    public Button acceuil_test;
 
 
     @Override
@@ -30,8 +29,13 @@ public class CreationOrConsulationPage extends OptionsMenuActivity {
         setContentView(R.layout.activity_creation_orconsulation_page);
         acceuil_create_button = (Button) findViewById(R.id.acceuil_to_create_recipe_button);
         acceuil_consult_button = (Button) findViewById(R.id.acceuil_to_consult_recipe_button);
-        acceuil_myProfile_button =(Button) findViewById(R.id.MyProfile);
+        acceuil_myProfile_button = (Button) findViewById(R.id.MyProfile);
         acceuil_Allrecipes_button = (Button) findViewById(R.id.Consult_all_recipes);
+
+        // Pas encore utile
+        acceuil_test = findViewById(R.id.test);
+        acceuil_test.setVisibility(View.GONE);
+        //
 
         acceuil_create_button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -41,7 +45,7 @@ public class CreationOrConsulationPage extends OptionsMenuActivity {
             }
         });
 
-        acceuil_consult_button.setOnClickListener(new View.OnClickListener(){
+        acceuil_consult_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v2) {
                 Intent intent2 = new Intent(CreationOrConsulationPage.this, Choix_ing_consult.class);
@@ -67,9 +71,6 @@ public class CreationOrConsulationPage extends OptionsMenuActivity {
         });
 
 
-
-
-
     }
 
 
@@ -78,6 +79,11 @@ public class CreationOrConsulationPage extends OptionsMenuActivity {
         FirebaseAuth.getInstance().signOut(); //logout
         startActivity(new Intent(getApplicationContext(), Login.class));
         finish();
+    }
+
+    public void test_pre(View view) {
+        Intent intent = new Intent(getApplicationContext(), TestPreSelection.class);
+        startActivity(intent);
     }
 
 }

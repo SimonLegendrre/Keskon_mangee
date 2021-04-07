@@ -7,12 +7,13 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.auth.FirebaseAuth;
 
-// Cette classe permet d'integrer à la classe AuthenticatorApp le MENU (3 petits points) au activité qui nous intéresse.
+// Cette classe permet d'integrer à la classe AppCompatActivity le MENU (3 petits points) au activité qui nous intéresse.
 
-public class OptionsMenuActivity extends AuthenticatorApp {
+public class OptionsMenuActivity extends AppCompatActivity {
 
     @Override // 3 points à droite de la toolbar avec options.
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -39,7 +40,8 @@ public class OptionsMenuActivity extends AuthenticatorApp {
                 finish();
                 return true;
 
-            default:return super.onOptionsItemSelected(item);
+            default:
+                return super.onOptionsItemSelected(item);
 
         }
 

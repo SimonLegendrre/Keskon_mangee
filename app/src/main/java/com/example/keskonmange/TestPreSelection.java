@@ -1,6 +1,5 @@
 package com.example.keskonmange;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -15,8 +14,10 @@ import com.basgeekball.awesomevalidation.utility.RegexTemplate;
 
 import java.util.ArrayList;
 
+// Cette activité n'est pas encore utilisée, je l'ai crée pour essayer d'imaginer comment se comportera la partie "ingrédients pré-selectionné"
 
-public class Choix_ing_consult extends OptionsMenuActivity {
+
+public class TestPreSelection extends OptionsMenuActivity {
 
     public Button buttonAddIng;
     public Button buttonRemoveIng;
@@ -30,7 +31,7 @@ public class Choix_ing_consult extends OptionsMenuActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_choix_ing_consult);
+        setContentView(R.layout.activity_test_pre_selection);
 
         listView = findViewById(R.id.list_ing);
         etIngredient = (EditText) findViewById(R.id.et_ing);
@@ -81,24 +82,5 @@ public class Choix_ing_consult extends OptionsMenuActivity {
             }
         });
 
-        buttonSearchRecipe.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (ingredientList.size() > 0) {
-                    Intent intent = new Intent(Choix_ing_consult.this, Choice_recipe_consult.class);
-                    intent.putExtra("ingredients_to_pass", ingredientList);
-                    startActivity(intent);
-                    finish();
-                } else {
-                    Toast.makeText(getApplicationContext(), "Vous n'avez pas entré d'ingrédient", Toast.LENGTH_SHORT).show();
-                }
-
-            }
-        });
-
     }
-
-
 }
-
-
