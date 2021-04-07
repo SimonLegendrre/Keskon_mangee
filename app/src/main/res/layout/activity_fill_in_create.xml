@@ -48,7 +48,7 @@
     <AutoCompleteTextView
         android:id="@+id/ingredients"
         android:completionThreshold="2"
-        android:completionHint="Ajouter cet ingrédient"
+        android:completionHint="Clickez sur un des ingrédients du dessus"
         android:background="@android:color/white"
         android:padding="10dp"
         android:layout_width="match_parent"

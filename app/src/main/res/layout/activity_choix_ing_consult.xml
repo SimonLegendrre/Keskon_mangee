@@ -11,11 +11,13 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <EditText
+        <AutoCompleteTextView
             android:id="@+id/et_ing"
             android:layout_width="match_parent"
+            android:completionHint="Clcikez sur un des ingrédients du dessus"
             android:layout_height="wrap_content"
-            android:hint="Ingrédient" />
+            android:hint="Ingrédient"
+            android:completionThreshold="2"/>
 
         <LinearLayout
             android:layout_width="match_parent"

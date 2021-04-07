@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -15,7 +16,11 @@ import com.basgeekball.awesomevalidation.utility.RegexTemplate;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 
@@ -23,7 +28,9 @@ public class  FillInCreate extends OptionsMenuActivity {
 
 
     private EditText editTextTitre;
-    private EditText editTextIngredients;
+
+    private AutoCompleteTextView AtcIngredients;
+
     private EditText editTextDescription;
     public Button buttonAjouter;
     public Button buttonSupprimer;
@@ -43,22 +50,52 @@ public class  FillInCreate extends OptionsMenuActivity {
     AwesomeValidation awesomeValidationIngredients;
 
 
+    // Création de BDD nécessaire pour l'autcomplétion.
+    ArrayList<String> IngredientsKKM = new ArrayList<>();
+    private CollectionReference IngredientsKKMCollection = db.collection("IngredientsKKM");
+
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fill_in_create);
 
+        // Importation de la BDD incluant tous les ingrédients de KKM (sert à approvisioner l'array IngredientsKKM
+        IngredientsKKMCollection
+                .addSnapshotListener(this, new EventListener<QuerySnapshot>() {
+                    @Override
+                    public void onEvent(QuerySnapshot queryDocumentSnapshots, FirebaseFirestoreException e) {
+                        if (e != null) {
+                            return;
+                        }
+
+                        for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
+                            IngredientsKKM.add(documentSnapshot.get("Nom").toString());
+                        }
+
+                    }
+                });
+
         editTextDescription = findViewById(R.id.description);
         editTextTitre = findViewById(R.id.nom_recette);
-        editTextIngredients = findViewById(R.id.ingredients);
+
+        //Les ingredients (format = autocomplete)
+        AtcIngredients = findViewById(R.id.ingredients);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, IngredientsKKM);
+        AtcIngredients.setAdapter(adapter);
+
         buttonAjouter = (Button) findViewById(R.id.btn_ajouter);
         buttonSupprimer = (Button) findViewById(R.id.btn_supprimer);
         listView = findViewById(R.id.list_ingredients);
         // Ce code permet de rajouter l'ID de l'utilisateur qui crée la recette au champ de la recette
         // retrieve the data from the DB
+
         userId = fAuth.getCurrentUser().getUid();
         DocumentReference documentReference = fstore.collection("Users").document(userId);
         fstore = FirebaseFirestore.getInstance();
+
 
 
         // Awesome validation
@@ -82,7 +119,7 @@ public class  FillInCreate extends OptionsMenuActivity {
                 if(awesomeValidationIngredients.validate()) {
 
                     // stock  les Strings
-                    String strIngredient = editTextIngredients.getText().toString();
+                    String strIngredient = AtcIngredients.getText().toString();
                     // on ajouter le editText format String dans le ArrayList
                     ListeIngredients.add(strIngredient);
                     // on update arrayAdapter
@@ -90,7 +127,7 @@ public class  FillInCreate extends OptionsMenuActivity {
                     // on update Listview grace à ArrayAdapter
                     arrayAdapterListeIngredients.notifyDataSetChanged();
                     // on vide EditText
-                    editTextIngredients.getText().clear();
+                    AtcIngredients.getText().clear();
                 }
                 else{return;}
 
@@ -123,7 +160,7 @@ public class  FillInCreate extends OptionsMenuActivity {
             String titre = editTextTitre.getText().toString();
             String description = editTextDescription.getText().toString();
             String userID = userId;
-            Double note = null;
+            Double note = null ;
             Recettes recette = new Recettes(titre, description,userID, note, ListeIngredients); // User ID ajouté pour ajouter l'ID utilisatuer
             AllRecipe.add(recette);
             // Rediriger vers le menu lorsque l'on clique

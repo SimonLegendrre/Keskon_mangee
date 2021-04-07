@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -12,6 +13,12 @@ import android.widget.Toast;
 import com.basgeekball.awesomevalidation.AwesomeValidation;
 import com.basgeekball.awesomevalidation.ValidationStyle;
 import com.basgeekball.awesomevalidation.utility.RegexTemplate;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.EventListener;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 
@@ -21,19 +28,51 @@ public class Choix_ing_consult extends OptionsMenuActivity {
     public Button buttonAddIng;
     public Button buttonRemoveIng;
     public Button buttonSearchRecipe;
+
+    AutoCompleteTextView AtcIngredients;
     EditText etIngredient;
     ListView listView;
     ArrayList<String> ingredientList;
     ArrayAdapter<String> arrayAdapterIngredient;
     AwesomeValidation awesomeValidation;
 
+
+    // Création de BDD nécessaire pour l'autcomplétion.
+    ArrayList<String> IngredientsKKM = new ArrayList<>();
+
+    private FirebaseFirestore db = FirebaseFirestore.getInstance();
+    private CollectionReference IngredientsKKMCollection = db.collection("IngredientsKKM");
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_choix_ing_consult);
 
+        // Importation de la BDD incluant tous les ingrédients de KKM (sert à approvisioner l'array IngredientsKKM
+        IngredientsKKMCollection
+                .addSnapshotListener(this, new EventListener<QuerySnapshot>() {
+                    @Override
+                    public void onEvent(QuerySnapshot queryDocumentSnapshots, FirebaseFirestoreException e) {
+                        if (e != null) {
+                            return;
+                        }
+
+                        for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
+                            IngredientsKKM.add(documentSnapshot.get("Nom").toString());
+                        }
+
+                    }
+                });
+
+        //Les ingredients (format = autocomplete)
+        AtcIngredients = findViewById(R.id.et_ing);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, IngredientsKKM);
+        AtcIngredients.setAdapter(adapter);
+
         listView = findViewById(R.id.list_ing);
-        etIngredient = (EditText) findViewById(R.id.et_ing);
+        //etIngredient = (EditText) findViewById(R.id.et_ing);
         buttonAddIng = (Button) findViewById(R.id.btn_add_ing);
         buttonRemoveIng = (Button) findViewById(R.id.btn_rm_ing);
         buttonSearchRecipe = (Button) findViewById(R.id.btn_search_recipe);
@@ -45,6 +84,8 @@ public class Choix_ing_consult extends OptionsMenuActivity {
 
         awesomeValidation = new AwesomeValidation(ValidationStyle.BASIC);
         awesomeValidation.addValidation(this, R.id.et_ing, RegexTemplate.NOT_EMPTY, R.string.invalid_ingredient);
+
+
 
         buttonAddIng.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -100,5 +141,3 @@ public class Choix_ing_consult extends OptionsMenuActivity {
 
 
 }
-
-
