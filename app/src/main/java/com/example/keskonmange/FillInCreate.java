@@ -119,8 +119,8 @@ public class  FillInCreate extends OptionsMenuActivity {
                 if(awesomeValidationIngredients.validate()) {
 
                     // stock  les Strings
-                    String strIngredient = AtcIngredients.getText().toString();
-                    // on ajouter le editText format String dans le ArrayList
+                    String strIngredient = AtcIngredients.getText().toString().toLowerCase();
+                    // on ajoute le editText format String dans le ArrayList
                     ListeIngredients.add(strIngredient);
                     // on update arrayAdapter
                     listView.setAdapter(arrayAdapterListeIngredients);
@@ -164,7 +164,7 @@ public class  FillInCreate extends OptionsMenuActivity {
             Recettes recette = new Recettes(titre, description,userID, note, ListeIngredients); // User ID ajouté pour ajouter l'ID utilisatuer
             AllRecipe.add(recette);
             // Rediriger vers le menu lorsque l'on clique
-            Toast.makeText(getApplicationContext(),"Recette crée",Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(),"Recette créée",Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(FillInCreate.this, CreationOrConsulationPage.class);
             startActivity(intent);
             finish();

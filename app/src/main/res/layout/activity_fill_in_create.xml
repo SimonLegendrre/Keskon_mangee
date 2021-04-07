@@ -55,6 +55,9 @@
         android:layout_height="wrap_content"
         android:hint="Ingrédients"
         android:layout_marginTop="10dp"
+        android:maxLines="1"
+        android:lines="1"
+        android:singleLine="true"
         android:inputType="text" />
 
     <LinearLayout

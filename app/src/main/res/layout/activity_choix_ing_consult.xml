@@ -17,6 +17,9 @@
             android:completionHint="Clcikez sur un des ingrédients du dessus"
             android:layout_height="wrap_content"
             android:hint="Ingrédient"
+            android:maxLines="1"
+            android:lines="1"
+            android:singleLine="true"
             android:completionThreshold="2"/>
 
         <LinearLayout

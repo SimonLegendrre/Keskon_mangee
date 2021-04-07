@@ -92,7 +92,7 @@ public class Choix_ing_consult extends OptionsMenuActivity {
             public void onClick(View v) {
                 if (awesomeValidation.validate()) {
                     // stock  les Strings
-                    String strIngredient = etIngredient.getText().toString();
+                    String strIngredient = etIngredient.getText().toString().toLowerCase().trim();
                     // on ajouter le editText format String dans le ArrayList
                     ingredientList.add(strIngredient);
                     // on update arrayAdapter
