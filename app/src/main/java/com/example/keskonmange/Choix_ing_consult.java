@@ -30,7 +30,6 @@ public class Choix_ing_consult extends OptionsMenuActivity {
     public Button buttonSearchRecipe;
 
     AutoCompleteTextView AtcIngredients;
-    EditText etIngredient;
     ListView listView;
     ArrayList<String> ingredientList;
     ArrayAdapter<String> arrayAdapterIngredient;
@@ -72,7 +71,6 @@ public class Choix_ing_consult extends OptionsMenuActivity {
         AtcIngredients.setAdapter(adapter);
 
         listView = findViewById(R.id.list_ing);
-        //etIngredient = (EditText) findViewById(R.id.et_ing);
         buttonAddIng = (Button) findViewById(R.id.btn_add_ing);
         buttonRemoveIng = (Button) findViewById(R.id.btn_rm_ing);
         buttonSearchRecipe = (Button) findViewById(R.id.btn_search_recipe);
@@ -92,7 +90,7 @@ public class Choix_ing_consult extends OptionsMenuActivity {
             public void onClick(View v) {
                 if (awesomeValidation.validate()) {
                     // stock  les Strings
-                    String strIngredient = etIngredient.getText().toString().toLowerCase().trim();
+                    String strIngredient = AtcIngredients.getText().toString().toLowerCase().trim();
                     // on ajouter le editText format String dans le ArrayList
                     ingredientList.add(strIngredient);
                     // on update arrayAdapter
@@ -100,7 +98,7 @@ public class Choix_ing_consult extends OptionsMenuActivity {
                     // on update Listview grace à ArrayAdapter
                     arrayAdapterIngredient.notifyDataSetChanged();
                     // on vide EditText
-                    etIngredient.getText().clear();
+                    AtcIngredients.getText().clear();
                 } else {
                     return;
                 }

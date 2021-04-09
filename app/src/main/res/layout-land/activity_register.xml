@@ -17,7 +17,7 @@
         android:textSize="25dp" />
 
     <TextView
-        android:layout_marginTop="30dp"
+        android:layout_marginTop="3dp"
         android:id="@+id/CreateNewAccount"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -27,7 +27,7 @@
 
     <EditText
         android:id="@+id/PersonName_registration"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="3dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
@@ -66,7 +66,7 @@
         android:id="@+id/Registration_confirmation_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="5dp"
         android:layout_gravity="center_horizontal"
         android:text="Créer un compte"
         />
@@ -74,7 +74,6 @@
     <TextView
         android:id="@+id/AlreadyAccount_registration"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="5dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
@@ -87,7 +86,7 @@
         style="?android:attr/progressBarStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="5dp"
         android:visibility="invisible"
         android:layout_gravity="center_horizontal"
         />
