@@ -1,5 +1,6 @@
 package com.example.keskonmange;
 
+import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -34,6 +35,7 @@ public class  FillInCreate extends OptionsMenuActivity {
     private EditText editTextDescription;
     public Button buttonAjouter;
     public Button buttonSupprimer;
+    private Button buttonGetInfo;
     ArrayList<String> ListeIngredients;
     ArrayAdapter<String> arrayAdapterListeIngredients;
     ListView listView;
@@ -88,6 +90,7 @@ public class  FillInCreate extends OptionsMenuActivity {
 
         buttonAjouter = (Button) findViewById(R.id.btn_ajouter);
         buttonSupprimer = (Button) findViewById(R.id.btn_supprimer);
+        buttonGetInfo = (Button) findViewById(R.id.get_info_fill_in);
         listView = findViewById(R.id.list_ingredients);
         // Ce code permet de rajouter l'ID de l'utilisateur qui crée la recette au champ de la recette
         // retrieve the data from the DB
@@ -148,7 +151,17 @@ public class  FillInCreate extends OptionsMenuActivity {
                 }
             }
         });
+
+        buttonGetInfo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
+
         // FIN
+
+
 
 
     }
