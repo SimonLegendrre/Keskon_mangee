@@ -1,7 +1,9 @@
 package com.example.keskonmange;
 
 public class User {
+    // nom et prénom
     String name;
+    // adresse email
     String username;
 
     // class constructor for User

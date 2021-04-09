@@ -119,7 +119,7 @@ public class  FillInCreate extends OptionsMenuActivity {
                 if(awesomeValidationIngredients.validate()) {
 
                     // stock  les Strings
-                    String strIngredient = AtcIngredients.getText().toString().toLowerCase();
+                    String strIngredient = AtcIngredients.getText().toString().toLowerCase().trim();
                     // on ajoute le editText format String dans le ArrayList
                     ListeIngredients.add(strIngredient);
                     // on update arrayAdapter
