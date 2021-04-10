@@ -12,34 +12,28 @@
 
     <LinearLayout
         android:layout_width="wrap_content"
-        android:layout_height="60dp"
+        android:layout_height="77dp"
         android:layout_gravity="center"
         android:layout_marginTop="70dp">
 
         <TextView
             android:id="@+id/textView3"
-            android:layout_width="271dp"
+            android:layout_width="269dp"
             android:layout_height="match_parent"
-            android:layout_marginStart="20dp"
-            android:layout_marginLeft="40dp"
-            android:layout_marginTop="5dp"
-            android:layout_marginEnd="20dp"
-            android:layout_marginRight="20dp"
+            android:layout_gravity="top"
+
             android:text="Remplissez ici les informations correspondant à votre recette"
             android:textColor="@color/white"
-            android:textSize="19dp"
-            android:layout_gravity="top"/>
+            android:textSize="9pt" />
 
         <Button
             android:id="@+id/get_info_fill_in"
-            android:layout_width="60dp"
-            android:layout_height="60dp"
-            android:gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
             android:text="\?"
             android:textSize="30dp"></Button>
 
     </LinearLayout>
-
 
 
     <EditText
