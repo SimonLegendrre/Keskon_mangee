@@ -1,6 +1,5 @@
 package com.example.keskonmange;
 
-import android.app.AlertDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -167,7 +166,6 @@ public class  FillInCreate extends OptionsMenuActivity {
     }
 
     public void SaveRecipe(View view) {
-
         if(awesomeValidation.validate() && ListeIngredients.size()> 0){
             // Adding Recipe
             String titre = editTextTitre.getText().toString();
@@ -190,13 +188,6 @@ public class  FillInCreate extends OptionsMenuActivity {
             else {Toast.makeText(getApplicationContext(),"Vous n'avez pas entré d'ingrédient",Toast.LENGTH_SHORT).show();}
 
         }
-
-
-
-
     }
 
 }
-
-
-
