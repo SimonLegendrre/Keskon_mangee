@@ -1,6 +1,6 @@
 package com.example.keskonmange;
 
-import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -36,6 +36,8 @@ public class  FillInCreate extends OptionsMenuActivity {
     public Button buttonAjouter;
     public Button buttonSupprimer;
     private Button buttonGetInfo;
+    public Button stop_info;
+
     ArrayList<String> ListeIngredients;
     ArrayAdapter<String> arrayAdapterListeIngredients;
     ListView listView;
@@ -158,9 +160,28 @@ public class  FillInCreate extends OptionsMenuActivity {
             }
         });
 
+
+        // get info
+
         buttonGetInfo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                Dialog fill_in_dialog = new Dialog(FillInCreate.this);
+                fill_in_dialog.setContentView(R.layout.activity_get_info_fill_in);
+                fill_in_dialog.show();
+
+                stop_info = (Button) fill_in_dialog.findViewById(R.id.btn_stop_info);
+                stop_info.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        fill_in_dialog.dismiss();
+                    }
+                });
+
+
+
+
 
             }
         });
