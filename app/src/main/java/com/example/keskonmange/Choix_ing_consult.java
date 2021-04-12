@@ -21,6 +21,7 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
+import java.util.List;
 
 
 public class Choix_ing_consult extends OptionsMenuActivity {
@@ -41,7 +42,6 @@ public class Choix_ing_consult extends OptionsMenuActivity {
 
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private CollectionReference IngredientsKKMCollection = db.collection("IngredientsKKM");
-
 
 
     @Override
@@ -75,14 +75,13 @@ public class Choix_ing_consult extends OptionsMenuActivity {
         buttonRemoveIng = (Button) findViewById(R.id.btn_rm_ing);
         buttonSearchRecipe = (Button) findViewById(R.id.btn_search_recipe);
 
-        ingredientList = new ArrayList<>();
+        ingredientList = new ArrayList<String>();
         // fait le lien entre le XML EditText et arrayList "ingredientList"
         arrayAdapterIngredient = new ArrayAdapter<>(this,
                 android.R.layout.simple_list_item_1, ingredientList);
 
         awesomeValidation = new AwesomeValidation(ValidationStyle.BASIC);
         awesomeValidation.addValidation(this, R.id.et_ing, RegexTemplate.NOT_EMPTY, R.string.invalid_ingredient);
-
 
 
         buttonAddIng.setOnClickListener(new View.OnClickListener() {
@@ -92,7 +91,15 @@ public class Choix_ing_consult extends OptionsMenuActivity {
                     // stock  les Strings
                     String strIngredient = AtcIngredients.getText().toString().toLowerCase().trim();
                     // on ajouter le editText format String dans le ArrayList
-                    ingredientList.add(strIngredient);
+
+                    // On check si l'élément ajouté n'a pas déjà été ajouté
+                    if (!ingredientList.contains(strIngredient)){
+                        ingredientList.add(strIngredient);
+                    }
+                    else{ // si c'est le cas, on notifie l'utilisateur
+                        Toast.makeText(getApplicationContext(), "Vous avez déjà ajouté cet ingrédient",
+                                Toast.LENGTH_LONG).show();
+                    }
                     // on update arrayAdapter
                     listView.setAdapter(arrayAdapterIngredient);
                     // on update Listview grace à ArrayAdapter
@@ -124,10 +131,25 @@ public class Choix_ing_consult extends OptionsMenuActivity {
             @Override
             public void onClick(View v) {
                 if (ingredientList.size() > 0) {
-                    Intent intent = new Intent(Choix_ing_consult.this, Choice_recipe_consult.class);
-                    intent.putExtra("ingredients_to_pass", ingredientList);
-                    startActivity(intent);
-                    finish();
+                    // Si il y a au moins deux ingrédients les mêmes, on veut que l'utilisateur soit notifié
+                    for (int i=0; i<ingredientList.size();i++) {
+                        System.out.println(ingredientList.get(i));
+                    }
+                    // Si il y a au moins deux ingrédients les mêmes:
+                    System.out.println(allDifferent(ingredientList));
+                    /*
+                    if (!allDifferent(ingredientList)) {
+                        Toast.makeText(getApplicationContext(), "Vous avez ajouté au moins 2 fois le même ingrédient. \n " +
+                                        "Veuillez le(s) supprimer. ",
+                                Toast.LENGTH_LONG).show();
+                    } else {
+
+                     */
+                        Intent intent = new Intent(Choix_ing_consult.this, Choice_recipe_consult.class);
+                        intent.putExtra("ingredients_to_pass", ingredientList);
+                        startActivity(intent);
+                        finish();
+                    //}
                 } else {
                     Toast.makeText(getApplicationContext(), "Vous n'avez pas entré d'ingrédient", Toast.LENGTH_SHORT).show();
                 }
@@ -137,5 +159,15 @@ public class Choix_ing_consult extends OptionsMenuActivity {
 
     }
 
+
+    public boolean allDifferent(ArrayList<String> s) {
+        for (int i = 0; i < s.size() - 1; i++) {
+            for (int j = i + 1; j < s.size(); j++) {
+                if (s.get(i).equals(s.get(j)))
+                    return false;
+            }
+        }
+        return true;
+    }
 
 }

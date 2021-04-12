@@ -16,8 +16,10 @@ import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import java.text.Normalizer;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.text.Collator;
 
 public class Choice_recipe_consult extends OptionsMenuActivity {
 
@@ -74,6 +76,10 @@ public class Choice_recipe_consult extends OptionsMenuActivity {
         ArrayAdapter adapter2 = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, recipes_list2);
 
 
+        ArrayList<String[]> SimilarButDifferentWords= new ArrayList<String[]>();
+        double SimilarityThreshold = 0.7;
+
+
         // Algorithme permettant de sélectionner les recettes correspondant à la recherche du consulteur.
         AllRecipe.addSnapshotListener(this, new EventListener<QuerySnapshot>() {
             @Override
@@ -86,23 +92,72 @@ public class Choice_recipe_consult extends OptionsMenuActivity {
                 String titre;
 
 
+                // On parcourt toutes les recette de la BDD Firestore
                 for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
                     Recettes recette = documentSnapshot.toObject(Recettes.class);
                     recette.setDocumentId(documentSnapshot.getId());
 
-                    int count = 0;
 
-                    while (count < (recette.getIngredients().size())
-                            && ingredients_list.contains(recette.getIngredients().get(count))) {
+                    // TEST ADRI
+                    // Je le laisse pour le moment. C'était le code de base pour la query
+                    //String SearchedIngredient = recette.getIngredients().get(i);
+
+                    /*
+                    while (count < RecipeLength
+                            && ( ingredients_list.contains(SearchedIngredient)  )) {
                         count++;
+                        SearchedIngredient = recette.getIngredients().get(count);
+                    }
+                     */
+                    int count = 0;
+                    int RecipeLength = recette.getIngredients().size();
+                    for (int j=0; j<RecipeLength; j++){
+                        // Ici, on normalise les mots, i.e. on recrée le mot mais sans les accents
+                        String SearchedIngredient = recette.getIngredients().get(j);
+                        SearchedIngredient = Normalizer.normalize(SearchedIngredient, Normalizer.Form.NFD);
+                        SearchedIngredient = SearchedIngredient.replaceAll("[^\\p{ASCII}]", "");
+
+                        for (int k =0; k< ingredients_list.size();k++){
+                            // Denovueau, on normalise les mots, i.e. on recrée le mot mais sans les accents
+                            String word = ingredients_list.get(k);
+                            word = Normalizer.normalize(word, Normalizer.Form.NFD);
+                            word = word.replaceAll("[^\\p{ASCII}]", "");
+
+                            // Le code prochain donne le pourcentage de similarité. Voir + bas la méthode similarity()
+                            double CurrentSimilarity = similarity(word,SearchedIngredient);
+                            if (CurrentSimilarity>SimilarityThreshold){
+                                count++;
+                                /*
+                                if (CurrentSimilarity<1.0){
+                                    String[] SimilarButDifferentPair = {word,SearchedIngredient};
+                                    SimilarButDifferentWords.add(SimilarButDifferentPair);
+
+                                    //PRINT pour tester:
+                                    /*
+                                    System.out.println("Ca se ressemble:");
+                                    System.out.println("compteur: " + count);
+                                    System.out.println("Similitude: " + CurrentSimilarity);
+                                    for (String Word :SimilarButDifferentPair ){
+                                        System.out.println(word);
+                                    }
+                                }
+
+                                 */
+
+                                break; // Ca ne sert plus à rien de vérifier si ca match pour la suite des éléments de la liste
+                            }
+                        }
                     }
 
                     // Exactement le nombre d'ingrédients, ou moins
                     if ((count) == recette.getIngredients().size()) {
-
                         titre = recette.getTitre();
                         id_recipe = recette.getDocumentId();
                         DocumentReference document = db.collection("Recette").document(id_recipe);
+                        /*
+                        System.out.println(titre);
+                        System.out.println(count);
+                         */
 
                         recipes_list.add(titre);
                         recipes_list_id.add(id_recipe);
@@ -114,6 +169,10 @@ public class Choice_recipe_consult extends OptionsMenuActivity {
                         titre = recette.getTitre();
                         id_recipe = recette.getDocumentId();
                         DocumentReference document = db.collection("Recette").document(id_recipe);
+                        /*
+                        System.out.println(titre);
+                        System.out.println(count);
+                         */
 
                         recipes_list1.add(titre);
                         recipes_list_id1.add(id_recipe);
@@ -123,6 +182,10 @@ public class Choice_recipe_consult extends OptionsMenuActivity {
                         titre = recette.getTitre();
                         id_recipe = recette.getDocumentId();
                         DocumentReference document = db.collection("Recette").document(id_recipe);
+                        /*
+                        System.out.println(titre);
+                        System.out.println(count);
+                         */
 
                         recipes_list2.add(titre);
                         recipes_list_id2.add(id_recipe);
@@ -182,6 +245,66 @@ public class Choice_recipe_consult extends OptionsMenuActivity {
 
 
     }
+
+
+
+
+    /**
+     * Calculates the similarity (a number within 0 and 1) between two strings.
+     */
+    public boolean TheWordsMatch(String s1, String s2){
+        // Si la similarité est + grande que 0.5, on considère que les mots matches
+        return similarity(s1,s2)>0.5;
+    }
+    public double similarity(String s1, String s2) {
+        String longer = s1, shorter = s2;
+        if (s1.length() < s2.length()) { // longer should always have greater length
+            longer = s2; shorter = s1;
+        }
+        int longerLength = longer.length();
+        if (longerLength == 0) {
+            return 1.0; /* both strings are zero length */ }
+    /* // If you have Apache Commons Text, you can use it to calculate the edit distance:
+    LevenshteinDistance levenshteinDistance = new LevenshteinDistance();
+    return (longerLength - levenshteinDistance.apply(longer, shorter)) / (double) longerLength; */
+        return (longerLength - editDistance(longer, shorter)) / (double) longerLength;
+
+    }
+
+    // Example implementation of the Levenshtein Edit Distance
+    // See http://rosettacode.org/wiki/Levenshtein_distance#Java
+    public int editDistance(String s1, String s2) {
+        s1 = s1.toLowerCase();
+        s2 = s2.toLowerCase();
+
+        int[] costs = new int[s2.length() + 1];
+        for (int i = 0; i <= s1.length(); i++) {
+            int lastValue = i;
+            for (int j = 0; j <= s2.length(); j++) {
+                if (i == 0)
+                    costs[j] = j;
+                else {
+                    if (j > 0) {
+                        int newValue = costs[j - 1];
+                        if (s1.charAt(i - 1) != s2.charAt(j - 1))
+                            newValue = Math.min(Math.min(newValue, lastValue),
+                                    costs[j]) + 1;
+                        costs[j - 1] = lastValue;
+                        lastValue = newValue;
+                    }
+                }
+            }
+            if (i > 0)
+                costs[s2.length()] = lastValue;
+        }
+        return costs[s2.length()];
+    }
+
+    public void printSimilarity(String s, String t) {
+        System.out.println(String.format(
+                "%.3f is the similarity between \"%s\" and \"%s\"", similarity(s, t), s, t));
+    }
+
 
 
 }
