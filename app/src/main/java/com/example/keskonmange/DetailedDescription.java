@@ -125,11 +125,9 @@ public class DetailedDescription extends OptionsMenuActivity {
 
                         // Afficher le pop-up pour modifier l'ingrédient
 
-                        final int index;
-
                         final Dialog dialog = new Dialog(DetailedDescription.this);
                         //dialog.setTitle("Modifier cet ingrédient");
-                        dialog.setContentView(R.layout.layout_dialog);
+                        dialog.setContentView(R.layout.dialog_modif_ing);
                         TextView txtmessage = (TextView) dialog.findViewById(R.id.txtmessage);
                         txtmessage.setText("Mettre à jour l'ingrédient");
                         final EditText editText = (EditText) dialog.findViewById(R.id.edit_ingredient);

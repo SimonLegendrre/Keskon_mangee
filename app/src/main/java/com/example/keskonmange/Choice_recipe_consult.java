@@ -8,6 +8,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.EventListener;
@@ -19,7 +20,6 @@ import com.google.firebase.firestore.QuerySnapshot;
 import java.text.Normalizer;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.text.Collator;
 
 public class Choice_recipe_consult extends OptionsMenuActivity {
 
@@ -27,11 +27,15 @@ public class Choice_recipe_consult extends OptionsMenuActivity {
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private CollectionReference AllRecipe = db.collection("Recette");
 
+    private FirebaseAuth fAuth = FirebaseAuth.getInstance();
+    String userId = fAuth.getCurrentUser().getUid();
+    private DocumentReference document = db.collection("Users").document(userId);
+
+
     ArrayList<String> ingredients_list;
 
     // On défini 3 ListView Correspondant aux recherches avec exactement les ingrédients demandés, un ingrédient en plus, puis 2 ingrédients
     //en plus
-
     ListView listView;
     ListView listView1;
     ListView listView2;
@@ -42,9 +46,8 @@ public class Choice_recipe_consult extends OptionsMenuActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_choice_recipe_consult);
 
-
         // récupération de la ArrayList contenant les ingrédients entré par le consulteur, puis trié par ordre alphabétique
-        ingredients_list = (ArrayList<String>) getIntent().getSerializableExtra("ingredients_to_pass");
+        ingredients_list = (ArrayList<String>) getIntent().getSerializableExtra("ingredient_pre_to_pass");
         Collections.sort(ingredients_list);
 
         // Lien XML
@@ -76,7 +79,7 @@ public class Choice_recipe_consult extends OptionsMenuActivity {
         ArrayAdapter adapter2 = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, recipes_list2);
 
 
-        ArrayList<String[]> SimilarButDifferentWords= new ArrayList<String[]>();
+        ArrayList<String[]> SimilarButDifferentWords = new ArrayList<String[]>();
         double SimilarityThreshold = 0.7;
 
 
@@ -84,6 +87,7 @@ public class Choice_recipe_consult extends OptionsMenuActivity {
         AllRecipe.addSnapshotListener(this, new EventListener<QuerySnapshot>() {
             @Override
             public void onEvent(QuerySnapshot queryDocumentSnapshots, FirebaseFirestoreException e) {
+
 
                 if (e != null) {
                     return;
@@ -111,39 +115,22 @@ public class Choice_recipe_consult extends OptionsMenuActivity {
                      */
                     int count = 0;
                     int RecipeLength = recette.getIngredients().size();
-                    for (int j=0; j<RecipeLength; j++){
+                    for (int j = 0; j < RecipeLength; j++) {
                         // Ici, on normalise les mots, i.e. on recrée le mot mais sans les accents
                         String SearchedIngredient = recette.getIngredients().get(j);
                         SearchedIngredient = Normalizer.normalize(SearchedIngredient, Normalizer.Form.NFD);
                         SearchedIngredient = SearchedIngredient.replaceAll("[^\\p{ASCII}]", "");
 
-                        for (int k =0; k< ingredients_list.size();k++){
+                        for (int k = 0; k < ingredients_list.size(); k++) {
                             // Denovueau, on normalise les mots, i.e. on recrée le mot mais sans les accents
                             String word = ingredients_list.get(k);
                             word = Normalizer.normalize(word, Normalizer.Form.NFD);
                             word = word.replaceAll("[^\\p{ASCII}]", "");
 
                             // Le code prochain donne le pourcentage de similarité. Voir + bas la méthode similarity()
-                            double CurrentSimilarity = similarity(word,SearchedIngredient);
-                            if (CurrentSimilarity>SimilarityThreshold){
+                            double CurrentSimilarity = similarity(word, SearchedIngredient);
+                            if (CurrentSimilarity > SimilarityThreshold) {
                                 count++;
-                                /*
-                                if (CurrentSimilarity<1.0){
-                                    String[] SimilarButDifferentPair = {word,SearchedIngredient};
-                                    SimilarButDifferentWords.add(SimilarButDifferentPair);
-
-                                    //PRINT pour tester:
-                                    /*
-                                    System.out.println("Ca se ressemble:");
-                                    System.out.println("compteur: " + count);
-                                    System.out.println("Similitude: " + CurrentSimilarity);
-                                    for (String Word :SimilarButDifferentPair ){
-                                        System.out.println(word);
-                                    }
-                                }
-
-                                 */
-
                                 break; // Ca ne sert plus à rien de vérifier si ca match pour la suite des éléments de la liste
                             }
                         }
@@ -247,23 +234,24 @@ public class Choice_recipe_consult extends OptionsMenuActivity {
     }
 
 
-
-
     /**
      * Calculates the similarity (a number within 0 and 1) between two strings.
      */
-    public boolean TheWordsMatch(String s1, String s2){
+    public boolean TheWordsMatch(String s1, String s2) {
         // Si la similarité est + grande que 0.5, on considère que les mots matches
-        return similarity(s1,s2)>0.5;
+        return similarity(s1, s2) > 0.5;
     }
+
     public double similarity(String s1, String s2) {
         String longer = s1, shorter = s2;
         if (s1.length() < s2.length()) { // longer should always have greater length
-            longer = s2; shorter = s1;
+            longer = s2;
+            shorter = s1;
         }
         int longerLength = longer.length();
         if (longerLength == 0) {
-            return 1.0; /* both strings are zero length */ }
+            return 1.0; /* both strings are zero length */
+        }
     /* // If you have Apache Commons Text, you can use it to calculate the edit distance:
     LevenshteinDistance levenshteinDistance = new LevenshteinDistance();
     return (longerLength - levenshteinDistance.apply(longer, shorter)) / (double) longerLength; */
@@ -304,7 +292,6 @@ public class Choice_recipe_consult extends OptionsMenuActivity {
         System.out.println(String.format(
                 "%.3f is the similarity between \"%s\" and \"%s\"", similarity(s, t), s, t));
     }
-
 
 
 }

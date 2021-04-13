@@ -16,9 +16,6 @@ public class CreationOrConsulationPage extends OptionsMenuActivity {
     public Button acceuil_myProfile_button;
     public Button acceuil_Allrecipes_button;
 
-    public Button acceuil_test;
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         /*
@@ -33,8 +30,8 @@ public class CreationOrConsulationPage extends OptionsMenuActivity {
         acceuil_Allrecipes_button = (Button) findViewById(R.id.Consult_all_recipes);
 
         // Pas encore utile
-        acceuil_test = findViewById(R.id.test);
-        acceuil_test.setVisibility(View.GONE);
+
+
         //
 
         acceuil_create_button.setOnClickListener(new View.OnClickListener() {
@@ -79,11 +76,6 @@ public class CreationOrConsulationPage extends OptionsMenuActivity {
         FirebaseAuth.getInstance().signOut(); //logout
         startActivity(new Intent(getApplicationContext(), Login.class));
         finish();
-    }
-
-    public void test_pre(View view) {
-        Intent intent = new Intent(getApplicationContext(), TestPreSelection.class);
-        startActivity(intent);
     }
 
 }

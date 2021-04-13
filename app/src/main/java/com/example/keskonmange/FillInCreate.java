@@ -179,18 +179,11 @@ public class  FillInCreate extends OptionsMenuActivity {
                     }
                 });
 
-
-
-
-
             }
         });
 
         // FIN
-
-
-
-
+        
     }
 
     public void SaveRecipe(View view) {
