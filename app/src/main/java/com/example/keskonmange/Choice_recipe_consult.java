@@ -146,6 +146,7 @@ public class Choice_recipe_consult extends OptionsMenuActivity {
                         System.out.println(count);
                          */
 
+
                         recipes_list.add(titre);
                         recipes_list_id.add(id_recipe);
 
