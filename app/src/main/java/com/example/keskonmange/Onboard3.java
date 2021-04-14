@@ -25,7 +25,7 @@ public class Onboard3 extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_fragment_third);
+        setContentView(R.layout.activity_onboard_3);
 
         finish = findViewById(R.id.finish_button_onboard_3);
         finish.setOnClickListener(new View.OnClickListener() {

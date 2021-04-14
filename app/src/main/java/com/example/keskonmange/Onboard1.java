@@ -17,7 +17,7 @@ public class Onboard1 extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_fragment_first);
+        setContentView(R.layout.activity_onboard_1);
 
         NextButton = findViewById(R.id.next_button_onboard_1);
 

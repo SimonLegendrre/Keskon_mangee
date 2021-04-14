@@ -1,10 +1,12 @@
 package com.example.keskonmange;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -39,6 +41,7 @@ public class Choice_recipe_consult extends OptionsMenuActivity {
     ListView listView;
     ListView listView1;
     ListView listView2;
+    Button stop_no_recipes;
 
 
     @Override
@@ -54,6 +57,7 @@ public class Choice_recipe_consult extends OptionsMenuActivity {
         listView = findViewById(R.id.list_recipes);
         listView1 = findViewById(R.id.list_recipe_plus1);
         listView2 = findViewById(R.id.list_recipe_plus2);
+
 
         // L'activité DetailDescription sert à la observer la description complète d'une recette. Elle est utilisée pour la description
         // des recettes choisies dans "Recipes_Scrolling", "Choice_recipe_consult" et "Authentificator App". Etant donné que l'on veut que
@@ -116,7 +120,7 @@ public class Choice_recipe_consult extends OptionsMenuActivity {
                     int count = 0;
                     int RecipeLength = recette.getIngredients().size();
                     for (int j = 0; j < RecipeLength; j++) {
-                        // Ici, on normalise les mots, i.e. on recrée le mot mais sans les accents
+                        // Ici, on normalise les mots, i.e. on recréé le mot mais sans les accents
                         String SearchedIngredient = recette.getIngredients().get(j);
                         SearchedIngredient = Normalizer.normalize(SearchedIngredient, Normalizer.Form.NFD);
                         SearchedIngredient = SearchedIngredient.replaceAll("[^\\p{ASCII}]", "");
@@ -141,11 +145,6 @@ public class Choice_recipe_consult extends OptionsMenuActivity {
                         titre = recette.getTitre();
                         id_recipe = recette.getDocumentId();
                         DocumentReference document = db.collection("Recette").document(id_recipe);
-                        /*
-                        System.out.println(titre);
-                        System.out.println(count);
-                         */
-
 
                         recipes_list.add(titre);
                         recipes_list_id.add(id_recipe);
@@ -157,10 +156,6 @@ public class Choice_recipe_consult extends OptionsMenuActivity {
                         titre = recette.getTitre();
                         id_recipe = recette.getDocumentId();
                         DocumentReference document = db.collection("Recette").document(id_recipe);
-                        /*
-                        System.out.println(titre);
-                        System.out.println(count);
-                         */
 
                         recipes_list1.add(titre);
                         recipes_list_id1.add(id_recipe);
@@ -170,10 +165,6 @@ public class Choice_recipe_consult extends OptionsMenuActivity {
                         titre = recette.getTitre();
                         id_recipe = recette.getDocumentId();
                         DocumentReference document = db.collection("Recette").document(id_recipe);
-                        /*
-                        System.out.println(titre);
-                        System.out.println(count);
-                         */
 
                         recipes_list2.add(titre);
                         recipes_list_id2.add(id_recipe);
@@ -182,10 +173,32 @@ public class Choice_recipe_consult extends OptionsMenuActivity {
 
 
                 }
+
+
                 // Création du listView
                 listView.setAdapter(adapter);
                 listView1.setAdapter(adapter1);
                 listView2.setAdapter(adapter2);
+
+                System.out.println("before condition");
+
+                if (recipes_list.isEmpty()){
+
+                    Dialog no_recipes_dialog = new Dialog(Choice_recipe_consult.this);
+                    no_recipes_dialog.setContentView(R.layout.activity_choice_recipe_consult_dialog);
+                    no_recipes_dialog.show();
+
+                    stop_no_recipes = (Button) no_recipes_dialog.findViewById(R.id.btn_stop_no_recipes);
+                    stop_no_recipes.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            no_recipes_dialog.dismiss();
+                        }
+                    });
+                }
+
+                System.out.println("on sort");
+
 
                 // Méthode permettant de rediriger le consulteur vers une description détaillée d'une recette lorsqu'il clique dessus.
                 // intent.putExtra("from_which_acti", Choice_recipe_acti), permet de faire parvenir l'information que l'on vient de cette
