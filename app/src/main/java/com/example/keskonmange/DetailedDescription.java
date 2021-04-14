@@ -30,6 +30,8 @@ import java.util.Objects;
 
 public class DetailedDescription extends OptionsMenuActivity {
 
+
+
     // Ce code permet de rajouter l'ID de l'utilisateur qui crée la recette au champ de la recette
     String userId;
     private final FirebaseAuth fAuth = FirebaseAuth.getInstance();
