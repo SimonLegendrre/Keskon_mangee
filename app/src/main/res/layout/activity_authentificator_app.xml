@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_marginTop="30dp"
     android:layout_marginHorizontal="30dp"
-    android:layout_marginBottom="30dp"
+
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:lineSpacingExtra="20dp"
@@ -73,6 +73,14 @@
         android:layout_gravity="center_horizontal"
         android:text="@string/Consult_my_recipes" />
 
+    <Button
+        android:id="@+id/choice_pre_ing"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:onClick="choice_pre_ing"
+        android:text="Choisir mes ingrédients permanants" />
+
     <TextView
 
         android:id="@+id/InformationIfVerificationAlreadySent"
@@ -101,7 +109,7 @@
     <ListView
         android:id="@+id/text_my_recipes"
         android:layout_width="wrap_content"
-        android:layout_height="400dp"
+        android:layout_height="320dp"
         android:textSize="20sp"
         tools:ignore="MissingConstraints" />
 

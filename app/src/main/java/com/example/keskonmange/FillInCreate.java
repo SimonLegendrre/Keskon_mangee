@@ -56,7 +56,7 @@ public class  FillInCreate extends OptionsMenuActivity {
 
     // Création de BDD nécessaire pour l'autcomplétion.
     ArrayList<String> IngredientsKKM = new ArrayList<>();
-    private CollectionReference IngredientsKKMCollection = db.collection("IngredientsKKM");
+    private CollectionReference IngredientsKKMCollection = db.collection("Ingredients");
 
 
 
@@ -76,7 +76,8 @@ public class  FillInCreate extends OptionsMenuActivity {
                         }
 
                         for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
-                            IngredientsKKM.add(documentSnapshot.get("Nom").toString());
+                            //IngredientsKKM.add(documentSnapshot.get("Nom").toString());
+                            IngredientsKKM.add(documentSnapshot.getId());
                         }
 
                     }
@@ -111,7 +112,7 @@ public class  FillInCreate extends OptionsMenuActivity {
         awesomeValidationIngredients.addValidation(this, R.id.ingredients, RegexTemplate.NOT_EMPTY,R.string.invalid_ingredient);
 
 
-        ListeIngredients = new ArrayList<>();
+        ListeIngredients = new ArrayList<String>();
         // fait le lien entre le XML EditText et arrayList "ingredientList"
         arrayAdapterListeIngredients = new ArrayAdapter<>(this,
                 android.R.layout.simple_list_item_1, ListeIngredients);
@@ -126,7 +127,13 @@ public class  FillInCreate extends OptionsMenuActivity {
                     // stock  les Strings
                     String strIngredient = AtcIngredients.getText().toString().toLowerCase().trim();
                     // on ajoute le editText format String dans le ArrayList
-                    ListeIngredients.add(strIngredient);
+                    if (!ListeIngredients.contains(strIngredient)){
+                        ListeIngredients.add(strIngredient);
+                    }
+                    else{ // si c'est le cas, on notifie l'utilisateur
+                        Toast.makeText(getApplicationContext(), "Vous avez déjà ajouté cet ingrédient",
+                                Toast.LENGTH_LONG).show();
+                    }
                     // on update arrayAdapter
                     listView.setAdapter(arrayAdapterListeIngredients);
                     // on update Listview grace à ArrayAdapter
@@ -173,22 +180,14 @@ public class  FillInCreate extends OptionsMenuActivity {
                     }
                 });
 
-
-
-
-
             }
         });
 
         // FIN
-
-
-
-
+        
     }
 
     public void SaveRecipe(View view) {
-
         if(awesomeValidation.validate() && ListeIngredients.size()> 0){
             // Adding Recipe
             String titre = editTextTitre.getText().toString();
@@ -211,11 +210,13 @@ public class  FillInCreate extends OptionsMenuActivity {
             else {Toast.makeText(getApplicationContext(),"Vous n'avez pas entré d'ingrédient",Toast.LENGTH_SHORT).show();}
 
         }
-
-
-
-
     }
+
+
+
+
+
+
 
 }
 

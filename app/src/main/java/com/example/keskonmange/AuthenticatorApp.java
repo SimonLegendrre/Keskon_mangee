@@ -39,8 +39,12 @@ public class AuthenticatorApp extends OptionsMenuActivity {
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private CollectionReference AllRecipe = db.collection("Recette");
     private Button ConsultMyREcipes, ReconnectionAttempt;
+    Button Choice_pre_ing;
 
-    String userId;
+
+    String userId = fAuth.getCurrentUser().getUid();
+    private DocumentReference document = db.collection("Users").document(userId);
+
     // boutons pour renvoyer un email et bouton pour retenter de se connecter lorsque le compte n'est pas vérifié.
     Button resendEmail;
 
@@ -54,6 +58,7 @@ public class AuthenticatorApp extends OptionsMenuActivity {
 
         ConsultMyREcipes = findViewById(R.id.Consult_my_recipes);
         ReconnectionAttempt = findViewById(R.id.ButtonReconnectionAttempt);
+        Choice_pre_ing = findViewById(R.id.choice_pre_ing);
         fstore = FirebaseFirestore.getInstance();
 
 
@@ -63,7 +68,6 @@ public class AuthenticatorApp extends OptionsMenuActivity {
         // textView suivant:  message d'information expliquant que si a déjà pressé sur le bouton d'envoie d'meil de cérification, alors on peut appuyer sur le bouton suivant pour se connecter
         InformationIfVerificationAlreadySent = findViewById(R.id.InformationIfVerificationAlreadySent);
 
-        userId = fAuth.getCurrentUser().getUid();
 
         // Avant tout, on check si l'utilisateur a un compte vérifié. On chope alors d'abord l'instance de l'utilisateur
         final FirebaseUser user = fAuth.getCurrentUser();
@@ -179,10 +183,26 @@ public class AuthenticatorApp extends OptionsMenuActivity {
                                 }
                             }
                         });
+
+
             }
         });
 
 
+    }
+
+    public void choice_pre_ing(View view){
+        document.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                ArrayList<String> ingredients_list_pre_selected = (ArrayList<String>) documentSnapshot.get("ingredients");
+                Intent intent2 = new Intent(AuthenticatorApp.this, PreSelectedIng.class);
+                intent2.putExtra("ingredient_pre_to_pass", ingredients_list_pre_selected);
+                startActivity(intent2);
+                finish();
+
+            }
+        });
     }
 
     public void ReconnectionAttempt(View view) {

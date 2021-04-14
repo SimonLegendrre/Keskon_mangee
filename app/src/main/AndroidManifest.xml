@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Keskonmange">
         <activity android:name=".DetailedDescription"></activity>
-        <activity android:name=".TestPreSelection" />
+        <activity android:name=".PreSelectedIng" />
         <activity android:name=".Choice_recipe_consult" />
         <activity android:name=".Recipes_Scrolling" />
         <activity android:name=".Onboard1" />
