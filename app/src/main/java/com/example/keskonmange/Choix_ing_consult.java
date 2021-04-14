@@ -9,10 +9,13 @@ import android.widget.Button;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+
 import com.basgeekball.awesomevalidation.AwesomeValidation;
 import com.basgeekball.awesomevalidation.ValidationStyle;
 import com.basgeekball.awesomevalidation.utility.RegexTemplate;
-import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
@@ -24,6 +27,8 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 
 public class Choix_ing_consult extends OptionsMenuActivity {
@@ -147,9 +152,39 @@ public class Choix_ing_consult extends OptionsMenuActivity {
 
                     // On ajoute a la liste des ingrédients entré par l'utilisateur, les ingrédients qu'il a préselectionné. On envoit ensuite
                     // cette liste à l'activité choice_recipe_consult.
+
+                    document.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                        @Override
+                        public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                            if (task.isSuccessful()) {
+                                DocumentSnapshot documentSnapshot = task.getResult();
+                                if (documentSnapshot.exists()) {
+                                    if (documentSnapshot.get("ingredients") != null) {
+                                        ArrayList<String> ingredients_list_pre_selected = (ArrayList<String>) documentSnapshot.get("ingredients");
+                                        ingredientList.addAll(ingredients_list_pre_selected);
+                                        Intent intent2 = new Intent(Choix_ing_consult.this, Choice_recipe_consult.class);
+                                        intent2.putExtra("ingredient_pre_to_pass", ingredientList);
+                                        startActivity(intent2);
+                                    }
+                                    else{
+                                        ArrayList<String> ingredients_list_pre_selected = new ArrayList<>();
+                                        Map<String, Object> ingredients = new HashMap<>();
+                                        ingredients.put("ingredients", ingredients_list_pre_selected);
+                                        Intent intent2 = new Intent(Choix_ing_consult.this, Choice_recipe_consult.class);
+                                        intent2.putExtra("ingredient_pre_to_pass", ingredientList);
+                                        startActivity(intent2);
+                                    }
+                                }
+                            }
+                        }
+                    });
+
+                    /*
+
                     document.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                         @Override
                         public void onSuccess(DocumentSnapshot documentSnapshot) {
+
                             ArrayList<String> ingredients_list_pre_selected = (ArrayList<String>) documentSnapshot.get("ingredients");
                             ingredientList.addAll(ingredients_list_pre_selected);
                             Intent intent2 = new Intent(Choix_ing_consult.this, Choice_recipe_consult.class);
@@ -159,6 +194,8 @@ public class Choix_ing_consult extends OptionsMenuActivity {
 
                         }
                     });
+
+                     */
 
                 } else {
                     Toast.makeText(getApplicationContext(), "Vous n'avez pas entré d'ingrédient", Toast.LENGTH_SHORT).show();

@@ -35,6 +35,14 @@
                 android:layout_height="wrap_content"
                 android:text="Supprimer"
                 android:textSize="10dp" />
+            <Button
+                android:id="@+id/btn_return_menu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Retourner au menu"
+                android:onClick="back_menu"
+                android:textSize="10dp" />
+
 
         </LinearLayout>
 

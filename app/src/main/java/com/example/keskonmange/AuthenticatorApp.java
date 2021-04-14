@@ -14,8 +14,10 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.CollectionReference;
@@ -28,6 +30,8 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class AuthenticatorApp extends OptionsMenuActivity {
 
@@ -191,19 +195,33 @@ public class AuthenticatorApp extends OptionsMenuActivity {
 
     }
 
-    public void choice_pre_ing(View view){
-        document.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+    public void choice_pre_ing(View view) {
+        document.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @Override
-            public void onSuccess(DocumentSnapshot documentSnapshot) {
-                ArrayList<String> ingredients_list_pre_selected = (ArrayList<String>) documentSnapshot.get("ingredients");
-                Intent intent2 = new Intent(AuthenticatorApp.this, PreSelectedIng.class);
-                intent2.putExtra("ingredient_pre_to_pass", ingredients_list_pre_selected);
-                startActivity(intent2);
-                finish();
-
+            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                if (task.isSuccessful()) {
+                    DocumentSnapshot documentSnapshot = task.getResult();
+                    if (documentSnapshot.exists()) {
+                        if (documentSnapshot.get("ingredients") != null) {
+                            ArrayList<String> ingredients_list_pre_selected = (ArrayList<String>) documentSnapshot.get("ingredients");
+                            Intent intent2 = new Intent(AuthenticatorApp.this, PreSelectedIng.class);
+                            intent2.putExtra("ingredient_pre_to_pass", ingredients_list_pre_selected);
+                            startActivity(intent2);
+                        }
+                        else{
+                            ArrayList<String> ingredients_list_pre_selected = new ArrayList<>();
+                            Map<String, Object> ingredients = new HashMap<>();
+                            ingredients.put("ingredients", ingredients_list_pre_selected);
+                            Intent intent2 = new Intent(AuthenticatorApp.this, PreSelectedIng.class);
+                            intent2.putExtra("ingredient_pre_to_pass", ingredients_list_pre_selected);
+                            startActivity(intent2);
+                        }
+                    }
+                }
             }
         });
     }
+
 
     public void ReconnectionAttempt(View view) {
         Intent reconnectionIntent = new Intent(AuthenticatorApp.this, Login.class);

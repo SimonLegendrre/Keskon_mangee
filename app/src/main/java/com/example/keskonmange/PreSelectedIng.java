@@ -1,6 +1,7 @@
 package com.example.keskonmange;
 
 import android.app.Dialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -29,9 +30,10 @@ public class PreSelectedIng extends OptionsMenuActivity {
 
     public Button buttonAddIng;
     public Button buttonRemoveIng;
+    public Button buttonBackMenu;
     EditText etIngredient;
     ListView listView;
-    ArrayList<String> ingredientList;
+
     ArrayAdapter<String> arrayAdapterIngredient;
     AwesomeValidation awesomeValidation;
 
@@ -50,10 +52,11 @@ public class PreSelectedIng extends OptionsMenuActivity {
         listView = findViewById(R.id.list_ing);
         etIngredient = (EditText) findViewById(R.id.et_ing);
         buttonAddIng = (Button) findViewById(R.id.btn_add_ing);
+        buttonBackMenu = (Button) findViewById(R.id.btn_return_menu);
         buttonRemoveIng = (Button) findViewById(R.id.btn_rm_ing);
+
         ingredients_list = (ArrayList<String>) getIntent().getSerializableExtra("ingredient_pre_to_pass");
 
-        ingredientList = new ArrayList<>();
         // fait le lien entre le XML EditText et arrayList "ingredientList"
         arrayAdapterIngredient = new ArrayAdapter<>(this,
                 android.R.layout.simple_list_item_1, ingredients_list);
@@ -61,7 +64,9 @@ public class PreSelectedIng extends OptionsMenuActivity {
         awesomeValidation = new AwesomeValidation(ValidationStyle.BASIC);
         awesomeValidation.addValidation(this, R.id.et_ing, RegexTemplate.NOT_EMPTY, R.string.invalid_ingredient);
 
-        listView.setAdapter(arrayAdapterIngredient);
+        if(!ingredients_list.isEmpty()){
+            listView.setAdapter(arrayAdapterIngredient);
+        }
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -79,6 +84,9 @@ public class PreSelectedIng extends OptionsMenuActivity {
                     @Override
                     public void onClick(View v) {
                         ingredients_list.remove(position);
+                        Map<String, Object> ingredients = new HashMap<>();
+                        ingredients.put("ingredients",ingredients_list);
+                        document.update(ingredients);
                         arrayAdapterIngredient.notifyDataSetChanged();
                         dialog.dismiss();
                     }
@@ -105,7 +113,7 @@ public class PreSelectedIng extends OptionsMenuActivity {
                     // on ajouter le editText format String dans le ArrayList
                     ingredients_list.add(strIngredient);
                     // on update arrayAdapter
-                    //listView.setAdapter(arrayAdapterIngredient);
+                    listView.setAdapter(arrayAdapterIngredient);
                     // on update Listview grace à ArrayAdapter
                     arrayAdapterIngredient.notifyDataSetChanged();
                     // on vide EditText
@@ -126,9 +134,11 @@ public class PreSelectedIng extends OptionsMenuActivity {
         buttonRemoveIng.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (ingredientList.size() > 0) {
-                    ingredientList.remove(ingredientList.size() - 1);
-                    listView.setAdapter(arrayAdapterIngredient);
+                if (ingredients_list.size() > 0) {
+                    ingredients_list.remove(ingredients_list.size() - 1);
+                    Map<String, Object> ingredients = new HashMap<>();
+                    ingredients.put("ingredients",ingredients_list);
+                    document.update(ingredients);
                     arrayAdapterIngredient.notifyDataSetChanged();
                 } else {
                     Toast.makeText(getApplicationContext(), "Vous n'avez pas entré d'ingrédient", Toast.LENGTH_SHORT).show();
@@ -137,5 +147,17 @@ public class PreSelectedIng extends OptionsMenuActivity {
             }
         });
 
+        buttonBackMenu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(PreSelectedIng.this, CreationOrConsulationPage.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
+
+
     }
+
 }
