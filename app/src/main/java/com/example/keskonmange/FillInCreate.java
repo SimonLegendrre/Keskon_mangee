@@ -56,7 +56,7 @@ public class  FillInCreate extends OptionsMenuActivity {
 
     // Création de BDD nécessaire pour l'autcomplétion.
     ArrayList<String> IngredientsKKM = new ArrayList<>();
-    private CollectionReference IngredientsKKMCollection = db.collection("IngredientsKKM");
+    private CollectionReference IngredientsKKMCollection = db.collection("Ingredients");
 
 
 
@@ -76,7 +76,8 @@ public class  FillInCreate extends OptionsMenuActivity {
                         }
 
                         for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
-                            IngredientsKKM.add(documentSnapshot.get("Nom").toString());
+                            //IngredientsKKM.add(documentSnapshot.get("Nom").toString());
+                            IngredientsKKM.add(documentSnapshot.getId());
                         }
 
                     }

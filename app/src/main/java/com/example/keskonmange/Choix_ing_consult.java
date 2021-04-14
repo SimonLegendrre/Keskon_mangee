@@ -43,7 +43,7 @@ public class Choix_ing_consult extends OptionsMenuActivity {
     ArrayList<String> IngredientsKKM = new ArrayList<>();
 
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
-    private CollectionReference IngredientsKKMCollection = db.collection("IngredientsKKM");
+    private CollectionReference IngredientsKKMCollection = db.collection("Ingredients");
 
     // TEST SIMON
     private FirebaseAuth fAuth = FirebaseAuth.getInstance();
@@ -58,6 +58,7 @@ public class Choix_ing_consult extends OptionsMenuActivity {
         setContentView(R.layout.activity_choix_ing_consult);
 
         // Importation de la BDD incluant tous les ingrédients de KKM (sert à approvisioner l'array IngredientsKKM
+
         IngredientsKKMCollection
                 .addSnapshotListener(this, new EventListener<QuerySnapshot>() {
                     @Override
@@ -67,7 +68,8 @@ public class Choix_ing_consult extends OptionsMenuActivity {
                         }
 
                         for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
-                            IngredientsKKM.add(documentSnapshot.get("Nom").toString());
+                            //IngredientsKKM.add(documentSnapshot.get("Nom").toString());
+                            IngredientsKKM.add(documentSnapshot.getId());
                         }
 
                     }
