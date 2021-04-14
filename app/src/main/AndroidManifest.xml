@@ -15,6 +15,9 @@
         <activity android:name=".TestPreSelection" />
         <activity android:name=".Choice_recipe_consult" />
         <activity android:name=".Recipes_Scrolling" />
+        <activity android:name=".Onboard1" />
+        <activity android:name=".Onboard2"/>
+        <activity android:name=".Onboard3"/>
         <activity android:name=".Login" />
         <activity android:name=".Register">
             <intent-filter>

@@ -14,12 +14,15 @@ public class MainActivity extends OptionsMenuActivity {
 
     FirebaseAuth firebaseAuth;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+
 
         /*
         1)  Cette page-ci est la page d'accueil pour le moment. On veut donc que, lorsque l'email n'est pas vérifié,

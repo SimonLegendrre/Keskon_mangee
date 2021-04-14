@@ -29,6 +29,8 @@
     <string name="todo">TODO</string>
     <string name="invalid_titre">Veuillez entrer un titre à votre recette</string>
     <string name="invalid_description">"Veuillez entrer une description "</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 
 </resources>

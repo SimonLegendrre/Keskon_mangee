@@ -22,6 +22,9 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 
 public class Login extends AppCompatActivity {
@@ -35,8 +38,10 @@ public class Login extends AppCompatActivity {
     Button mLoginBtn;
     TextView mCreateBtn, forgotTextLink;
     ProgressBar progressBar;
-    FirebaseAuth firebaseAuth;
 
+    FirebaseFirestore db = FirebaseFirestore.getInstance();
+    private FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
+    //CollectionReference user = db.collection("Users");
 
 
     @Override
@@ -49,29 +54,36 @@ public class Login extends AppCompatActivity {
         mEmail = findViewById(R.id.email_connection);
         mPassword = findViewById(R.id.passwordConnection);
         progressBar = findViewById(R.id.progressBar_login);
-        firebaseAuth = FirebaseAuth.getInstance();
-        mLoginBtn= findViewById(R.id.Login_button);
+
+        mLoginBtn = findViewById(R.id.Login_button);
         mCreateBtn = findViewById(R.id.AlreadyAccount_login);
         forgotTextLink = findViewById(R.id.forgot_password);
 
+        // -------------------------
+
+
+        FirebaseUser currentUser = firebaseAuth.getCurrentUser();
+
+
+        // lorsque le user click sur le bouton "login" pour se loger
         mLoginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) { // Globalement même fonction que dans Register
                 String email = mEmail.getText().toString().trim();
                 String password = mPassword.getText().toString().trim();
 
-                if (TextUtils.isEmpty(email)){
+                if (TextUtils.isEmpty(email)) {
                     mEmail.setError("Une adresse email est requise.");
                     return;
                 }
 
-                if (TextUtils.isEmpty(password)){
+                if (TextUtils.isEmpty(password)) {
                     mPassword.setError("Un mot de passe est requis");
                     return;
                 }
 
                 // Ici on va mettre des conditions sur la format du mot de passe. On va commencer on disant qu'il faut au moins une longueur de 6 charactères
-                if (password.length()<6){
+                if (password.length() < 6) {
                     mPassword.setError("Le mot de passe doit faire au moins 6 charactères");
                     return;
                 }
@@ -81,20 +93,45 @@ public class Login extends AppCompatActivity {
 
 
                 // authenticate the user:
-                firebaseAuth.signInWithEmailAndPassword(email,password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                firebaseAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
+                        System.out.println("Completed");
                         // check if the login is succesful
-                        if(task.isSuccessful()){
+                        if (task.isSuccessful()) {
                             FirebaseUser user = firebaseAuth.getCurrentUser();
-                            if(!user.isEmailVerified()) { // if the email is NOT verified, goes to MY Pprofile where account verification is required
+                            System.out.println("mail unchecked");
+                            if (!user.isEmailVerified()) { // if the email is NOT verified, goes to MY Pprofile where account verification is required
+                                System.out.println("user not verified");
                                 startActivity(new Intent(getApplicationContext(), AuthenticatorApp.class));
-                                }
-                            else {
-                                Toast.makeText(Login.this, "Heureux de vous revoir!", Toast.LENGTH_SHORT).show(); //LENGTH_SHORT ==> short period of time
-                                startActivity(new Intent(getApplicationContext(), MainActivity.class));}
-                        }else{
-                            Toast.makeText(Login.this, "Erreur lors de votre connection. "+ task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                            } else {
+                                System.out.println("user verified");
+                                String userId = firebaseAuth.getCurrentUser().getUid();
+                                DocumentReference document = db.collection("Users").document(userId);
+                                document.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                                    @Override
+                                    public void onSuccess(DocumentSnapshot documentSnapshot) {
+                                        boolean isOnboard = (boolean) documentSnapshot.get("isOnboard");
+                                        System.out.println(isOnboard);
+                                        if (!isOnboard) {
+                                            System.out.println("false");
+                                            startActivity(new Intent(getApplicationContext(), Onboard1.class));
+
+                                        } else {
+                                            System.out.println("true");
+                                            Toast.makeText(Login.this, "Heureux de vous revoir!", Toast.LENGTH_SHORT).show(); //LENGTH_SHORT ==> short period of time
+                                            startActivity(new Intent(getApplicationContext(), CreationOrConsulationPage.class));
+                                        }
+                                        finish();
+                                    }
+                                });
+                            }
+
+
+                            ///
+
+                        } else {
+                            Toast.makeText(Login.this, "Erreur lors de votre connection. " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                             progressBar.setVisibility(View.GONE); // Ca permet de retirer le fait que la progress bar tourne sans arrêt.
                         }
                     }
@@ -136,7 +173,7 @@ public class Login extends AppCompatActivity {
                         }).addOnFailureListener(new OnFailureListener() {
                             @Override
                             public void onFailure(@NonNull Exception e) {
-                                Toast.makeText(Login.this, "Erreur d'envoi du message. "+e.getMessage(), Toast.LENGTH_SHORT).show();
+                                Toast.makeText(Login.this, "Erreur d'envoi du message. " + e.getMessage(), Toast.LENGTH_SHORT).show();
                             }
                         });
 
@@ -151,5 +188,11 @@ public class Login extends AppCompatActivity {
                 passwordResetDialog.create().show();
             }
         });
+
     }
 }
+
+
+
+
+
