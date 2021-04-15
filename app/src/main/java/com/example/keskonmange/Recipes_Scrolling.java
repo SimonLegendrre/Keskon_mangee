@@ -25,7 +25,7 @@ public class Recipes_Scrolling extends OptionsMenuActivity {
 
     // Initialisation base de données
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
-    private CollectionReference AllRecipe = db.collection("Recette");
+    private CollectionReference AllRecipe = db.collection("Recettes");
 
 
     @Override
@@ -58,9 +58,9 @@ public class Recipes_Scrolling extends OptionsMenuActivity {
                     Recettes recette = documentSnapshot.toObject(Recettes.class);
                     recette.setDocumentId(documentSnapshot.getId());
                     String documentId = recette.getDocumentId();
-                    titre = recette.getTitre();
+                    titre = recette.getName();
                     id_recipe = recette.getDocumentId();
-                    DocumentReference document = db.collection("Recette").document(id_recipe);
+                    DocumentReference document = db.collection("Recettes").document(id_recipe);
                     recipes_list.add(titre);
                     recipes_list_id.add(id_recipe);
 
@@ -76,6 +76,7 @@ public class Recipes_Scrolling extends OptionsMenuActivity {
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                         Intent intent = new Intent(Recipes_Scrolling.this, DetailedDescription.class);
                         intent.putExtra("recipe_to_pass", recipes_list_id.get(position));
+                        System.out.println("TEST: "+ recipes_list_id.get(position));
                         intent.putExtra("from_which_acti", Recipe_scrolling_acti);
                         startActivity(intent);
                     }

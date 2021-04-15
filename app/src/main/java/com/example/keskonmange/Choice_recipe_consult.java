@@ -27,7 +27,7 @@ public class Choice_recipe_consult extends OptionsMenuActivity {
 
     // Lien dataBase
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
-    private CollectionReference AllRecipe = db.collection("Recette");
+    private CollectionReference AllRecipe = db.collection("Recettes");
 
     private FirebaseAuth fAuth = FirebaseAuth.getInstance();
     String userId = fAuth.getCurrentUser().getUid();
@@ -91,42 +91,26 @@ public class Choice_recipe_consult extends OptionsMenuActivity {
         AllRecipe.addSnapshotListener(this, new EventListener<QuerySnapshot>() {
             @Override
             public void onEvent(QuerySnapshot queryDocumentSnapshots, FirebaseFirestoreException e) {
-
-
                 if (e != null) {
-                    return;
-                }
+                    return;}
                 String id_recipe;
                 String titre;
-
 
                 // On parcourt toutes les recette de la BDD Firestore
                 for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
                     Recettes recette = documentSnapshot.toObject(Recettes.class);
                     recette.setDocumentId(documentSnapshot.getId());
 
-
-                    // TEST ADRI
-                    // Je le laisse pour le moment. C'était le code de base pour la query
-                    //String SearchedIngredient = recette.getIngredients().get(i);
-
-                    /*
-                    while (count < RecipeLength
-                            && ( ingredients_list.contains(SearchedIngredient)  )) {
-                        count++;
-                        SearchedIngredient = recette.getIngredients().get(count);
-                    }
-                     */
                     int count = 0;
-                    int RecipeLength = recette.getIngredients().size();
+                    int RecipeLength = recette.getDescription().size();
                     for (int j = 0; j < RecipeLength; j++) {
                         // Ici, on normalise les mots, i.e. on recréé le mot mais sans les accents
-                        String SearchedIngredient = recette.getIngredients().get(j);
+                        String SearchedIngredient = recette.getDescription().get(j);
                         SearchedIngredient = Normalizer.normalize(SearchedIngredient, Normalizer.Form.NFD);
                         SearchedIngredient = SearchedIngredient.replaceAll("[^\\p{ASCII}]", "");
 
                         for (int k = 0; k < ingredients_list.size(); k++) {
-                            // Denovueau, on normalise les mots, i.e. on recrée le mot mais sans les accents
+                            // Denouveau, on normalise les mots, i.e. on recrée le mot mais sans les accents
                             String word = ingredients_list.get(k);
                             word = Normalizer.normalize(word, Normalizer.Form.NFD);
                             word = word.replaceAll("[^\\p{ASCII}]", "");
@@ -141,30 +125,31 @@ public class Choice_recipe_consult extends OptionsMenuActivity {
                     }
 
                     // Exactement le nombre d'ingrédients, ou moins
-                    if ((count) == recette.getIngredients().size()) {
-                        titre = recette.getTitre();
+                    if ((count) == recette.getDescription().size()) {
+                        titre = recette.getName();
+                        System.out.println("Avant getDocumentId");
                         id_recipe = recette.getDocumentId();
-                        DocumentReference document = db.collection("Recette").document(id_recipe);
-
+                        //DocumentReference document = db.collection("Recette").document(id_recipe);
+                        System.out.println("Apres GetDocumentId"+id_recipe);
                         recipes_list.add(titre);
                         recipes_list_id.add(id_recipe);
 
 
                         // Un ingrédient en plus
-                    } else if ((count) + 1 == (recette.getIngredients().size())) {
+                    } else if ((count) + 1 == (recette.getDescription().size())) {
 
-                        titre = recette.getTitre();
+                        titre = recette.getName();
                         id_recipe = recette.getDocumentId();
-                        DocumentReference document = db.collection("Recette").document(id_recipe);
+                        //DocumentReference document = db.collection("Recette").document(id_recipe);
 
                         recipes_list1.add(titre);
                         recipes_list_id1.add(id_recipe);
                         // Deux ingrédients en plus
-                    } else if ((count) + 2 == (recette.getIngredients().size())) {
+                    } else if ((count) + 2 == (recette.getDescription().size())) {
 
-                        titre = recette.getTitre();
+                        titre = recette.getName();
                         id_recipe = recette.getDocumentId();
-                        DocumentReference document = db.collection("Recette").document(id_recipe);
+                        //DocumentReference document = db.collection("Recette").document(id_recipe);
 
                         recipes_list2.add(titre);
                         recipes_list_id2.add(id_recipe);
@@ -209,7 +194,10 @@ public class Choice_recipe_consult extends OptionsMenuActivity {
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                         Intent intent = new Intent(Choice_recipe_consult.this, DetailedDescription.class);
                         intent.putExtra("recipe_to_pass", recipes_list_id.get(position));
+                        System.out.println("Exact result ID: "+ recipes_list_id.get(position));
+                        // Dans detailed description, en fonction d'ou on vient, on affiche des choses différents:
                         intent.putExtra("from_which_acti", Choice_recipe_acti);
+                        System.out.println("Exact result ID: "+ Choice_recipe_acti);
                         startActivity(intent);
                         Toast.makeText(Choice_recipe_consult.this, recipes_list.get(position), Toast.LENGTH_SHORT).show();
                     }
@@ -221,7 +209,9 @@ public class Choice_recipe_consult extends OptionsMenuActivity {
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                         Intent intent = new Intent(Choice_recipe_consult.this, DetailedDescription.class);
                         intent.putExtra("recipe_to_pass", recipes_list_id1.get(position));
+                        System.out.println("Exact result ID: "+ recipes_list_id1.get(position));
                         intent.putExtra("from_which_acti", Choice_recipe_acti);
+                        System.out.println("Exact result ID: "+ Choice_recipe_acti);
                         startActivity(intent);
                         Toast.makeText(Choice_recipe_consult.this, recipes_list1.get(position), Toast.LENGTH_SHORT).show();
 

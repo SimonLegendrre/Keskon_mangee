@@ -44,7 +44,7 @@ public class  FillInCreate extends OptionsMenuActivity {
     String userId;
 
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
-    private CollectionReference AllRecipe = db.collection("Recette");
+    private CollectionReference AllRecipe = db.collection("Recettes");
 
     // Ce code permet de rajouter l'ID de l'utilisateur qui crée la recette au champ de la recette
     private FirebaseFirestore fstore = FirebaseFirestore.getInstance();
@@ -190,11 +190,26 @@ public class  FillInCreate extends OptionsMenuActivity {
     public void SaveRecipe(View view) {
         if(awesomeValidation.validate() && ListeIngredients.size()> 0){
             // Adding Recipe
-            String titre = editTextTitre.getText().toString();
-            String description = editTextDescription.getText().toString();
+            String cookTime="";
+            // description déjà créé + haut
+            String keywords ="";
+            String name = editTextTitre.getText().toString();
+            String prepTime ="";
+            ArrayList<String> recipeIngredients = new ArrayList<String>();
+            ArrayList<String> recipeInstructions = new ArrayList<String>();
+            recipeInstructions.add(editTextDescription.getText().toString()); // A changer dans le futur pour avoir un tableau de strings avec les differentes etapes
+            System.out.println("recipe instruction test: "+ recipeInstructions.toString());
+
+            String recipeYield = "";
+            String totalTime ="";
+
             String userID = userId;
             Double note = null ;
-            Recettes recette = new Recettes(titre, description,userID, note, ListeIngredients); // User ID ajouté pour ajouter l'ID utilisatuer
+
+            Recettes recette = new Recettes(cookTime,ListeIngredients, keywords,name,prepTime,
+                                            recipeIngredients, recipeInstructions, recipeYield,
+                                            totalTime, userID,note); // User ID ajouté pour ajouter l'ID utilisatuer
+
             AllRecipe.add(recette);
             // Rediriger vers le menu lorsque l'on clique
             Toast.makeText(getApplicationContext(),"Recette créée",Toast.LENGTH_SHORT).show();
@@ -211,6 +226,7 @@ public class  FillInCreate extends OptionsMenuActivity {
 
         }
     }
+
 
 
 

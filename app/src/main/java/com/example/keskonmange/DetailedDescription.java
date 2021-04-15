@@ -93,7 +93,7 @@ public class DetailedDescription extends OptionsMenuActivity {
         origine = getIntent().getStringExtra("from_which_acti");
 
         //Collection Note
-        CollectionReference AllNote = db.collection("Recette").document(recipe).collection("Note");
+        CollectionReference AllNote = db.collection("Recettes").document(recipe).collection("Note");
 
         // EditText et Button pour modifier une recette
 
@@ -103,7 +103,7 @@ public class DetailedDescription extends OptionsMenuActivity {
         button_delete = findViewById(R.id.btn_delete);
 
         // Choisir le bon document que l'on veut décrire en détail. recipe est l'ID de la recette que l'on veut décrire
-        DocumentReference document = db.collection("Recette").document(recipe);
+        DocumentReference document = db.collection("Recettes").document(recipe);
 
 
         // Ecrire dans un TextView le test de la manière que l'on veut
@@ -112,10 +112,17 @@ public class DetailedDescription extends OptionsMenuActivity {
             public void onSuccess(DocumentSnapshot documentSnapshot) {
 
                 String data = "";
-                String titre = documentSnapshot.getString("titre");
-                String description = documentSnapshot.getString("description");
+                String titre = documentSnapshot.getString("name");
+                //String description = documentSnapshot.getString("recipeInstructions");
+                String description= "";
+                ArrayList <String> tab = new ArrayList<>();
+                tab = (ArrayList<String>) documentSnapshot.get("recipeInstructions");
+                for(String b : tab){
+                    description+= b+ "\n";
+                }
+                //String description = documentSnapshot.get("recipeInstructions").toString(); // pour le moment, on fait seulement un string mais on poura changer ça dans le futur pour un meilleur affichage
                 data += "Titre: " + titre + "\n Ingrédients:";
-                List<String> ingredient = (List<String>) documentSnapshot.get("ingredients");
+                List<String> ingredient = (List<String>) documentSnapshot.get("description");
 
                 for (String ing : ingredient) {
                     data += "\n- " + ing;

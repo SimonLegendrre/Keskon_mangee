@@ -41,7 +41,7 @@ public class AuthenticatorApp extends OptionsMenuActivity {
     private FirebaseFirestore fstore = FirebaseFirestore.getInstance();
     private FirebaseAuth fAuth = FirebaseAuth.getInstance();
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
-    private CollectionReference AllRecipe = db.collection("Recette");
+    private CollectionReference AllRecipe = db.collection("Recettes");
     private Button ConsultMyREcipes, ReconnectionAttempt;
     Button Choice_pre_ing;
 
@@ -162,10 +162,10 @@ public class AuthenticatorApp extends OptionsMenuActivity {
 
                                         Recettes recette = documentSnapshot.toObject(Recettes.class);
                                         recette.setDocumentId(documentSnapshot.getId());
-                                        String documentId = recette.getDocumentId();
-                                        titre = recette.getTitre();
+                                        //String documentId = recette.getDocumentId();
+                                        titre = recette.getName();
                                         id_recipe = recette.getDocumentId();
-                                        DocumentReference document = db.collection("Recette").document(id_recipe);
+                                        //DocumentReference document = db.collection("Recette").document(id_recipe);
                                         recipes_list.add(titre);
                                         recipes_list_id.add(id_recipe);
 

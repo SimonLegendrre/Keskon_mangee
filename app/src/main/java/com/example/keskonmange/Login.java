@@ -49,7 +49,6 @@ public class Login extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-
         // connection to the XML file :)
         mEmail = findViewById(R.id.email_connection);
         mPassword = findViewById(R.id.passwordConnection);
