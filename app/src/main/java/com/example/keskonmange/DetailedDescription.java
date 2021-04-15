@@ -3,6 +3,7 @@ package com.example.keskonmange;
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -47,12 +48,14 @@ public class DetailedDescription extends OptionsMenuActivity {
 
     // Rating bar initialisation
     RatingBar ratingBar;
+    RatingBar ratingBarall;
     Button RatingButton;
 
     // Edit text et button pour modifier une recette
     EditText etdescription_modif;
     Button button_modify;
     Button button_update_recipe;
+    Button button_delete;
 
     // Test pop-up Dialog
     private ListView listViewIngre;
@@ -77,7 +80,9 @@ public class DetailedDescription extends OptionsMenuActivity {
         // Declarer les views
         textViewData = findViewById(R.id.text_description);
         ratingBar = findViewById(R.id.rating_bar);
+        ratingBarall = findViewById(R.id.rating_bar_all);
         RatingButton = findViewById(R.id.button_ratting);
+
 
         // Afficher les recettes : intent de l'activité précédente : origine peut avoir pour l'instant 3 valeurs : "MyProfile", "Scrolling"
         // ou Choice_Recipe, en fonction de comment nous sommes arriver sur cette activité. En fonction de comment on y est arrivé, les actions
@@ -95,6 +100,7 @@ public class DetailedDescription extends OptionsMenuActivity {
         etdescription_modif = findViewById(R.id.description_modif);
         button_modify = findViewById(R.id.button_modif);
         button_update_recipe = findViewById(R.id.update_modif);
+        button_delete = findViewById(R.id.btn_delete);
 
         // Choisir le bon document que l'on veut décrire en détail. recipe est l'ID de la recette que l'on veut décrire
         DocumentReference document = db.collection("Recette").document(recipe);
@@ -173,6 +179,7 @@ public class DetailedDescription extends OptionsMenuActivity {
                 AvgNote = somme / count;
                 if(count>0) {
                     TextViewNote.setText("La note de cette recette est : " + String.valueOf(AvgNote));
+                    ratingBarall.setRating((float) AvgNote);
                 }
                 else{TextViewNote.setText("Cette recette n'a pas encore été notée");}
                 document.update("note", AvgNote);
@@ -190,6 +197,7 @@ public class DetailedDescription extends OptionsMenuActivity {
         if (origine.equals("MyProfile")) {
             RatingButton.setVisibility(View.GONE);
             ratingBar.setVisibility(View.GONE);
+            ratingBarall.setVisibility((View.VISIBLE));
             etdescription_modif.setVisibility(View.GONE);
             button_update_recipe.setVisibility(View.GONE);
             listViewIngre.setVisibility(View.GONE);
@@ -199,10 +207,35 @@ public class DetailedDescription extends OptionsMenuActivity {
                 public void onClick(View v) {
                     etdescription_modif.setVisibility(View.VISIBLE);
                     button_modify.setVisibility(View.GONE);
+                    button_delete.setVisibility(View.GONE);
                     button_update_recipe.setVisibility(View.VISIBLE);
+                    ratingBar.setVisibility(View.GONE);
+                    ratingBarall.setVisibility((View.GONE));
                     listViewIngre.setVisibility(View.VISIBLE);
                 }
 
+            });
+
+            // boutton pour supprimer la recette et aussi mettre à jour la bdd
+            button_delete.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    //suppression
+                    db.collection("Recette").document(recipe)
+                            .delete()
+                            .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                @Override
+                                public void onSuccess(Void aVoid) {
+                                    Log.d("suppression recette", "recette supprimée");
+                                    Toast.makeText(DetailedDescription.this, "recette supprimée", Toast.LENGTH_SHORT).show();
+                                    // changement activité
+                                    Intent intent = new Intent(DetailedDescription.this, AuthenticatorApp.class);
+                                    startActivity(intent);
+
+                                }
+                            });
+
+                }
             });
 
             //Le boutton update_recipe apparait lorsqu'on a cliquer sur "modifier". Il permet de mettre à jour la base de données.
@@ -233,8 +266,10 @@ public class DetailedDescription extends OptionsMenuActivity {
 
             etdescription_modif.setVisibility(View.GONE);
             button_modify.setVisibility(View.GONE);
+            button_delete.setVisibility(View.GONE);
             button_update_recipe.setVisibility(View.GONE);
             listViewIngre.setVisibility(View.GONE);
+            ratingBarall.setVisibility((View.GONE));
 
 
             RatingButton.setOnClickListener(new View.OnClickListener() {

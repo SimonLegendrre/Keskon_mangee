@@ -27,13 +27,23 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:numStars="5"
-            android:stepSize="0.5" />
+            android:stepSize="0.5"
+            android:layout_gravity="center_vertical|center_horizontal"/>
+
+        <RatingBar
+            android:id="@+id/rating_bar_all"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical|center_horizontal"
+            android:numStars="5"
+            android:stepSize="0.5"
+            android:isIndicator="true" />
 
         <Button
             android:id="@+id/button_ratting"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="100dp"
+            android:layout_gravity="center_vertical|center_horizontal"
             android:text="Soumettre ma note" />
 
         <EditText
@@ -56,7 +66,7 @@
             android:id="@+id/button_modif"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="100dp"
+            android:layout_gravity="center_vertical|center_horizontal"
             android:layout_marginTop="30dp"
             android:text="Modifier ma recette" />
 
@@ -64,8 +74,15 @@
             android:id="@+id/update_modif"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="80dp"
+            android:layout_gravity="center_vertical|center_horizontal"
             android:text="Mettre à jour ma recette" />
+
+        <Button
+            android:id="@+id/btn_delete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical|center_horizontal"
+            android:text="supprimer ma recette"/>
 
         <TextView
             android:id="@+id/average_note"
