@@ -11,11 +11,19 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <EditText
-            android:id="@+id/et_ing"
+        <AutoCompleteTextView
+            android:id="@+id/AtcTV_et_ing"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Ingrédient" />
+            android:background="@android:color/white"
+            android:completionHint="Clickez sur un des ingrédients du dessus"
+            android:completionThreshold="2"
+            android:hint="Ingrédients"
+            android:inputType="text"
+            android:lines="1"
+            android:maxLines="1"
+            android:padding="10dp"
+            android:singleLine="true" />
 
         <LinearLayout
             android:layout_width="match_parent"

@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -16,8 +17,13 @@ import com.basgeekball.awesomevalidation.AwesomeValidation;
 import com.basgeekball.awesomevalidation.ValidationStyle;
 import com.basgeekball.awesomevalidation.utility.RegexTemplate;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -31,7 +37,7 @@ public class PreSelectedIng extends OptionsMenuActivity {
     public Button buttonAddIng;
     public Button buttonRemoveIng;
     public Button buttonBackMenu;
-    EditText etIngredient;
+    private AutoCompleteTextView AtcIngredients;
     ListView listView;
 
     ArrayAdapter<String> arrayAdapterIngredient;
@@ -43,6 +49,10 @@ public class PreSelectedIng extends OptionsMenuActivity {
     private DocumentReference document =  db.collection("Users").document(userId);
     ArrayList<String> ingredients_list;
 
+    // Création de BDD nécessaire pour l'autcomplétion.
+    ArrayList<String> IngredientsKKM = new ArrayList<>();
+    private CollectionReference IngredientsKKMCollection = db.collection("Ingredients");
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,7 +60,28 @@ public class PreSelectedIng extends OptionsMenuActivity {
         setContentView(R.layout.activity_pre_selection);
 
         listView = findViewById(R.id.list_ing);
-        etIngredient = (EditText) findViewById(R.id.et_ing);
+        // Importation de la BDD incluant tous les ingrédients de KKM (sert à approvisioner l'array IngredientsKKM
+        // Util pour l'autcomplete
+        IngredientsKKMCollection
+                .addSnapshotListener(this, new EventListener<QuerySnapshot>() {
+                    @Override
+                    public void onEvent(QuerySnapshot queryDocumentSnapshots, FirebaseFirestoreException e) {
+                        if (e != null) {
+                            return;
+                        }
+
+                        for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
+                            //IngredientsKKM.add(documentSnapshot.get("Nom").toString());
+                            IngredientsKKM.add(documentSnapshot.getId());
+                        }
+
+                    }
+                });
+
+        AtcIngredients = (AutoCompleteTextView) findViewById(R.id.AtcTV_et_ing);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, IngredientsKKM);
+        AtcIngredients.setAdapter(adapter);
+
         buttonAddIng = (Button) findViewById(R.id.btn_add_ing);
         buttonBackMenu = (Button) findViewById(R.id.btn_return_menu);
         buttonRemoveIng = (Button) findViewById(R.id.btn_rm_ing);
@@ -109,7 +140,7 @@ public class PreSelectedIng extends OptionsMenuActivity {
             public void onClick(View v) {
                 if (awesomeValidation.validate()) {
                     // stock  les Strings
-                    String strIngredient = etIngredient.getText().toString();
+                    String strIngredient = AtcIngredients.getText().toString();
                     // on ajouter le editText format String dans le ArrayList
                     ingredients_list.add(strIngredient);
                     // on update arrayAdapter
@@ -117,7 +148,7 @@ public class PreSelectedIng extends OptionsMenuActivity {
                     // on update Listview grace à ArrayAdapter
                     arrayAdapterIngredient.notifyDataSetChanged();
                     // on vide EditText
-                    etIngredient.getText().clear();
+                    AtcIngredients.getText().clear();
 
                     Toast.makeText(PreSelectedIng.this, "Les ingrédients ont bien été enregistré", Toast.LENGTH_SHORT).show();
                     Map<String, Object> ingredients = new HashMap<>();
