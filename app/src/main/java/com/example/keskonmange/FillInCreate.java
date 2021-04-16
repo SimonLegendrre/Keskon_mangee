@@ -189,14 +189,19 @@ public class  FillInCreate extends OptionsMenuActivity {
 
     public void SaveRecipe(View view) {
         if(awesomeValidation.validate() && ListeIngredients.size()> 0){
+
             // Adding Recipe
             String cookTime="";
             // description déjà créé + haut
             String keywords ="";
             String name = editTextTitre.getText().toString();
+            name = name.replaceAll("\\s+", " " );
+            String id_recipe = name.replaceAll(" ", "_").toLowerCase();
             String prepTime ="";
             ArrayList<String> recipeIngredients = new ArrayList<String>();
             ArrayList<String> recipeInstructions = new ArrayList<String>();
+            ArrayList<String> description = new ArrayList<String>();
+            description = ListeIngredients;
             recipeInstructions.add(editTextDescription.getText().toString()); // A changer dans le futur pour avoir un tableau de strings avec les differentes etapes
             System.out.println("recipe instruction test: "+ recipeInstructions.toString());
 
@@ -206,11 +211,12 @@ public class  FillInCreate extends OptionsMenuActivity {
             String userID = userId;
             Double note = null ;
 
-            Recettes recette = new Recettes(cookTime,ListeIngredients, keywords,name,prepTime,
+            Recettes recette = new Recettes(cookTime,description, keywords,name,prepTime,
                                             recipeIngredients, recipeInstructions, recipeYield,
                                             totalTime, userID,note); // User ID ajouté pour ajouter l'ID utilisatuer
 
-            AllRecipe.add(recette);
+            AllRecipe.document(id_recipe).set(recette);
+
             // Rediriger vers le menu lorsque l'on clique
             Toast.makeText(getApplicationContext(),"Recette créée",Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(FillInCreate.this, CreationOrConsulationPage.class);
@@ -226,12 +232,6 @@ public class  FillInCreate extends OptionsMenuActivity {
 
         }
     }
-
-
-
-
-
-
 
 
 }

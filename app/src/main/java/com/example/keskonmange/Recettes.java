@@ -6,7 +6,7 @@ import java.util.List;
 
 public class Recettes {
     private String cookTime;
-    private List<String> description;
+    private List<String> description; // ingredients
     private String keywords;
     private String name;
     private String prepTime;
