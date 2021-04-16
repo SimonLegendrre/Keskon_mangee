@@ -16,7 +16,7 @@
     <TextView
         android:id="@+id/textView8"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
         android:textSize="25dp"
         android:text="Nous n'avons pas pu trouver de recettes avec ce que vous avez dans votre frigo...  "
@@ -24,14 +24,19 @@
         android:textColor="@color/black" />
 
 
-    <Button
-        android:id="@+id/btn_stop_no_recipes"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="10dp"
+        android:gravity="center">
+        <Button
+            android:id="@+id/btn_stop_no_recipes"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"
 
-        android:text="ok !" />
+            android:text="ok !" />
+    </LinearLayout>
 
 
 </LinearLayout>
