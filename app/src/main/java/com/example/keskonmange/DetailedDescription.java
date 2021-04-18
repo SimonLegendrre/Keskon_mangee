@@ -276,26 +276,38 @@ public class DetailedDescription extends OptionsMenuActivity {
             button_delete.setVisibility(View.GONE);
             button_update_recipe.setVisibility(View.GONE);
             listViewIngre.setVisibility(View.GONE);
-            ratingBarall.setVisibility((View.GONE));
+            ratingBarall.setVisibility((View.VISIBLE));
+            ratingBar.setVisibility((View.GONE));
 
 
             RatingButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    // Récupérer la note
-                    double note = ratingBar.getRating();
-                    // Récupérer la note actuelle et Update la database;
-                    Notation notation = new Notation(note);
-                    document.collection("Note").document(userId).set(notation);
-                    document.collection("Note").document(userId).update("note", note);
 
-                    //Change d'activité
-                    Intent intent = new Intent(getApplicationContext(), CreationOrConsulationPage.class);
-                    startActivity(intent);
-                    finish();
-                    Toast.makeText(DetailedDescription.this, "Bravo, vous avez mis " + note + " étoile", Toast.LENGTH_SHORT).show();
+                    // Afficher le pop-up pour modifier l'ingrédient
 
+                    final Dialog dialog = new Dialog(DetailedDescription.this);
+                    dialog.setContentView(R.layout.dialog_soumission_note);
+                    Button bt = (Button) dialog.findViewById(R.id.validate);
+                    RatingBar ratingBar = dialog.findViewById(R.id.rating_bar);
 
+                    bt.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            //enlève le dialogue
+                            dialog.dismiss();
+
+                            // Récupérer la note
+                            double note = ratingBar.getRating();
+                            // Récupérer la note actuelle et Update la database;
+                            Notation notation = new Notation(note);
+                            document.collection("Note").document(userId).set(notation);
+                            document.collection("Note").document(userId).update("note", note);
+
+                            Toast.makeText(DetailedDescription.this, "Bravo, vous avez mis " + note + " étoile", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                    dialog.show();
                 }
             });
 
