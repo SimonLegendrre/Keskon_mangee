@@ -1,41 +1,41 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="?attr/colorPrimary"
-    android:gravity="center"
-    android:orientation="vertical"
-    android:padding="20dp"
+    android:layout_width="match_parent"
     tools:context=".FillInCreate">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_height="wrap_content"
+        android:layout_width="match_parent"
+        android:padding="40dp"
+        android:background="?attr/colorPrimary">
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="77dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="70dp">
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="269dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="top"
 
-        <TextView
-            android:id="@+id/textView3"
-            android:layout_width="269dp"
-            android:layout_height="match_parent"
-            android:layout_gravity="top"
+        android:text="@string/remplissez_ici_les_informations_correspondant_votre_recette"
+        android:textColor="@color/white"
+        android:textSize="9pt"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-            android:text="Remplissez ici les informations correspondant à votre recette"
-            android:textColor="@color/white"
-            android:textSize="9pt" />
-
-        <Button
-            android:id="@+id/get_info_fill_in"
-            android:layout_width="50dp"
-            android:layout_height="wrap_content"
-            android:text="\?"
-            android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-            android:textSize="30dp"></Button>
-
-    </LinearLayout>
-
+    <Button
+        android:id="@+id/get_info_fill_in"
+        android:layout_width="54dp"
+        android:layout_height="63dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="4dp"
+        android:layout_marginRight="4dp"
+        android:text="\?"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        android:textSize="30dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"></Button>
 
     <EditText
         android:id="@+id/nom_recette"
@@ -43,64 +43,144 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
         android:background="@android:color/white"
+        android:ems="10"
         android:hint="Nom de recette"
         android:inputType="textPersonName"
-        android:padding="10dp" />
+        android:padding="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
+    <EditText
+        android:id="@+id/recipe_yield"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="19dp"
+        android:ems="10"
+        android:hint="Nombre de personne"
+        android:background="@android:color/white"
+        android:inputType="number"
+        android:padding="10dp"
+        app:layout_constraintTop_toBottomOf="@+id/nom_recette"
+        app:layout_constraintBottom_toTopOf="@+id/PrepTime"
+        tools:layout_editor_absoluteX="40dp" />
+
+    <EditText
+        android:id="@+id/PrepTime"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="19dp"
+        android:ems="10"
+        android:hint="Temps de préparation (en minutes)"
+        android:background="@android:color/white"
+        android:inputType="number"
+        android:padding="10dp"
+        app:layout_constraintTop_toBottomOf="@+id/recipe_yield"
+        app:layout_constraintBottom_toTopOf="@+id/CookTime"/>
+
+    <EditText
+        android:id="@+id/CookTime"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="19dp"
+        android:ems="10"
+        android:hint="Temps de cuisson (en minutes)"
+        android:background="@android:color/white"
+        android:inputType="number"
+        android:padding="10dp"
+        app:layout_constraintTop_toBottomOf="@+id/PrepTime"
+        app:layout_constraintBottom_toTopOf="@+id/description"/>
 
     <EditText
         android:id="@+id/description"
         android:layout_width="match_parent"
         android:layout_height="80dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="19dp"
         android:background="@android:color/white"
+        android:ems="10"
         android:hint="Description"
         android:inputType="textMultiLine"
-        android:padding="10dp" />
+        android:padding="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/CookTime" />
+
+    <Button
+        android:id="@+id/btn_ajouterEtape"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Ajouter"
+        android:textSize="10dp"
+        app:layout_constraintTop_toBottomOf="@+id/description"
+        app:layout_constraintEnd_toEndOf="parent"></Button>
+
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/scrollEtape"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_marginTop="10dp"
+        tools:context=".Recipes_Scrolling"
+        app:layout_constraintTop_toBottomOf="@+id/btn_ajouterEtape"
+        app:layout_constraintBottom_toTopOf="@+id/ingredients">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <ListView
+                android:id="@+id/list_etapes"
+                android:layout_width="wrap_content"
+                android:layout_height="200dp"
+                android:background="@android:color/white"
+                android:visibility="visible"></ListView>
+        </LinearLayout>
+    </ScrollView>
 
     <AutoCompleteTextView
         android:id="@+id/ingredients"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:background="@android:color/white"
-        android:completionHint="Clickez sur un des ingrédients du dessus"
-        android:completionThreshold="2"
+        android:layout_marginTop="19dp"
         android:hint="Ingrédients"
+        android:completionHint="Clicker sur un des ingrédients ci-dessus"
+        android:completionThreshold="2"
+        android:background="@android:color/white"
         android:inputType="text"
         android:lines="1"
-        android:maxLines="1"
         android:padding="10dp"
-        android:singleLine="true" />
+        android:singleLine="true"
+        android:ems="10"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/scrollEtape" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
+    <Button
+        android:id="@+id/btn_ajouterIngredient"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center">
+        android:layout_marginTop="10dp"
+        android:text="Ajouter"
+        android:textSize="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ingredients" />
 
-        <Button
-            android:id="@+id/btn_ajouter"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Ajouter"
-            android:textSize="10dp" />
-
-        <Button
-            android:id="@+id/btn_supprimer"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Supprimer"
-            android:textSize="10dp"></Button>
-
-
-    </LinearLayout>
 
     <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/scrollIngredients"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        tools:context=".Recipes_Scrolling">
+        android:layout_marginTop="10dp"
+        tools:context=".Recipes_Scrolling"
+        app:layout_constraintTop_toBottomOf="@+id/btn_ajouterIngredient"
+        app:layout_constraintBottom_toTopOf="@+id/submit_recipe_creator">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -111,7 +191,7 @@
                 android:id="@+id/list_ingredients"
                 android:layout_width="wrap_content"
                 android:layout_height="200dp"
-                android:background="@color/cardview_light_background"
+                android:background="@android:color/white"
                 android:visibility="visible"></ListView>
         </LinearLayout>
     </ScrollView>
@@ -120,13 +200,26 @@
         android:id="@+id/submit_recipe_creator"
         android:layout_width="250dp"
         android:layout_height="55dp"
-        android:layout_marginBottom="90dp"
+        android:layout_marginTop="19dp"
+        android:layout_marginBottom="50dp"
         android:onClick="SaveRecipe"
         android:text="@string/enregister_nouvelle_recette"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/description"
+        app:layout_constraintTop_toBottomOf="@id/scrollIngredients"
+
         app:layout_constraintVertical_bias="0.278" />
-</LinearLayout>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </ScrollView>
+
+
+
+
+
+
+
