@@ -5,6 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_height="match_parent"
     android:layout_width="match_parent"
+    android:id="@+id/parentScrollView"
     tools:context=".FillInCreate">
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_height="wrap_content"
@@ -61,6 +62,7 @@
         android:background="@android:color/white"
         android:inputType="number"
         android:padding="10dp"
+        android:visibility="gone"
         app:layout_constraintTop_toBottomOf="@+id/nom_recette"
         app:layout_constraintBottom_toTopOf="@+id/PrepTime"
         tools:layout_editor_absoluteX="40dp" />
@@ -91,76 +93,6 @@
         app:layout_constraintTop_toBottomOf="@+id/PrepTime"
         />
 
-        <TextView
-            android:id="@+id/TextViewExplicationsDescription"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:textStyle="bold"
-            android:textSize="20dp"
-            android:text="Indiquez ici les étapes de la recette:"
-            android:textColor="@color/white"
-            app:layout_constraintTop_toBottomOf="@id/CookTime"
-
-            />
-
-    <EditText
-        android:id="@+id/description"
-        android:layout_width="match_parent"
-        android:layout_height="80dp"
-        android:layout_marginTop="15dp"
-        android:background="@android:color/white"
-        android:ems="10"
-        android:hint="Prochaine étape de la recette"
-        android:inputType="textMultiLine"
-        android:padding="10dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/TextViewExplicationsDescription"
-        />
-
-
-
-
-    <Button
-        android:id="@+id/btn_ajouterEtape"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:text="Ajouter étape à la recette"
-        android:textSize="10dp"
-        app:layout_constraintTop_toBottomOf="@+id/description"
-        app:layout_constraintEnd_toEndOf="parent"
-        ></Button>
-
-    <androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:id="@+id/scrollEtape"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="19dp"
-        android:orientation="vertical"
-        android:visibility="gone"
-        tools:context=".FillInCreate"
-        app:layout_constraintTop_toBottomOf="@+id/description"
-        app:layout_constraintBottom_toTopOf="@+id/ingredients">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
-
-
-            <ListView
-                android:id="@+id/list_etapes"
-                android:layout_width="wrap_content"
-                android:layout_height="200dp"
-                android:background="@android:color/white"
-                android:visibility="visible"></ListView>
-        </LinearLayout>
-    </androidx.core.widget.NestedScrollView>
-
     <TextView
         android:id="@+id/TextViewExplicationsIngredients"
         android:layout_width="match_parent"
@@ -170,8 +102,7 @@
         android:textSize="20dp"
         android:text="Indiquez ici les ingrédients:"
         android:textColor="@color/white"
-        app:layout_constraintTop_toBottomOf="@+id/scrollEtape"
-        />
+        app:layout_constraintTop_toBottomOf="@+id/CookTime" />
 
     <AutoCompleteTextView
         android:id="@+id/ingredients"
@@ -202,32 +133,109 @@
         app:layout_constraintTop_toBottomOf="@+id/ingredients" />
 
 
-    <androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:id="@+id/scrollIngredients"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:layout_marginTop="10dp"
-        android:visibility="gone"
-        tools:context=".FillInCreate"
-        app:layout_constraintTop_toBottomOf="@+id/btn_ajouterIngredient"
-        app:layout_constraintBottom_toTopOf="@+id/submit_recipe_creator">
 
-        <LinearLayout
+        <androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:id="@+id/scrollIngredients"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:layout_marginTop="10dp"
+            android:visibility="gone"
+            tools:context=".FillInCreate"
+            app:layout_constraintTop_toBottomOf="@+id/btn_ajouterIngredient"
+            app:layout_constraintBottom_toTopOf="@+id/TextViewExplicationsDescription">
+            <LinearLayout
 
-            <ListView
-                android:id="@+id/list_ingredients"
-                android:layout_width="wrap_content"
-                android:layout_height="200dp"
-                android:background="@android:color/white"
-                android:visibility="visible"></ListView>
-        </LinearLayout>
-    </androidx.core.widget.NestedScrollView>
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:layout_marginTop="10dp"
+                android:visibility="gone"
+                app:layout_constraintTop_toBottomOf="@id/btn_ajouterIngredient"
+                app:layout_constraintBottom_toTopOf="@id/TextViewExplicationsDescription">
+
+                <ListView
+                    android:id="@+id/list_ingredients"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:background="@android:color/white"
+                    android:visibility="visible"></ListView>
+            </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
+
+    <TextView
+        android:id="@+id/TextViewExplicationsDescription"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:textStyle="bold"
+        android:textSize="20dp"
+        android:text="Indiquez ici les étapes de la recette:"
+        android:textColor="@color/white"
+        app:layout_constraintTop_toBottomOf="@id/scrollIngredients" />
+
+    <EditText
+        android:id="@+id/description"
+        android:layout_width="match_parent"
+        android:layout_height="80dp"
+        android:layout_marginTop="15dp"
+        android:background="@android:color/white"
+        android:ems="10"
+        android:hint="Prochaine étape de la recette"
+        android:inputType="textMultiLine"
+        android:padding="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/TextViewExplicationsDescription"
+        />
+
+
+
+
+    <Button
+        android:id="@+id/btn_ajouterEtape"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="Ajouter étape à la recette"
+        android:textSize="10dp"
+        app:layout_constraintTop_toBottomOf="@+id/description"
+        app:layout_constraintEnd_toEndOf="parent"
+        ></Button>
+
+        <androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:id="@+id/scrollEtape"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="19dp"
+            android:orientation="vertical"
+            android:visibility="gone"
+            tools:context=".FillInCreate"
+            app:layout_constraintTop_toBottomOf="@+id/btn_ajouterEtape"
+            app:layout_constraintBottom_toTopOf="@+id/submit_recipe_creator">
+            <LinearLayout
+
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="10dp"
+                android:orientation="vertical"
+                android:visibility="gone"
+                app:layout_constraintTop_toBottomOf="@+id/btn_ajouterEtape"
+                app:layout_constraintBottom_toTopOf="@+id/submit_recipe_creator">
+
+
+                <ListView
+                    android:id="@+id/list_etapes"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:background="@android:color/white"
+                    android:visibility="visible"></ListView>
+            </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
 
     <Button
         android:id="@+id/submit_recipe_creator"
@@ -241,14 +249,14 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/scrollIngredients"
+        app:layout_constraintTop_toBottomOf="@id/scrollEtape"
 
         app:layout_constraintVertical_bias="0.278" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-    </ScrollView>
+</ScrollView>
 
 
 

@@ -5,12 +5,14 @@ import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.ScrollView;
 import android.widget.Toast;
@@ -33,9 +35,8 @@ import java.util.ArrayList;
 
 public class  FillInCreate extends OptionsMenuActivity {
 
-
     private EditText editTextTitre;
-    private EditText RecipeYield;
+    //private EditText RecipeYield;
     private EditText PrepTimme;
     private EditText CookTime;
     private AutoCompleteTextView AtcIngredients;
@@ -50,13 +51,13 @@ public class  FillInCreate extends OptionsMenuActivity {
     ArrayList<String> ListeEtapes;
     ArrayAdapter<String> arrayAdapterListeEtapes;
     ListView listViewEtapes;
-    private NestedScrollView Etapes;
+    private LinearLayout Etapes;
 
     ArrayList<String> ListeIngredients;
     ArrayAdapter<String> arrayAdapterListeIngredients;
     ListView listViewIngredients;
     String userId;
-    private NestedScrollView Ingredients;
+    private LinearLayout Ingredients;
 
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private CollectionReference AllRecipe = db.collection("Recettes");
@@ -102,7 +103,7 @@ public class  FillInCreate extends OptionsMenuActivity {
         //Le nom de la recette
         editTextTitre = findViewById(R.id.nom_recette);
         //Le nombre de personne
-        RecipeYield = findViewById(R.id.recipe_yield);
+        //RecipeYield = findViewById(R.id.recipe_yield);
         //Temps de préparation
         PrepTimme = findViewById(R.id.PrepTime);
         //Temps de cuisson
@@ -138,6 +139,7 @@ public class  FillInCreate extends OptionsMenuActivity {
         //awesomeValidation.addValidation(this,R.id.description, RegexTemplate.NOT_EMPTY,R.string.invalid_description);
         awesomeValidationIngredients.addValidation(this, R.id.ingredients, RegexTemplate.NOT_EMPTY,R.string.invalid_ingredient);
         awesomeValidationEtapes.addValidation(this, R.id.description, RegexTemplate.NOT_EMPTY,R.string.invalid_recipe_description);
+
 
         ListeEtapes = new ArrayList<String>();
         // fait le lien entre le XML EditText et arrayList "listEtapes"
@@ -263,21 +265,8 @@ public class  FillInCreate extends OptionsMenuActivity {
                 return true;
             }
         });
-        //Bouton pour supprimer le dernier ingrédient qui a été entré.
-        /*buttonSupprimer.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (ListeIngredients.size()> 0) {
-                    ListeIngredients.remove(ListeIngredients.size() - 1);
-                    listView.setAdapter(arrayAdapterListeIngredients);
-                    arrayAdapterListeIngredients.notifyDataSetChanged();
-                }
-                else{
-                    Toast.makeText(FillInCreate.this,"La liste d'ingrédients est vide", Toast.LENGTH_SHORT).show();
 
-                }
-            }
-        });*/
+
 
 
         // get info
@@ -324,7 +313,7 @@ public class  FillInCreate extends OptionsMenuActivity {
             recipeInstructions = ListeEtapes; // A changer dans le futur pour avoir un tableau de strings avec les differentes etapes - Normalement ok
             System.out.println("recipe instruction test: "+ recipeInstructions.toString());
 
-            String recipeYield = RecipeYield.getText().toString();
+            //String recipeYield = RecipeYield.getText().toString();
             //Temps total de la recette
             Integer tempsTotal = Integer.valueOf(PrepTimme.getText().toString()) + Integer.valueOf(CookTime.getText().toString());
             String totalTime = tempsTotal.toString();
@@ -333,8 +322,7 @@ public class  FillInCreate extends OptionsMenuActivity {
             Double note = null ;
 
             Recettes recette = new Recettes(cookTime,description, keywords,name,prepTime,
-                    recipeIngredients, recipeInstructions, recipeYield,
-                    totalTime, userID,note); // User ID ajouté pour ajouter l'ID utilisatuer
+                    recipeIngredients, recipeInstructions, totalTime, userID,note); // User ID ajouté pour ajouter l'ID utilisatuer
 
             AllRecipe.document(id_recipe).set(recette);
 
