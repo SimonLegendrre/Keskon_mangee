@@ -99,6 +99,7 @@
             android:textStyle="bold"
             android:textSize="20dp"
             android:text="Indiquez ici les étapes de la recette:"
+            android:textColor="@color/white"
             app:layout_constraintTop_toBottomOf="@id/CookTime"
 
             />
@@ -107,6 +108,7 @@
         android:id="@+id/description"
         android:layout_width="match_parent"
         android:layout_height="80dp"
+        android:layout_marginTop="15dp"
         android:background="@android:color/white"
         android:ems="10"
         android:hint="Prochaine étape de la recette"
@@ -131,15 +133,17 @@
         app:layout_constraintEnd_toEndOf="parent"
         ></Button>
 
-    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    <androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/scrollEtape"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="19dp"
         android:orientation="vertical"
-        tools:context=".Recipes_Scrolling"
-        app:layout_constraintTop_toBottomOf="@+id/btn_ajouterEtape"
+        android:visibility="gone"
+        tools:context=".FillInCreate"
+        app:layout_constraintTop_toBottomOf="@+id/description"
         app:layout_constraintBottom_toTopOf="@+id/ingredients">
 
         <LinearLayout
@@ -155,7 +159,7 @@
                 android:background="@android:color/white"
                 android:visibility="visible"></ListView>
         </LinearLayout>
-    </ScrollView>
+    </androidx.core.widget.NestedScrollView>
 
     <TextView
         android:id="@+id/TextViewExplicationsIngredients"
@@ -165,6 +169,7 @@
         android:textStyle="bold"
         android:textSize="20dp"
         android:text="Indiquez ici les ingrédients:"
+        android:textColor="@color/white"
         app:layout_constraintTop_toBottomOf="@+id/scrollEtape"
         />
 
@@ -197,7 +202,7 @@
         app:layout_constraintTop_toBottomOf="@+id/ingredients" />
 
 
-    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    <androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:id="@+id/scrollIngredients"
@@ -205,7 +210,8 @@
         android:layout_height="match_parent"
         android:orientation="vertical"
         android:layout_marginTop="10dp"
-        tools:context=".Recipes_Scrolling"
+        android:visibility="gone"
+        tools:context=".FillInCreate"
         app:layout_constraintTop_toBottomOf="@+id/btn_ajouterIngredient"
         app:layout_constraintBottom_toTopOf="@+id/submit_recipe_creator">
 
@@ -221,7 +227,7 @@
                 android:background="@android:color/white"
                 android:visibility="visible"></ListView>
         </LinearLayout>
-    </ScrollView>
+    </androidx.core.widget.NestedScrollView>
 
     <Button
         android:id="@+id/submit_recipe_creator"

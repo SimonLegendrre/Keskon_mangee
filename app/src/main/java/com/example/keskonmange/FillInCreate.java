@@ -12,7 +12,10 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.ScrollView;
 import android.widget.Toast;
+
+import androidx.core.widget.NestedScrollView;
 
 import com.basgeekball.awesomevalidation.AwesomeValidation;
 import com.basgeekball.awesomevalidation.ValidationStyle;
@@ -37,6 +40,7 @@ public class  FillInCreate extends OptionsMenuActivity {
     private EditText CookTime;
     private AutoCompleteTextView AtcIngredients;
 
+
     private EditText editTextDescription;
     public Button buttonAjouterEtape;
     public Button buttonAjouterIngredient;
@@ -46,11 +50,13 @@ public class  FillInCreate extends OptionsMenuActivity {
     ArrayList<String> ListeEtapes;
     ArrayAdapter<String> arrayAdapterListeEtapes;
     ListView listViewEtapes;
+    private NestedScrollView Etapes;
 
     ArrayList<String> ListeIngredients;
     ArrayAdapter<String> arrayAdapterListeIngredients;
     ListView listViewIngredients;
     String userId;
+    private NestedScrollView Ingredients;
 
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private CollectionReference AllRecipe = db.collection("Recettes");
@@ -106,7 +112,7 @@ public class  FillInCreate extends OptionsMenuActivity {
         editTextDescription = findViewById(R.id.description);
         buttonAjouterEtape = (Button) findViewById(R.id.btn_ajouterEtape);
         listViewEtapes = findViewById(R.id.list_etapes);
-
+        Etapes = findViewById(R.id.scrollEtape);
         //Les ingredients (format = autocomplete)
         AtcIngredients = findViewById(R.id.ingredients);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, IngredientsKKM);
@@ -114,6 +120,7 @@ public class  FillInCreate extends OptionsMenuActivity {
         buttonAjouterIngredient = (Button) findViewById(R.id.btn_ajouterIngredient);
         buttonGetInfo = (Button) findViewById(R.id.get_info_fill_in);
         listViewIngredients = findViewById(R.id.list_ingredients);
+        Ingredients = findViewById(R.id.scrollIngredients);
         // Ce code permet de rajouter l'ID de l'utilisateur qui crée la recette au champ de la recette
         // retrieve the data from the DB
 
@@ -140,6 +147,7 @@ public class  FillInCreate extends OptionsMenuActivity {
             @Override
             public void onClick(View v) {
                 if (awesomeValidationEtapes.validate()) {
+                    Etapes.setVisibility(View.VISIBLE);
                     //stock les Strings
                     String strEtape = editTextDescription.getText().toString();
                     //On ajoute l'editText format String dans la ArrayList
@@ -150,6 +158,7 @@ public class  FillInCreate extends OptionsMenuActivity {
                     arrayAdapterListeEtapes.notifyDataSetChanged();
                     //On vide EditText
                     editTextDescription.getText().clear();
+
                 }
                 else{return;}
             }
@@ -171,13 +180,20 @@ public class  FillInCreate extends OptionsMenuActivity {
                                 ListeEtapes.remove(quelle_etape);
                                 listViewEtapes.setAdapter(arrayAdapterListeEtapes);
                                 arrayAdapterListeEtapes.notifyDataSetChanged();
+                                if (ListeEtapes.size()==0) {
+                                    Etapes.setVisibility(View.GONE);
+                                }
                             }
                         })
                         .setNegativeButton("Non", null)
                         .show();
+
                 return true;
             }
         });
+
+        //Code pour scroller et voir les étapes que l'utilisateur vient d'entrer
+
 
         ListeIngredients = new ArrayList<String>();
         // fait le lien entre le XML EditText et arrayList "ingredientList"
@@ -190,7 +206,7 @@ public class  FillInCreate extends OptionsMenuActivity {
             public void onClick(View v) {
 
                 if(awesomeValidationIngredients.validate()) {
-
+                    Ingredients.setVisibility(View.VISIBLE);
                     // stock  les Strings
                     String strIngredient = AtcIngredients.getText().toString().toLowerCase().trim();
                     // on ajoute le editText format String dans le ArrayList
@@ -237,6 +253,9 @@ public class  FillInCreate extends OptionsMenuActivity {
                                 ListeIngredients.remove(which_item);
                                 listViewIngredients.setAdapter(arrayAdapterListeIngredients);
                                 arrayAdapterListeIngredients.notifyDataSetChanged();
+                                if (ListeIngredients.size()==0){
+                                    Ingredients.setVisibility(View.GONE);
+                                }
                             }
                         })
                         .setNegativeButton("Non", null)
