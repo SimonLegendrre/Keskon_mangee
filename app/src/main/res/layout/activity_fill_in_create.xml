@@ -89,31 +89,47 @@
         android:inputType="number"
         android:padding="10dp"
         app:layout_constraintTop_toBottomOf="@+id/PrepTime"
-        app:layout_constraintBottom_toTopOf="@+id/description"/>
+        />
+
+        <TextView
+            android:id="@+id/TextViewExplicationsDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:textStyle="bold"
+            android:textSize="20dp"
+            android:text="Indiquez ici les étapes de la recette:"
+            app:layout_constraintTop_toBottomOf="@id/CookTime"
+
+            />
 
     <EditText
         android:id="@+id/description"
         android:layout_width="match_parent"
         android:layout_height="80dp"
-        android:layout_marginTop="19dp"
         android:background="@android:color/white"
         android:ems="10"
-        android:hint="Description"
+        android:hint="Prochaine étape de la recette"
         android:inputType="textMultiLine"
         android:padding="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/CookTime" />
+        app:layout_constraintTop_toBottomOf="@+id/TextViewExplicationsDescription"
+        />
+
+
+
 
     <Button
         android:id="@+id/btn_ajouterEtape"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:text="Ajouter"
+        android:text="Ajouter étape à la recette"
         android:textSize="10dp"
         app:layout_constraintTop_toBottomOf="@+id/description"
-        app:layout_constraintEnd_toEndOf="parent"></Button>
+        app:layout_constraintEnd_toEndOf="parent"
+        ></Button>
 
     <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -122,7 +138,6 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:layout_marginTop="10dp"
         tools:context=".Recipes_Scrolling"
         app:layout_constraintTop_toBottomOf="@+id/btn_ajouterEtape"
         app:layout_constraintBottom_toTopOf="@+id/ingredients">
@@ -132,6 +147,7 @@
             android:layout_height="match_parent"
             android:orientation="vertical">
 
+
             <ListView
                 android:id="@+id/list_etapes"
                 android:layout_width="wrap_content"
@@ -140,6 +156,17 @@
                 android:visibility="visible"></ListView>
         </LinearLayout>
     </ScrollView>
+
+    <TextView
+        android:id="@+id/TextViewExplicationsIngredients"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:textStyle="bold"
+        android:textSize="20dp"
+        android:text="Indiquez ici les ingrédients:"
+        app:layout_constraintTop_toBottomOf="@+id/scrollEtape"
+        />
 
     <AutoCompleteTextView
         android:id="@+id/ingredients"
@@ -157,14 +184,14 @@
         android:ems="10"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/scrollEtape" />
+        app:layout_constraintTop_toBottomOf="@+id/TextViewExplicationsIngredients" />
 
     <Button
         android:id="@+id/btn_ajouterIngredient"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:text="Ajouter"
+        android:text="Ajouter ingrédient à la recette"
         android:textSize="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/ingredients" />
