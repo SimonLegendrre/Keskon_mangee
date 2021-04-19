@@ -113,22 +113,28 @@ public class DetailedDescription extends OptionsMenuActivity {
 
                 String data = "";
                 String titre = documentSnapshot.getString("name");
-                //String description = documentSnapshot.getString("recipeInstructions");
                 String description= "";
                 ArrayList <String> tab = new ArrayList<>();
                 tab = (ArrayList<String>) documentSnapshot.get("recipeInstructions");
-                for(String b : tab){
-                    description+= b+ "\n";
+                String tempsPrep = documentSnapshot.getString("prepTime");
+                String tempsTotal = documentSnapshot.getString("totalTime");
+
+
+                for(int i = 0; i<tab.size(); i++){
+                    description += "Etape " + String.valueOf(i+1) +": " + tab.get(i) + "\n\n";
                 }
                 //String description = documentSnapshot.get("recipeInstructions").toString(); // pour le moment, on fait seulement un string mais on poura changer ça dans le futur pour un meilleur affichage
-                data += "Titre: " + titre + "\n Ingrédients:";
+                data += titre + "\n\n Ingrédients: \n";
                 List<String> ingredient = (List<String>) documentSnapshot.get("description");
 
                 for (String ing : ingredient) {
                     data += "\n- " + ing;
                     ingre_list.add(ing); // La liste des ingrédient pour les modifier potentiellement
                 }
-                data += "\n Description: " + description;
+
+                data += "\n\n Pour cette recette, il y aura un temps de préparation de " + tempsPrep + " pour un temps total de " + tempsTotal + " cuisson comprise" + "\n\n";
+
+                data += "Etapes à suivre : " + "\n\n" + description;
 
                 textViewData.setText(data);
                 listViewIngre.setAdapter(adapter);
@@ -185,7 +191,6 @@ public class DetailedDescription extends OptionsMenuActivity {
                 }
                 AvgNote = somme / count;
                 if(count>0) {
-                    TextViewNote.setText("La note de cette recette est : " + String.valueOf(AvgNote));
                     ratingBarall.setRating((float) AvgNote);
                 }
                 else{TextViewNote.setText("Cette recette n'a pas encore été notée");}
