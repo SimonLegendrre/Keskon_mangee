@@ -13,16 +13,22 @@
         tools:ignore="ExtraText">
 
 
+
         <TextView
+            android:layout_marginTop="20dp"
             android:id="@+id/match_recipes"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:text="Les recettes correpondant à la recherche"></TextView>
+            android:text="Ce vous pouvez faire avec les ingrédients de votre frigo:"
+            android:textSize="15dp"
+            android:textStyle="bold"
+
+            ></TextView>
 
 
         <ListView
             android:id="@+id/list_recipes"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="150dp"
             android:visibility="visible" />
 
@@ -30,12 +36,15 @@
             android:id="@+id/plus1_recipes"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:text="Les recettes avec un ingrédient en plus"></TextView>
+            android:text="En ajoutant 1 ingrédient en plus:"
+            android:textSize="15dp"
+            android:textStyle="bold"
+            ></TextView>
 
 
         <ListView
             android:id="@+id/list_recipe_plus1"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="150dp"
             android:visibility="visible" />
 
@@ -43,12 +52,15 @@
             android:id="@+id/plus2_recipes"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:text="Les recettes avec deux ingrédient en plus"></TextView>
+            android:text="En ajutant 2 ingrédient en plus:"
+            android:textSize="15dp"
+            android:textStyle="bold"
+            ></TextView>
 
 
         <ListView
             android:id="@+id/list_recipe_plus2"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="150dp"
             android:visibility="visible" />
 

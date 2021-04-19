@@ -30,7 +30,6 @@ import java.util.ArrayList;
 public class Recipes_Scrolling extends OptionsMenuActivity {
 
     private static final String TAG = "Choix_recipe_consult";
-    //private ListView listViewAlldata;
     private ListView ListViewNameAndNote;
 
     // Initialisation base de données
@@ -50,12 +49,9 @@ public class Recipes_Scrolling extends OptionsMenuActivity {
         // Définition des ArrayList et de l'adapteur : l'adapteur permet de transformer un ArrayList en ListView dans le XML.
         ArrayList<String> recipes_list = new ArrayList<>();
         ArrayList<String> recipes_list_id = new ArrayList<>();
-        //ArrayAdapter adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, recipes_list);
-
 
         // Empty list : Titre et Rating bar element
         ListViewNameAndNote = (ListView) findViewById(R.id.list_all_recipes);
-        //HashMap<String, RatingBar> NameAndRatingBar = new HashMap<>();
 
 
 
@@ -90,15 +86,11 @@ public class Recipes_Scrolling extends OptionsMenuActivity {
                         float note = recette.getNote().floatValue();
                         //ratingBar.setRating(note);
                         NoteLists.add("Note moyenne: "+note+"/5");
-                        System.out.println("Je répète, Il y a une note");
-                        //NameAndRatingBar.put(recette.getName(), ratingBar);
                     }
                     else{ // pour le moment, quand il n'y a pas de rating, elle vaut zéro
                         System.out.println("Il n'y a pas encore de note");
                         // ratingBar.setRating((float) 0.0);
                         NoteLists.add("Pas encore notée");
-                        //NameAndRatingBar.put(recette.getName(), ratingBar);
-                        System.out.println("Je répète, Il n'y a pas de note");
                     }
 
 
@@ -114,12 +106,8 @@ public class Recipes_Scrolling extends OptionsMenuActivity {
                 MyAdapter adapter_bis = new MyAdapter(Recipes_Scrolling.this, recipes_list, NoteLists );
                 ListViewNameAndNote.setAdapter(adapter_bis);
 
-                System.out.println("liste du chien: \n"+ String.join("\n", recipes_list) );
+                //System.out.println("liste du chien: \n"+ String.join("\n", recipes_list) );
 
-
-
-                // ListView ==> ça a changé apres
-                //listViewAlldata.setAdapter(adapter);
 
                 // Action lorsque l'on clique sur l'une des recettes
 

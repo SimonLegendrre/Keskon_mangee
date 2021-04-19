@@ -1,14 +1,21 @@
 package com.example.keskonmange;
 
 import android.app.Dialog;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
@@ -38,9 +45,9 @@ public class Choice_recipe_consult extends OptionsMenuActivity {
 
     // On défini 3 ListView Correspondant aux recherches avec exactement les ingrédients demandés, un ingrédient en plus, puis 2 ingrédients
     //en plus
-    ListView listView;
     ListView listView1;
     ListView listView2;
+    ListView listView3;
     Button stop_no_recipes;
 
 
@@ -54,9 +61,14 @@ public class Choice_recipe_consult extends OptionsMenuActivity {
         Collections.sort(ingredients_list);
 
         // Lien XML
-        listView = findViewById(R.id.list_recipes);
-        listView1 = findViewById(R.id.list_recipe_plus1);
-        listView2 = findViewById(R.id.list_recipe_plus2);
+        listView1 = findViewById(R.id.list_recipes);
+        listView2 = findViewById(R.id.list_recipe_plus1);
+        listView3 = findViewById(R.id.list_recipe_plus2);
+
+        // Lieux de stockage des notes
+        ArrayList<String> NoteList1 = new ArrayList<>();
+        ArrayList<String> NoteList2 = new ArrayList<>();
+        ArrayList<String> NoteList3 = new ArrayList<>();
 
 
         // L'activité DetailDescription sert à la observer la description complète d'une recette. Elle est utilisée pour la description
@@ -68,23 +80,24 @@ public class Choice_recipe_consult extends OptionsMenuActivity {
         String Choice_recipe_acti = "Choice_recipe";
 
         // Définition des ArrayList et de l'adapteur : l'adapteur permet de transformer un ArrayList en ListView dans le XML.
-        ArrayList<String> recipes_list = new ArrayList<>();
-        ArrayList<String> recipes_list_id = new ArrayList<>();
-
         ArrayList<String> recipes_list1 = new ArrayList<>();
         ArrayList<String> recipes_list_id1 = new ArrayList<>();
 
         ArrayList<String> recipes_list2 = new ArrayList<>();
         ArrayList<String> recipes_list_id2 = new ArrayList<>();
 
+        ArrayList<String> recipes_list3 = new ArrayList<>();
+        ArrayList<String> recipes_list_id3 = new ArrayList<>();
 
-        ArrayAdapter adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, recipes_list);
-        ArrayAdapter adapter1 = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, recipes_list1);
-        ArrayAdapter adapter2 = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, recipes_list2);
+
+        //ArrayAdapter adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, recipes_list1);
+        //ArrayAdapter adapter1 = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, recipes_list2);
+        //ArrayAdapter adapter2 = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, recipes_list3);
 
 
         ArrayList<String[]> SimilarButDifferentWords = new ArrayList<String[]>();
         double SimilarityThreshold = 0.7;
+
 
 
         // Algorithme permettant de sélectionner les recettes correspondant à la recherche du consulteur.
@@ -131,8 +144,23 @@ public class Choice_recipe_consult extends OptionsMenuActivity {
                         id_recipe = recette.getDocumentId();
                         //DocumentReference document = db.collection("Recette").document(id_recipe);
                         System.out.println("Apres GetDocumentId"+id_recipe);
-                        recipes_list.add(titre);
-                        recipes_list_id.add(id_recipe);
+                        recipes_list1.add(titre);
+                        recipes_list_id1.add(id_recipe);
+                        System.out.println("count exact: "+ titre);
+
+                        // Get notes:
+                        if(recette.getNote() != null && !recette.getNote().isNaN()) {
+                            System.out.println(recette.getNote());
+                            System.out.println("Il y a une note");
+                            float note = recette.getNote().floatValue();
+                            //ratingBar.setRating(note);
+                            NoteList1.add("Note moyenne: "+note+"/5");
+                        }
+                        else{ // pour le moment, quand il n'y a pas de rating, elle vaut zéro
+                            System.out.println("Il n'y a pas encore de note");
+                            // ratingBar.setRating((float) 0.0);
+                            NoteList1.add("Pas encore notée");
+                        }
 
 
                         // Un ingrédient en plus
@@ -141,9 +169,23 @@ public class Choice_recipe_consult extends OptionsMenuActivity {
                         titre = recette.getName();
                         id_recipe = recette.getDocumentId();
                         //DocumentReference document = db.collection("Recette").document(id_recipe);
+                        System.out.println("count+1: "+ titre);
+                        recipes_list2.add(titre);
+                        recipes_list_id2.add(id_recipe);
+                        // Get notes:
+                        if(recette.getNote() != null && !recette.getNote().isNaN()) {
+                            System.out.println(recette.getNote());
+                            System.out.println("Il y a une note");
+                            float note = recette.getNote().floatValue();
+                            //ratingBar.setRating(note);
+                            NoteList2.add("Note moyenne: "+note+"/5");
+                        }
+                        else{ // pour le moment, quand il n'y a pas de rating, elle vaut zéro
+                            System.out.println("Il n'y a pas encore de note");
+                            // ratingBar.setRating((float) 0.0);
+                            NoteList2.add("Pas encore notée");
+                        }
 
-                        recipes_list1.add(titre);
-                        recipes_list_id1.add(id_recipe);
                         // Deux ingrédients en plus
                     } else if ((count) + 2 == (recette.getDescription().size())) {
 
@@ -151,23 +193,46 @@ public class Choice_recipe_consult extends OptionsMenuActivity {
                         id_recipe = recette.getDocumentId();
                         //DocumentReference document = db.collection("Recette").document(id_recipe);
 
-                        recipes_list2.add(titre);
-                        recipes_list_id2.add(id_recipe);
+                        recipes_list3.add(titre);
+                        recipes_list_id3.add(id_recipe);
+                        System.out.println("count+2: "+ titre);
+
+                        // Get notes:
+                        if(recette.getNote() != null && !recette.getNote().isNaN()) {
+                            System.out.println(recette.getNote());
+                            System.out.println("Il y a une note");
+                            float note = recette.getNote().floatValue();
+                            //ratingBar.setRating(note);
+                            NoteList3.add("Note moyenne: "+note+"/5");
+                        }
+                        else{ // pour le moment, quand il n'y a pas de rating, elle vaut zéro
+                            System.out.println("Il n'y a pas encore de note");
+                            NoteList3.add("Pas encore notée");
+                        }
 
                     }
 
 
                 }
 
-
-                // Création du listView
-                listView.setAdapter(adapter);
+                MyAdapter adapter1 = new MyAdapter(Choice_recipe_consult.this, recipes_list1, NoteList1 );
                 listView1.setAdapter(adapter1);
+
+                MyAdapter adapter2 = new MyAdapter(Choice_recipe_consult.this, recipes_list2, NoteList2 );
                 listView2.setAdapter(adapter2);
+
+                MyAdapter adapter3 = new MyAdapter(Choice_recipe_consult.this, recipes_list3, NoteList3 );
+                listView3.setAdapter(adapter3);
+
 
                 System.out.println("before condition");
 
-                if (recipes_list.isEmpty()){
+                if (recipes_list1.isEmpty()){
+
+                    // Losqu'il n'y a pas de recette avec exactement ce qui a été entré, on ne veut pas voir la section avec ce qui devrait être montré pour celle là. On met alors en GONE
+                    TextView TVexactResult = findViewById(R.id.match_recipes);
+                    TVexactResult.setVisibility(View.GONE);
+                    listView1.setVisibility(View.GONE);
 
                     Dialog no_recipes_dialog = new Dialog(Choice_recipe_consult.this);
                     no_recipes_dialog.setContentView(R.layout.activity_choice_recipe_consult_dialog);
@@ -189,43 +254,43 @@ public class Choice_recipe_consult extends OptionsMenuActivity {
                 // intent.putExtra("from_which_acti", Choice_recipe_acti), permet de faire parvenir l'information que l'on vient de cette
                 //activité (this) lorsqu'on arrive dans l'activité "DetailDescription" (Voir explication détaillée plus haut)
 
-                listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                    @Override
-                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                        Intent intent = new Intent(Choice_recipe_consult.this, DetailedDescription.class);
-                        intent.putExtra("recipe_to_pass", recipes_list_id.get(position));
-                        System.out.println("Exact result ID: "+ recipes_list_id.get(position));
-                        // Dans detailed description, en fonction d'ou on vient, on affiche des choses différents:
-                        intent.putExtra("from_which_acti", Choice_recipe_acti);
-                        System.out.println("Exact result ID: "+ Choice_recipe_acti);
-                        startActivity(intent);
-                        Toast.makeText(Choice_recipe_consult.this, recipes_list.get(position), Toast.LENGTH_SHORT).show();
-                    }
-                });
-
-
                 listView1.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                         Intent intent = new Intent(Choice_recipe_consult.this, DetailedDescription.class);
                         intent.putExtra("recipe_to_pass", recipes_list_id1.get(position));
                         System.out.println("Exact result ID: "+ recipes_list_id1.get(position));
+                        // Dans detailed description, en fonction d'ou on vient, on affiche des choses différents:
                         intent.putExtra("from_which_acti", Choice_recipe_acti);
                         System.out.println("Exact result ID: "+ Choice_recipe_acti);
                         startActivity(intent);
                         Toast.makeText(Choice_recipe_consult.this, recipes_list1.get(position), Toast.LENGTH_SHORT).show();
-
                     }
                 });
+
 
                 listView2.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                         Intent intent = new Intent(Choice_recipe_consult.this, DetailedDescription.class);
                         intent.putExtra("recipe_to_pass", recipes_list_id2.get(position));
+                        System.out.println("Exact result ID: "+ recipes_list_id2.get(position));
                         intent.putExtra("from_which_acti", Choice_recipe_acti);
+                        System.out.println("Exact result ID: "+ Choice_recipe_acti);
                         startActivity(intent);
                         Toast.makeText(Choice_recipe_consult.this, recipes_list2.get(position), Toast.LENGTH_SHORT).show();
+
+                    }
+                });
+
+                listView3.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        Intent intent = new Intent(Choice_recipe_consult.this, DetailedDescription.class);
+                        intent.putExtra("recipe_to_pass", recipes_list_id3.get(position));
+                        intent.putExtra("from_which_acti", Choice_recipe_acti);
+                        startActivity(intent);
+                        Toast.makeText(Choice_recipe_consult.this, recipes_list3.get(position), Toast.LENGTH_SHORT).show();
                     }
                 });
 
@@ -235,6 +300,35 @@ public class Choice_recipe_consult extends OptionsMenuActivity {
         });
 
 
+    }
+
+    class MyAdapter extends ArrayAdapter<String>{
+        Context context ;
+        ArrayList<String> rTitre ;
+        ArrayList<String> rRating;
+
+        MyAdapter(Context c, ArrayList<String> title, ArrayList<String> rating){
+            super(c, R.layout.recipes_items_to_display, R.id.TextViewRecipeTitleRecipeScrolling, title);
+            this.context = c;
+            this.rTitre = title;
+            this.rRating = rating;
+        }
+
+
+        @NonNull
+        @Override
+        public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+            LayoutInflater layoutInflater = (LayoutInflater) getApplicationContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            View recipes_items = layoutInflater.inflate(R.layout.recipes_items_to_display, parent, false);
+            TextView myTitle = recipes_items.findViewById(R.id.TextViewRecipeTitleRecipeScrolling);
+            TextView myNote = recipes_items.findViewById(R.id.TextViewRecipesNote);
+
+            // now set our resources on views
+            myTitle.setText(rTitre.get(position));
+            myNote.setText(rRating.get(position));
+
+            return recipes_items;
+        }
     }
 
 
