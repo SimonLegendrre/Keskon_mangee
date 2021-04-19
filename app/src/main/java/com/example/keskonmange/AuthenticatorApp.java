@@ -140,6 +140,7 @@ public class AuthenticatorApp extends OptionsMenuActivity {
         ConsultMyREcipes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                ConsultMyREcipes.setEnabled(false);
 
                 AllRecipe.whereEqualTo("userID", userId)
                         .get()
