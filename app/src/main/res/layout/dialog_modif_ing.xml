@@ -22,7 +22,7 @@
             android:id="@+id/edit_ingredient"
             android:layout_width="180dp"
             android:layout_height="wrap_content"
-            android:hint="new ingredient" />
+            android:hint="Nouvel ingrédient" />
 
         <Button
             android:id="@+id/btdone"

@@ -11,6 +11,17 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:layout_marginHorizontal="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:text="Ajoutez ici tous les ingrédients que vous avez à disposition"
+            />
+
         <AutoCompleteTextView
             android:id="@+id/AtcTV_et_ing"
             android:layout_width="match_parent"
@@ -18,7 +29,7 @@
             android:background="@android:color/white"
             android:completionHint="Clickez sur un des ingrédients du dessus"
             android:completionThreshold="2"
-            android:hint="Ingrédients"
+            android:hint="Ingrédient"
             android:inputType="text"
             android:lines="1"
             android:maxLines="1"

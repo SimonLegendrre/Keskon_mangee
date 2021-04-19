@@ -72,11 +72,9 @@ public class Recipes_Scrolling extends OptionsMenuActivity {
                 String id_recipe;
 
                 for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
-
                     Recettes recette = documentSnapshot.toObject(Recettes.class);
                     recette.setDocumentId(documentSnapshot.getId());
                     String documentId = recette.getDocumentId();
-
                     //Aggrégation des notes moyennes afin de les afficher dans la listView
                     //RatingBar ratingBar = (RatingBar) findViewById(R.id.RecipeRatingBarRecipeScrolling);
 

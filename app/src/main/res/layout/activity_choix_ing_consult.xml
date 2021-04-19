@@ -10,6 +10,14 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Ajoutez ci-dessous les ingrédients que vous avez dans votre frigo "
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:layout_marginBottom="30dp"
+            android:layout_marginHorizontal="10dp"/>
 
         <AutoCompleteTextView
             android:id="@+id/et_ing"
