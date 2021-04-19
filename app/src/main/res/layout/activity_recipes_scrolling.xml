@@ -14,7 +14,7 @@
 
         <ListView
             android:id="@+id/list_all_recipes"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="600dp"
             android:visibility="visible" />
 

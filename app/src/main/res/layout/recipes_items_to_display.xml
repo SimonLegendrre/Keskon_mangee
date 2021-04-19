@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:padding="10dp"
+    >
+
+<!--
+C'est le XML qui permet de présenter des subitems dans les listviews des recettes.
+Je ne suis pas arrivé à mettre un ratingbar mais un texte oui.
+Tout ce qui est "listable" est ok, e.g. une image
+-->
+
+    <TextView
+        android:id="@+id/TextViewRecipeTitleRecipeScrolling"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Nom de la recette"
+        android:textSize="15dp"
+        android:textStyle="bold"
+        />
+    <TextView
+        android:id="@+id/TextViewRecipesNote"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Note des utilisateurs"
+        android:textStyle="italic"
+        android:textSize="10dp"
+        />
+    <!-- TENTATIVE AVEC RATING BAR
+    <androidx.appcompat.widget.AppCompatRatingBar
+        android:id="@+id/RecipeRatingBarRecipeScrolling"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/Widget.AppCompat.RatingBar.Small"
+        />
+    -->
+
+</androidx.appcompat.widget.LinearLayoutCompat>
