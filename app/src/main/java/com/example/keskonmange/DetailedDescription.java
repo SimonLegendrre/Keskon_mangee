@@ -62,6 +62,10 @@ public class DetailedDescription extends OptionsMenuActivity {
     Button button_update_recipe;
     Button button_delete;
 
+    // Button Add
+    Button button_add_ing;
+    Button button_add_step;
+
     private ListView listViewIngre;
     private ListView listViewStep;
 
@@ -94,6 +98,8 @@ public class DetailedDescription extends OptionsMenuActivity {
         ratingBar = findViewById(R.id.rating_bar);
         ratingBarall = findViewById(R.id.rating_bar_all);
         RatingButton = findViewById(R.id.button_ratting);
+        button_add_ing = findViewById(R.id.add_ing);
+        button_add_step = findViewById(R.id.add_step);
 
 
         // Afficher les recettes : intent de l'activité précédente : origine peut avoir pour l'instant 3 valeurs : "MyProfile", "Scrolling"
@@ -144,7 +150,7 @@ public class DetailedDescription extends OptionsMenuActivity {
                 }
 
                 List<String> steps = (List<String>) documentSnapshot.get("recipeInstructions");
-                for (String step : steps){
+                for (String step : steps) {
                     instruction_list.add(step);
                 }
 
@@ -168,9 +174,11 @@ public class DetailedDescription extends OptionsMenuActivity {
                         TextView txtmessage = (TextView) dialog.findViewById(R.id.txtmessage);
                         txtmessage.setText("Mettre à jour l'ingrédient");
                         final EditText editText = (EditText) dialog.findViewById(R.id.edit_ingredient);
-                        Button bt = (Button) dialog.findViewById(R.id.btdone);
+                        Button bt_modif = (Button) dialog.findViewById(R.id.btmodif);
+                        Button bt_delete = (Button) dialog.findViewById(R.id.btsupp);
 
-                        bt.setOnClickListener(new View.OnClickListener() {
+
+                        bt_modif.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
                                 ingre_list.set(position, editText.getText().toString());
@@ -178,6 +186,17 @@ public class DetailedDescription extends OptionsMenuActivity {
                                 dialog.dismiss();
                             }
                         });
+
+                        bt_delete.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                ingre_list.remove(position);
+                                adapter.notifyDataSetChanged();
+                                dialog.dismiss();
+
+                            }
+                        });
+
                         dialog.show();
 
                     }
@@ -194,9 +213,10 @@ public class DetailedDescription extends OptionsMenuActivity {
                         TextView txtmessage = (TextView) dialog2.findViewById(R.id.txtmessage);
                         txtmessage.setText("Mettre à jour cette étape");
                         final EditText editText = (EditText) dialog2.findViewById(R.id.edit_step);
-                        Button bt = (Button) dialog2.findViewById(R.id.btdone);
+                        Button bt_modif = (Button) dialog2.findViewById(R.id.btmodif);
+                        Button bt_delete = (Button) dialog2.findViewById(R.id.btsupp);
 
-                        bt.setOnClickListener(new View.OnClickListener() {
+                        bt_modif.setOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View v) {
                                 instruction_list.set(position, editText.getText().toString());
@@ -204,6 +224,17 @@ public class DetailedDescription extends OptionsMenuActivity {
                                 dialog2.dismiss();
                             }
                         });
+
+                        bt_delete.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                instruction_list.remove(position);
+                                adapter2.notifyDataSetChanged();
+                                dialog2.dismiss();
+
+                            }
+                        });
+
                         dialog2.show();
 
                     }
@@ -258,19 +289,23 @@ public class DetailedDescription extends OptionsMenuActivity {
             listViewStep.setVisibility(View.GONE);
             textModifStep.setVisibility(View.GONE);
             textModifIng.setVisibility(View.GONE);
+            button_add_ing.setVisibility(View.GONE);
+            button_add_step.setVisibility(View.GONE);
 
             button_modify.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    button_modify.setVisibility(View.GONE);
-                    button_delete.setVisibility(View.GONE);
                     button_update_recipe.setVisibility(View.VISIBLE);
-                    ratingBar.setVisibility(View.GONE);
-                    ratingBarall.setVisibility((View.GONE));
                     listViewIngre.setVisibility(View.VISIBLE);
                     listViewStep.setVisibility(View.VISIBLE);
                     textModifStep.setVisibility(View.VISIBLE);
                     textModifIng.setVisibility(View.VISIBLE);
+                    button_add_ing.setVisibility(View.VISIBLE);
+                    button_add_step.setVisibility(View.VISIBLE);
+                    button_modify.setVisibility(View.GONE);
+                    button_delete.setVisibility(View.GONE);
+                    ratingBar.setVisibility(View.GONE);
+                    ratingBarall.setVisibility((View.GONE));
                     textViewData.setVisibility(View.GONE);
                 }
 
@@ -280,6 +315,27 @@ public class DetailedDescription extends OptionsMenuActivity {
             textModifIng.setText("Cliquez maintenant sur un ingrédient ou une étape de votre recette pour la modifier. Une fois fait, cliquez" +
                     " sur 'Mettre à jour ma recette' pour enregistrer vos modification. \n\n " + "Ingrédients : \n");
             textModifStep.setText("\n Modifier les étapes : \n");
+
+            // Bouton add ingredient non terminé.
+
+            button_add_ing.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    final Dialog dialog = new Dialog(DetailedDescription.this);
+                    dialog.setContentView(R.layout.dialog_add_ing);
+                    Button bt_add = (Button) dialog.findViewById(R.id.bt_add);
+                    final EditText editText = (EditText) dialog.findViewById(R.id.edit_new_ingredient);
+                    dialog.show();
+                    bt_add.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            ingre_list.add(editText.getText().toString());
+                            adapter.notifyDataSetChanged();
+                            dialog.dismiss();
+                        }
+                    });
+                }
+            });
 
             // boutton pour supprimer la recette et aussi mettre à jour la bdd
             button_delete.setOnClickListener(new View.OnClickListener() {
@@ -336,13 +392,15 @@ public class DetailedDescription extends OptionsMenuActivity {
             ratingBar.setVisibility((View.GONE));
             textModifStep.setVisibility(View.GONE);
             textModifIng.setVisibility(View.GONE);
+            button_add_ing.setVisibility(View.GONE);
+            button_add_step.setVisibility(View.GONE);
 
             document.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                 @Override
                 public void onComplete(@NonNull Task<DocumentSnapshot> task) {
                     if (task.isSuccessful()) {
                         DocumentSnapshot documentSnapshot = task.getResult();
-                        if (documentSnapshot.get("note") != null ) {
+                        if (documentSnapshot.get("note") != null) {
                             ratingBarall.setVisibility(View.VISIBLE);
                             System.out.println("tamere");
                         }

@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
 
     <TextView
         android:id="@+id/txtmessage"
@@ -11,24 +10,16 @@
         android:padding="10dp"
         android:textSize="16sp" />
 
-
     <EditText
-        android:id="@+id/edit_step"
+        android:id="@+id/edit_new_ingredient"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Remplacer l'étape" />
+        android:hint="Nouvel ingrédient" />
 
     <Button
-        android:id="@+id/btmodif"
+        android:id="@+id/bt_add"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Modifier cette étape" />
-
-    <Button
-        android:id="@+id/btsupp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Supprimer cette étape" />
-
+        android:text="Ajouter" />
 
 </LinearLayout>

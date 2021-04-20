@@ -30,8 +30,6 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
 public class AuthenticatorApp extends OptionsMenuActivity {
 
@@ -83,7 +81,6 @@ public class AuthenticatorApp extends OptionsMenuActivity {
             ReconnectionAttempt.setVisibility(View.VISIBLE);
             InformationIfVerificationAlreadySent.setVisibility(View.VISIBLE);
             Choice_pre_ing.setVisibility(View.GONE);
-
 
 
             resendEmail.setOnClickListener(new View.OnClickListener() {
@@ -205,20 +202,10 @@ public class AuthenticatorApp extends OptionsMenuActivity {
                 if (task.isSuccessful()) {
                     DocumentSnapshot documentSnapshot = task.getResult();
                     if (documentSnapshot.exists()) {
-                        if (documentSnapshot.get("ingredients") != null) {
-                            ArrayList<String> ingredients_list_pre_selected = (ArrayList<String>) documentSnapshot.get("ingredients");
-                            Intent intent2 = new Intent(AuthenticatorApp.this, PreSelectedIng.class);
-                            intent2.putExtra("ingredient_pre_to_pass", ingredients_list_pre_selected);
-                            startActivity(intent2);
-                        }
-                        else{
-                            ArrayList<String> ingredients_list_pre_selected = new ArrayList<>();
-                            Map<String, Object> ingredients = new HashMap<>();
-                            ingredients.put("ingredients", ingredients_list_pre_selected);
-                            Intent intent2 = new Intent(AuthenticatorApp.this, PreSelectedIng.class);
-                            intent2.putExtra("ingredient_pre_to_pass", ingredients_list_pre_selected);
-                            startActivity(intent2);
-                        }
+                        ArrayList<String> ingredients_list_pre_selected = (ArrayList<String>) documentSnapshot.get("ingredients");
+                        Intent intent2 = new Intent(AuthenticatorApp.this, PreSelectedIng.class);
+                        intent2.putExtra("ingredient_pre_to_pass", ingredients_list_pre_selected);
+                        startActivity(intent2);
                     }
                 }
             }

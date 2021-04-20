@@ -30,8 +30,6 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
 
 
 public class Choix_ing_consult extends OptionsMenuActivity {
@@ -86,8 +84,8 @@ public class Choix_ing_consult extends OptionsMenuActivity {
                         public void onClick(View v) {
                             Intent intent = new Intent(getApplicationContext(), PreSelectedIng.class);
                             ArrayList<String> ingredients_list_pre_selected = new ArrayList<>();
-                            Map<String, Object> ingredients = new HashMap<>();
-                            ingredients.put("ingredients", ingredients_list_pre_selected);
+                            ingredients_list_pre_selected = (ArrayList<String>) documentSnapshot.get("ingredients");
+                            info_ing_pre.dismiss();
                             intent.putExtra("ingredient_pre_to_pass", ingredients_list_pre_selected);
                             startActivity(intent);
                             document.update("isInformed", true);
@@ -144,9 +142,6 @@ public class Choix_ing_consult extends OptionsMenuActivity {
 
         awesomeValidation = new AwesomeValidation(ValidationStyle.BASIC);
         awesomeValidation.addValidation(this, R.id.et_ing, RegexTemplate.NOT_EMPTY, R.string.invalid_ingredient);
-
-
-
 
 
         buttonAddIng.setOnClickListener(new View.OnClickListener() {
@@ -209,21 +204,12 @@ public class Choix_ing_consult extends OptionsMenuActivity {
                             if (task.isSuccessful()) {
                                 DocumentSnapshot documentSnapshot = task.getResult();
                                 if (documentSnapshot.exists()) {
-                                    if (documentSnapshot.get("ingredients") != null) {
-                                        ArrayList<String> ingredients_list_pre_selected = (ArrayList<String>) documentSnapshot.get("ingredients");
-                                        ingredientList.addAll(ingredients_list_pre_selected);
-                                        Intent intent2 = new Intent(Choix_ing_consult.this, Choice_recipe_consult.class);
-                                        intent2.putExtra("ingredient_pre_to_pass", ingredientList);
-                                        startActivity(intent2);
-                                    }
-                                    else{
-                                        ArrayList<String> ingredients_list_pre_selected = new ArrayList<>();
-                                        Map<String, Object> ingredients = new HashMap<>();
-                                        ingredients.put("ingredients", ingredients_list_pre_selected);
-                                        Intent intent2 = new Intent(Choix_ing_consult.this, Choice_recipe_consult.class);
-                                        intent2.putExtra("ingredient_pre_to_pass", ingredientList);
-                                        startActivity(intent2);
-                                    }
+                                    ArrayList<String> ingredients_list_pre_selected = (ArrayList<String>) documentSnapshot.get("ingredients");
+                                    ingredientList.addAll(ingredients_list_pre_selected);
+                                    Intent intent2 = new Intent(Choix_ing_consult.this, Choice_recipe_consult.class);
+                                    intent2.putExtra("ingredient_pre_to_pass", ingredientList);
+                                    startActivity(intent2);
+
                                 }
                             }
                         }
@@ -244,11 +230,11 @@ public class Choix_ing_consult extends OptionsMenuActivity {
                 document.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                        if(task.isSuccessful()){
+                        if (task.isSuccessful()) {
                             DocumentSnapshot documentSnapshot = task.getResult();
                             TextView textViewDialog;
                             Button button;
-                            if(documentSnapshot.exists()){
+                            if (documentSnapshot.exists()) {
                                 // Initialize variable
                                 ListView listViewDialog;
                                 // Get preselected ingredients
@@ -270,17 +256,15 @@ public class Choix_ing_consult extends OptionsMenuActivity {
                                     }
                                 });
                                 listViewDialog = dialog.findViewById(R.id.list_ing_pre);
-                                if(!ingredients_list_pre_selected.isEmpty()) {
+                                if (!ingredients_list_pre_selected.isEmpty()) {
                                     listViewDialog.setAdapter(adapter);
                                     textViewDialog.setText("Vous trouverez ci dessous la liste des ingrédients que vous avez pré-sélectionné. Vous pouvez cliquer sur modifier pour modifier cette liste.\n ");
-                                }
-                                else{
+                                } else {
                                     textViewDialog.setText("Vous n'avez pas encore entré d'ingrédient permanant. Cliquez sur modifier pour en ajouter\n ");
                                     listViewDialog.setVisibility(View.GONE);
                                 }
                                 dialog.show();
-                            }
-                            else {
+                            } else {
                                 Toast.makeText(Choix_ing_consult.this, "Vous n'avez pas encore ajouté d'ingrédients permanants", Toast.LENGTH_SHORT).show();
 
                             }

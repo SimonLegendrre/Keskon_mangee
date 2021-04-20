@@ -59,6 +59,14 @@
             android:layout_width="wrap_content"
             android:layout_height="150dp" />
 
+        <Button
+            android:id="@+id/add_ing"
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"
+            android:layout_marginLeft="250dp"
+            android:text="Ajouter un ingrédient"
+            android:textSize="10dp"/>
+
         <TextView
             android:id="@+id/txt_modif_step"
             android:layout_width="wrap_content"
@@ -71,6 +79,14 @@
             android:layout_width="wrap_content"
             android:layout_height="150dp" />
 
+
+        <Button
+            android:id="@+id/add_step"
+            android:layout_width="wrap_content"
+            android:layout_height="35dp"
+            android:layout_marginLeft="265dp"
+            android:text="Ajouter une étape"
+            android:textSize="10dp" />
 
         <Button
             android:id="@+id/button_modif"

@@ -45,7 +45,7 @@ public class PreSelectedIng extends OptionsMenuActivity {
     private final FirebaseFirestore db = FirebaseFirestore.getInstance();
     private FirebaseAuth fAuth = FirebaseAuth.getInstance();
     String userId = fAuth.getCurrentUser().getUid();
-    private DocumentReference document =  db.collection("Users").document(userId);
+    private DocumentReference document = db.collection("Users").document(userId);
     ArrayList<String> ingredients_list;
 
     // Création de BDD nécessaire pour l'autcomplétion.
@@ -88,15 +88,11 @@ public class PreSelectedIng extends OptionsMenuActivity {
         ingredients_list = (ArrayList<String>) getIntent().getSerializableExtra("ingredient_pre_to_pass");
 
         // fait le lien entre le XML EditText et arrayList "ingredientList"
-        arrayAdapterIngredient = new ArrayAdapter<>(this,
-                android.R.layout.simple_list_item_1, ingredients_list);
-
+        arrayAdapterIngredient = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, ingredients_list);
+        listView.setAdapter(arrayAdapterIngredient);
         awesomeValidation = new AwesomeValidation(ValidationStyle.BASIC);
         awesomeValidation.addValidation(this, R.id.et_ing, RegexTemplate.NOT_EMPTY, R.string.invalid_ingredient);
 
-        if(!ingredients_list.isEmpty()){
-            listView.setAdapter(arrayAdapterIngredient);
-        }
 
         listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
@@ -142,7 +138,7 @@ public class PreSelectedIng extends OptionsMenuActivity {
 
                     Toast.makeText(PreSelectedIng.this, "Les ingrédients ont bien été enregistré", Toast.LENGTH_SHORT).show();
                     Map<String, Object> ingredients = new HashMap<>();
-                    ingredients.put("ingredients",ingredients_list);
+                    ingredients.put("ingredients", ingredients_list);
                     document.update(ingredients);
 
                 } else {
@@ -158,7 +154,7 @@ public class PreSelectedIng extends OptionsMenuActivity {
                 if (ingredients_list.size() > 0) {
                     ingredients_list.remove(ingredients_list.size() - 1);
                     Map<String, Object> ingredients = new HashMap<>();
-                    ingredients.put("ingredients",ingredients_list);
+                    ingredients.put("ingredients", ingredients_list);
                     document.update(ingredients);
                     arrayAdapterIngredient.notifyDataSetChanged();
                 } else {
@@ -176,7 +172,6 @@ public class PreSelectedIng extends OptionsMenuActivity {
                 finish();
             }
         });
-
 
 
     }
