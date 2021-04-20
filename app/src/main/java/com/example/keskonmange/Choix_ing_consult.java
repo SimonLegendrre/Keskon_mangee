@@ -1,5 +1,6 @@
 package com.example.keskonmange;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -15,6 +16,7 @@ import com.basgeekball.awesomevalidation.AwesomeValidation;
 import com.basgeekball.awesomevalidation.ValidationStyle;
 import com.basgeekball.awesomevalidation.utility.RegexTemplate;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
@@ -42,6 +44,8 @@ public class Choix_ing_consult extends OptionsMenuActivity {
     ArrayList<String> ingredientList;
     ArrayAdapter<String> arrayAdapterIngredient;
     AwesomeValidation awesomeValidation;
+    Button button_yes;
+    Button button_no;
 
 
     // Création de BDD nécessaire pour l'autcomplétion.
@@ -49,12 +53,9 @@ public class Choix_ing_consult extends OptionsMenuActivity {
 
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private CollectionReference IngredientsKKMCollection = db.collection("Ingredients");
-
-    // TEST SIMON
     private FirebaseAuth fAuth = FirebaseAuth.getInstance();
     String userId = fAuth.getCurrentUser().getUid();
-    private DocumentReference document = db.collection("Users").document(userId);
-    //FIN TEST
+    DocumentReference document = db.collection("Users").document(userId);
 
 
     @Override
@@ -62,6 +63,44 @@ public class Choix_ing_consult extends OptionsMenuActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_choix_ing_consult);
 
+        // On test le paramètre isInformed du currenr user afin de voir si on le display les infos concernant les ingrédients préselectionnés.
+        document.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                boolean isInformed = (boolean) documentSnapshot.get("isInformed");
+                System.out.println(isInformed);
+                if (!isInformed) {
+                    Dialog info_ing_pre = new Dialog(Choix_ing_consult.this);
+                    info_ing_pre.setContentView(R.layout.activity_choix_ing_consult_dialog);
+                    button_yes = (Button) info_ing_pre.findViewById(R.id.button_ing_yes);
+                    button_no = (Button) info_ing_pre.findViewById(R.id.button_ing_no);
+                    info_ing_pre.show();
+                    System.out.println("IN");
+
+
+                    button_yes.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Intent intent = new Intent(getApplicationContext(), PreSelectedIng.class);
+                            ArrayList<String> ingredients_list_pre_selected = new ArrayList<>();
+                            Map<String, Object> ingredients = new HashMap<>();
+                            ingredients.put("ingredients", ingredients_list_pre_selected);
+                            intent.putExtra("ingredient_pre_to_pass", ingredients_list_pre_selected);
+                            startActivity(intent);
+                            document.update("isInformed", true);
+                            finish();
+                        }
+                    });
+
+                    button_no.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            info_ing_pre.dismiss();
+                        }
+                    });
+                }
+            }
+        });
         // Importation de la BDD incluant tous les ingrédients de KKM (sert à approvisioner l'array IngredientsKKM
 
         IngredientsKKMCollection
@@ -80,6 +119,7 @@ public class Choix_ing_consult extends OptionsMenuActivity {
                     }
                 });
 
+
         //Les ingredients (format = autocomplete)
         AtcIngredients = findViewById(R.id.et_ing);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, IngredientsKKM);
@@ -97,6 +137,9 @@ public class Choix_ing_consult extends OptionsMenuActivity {
 
         awesomeValidation = new AwesomeValidation(ValidationStyle.BASIC);
         awesomeValidation.addValidation(this, R.id.et_ing, RegexTemplate.NOT_EMPTY, R.string.invalid_ingredient);
+
+
+
 
 
         buttonAddIng.setOnClickListener(new View.OnClickListener() {

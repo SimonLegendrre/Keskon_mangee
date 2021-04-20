@@ -99,12 +99,10 @@ public class Login extends AppCompatActivity {
                         // check if the login is succesful
                         if (task.isSuccessful()) {
                             FirebaseUser user = firebaseAuth.getCurrentUser();
-                            System.out.println("mail unchecked");
+
                             if (!user.isEmailVerified()) { // if the email is NOT verified, goes to MY Pprofile where account verification is required
-                                System.out.println("user not verified");
                                 startActivity(new Intent(getApplicationContext(), AuthenticatorApp.class));
                             } else {
-                                System.out.println("user verified");
                                 String userId = firebaseAuth.getCurrentUser().getUid();
                                 DocumentReference document = db.collection("Users").document(userId);
                                 document.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
@@ -113,11 +111,9 @@ public class Login extends AppCompatActivity {
                                         boolean isOnboard = (boolean) documentSnapshot.get("isOnboard");
                                         System.out.println(isOnboard);
                                         if (!isOnboard) {
-                                            System.out.println("false");
                                             startActivity(new Intent(getApplicationContext(), Onboard1.class));
 
                                         } else {
-                                            System.out.println("true");
                                             Toast.makeText(Login.this, "Heureux de vous revoir!", Toast.LENGTH_SHORT).show(); //LENGTH_SHORT ==> short period of time
                                             startActivity(new Intent(getApplicationContext(), CreationOrConsulationPage.class));
                                         }

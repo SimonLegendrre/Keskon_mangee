@@ -9,15 +9,34 @@
     android:clickable="false"
     tools:context=".CreationOrConsulationPage">
 
-    <TextView
-        android:layout_marginTop="80dp"
-        android:layout_marginLeft="30dp"
-        android:id="@+id/textView2"
+
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_width="wrap_content"
-        android:text="Bonjour,\nQue souhaitez-vous faire? "
-        android:textColor="@color/white"
-        android:textSize="20dp" />
+        android:orientation="horizontal"
+        android:layout_marginTop="30dp">
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="left"
+            android:layout_marginLeft="30dp"
+            android:text="Bonjour,\nQue souhaitez-vous faire? "
+            android:textColor="@color/white"
+            android:textSize="20dp" />
+
+        <Button
+            android:id="@+id/button_info_creat_or_consult"
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right"
+            android:text="\?"
+            android:textSize="27dp"
+            android:layout_marginLeft="80dp"/>
+
+    </LinearLayout>
+
 
     <Button
         android:id="@+id/acceuil_to_consult_recipe_button"
@@ -61,7 +80,7 @@
         android:layout_marginEnd="20dp"
         android:layout_marginRight="20dp"
         android:layout_marginTop="100dp"
-        android:text="Mon profil" />
+        android:text="Mon profil"/>
 
     <Button
         android:id="@+id/LogOutButton"
@@ -73,5 +92,7 @@
         android:layout_marginRight="20dp"
         android:onClick="LogOut1"
         android:text="Se déconnecter" />
+
+
 
 </LinearLayout>

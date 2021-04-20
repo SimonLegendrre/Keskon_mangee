@@ -141,6 +141,7 @@ public class Register extends AppCompatActivity {
                             user.put("FullName", fullName);
                             user.put("Email", email);
                             user.put("isOnboard", false);
+                            user.put("isInformed", false);
                             // now, want to insert to the cloud
                             documentReference.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
                                 @Override

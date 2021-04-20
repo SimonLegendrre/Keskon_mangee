@@ -1,5 +1,6 @@
 package com.example.keskonmange;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -15,6 +16,11 @@ public class CreationOrConsulationPage extends OptionsMenuActivity {
     public Button acceuil_consult_button;
     public Button acceuil_myProfile_button;
     public Button acceuil_Allrecipes_button;
+    Button info_dialog;
+    Button next_info1;
+    Button next_info2;
+    Button next_info3;
+    Button finish_info;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +34,7 @@ public class CreationOrConsulationPage extends OptionsMenuActivity {
         acceuil_consult_button = (Button) findViewById(R.id.acceuil_to_consult_recipe_button);
         acceuil_myProfile_button = (Button) findViewById(R.id.MyProfile);
         acceuil_Allrecipes_button = (Button) findViewById(R.id.Consult_all_recipes);
+        info_dialog = (Button) findViewById(R.id.button_info_creat_or_consult);
 
         // Pas encore utile
 
@@ -64,6 +71,55 @@ public class CreationOrConsulationPage extends OptionsMenuActivity {
             public void onClick(View v) {
                 Intent intent4 = new Intent(CreationOrConsulationPage.this, Recipes_Scrolling.class);
                 startActivity(intent4);
+            }
+        });
+
+        info_dialog.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Dialog info_kkm = new Dialog(CreationOrConsulationPage.this);
+                info_kkm.setContentView(R.layout.activity_creation_orconsult_info_1);
+                info_kkm.show();
+
+                next_info1 = (Button) info_kkm.findViewById(R.id.next_info1);
+
+                next_info1.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        info_kkm.setContentView(R.layout.activity_creation_orconsult_info_2);
+                        next_info2 = (Button) info_kkm.findViewById(R.id.next_info2);
+
+                        next_info2.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                info_kkm.setContentView(R.layout.activity_creation_orconsult_info_3);
+                                next_info3 = (Button) info_kkm.findViewById(R.id.next_info3);
+
+                                next_info3.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+                                        info_kkm.setContentView(R.layout.activity_creation_orconsult_info_4);
+                                        finish_info = (Button) info_kkm.findViewById(R.id.close_dialog);
+
+                                        finish_info.setOnClickListener(new View.OnClickListener() {
+                                            @Override
+                                            public void onClick(View v) {
+                                                info_kkm.dismiss();
+                                            }
+                                        });
+                                    }
+                                });
+                            }
+                        });
+                    }
+                });
+
+
+
+
+
+
+
             }
         });
 
