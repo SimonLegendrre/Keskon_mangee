@@ -241,8 +241,6 @@ public class Choix_ing_consult extends OptionsMenuActivity {
             @Override
             public void onClick(View v) {
 
-
-
                 document.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                     @Override
                     public void onComplete(@NonNull Task<DocumentSnapshot> task) {
@@ -253,8 +251,6 @@ public class Choix_ing_consult extends OptionsMenuActivity {
                             if(documentSnapshot.exists()){
                                 // Initialize variable
                                 ListView listViewDialog;
-
-
                                 // Get preselected ingredients
                                 ArrayList<String> ingredients_list_pre_selected = (ArrayList<String>) documentSnapshot.get("ingredients");
                                 // Adapter to listView
@@ -273,23 +269,15 @@ public class Choix_ing_consult extends OptionsMenuActivity {
                                         startActivity(intent);
                                     }
                                 });
-                                textViewDialog.setText("Vous trouverez ci dessous la liste des ingrédients que vous avez pré-sélectionné. Vous pouvez cliquer sur modifier pour modifier cette liste.\n ");
-
                                 listViewDialog = dialog.findViewById(R.id.list_ing_pre);
-                                listViewDialog.setAdapter(adapter);
-                                /*
-                                listViewDialog.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                                    @Override
-                                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                                        ingredients_list_pre_selected.remove(position);
-                                        Map<String, Object> ingredients = new HashMap<>();
-                                        document.update(ingredients);
-                                        adapter.notifyDataSetChanged();
-                                    }
-
-                                });
-
-                                 */
+                                if(!ingredients_list_pre_selected.isEmpty()) {
+                                    listViewDialog.setAdapter(adapter);
+                                    textViewDialog.setText("Vous trouverez ci dessous la liste des ingrédients que vous avez pré-sélectionné. Vous pouvez cliquer sur modifier pour modifier cette liste.\n ");
+                                }
+                                else{
+                                    textViewDialog.setText("Vous n'avez pas encore entré d'ingrédient permanant. Cliquez sur modifier pour en ajouter\n ");
+                                    listViewDialog.setVisibility(View.GONE);
+                                }
                                 dialog.show();
                             }
                             else {

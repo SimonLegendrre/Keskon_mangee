@@ -2,8 +2,6 @@ package com.example.keskonmange;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 
 import androidx.appcompat.widget.Toolbar;
 
@@ -50,7 +48,7 @@ public class MainActivity extends OptionsMenuActivity {
 
          */
     }
-
+/* // Je pense que ces lignes ne servent à rien
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -73,4 +71,6 @@ public class MainActivity extends OptionsMenuActivity {
         return super.onOptionsItemSelected(item);
 
     }
+
+ */
 }

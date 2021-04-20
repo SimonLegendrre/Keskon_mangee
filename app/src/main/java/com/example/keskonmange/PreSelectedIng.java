@@ -1,6 +1,7 @@
 package com.example.keskonmange;
 
-import android.app.Dialog;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -8,9 +9,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.basgeekball.awesomevalidation.AwesomeValidation;
@@ -99,41 +98,32 @@ public class PreSelectedIng extends OptionsMenuActivity {
             listView.setAdapter(arrayAdapterIngredient);
         }
 
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                final int quelle_etape = position;
+                //Une nouvelle fenêtre s'ouvre et affiche un message pour vérifier
+                new AlertDialog.Builder(PreSelectedIng.this)
+                        .setIcon(android.R.drawable.ic_delete)
+                        .setTitle("Supprimer " + ingredients_list.get(position).toString() + " ?")
+                        .setMessage("Voules-vous supprimer cet ingrédient de la recette?")
+                        // Si l'utilisateur clique sur OUI, l'étape est supprimée.
+                        .setPositiveButton("Oui", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                ingredients_list.remove(quelle_etape);
+                                listView.setAdapter(arrayAdapterIngredient);
+                                arrayAdapterIngredient.notifyDataSetChanged();
+                                document.update("ingredients", ingredients_list);
+                            }
+                        })
+                        .setNegativeButton("Non", null)
+                        .show();
 
-                final Dialog dialog = new Dialog(PreSelectedIng.this);
-                dialog.setContentView(R.layout.dialog_delete_ing);
-                TextView txtmessage = (TextView) dialog.findViewById(R.id.txtmessage);
-                txtmessage.setText("Supprimer : " + ingredients_list.get(position).toString() +  " ?");
-
-                Button bt_delete = (Button) dialog.findViewById(R.id.delete_ing);
-                Button bt_dont = (Button) dialog.findViewById(R.id.btdone);
-
-                bt_delete.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        ingredients_list.remove(position);
-                        Map<String, Object> ingredients = new HashMap<>();
-                        ingredients.put("ingredients",ingredients_list);
-                        document.update(ingredients);
-                        arrayAdapterIngredient.notifyDataSetChanged();
-                        dialog.dismiss();
-                    }
-                });
-
-                bt_dont.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        dialog.dismiss();
-                    }
-                });
-
-                dialog.show();
-
+                return true;
             }
         });
+
 
         buttonAddIng.setOnClickListener(new View.OnClickListener() {
             @Override

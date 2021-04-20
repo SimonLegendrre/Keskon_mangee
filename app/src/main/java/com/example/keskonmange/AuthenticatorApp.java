@@ -82,6 +82,8 @@ public class AuthenticatorApp extends OptionsMenuActivity {
             ConsultMyREcipes.setVisibility(View.GONE);
             ReconnectionAttempt.setVisibility(View.VISIBLE);
             InformationIfVerificationAlreadySent.setVisibility(View.VISIBLE);
+            Choice_pre_ing.setVisibility(View.GONE);
+
 
 
             resendEmail.setOnClickListener(new View.OnClickListener() {

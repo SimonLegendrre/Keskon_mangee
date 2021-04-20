@@ -10,18 +10,27 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 // Cette classe permet d'integrer à la classe AppCompatActivity le MENU (3 petits points) au activité qui nous intéresse.
 
 public class OptionsMenuActivity extends AppCompatActivity {
+    private FirebaseAuth fAuth = FirebaseAuth.getInstance();
+    String userId = fAuth.getCurrentUser().getUid();
+    final FirebaseUser user = fAuth.getCurrentUser();
 
     @Override // 3 points à droite de la toolbar avec options.
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu_main, menu);
+        if(user.isEmailVerified()){
+            MenuInflater inflater = getMenuInflater();
+            inflater.inflate(R.menu.menu_main, menu);
+        }
         return true;
+
     }
+
+
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
