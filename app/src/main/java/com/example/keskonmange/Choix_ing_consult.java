@@ -65,6 +65,7 @@ public class Choix_ing_consult extends OptionsMenuActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_choix_ing_consult);
 
+
         // On test le paramètre isInformed du currenr user afin de voir si on le display les infos concernant les ingrédients préselectionnés.
         document.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
@@ -104,6 +105,8 @@ public class Choix_ing_consult extends OptionsMenuActivity {
                 }
             }
         });
+
+
         // Importation de la BDD incluant tous les ingrédients de KKM (sert à approvisioner l'array IngredientsKKM
 
         IngredientsKKMCollection
