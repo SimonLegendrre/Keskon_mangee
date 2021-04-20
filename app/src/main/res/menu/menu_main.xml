@@ -8,6 +8,11 @@
         android:title="@string/MyProfile"
         app:showAsAction="never" />
     <item
+        android:id="@+id/action_Menu"
+        android:orderInCategory="100"
+        android:title="Menu principal"
+        app:showAsAction="never" />
+    <item
         android:id="@+id/DeconnectionFromToolbar"
         android:orderInCategory="100"
         android:title="@string/DeconnectionFromToolbar"

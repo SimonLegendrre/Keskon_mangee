@@ -5,16 +5,13 @@ import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.ScrollView;
 import android.widget.Toast;
 
 import androidx.core.widget.NestedScrollView;
@@ -51,13 +48,13 @@ public class  FillInCreate extends OptionsMenuActivity {
     ArrayList<String> ListeEtapes;
     ArrayAdapter<String> arrayAdapterListeEtapes;
     ListView listViewEtapes;
-    private LinearLayout Etapes;
+    private NestedScrollView Etapes;
 
     ArrayList<String> ListeIngredients;
     ArrayAdapter<String> arrayAdapterListeIngredients;
     ListView listViewIngredients;
     String userId;
-    private LinearLayout Ingredients;
+    private NestedScrollView Ingredients;
 
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private CollectionReference AllRecipe = db.collection("Recettes");
@@ -314,6 +311,7 @@ public class  FillInCreate extends OptionsMenuActivity {
             System.out.println("recipe instruction test: "+ recipeInstructions.toString());
 
             //String recipeYield = RecipeYield.getText().toString();
+            String recipeYield = "";
             //Temps total de la recette
             Integer tempsTotal = Integer.valueOf(PrepTimme.getText().toString()) + Integer.valueOf(CookTime.getText().toString());
             String totalTime = tempsTotal.toString();
@@ -321,8 +319,8 @@ public class  FillInCreate extends OptionsMenuActivity {
             String userID = userId;
             Double note = null ;
 
-            Recettes recette = new Recettes(cookTime,description, keywords,name,prepTime,
-                    recipeIngredients, recipeInstructions, totalTime, userID,note); // User ID ajouté pour ajouter l'ID utilisatuer
+            Recettes recette = new Recettes(cookTime, description, keywords, name, prepTime,
+                    recipeIngredients, recipeInstructions,recipeYield, totalTime, userID, note); // User ID ajouté pour ajouter l'ID utilisatuer
 
             AllRecipe.document(id_recipe).set(recette);
 

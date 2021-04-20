@@ -40,6 +40,13 @@ public class OptionsMenuActivity extends AppCompatActivity {
                 finish();
                 return true;
 
+            case R.id.action_Menu:
+                Toast.makeText(this, "Menu principal", Toast.LENGTH_SHORT).show();
+                Intent intent1 = new Intent(this, CreationOrConsulationPage.class);
+                startActivity(intent1);
+                finish();
+                return true;
+
             default:
                 return super.onOptionsItemSelected(item);
 

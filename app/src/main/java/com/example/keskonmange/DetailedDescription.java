@@ -14,7 +14,11 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
@@ -32,7 +36,6 @@ import java.util.Objects;
 public class DetailedDescription extends OptionsMenuActivity {
 
 
-
     // Ce code permet de rajouter l'ID de l'utilisateur qui crée la recette au champ de la recette
     String userId;
     private final FirebaseAuth fAuth = FirebaseAuth.getInstance();
@@ -41,6 +44,9 @@ public class DetailedDescription extends OptionsMenuActivity {
     // Initialisation base de données
     private final FirebaseFirestore db = FirebaseFirestore.getInstance();
     private TextView textViewData;
+
+    private TextView textModifIng;
+    private TextView textModifStep;
 
     // String qui vont être intent d'activités précédentes
     String recipe;
@@ -52,13 +58,12 @@ public class DetailedDescription extends OptionsMenuActivity {
     Button RatingButton;
 
     // Edit text et button pour modifier une recette
-    EditText etdescription_modif;
     Button button_modify;
     Button button_update_recipe;
     Button button_delete;
 
-    // Test pop-up Dialog
     private ListView listViewIngre;
+    private ListView listViewStep;
 
 
     @Override
@@ -72,6 +77,11 @@ public class DetailedDescription extends OptionsMenuActivity {
 
         // Initialiser variable pop-up
         listViewIngre = findViewById(R.id.modif_ing);
+        listViewStep = findViewById(R.id.modif_step);
+
+        ArrayList<String> instruction_list = new ArrayList<>();
+        ArrayAdapter adapter2 = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, instruction_list);
+
 
         ArrayList<String> ingre_list = new ArrayList<>();
         ArrayAdapter adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, ingre_list);
@@ -79,6 +89,8 @@ public class DetailedDescription extends OptionsMenuActivity {
 
         // Declarer les views
         textViewData = findViewById(R.id.text_description);
+        textModifIng = findViewById(R.id.txt_modif_ing);
+        textModifStep = findViewById(R.id.txt_modif_step);
         ratingBar = findViewById(R.id.rating_bar);
         ratingBarall = findViewById(R.id.rating_bar_all);
         RatingButton = findViewById(R.id.button_ratting);
@@ -97,7 +109,6 @@ public class DetailedDescription extends OptionsMenuActivity {
 
         // EditText et Button pour modifier une recette
 
-        etdescription_modif = findViewById(R.id.description_modif);
         button_modify = findViewById(R.id.button_modif);
         button_update_recipe = findViewById(R.id.update_modif);
         button_delete = findViewById(R.id.btn_delete);
@@ -113,15 +124,15 @@ public class DetailedDescription extends OptionsMenuActivity {
 
                 String data = "";
                 String titre = documentSnapshot.getString("name");
-                String description= "";
-                ArrayList <String> tab = new ArrayList<>();
+                String description = "";
+                ArrayList<String> tab = new ArrayList<>();
                 tab = (ArrayList<String>) documentSnapshot.get("recipeInstructions");
                 String tempsPrep = documentSnapshot.getString("prepTime");
                 String tempsTotal = documentSnapshot.getString("totalTime");
 
 
-                for(int i = 0; i<tab.size(); i++){
-                    description += "Etape " + String.valueOf(i+1) +": " + tab.get(i) + "\n\n";
+                for (int i = 0; i < tab.size(); i++) {
+                    description += "Etape " + String.valueOf(i + 1) + ": " + tab.get(i) + "\n\n";
                 }
                 //String description = documentSnapshot.get("recipeInstructions").toString(); // pour le moment, on fait seulement un string mais on poura changer ça dans le futur pour un meilleur affichage
                 data += titre + "\n\n Ingrédients: \n";
@@ -132,13 +143,18 @@ public class DetailedDescription extends OptionsMenuActivity {
                     ingre_list.add(ing); // La liste des ingrédient pour les modifier potentiellement
                 }
 
+                List<String> steps = (List<String>) documentSnapshot.get("recipeInstructions");
+                for (String step : steps){
+                    instruction_list.add(step);
+                }
+
                 data += "\n\n Pour cette recette, il y aura un temps de préparation de " + tempsPrep + " pour un temps total de " + tempsTotal + " cuisson comprise" + "\n\n";
 
                 data += "Etapes à suivre : " + "\n\n" + description;
 
                 textViewData.setText(data);
                 listViewIngre.setAdapter(adapter);
-                etdescription_modif.setText(description);
+                listViewStep.setAdapter(adapter2);
 
                 listViewIngre.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
@@ -167,6 +183,32 @@ public class DetailedDescription extends OptionsMenuActivity {
                     }
                 });
 
+                listViewStep.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                        // Afficher le pop-up pour modifier l'ingrédient
+
+                        final Dialog dialog2 = new Dialog(DetailedDescription.this);
+                        dialog2.setContentView(R.layout.dialog_modif_step);
+                        TextView txtmessage = (TextView) dialog2.findViewById(R.id.txtmessage);
+                        txtmessage.setText("Mettre à jour cette étape");
+                        final EditText editText = (EditText) dialog2.findViewById(R.id.edit_step);
+                        Button bt = (Button) dialog2.findViewById(R.id.btdone);
+
+                        bt.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                instruction_list.set(position, editText.getText().toString());
+                                adapter2.notifyDataSetChanged();
+                                dialog2.dismiss();
+                            }
+                        });
+                        dialog2.show();
+
+                    }
+                });
+
             }
         });
 
@@ -190,10 +232,11 @@ public class DetailedDescription extends OptionsMenuActivity {
                     somme = somme + OldNote.getNote();
                 }
                 AvgNote = somme / count;
-                if(count>0) {
+                if (count > 0) {
                     ratingBarall.setRating((float) AvgNote);
+                } else {
+                    TextViewNote.setText("Cette recette n'a pas encore été notée");
                 }
-                else{TextViewNote.setText("Cette recette n'a pas encore été notée");}
                 document.update("note", AvgNote);
             }
         });
@@ -210,30 +253,40 @@ public class DetailedDescription extends OptionsMenuActivity {
             RatingButton.setVisibility(View.GONE);
             ratingBar.setVisibility(View.GONE);
             ratingBarall.setVisibility((View.VISIBLE));
-            etdescription_modif.setVisibility(View.GONE);
             button_update_recipe.setVisibility(View.GONE);
             listViewIngre.setVisibility(View.GONE);
+            listViewStep.setVisibility(View.GONE);
+            textModifStep.setVisibility(View.GONE);
+            textModifIng.setVisibility(View.GONE);
 
             button_modify.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    etdescription_modif.setVisibility(View.VISIBLE);
                     button_modify.setVisibility(View.GONE);
                     button_delete.setVisibility(View.GONE);
                     button_update_recipe.setVisibility(View.VISIBLE);
                     ratingBar.setVisibility(View.GONE);
                     ratingBarall.setVisibility((View.GONE));
                     listViewIngre.setVisibility(View.VISIBLE);
+                    listViewStep.setVisibility(View.VISIBLE);
+                    textModifStep.setVisibility(View.VISIBLE);
+                    textModifIng.setVisibility(View.VISIBLE);
+                    textViewData.setVisibility(View.GONE);
                 }
 
+
             });
+
+            textModifIng.setText("Cliquez maintenant sur un ingrédient ou une étape de votre recette pour la modifier. Une fois fait, cliquez" +
+                    " sur 'Mettre à jour ma recette' pour enregistrer vos modification. \n\n " + "Ingrédients : \n");
+            textModifStep.setText("\n Modifier les étapes : \n");
 
             // boutton pour supprimer la recette et aussi mettre à jour la bdd
             button_delete.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     //suppression
-                    db.collection("Recette").document(recipe)
+                    db.collection("Recettes").document(recipe)
                             .delete()
                             .addOnSuccessListener(new OnSuccessListener<Void>() {
                                 @Override
@@ -243,6 +296,7 @@ public class DetailedDescription extends OptionsMenuActivity {
                                     // changement activité
                                     Intent intent = new Intent(DetailedDescription.this, AuthenticatorApp.class);
                                     startActivity(intent);
+                                    finish();
 
                                 }
                             });
@@ -255,11 +309,8 @@ public class DetailedDescription extends OptionsMenuActivity {
             button_update_recipe.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    String description = etdescription_modif.getText().toString();
-                    if (!description.matches("")) {
-                        document.update("description", description);
-                    }
                     document.update("ingredients", ingre_list);
+                    document.update("recipeInstructions", instruction_list);
                     Intent intent = new Intent(DetailedDescription.this, AuthenticatorApp.class);
                     startActivity(intent);
                     finish();
@@ -276,14 +327,28 @@ public class DetailedDescription extends OptionsMenuActivity {
             // Si on est arrivé sur cette page depuis Scrolling ou choice_recipe, on ne peut pas modifier la recette.
         } else if (origine.equals("Scrolling") || origine.equals("Choice_recipe")) {
 
-            etdescription_modif.setVisibility(View.GONE);
             button_modify.setVisibility(View.GONE);
             button_delete.setVisibility(View.GONE);
             button_update_recipe.setVisibility(View.GONE);
             listViewIngre.setVisibility(View.GONE);
-            ratingBarall.setVisibility((View.VISIBLE));
+            listViewStep.setVisibility(View.GONE);
+            ratingBarall.setVisibility((View.GONE));
             ratingBar.setVisibility((View.GONE));
+            textModifStep.setVisibility(View.GONE);
+            textModifIng.setVisibility(View.GONE);
 
+            document.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                @Override
+                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                    if (task.isSuccessful()) {
+                        DocumentSnapshot documentSnapshot = task.getResult();
+                        if (documentSnapshot.get("note") != null ) {
+                            ratingBarall.setVisibility(View.VISIBLE);
+                            System.out.println("tamere");
+                        }
+                    }
+                }
+            });
 
             RatingButton.setOnClickListener(new View.OnClickListener() {
                 @Override

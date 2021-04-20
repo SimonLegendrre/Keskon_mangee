@@ -8,6 +8,7 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -44,6 +45,7 @@ public class Choix_ing_consult extends OptionsMenuActivity {
     ArrayList<String> ingredientList;
     ArrayAdapter<String> arrayAdapterIngredient;
     AwesomeValidation awesomeValidation;
+    public Button buttonPreSelected;
     Button button_yes;
     Button button_no;
 
@@ -96,6 +98,7 @@ public class Choix_ing_consult extends OptionsMenuActivity {
                         @Override
                         public void onClick(View v) {
                             info_ing_pre.dismiss();
+                            document.update("isInformed", true);
                         }
                     });
                 }
@@ -129,6 +132,7 @@ public class Choix_ing_consult extends OptionsMenuActivity {
         buttonAddIng = (Button) findViewById(R.id.btn_add_ing);
         buttonRemoveIng = (Button) findViewById(R.id.btn_rm_ing);
         buttonSearchRecipe = (Button) findViewById(R.id.btn_search_recipe);
+        buttonPreSelected = (Button) findViewById(R.id.btn_pre_selected);
 
         ingredientList = new ArrayList<String>();
         // fait le lien entre le XML EditText et arrayList "ingredientList"
@@ -222,28 +226,77 @@ public class Choix_ing_consult extends OptionsMenuActivity {
                         }
                     });
 
-                    /*
-
-                    document.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-                        @Override
-                        public void onSuccess(DocumentSnapshot documentSnapshot) {
-
-                            ArrayList<String> ingredients_list_pre_selected = (ArrayList<String>) documentSnapshot.get("ingredients");
-                            ingredientList.addAll(ingredients_list_pre_selected);
-                            Intent intent2 = new Intent(Choix_ing_consult.this, Choice_recipe_consult.class);
-                            intent2.putExtra("ingredient_pre_to_pass", ingredientList);
-                            startActivity(intent2);
-                            finish();
-
-                        }
-                    });
-
-                     */
 
                 } else {
                     Toast.makeText(getApplicationContext(), "Vous n'avez pas entré d'ingrédient", Toast.LENGTH_SHORT).show();
                 }
 
+            }
+        });
+
+        buttonPreSelected.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+
+                document.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                        if(task.isSuccessful()){
+                            DocumentSnapshot documentSnapshot = task.getResult();
+                            TextView textViewDialog;
+                            Button button;
+                            if(documentSnapshot.exists()){
+                                // Initialize variable
+                                ListView listViewDialog;
+
+
+                                // Get preselected ingredients
+                                ArrayList<String> ingredients_list_pre_selected = (ArrayList<String>) documentSnapshot.get("ingredients");
+                                // Adapter to listView
+                                ArrayAdapter adapter = new ArrayAdapter<String>(Choix_ing_consult.this, android.R.layout.simple_list_item_1, ingredients_list_pre_selected);
+
+                                // Create the Dialog
+                                final Dialog dialog = new Dialog(Choix_ing_consult.this);
+                                dialog.setContentView(R.layout.dialog_pre_selected_ing);
+                                textViewDialog = dialog.findViewById(R.id.text_preselected);
+                                button = dialog.findViewById(R.id.modifier_list);
+                                button.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+                                        Intent intent = new Intent(Choix_ing_consult.this, PreSelectedIng.class);
+                                        intent.putExtra("ingredient_pre_to_pass", ingredients_list_pre_selected);
+                                        startActivity(intent);
+                                    }
+                                });
+                                textViewDialog.setText("Vous trouverez ci dessous la liste des ingrédients que vous avez pré-sélectionné. Vous pouvez cliquer sur modifier pour modifier cette liste.\n ");
+
+                                listViewDialog = dialog.findViewById(R.id.list_ing_pre);
+                                listViewDialog.setAdapter(adapter);
+                                /*
+                                listViewDialog.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                                    @Override
+                                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                                        ingredients_list_pre_selected.remove(position);
+                                        Map<String, Object> ingredients = new HashMap<>();
+                                        document.update(ingredients);
+                                        adapter.notifyDataSetChanged();
+                                    }
+
+                                });
+
+                                 */
+                                dialog.show();
+                            }
+                            else {
+                                Toast.makeText(Choix_ing_consult.this, "Vous n'avez pas encore ajouté d'ingrédients permanants", Toast.LENGTH_SHORT).show();
+
+                            }
+                        }
+
+                    }
+                });
             }
         });
 
