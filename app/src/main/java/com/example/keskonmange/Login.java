@@ -100,8 +100,9 @@ public class Login extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             FirebaseUser user = firebaseAuth.getCurrentUser();
 
-                            if (!user.isEmailVerified()) { // if the email is NOT verified, goes to MY Pprofile where account verification is required
+                            if (!user.isEmailVerified()) { // if the email is NOT verified, goes to MY Profile where account verification is required
                                 startActivity(new Intent(getApplicationContext(), AuthenticatorApp.class));
+                                finish();
                             } else {
                                 String userId = firebaseAuth.getCurrentUser().getUid();
                                 DocumentReference document = db.collection("Users").document(userId);
@@ -138,8 +139,12 @@ public class Login extends AppCompatActivity {
         mCreateBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(getApplicationContext(), Register.class));
-                // dans le cideo il ne met pas finish()
+                System.out.println("Allons vers register");
+                Intent intent = new Intent(Login.this, Register.class);
+                startActivity(intent);
+                //startActivity(new Intent(getApplicationContext(), Register.class));
+                // dans le video il ne met pas finish()
+                //finish();
             }
         });
 

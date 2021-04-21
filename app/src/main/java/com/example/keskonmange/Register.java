@@ -36,7 +36,6 @@ public class Register extends AppCompatActivity {
      */
 
 
-
     // first activity seen when the user opens the application
     EditText mFullname, mEmail, mPassowrd;
     Button mRegisterBtn;
@@ -63,10 +62,11 @@ public class Register extends AppCompatActivity {
         fstore_account = FirebaseFirestore.getInstance();
         progressB = findViewById(R.id.progressBar_registration);
 
+        FirebaseUser user = fAuth.getCurrentUser();
 
         // Prendre en compte si l'utilisateur a déjà un compte. Dans ce cas, on ne veut pas qu'il tombe sur l'écran de Registration
 
-        if (fAuth.getCurrentUser()!= null){
+        if (fAuth.getCurrentUser()!= null && user.isEmailVerified() ){
             startActivity(new Intent(getApplicationContext(), MainActivity.class));
             finish();
         }
@@ -106,15 +106,6 @@ public class Register extends AppCompatActivity {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         // Ici on check si la registration est succesful ou pas = task succesful
                         if (task.isSuccessful()) {
-
-                            // @TODO: à fignoler dans le sprint 3
-                            /*
-                            1) Once the user gets registred to the application, an email is automatically
-                                sent to the user with a validation link. The user is noticed in the application
-                                ==> Send verification link
-                             */
-
-
                             FirebaseUser fuser = fAuth.getCurrentUser(); // retrieve user instance
                             fuser.sendEmailVerification().addOnSuccessListener(new OnSuccessListener<Void>() {
                                 @Override
