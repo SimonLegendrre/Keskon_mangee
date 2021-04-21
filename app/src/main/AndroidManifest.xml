@@ -11,17 +11,19 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Keskonmange">
-        <activity android:name=".DetailedDescription"></activity>
+        <activity android:name=".ModifMyRecipe"></activity>
+        <activity android:name=".DetailedDescription" />
         <activity android:name=".PreSelectedIng" />
         <activity android:name=".Choice_recipe_consult" />
         <activity android:name=".Recipes_Scrolling" />
         <activity android:name=".Onboard1" />
-        <activity android:name=".Onboard2"/>
-        <activity android:name=".Onboard3"/>
+        <activity android:name=".Onboard2" />
+        <activity android:name=".Onboard3" />
         <activity android:name=".Login" />
         <activity android:name=".Register">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

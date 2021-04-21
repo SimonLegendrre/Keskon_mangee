@@ -46,47 +46,6 @@
             android:layout_gravity="center_vertical|center_horizontal"
             android:text="Soumettre ma note" />
 
-        <TextView
-            android:id="@+id/txt_modif_ing"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="20sp"
-            tools:ignore="MissingConstraints" />
-
-
-        <ListView
-            android:id="@+id/modif_ing"
-            android:layout_width="wrap_content"
-            android:layout_height="150dp" />
-
-        <Button
-            android:id="@+id/add_ing"
-            android:layout_width="wrap_content"
-            android:layout_height="35dp"
-            android:layout_marginLeft="250dp"
-            android:text="Ajouter un ingrédient"
-            android:textSize="10dp"/>
-
-        <TextView
-            android:id="@+id/txt_modif_step"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="20sp"
-            tools:ignore="MissingConstraints" />
-
-        <ListView
-            android:id="@+id/modif_step"
-            android:layout_width="wrap_content"
-            android:layout_height="150dp" />
-
-
-        <Button
-            android:id="@+id/add_step"
-            android:layout_width="wrap_content"
-            android:layout_height="35dp"
-            android:layout_marginLeft="265dp"
-            android:text="Ajouter une étape"
-            android:textSize="10dp" />
 
         <Button
             android:id="@+id/button_modif"
@@ -95,20 +54,6 @@
             android:layout_gravity="center_vertical|center_horizontal"
             android:layout_marginTop="30dp"
             android:text="Modifier ma recette" />
-
-        <Button
-            android:id="@+id/update_modif"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical|center_horizontal"
-            android:text="Mettre à jour ma recette" />
-
-        <Button
-            android:id="@+id/btn_delete"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical|center_horizontal"
-            android:text="supprimer ma recette" />
 
         <TextView
             android:id="@+id/average_note"

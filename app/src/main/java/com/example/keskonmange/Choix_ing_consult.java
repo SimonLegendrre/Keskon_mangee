@@ -76,7 +76,7 @@ public class Choix_ing_consult extends OptionsMenuActivity {
                     button_yes = (Button) info_ing_pre.findViewById(R.id.button_ing_yes);
                     button_no = (Button) info_ing_pre.findViewById(R.id.button_ing_no);
                     info_ing_pre.show();
-                    System.out.println("IN");
+
 
 
                     button_yes.setOnClickListener(new View.OnClickListener() {
