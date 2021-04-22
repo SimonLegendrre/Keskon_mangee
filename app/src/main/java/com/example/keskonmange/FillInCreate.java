@@ -232,7 +232,7 @@ public class  FillInCreate extends OptionsMenuActivity {
         listViewIngredients.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(getApplicationContext(), "Vous avez clické sur l'ingrédient: " + adapter.getItem(position), Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "Vous avez clické sur l'ingrédient: " + arrayAdapterListeIngredients.getItem(position), Toast.LENGTH_LONG).show();
             }
         });
 
