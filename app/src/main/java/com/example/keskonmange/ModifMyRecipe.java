@@ -172,9 +172,14 @@ public class ModifMyRecipe extends OptionsMenuActivity {
         button_add_ing.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+
                 final Dialog dialog = new Dialog(ModifMyRecipe.this);
                 dialog.setContentView(R.layout.dialog_add_ing);
                 Button bt_add = (Button) dialog.findViewById(R.id.bt_add);
+                TextView textView ;
+                textView =dialog.findViewById(R.id.txtmessage);
+                textView.setText("Veuillez écrire le nouvel ingrédient que vous voulez ajouter ?");
                 final EditText editText = (EditText) dialog.findViewById(R.id.edit_new_ingredient);
                 dialog.show();
                 bt_add.setOnClickListener(new View.OnClickListener() {
@@ -185,6 +190,10 @@ public class ModifMyRecipe extends OptionsMenuActivity {
                         dialog.dismiss();
                     }
                 });
+
+
+
+
             }
         });
 
@@ -194,6 +203,9 @@ public class ModifMyRecipe extends OptionsMenuActivity {
                 final Dialog dialog = new Dialog(ModifMyRecipe.this);
                 dialog.setContentView(R.layout.dialog_add_step);
                 Button bt_add = (Button) dialog.findViewById(R.id.bt_add);
+                TextView textView ;
+                textView =dialog.findViewById(R.id.txtmessage);
+                textView.setText("Veuillez écrire la nouvelle étape que vous voulez ajouter ?");
                 final EditText editText = (EditText) dialog.findViewById(R.id.edit_new_step);
                 dialog.show();
                 bt_add.setOnClickListener(new View.OnClickListener() {

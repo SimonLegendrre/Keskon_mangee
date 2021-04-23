@@ -73,25 +73,21 @@ public class Recipes_Scrolling extends OptionsMenuActivity {
 
                 for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
                     Recettes recette = documentSnapshot.toObject(Recettes.class);
-                    System.out.println(recette.getName());
                     recette.setDocumentId(documentSnapshot.getId());
                     String documentId = recette.getDocumentId();
                     //Aggrégation des notes moyennes afin de les afficher dans la listView
                     //RatingBar ratingBar = (RatingBar) findViewById(R.id.RecipeRatingBarRecipeScrolling);
 
                     if(recette.getNote() != null && !recette.getNote().isNaN()) {
-                        System.out.println(recette.getNote());
-                        System.out.println("Il y a une note");
+
                         float note = recette.getNote().floatValue();
                         //ratingBar.setRating(note);
                         NoteLists.add("Note moyenne: "+note+"/5");
                     }
                     else{ // pour le moment, quand il n'y a pas de rating, elle vaut zéro
-                        System.out.println("Il n'y a pas encore de note");
                         // ratingBar.setRating((float) 0.0);
                         NoteLists.add("Pas encore notée");
                     }
-
 
                     titre = recette.getName();
                     id_recipe = recette.getDocumentId();
@@ -101,12 +97,8 @@ public class Recipes_Scrolling extends OptionsMenuActivity {
                 }
 
 
-
                 MyAdapter adapter_bis = new MyAdapter(Recipes_Scrolling.this, recipes_list, NoteLists );
                 ListViewNameAndNote.setAdapter(adapter_bis);
-
-                //System.out.println("liste du chien: \n"+ String.join("\n", recipes_list) );
-
 
                 // Action lorsque l'on clique sur l'une des recettes
 
@@ -115,7 +107,6 @@ public class Recipes_Scrolling extends OptionsMenuActivity {
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                         Intent intent = new Intent(Recipes_Scrolling.this, DetailedDescription.class);
                         intent.putExtra("recipe_to_pass", recipes_list_id.get(position));
-                        System.out.println("TEST: "+ recipes_list_id.get(position));
                         intent.putExtra("from_which_acti", Recipe_scrolling_acti);
                         startActivity(intent);
                     }
@@ -124,8 +115,6 @@ public class Recipes_Scrolling extends OptionsMenuActivity {
             }
 
         });
-
-
 
     }
 
