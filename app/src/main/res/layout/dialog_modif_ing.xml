@@ -1,8 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:paddingLeft="20dp"
     android:padding="16dp">
 
     <TextView
@@ -10,24 +13,45 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:padding="10dp"
-        android:textSize="16sp" />
+        android:textSize="16sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.34" />
 
     <EditText
         android:id="@+id/edit_ingredient"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Nouvel ingrédient" />
+        android:hint="Nouvel ingrédient"
+        app:layout_constraintBottom_toTopOf="@+id/btmodif"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.96" />
 
     <Button
-            android:id="@+id/btmodif"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Modifier" />
-        <Button
-            android:id="@+id/btsupp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Supprimer" />
+        android:id="@+id/btmodif"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Modifier"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.54" />
+
+    <Button
+        android:id="@+id/btsupp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Supprimer"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.639" />
 
 
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>
