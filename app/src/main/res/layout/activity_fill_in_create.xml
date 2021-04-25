@@ -200,7 +200,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/description"></Button>
 
-        <androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        <androidx.core.widget.NestedScrollView
+            xmlns:android="http://schemas.android.com/apk/res/android"
             xmlns:app="http://schemas.android.com/apk/res-auto"
             xmlns:tools="http://schemas.android.com/tools"
             android:id="@+id/scrollEtape"
@@ -214,7 +215,6 @@
             tools:context=".FillInCreate">
 
             <LinearLayout
-
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginTop="10dp"
@@ -232,6 +232,42 @@
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>
 
+        <ImageView
+            android:id="@+id/imageViewRecipePicture"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/ic_launcher_background"
+            app:layout_constraintTop_toBottomOf="@id/scrollEtape"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.496"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintVertical_bias="0.278"
+            />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_horizontal"
+            app:layout_constraintBottom_toTopOf="@+id/imageViewRecipePicture"
+            app:layout_constraintTop_toBottomOf="@+id/submit_recipe_creator">
+
+            <Button
+                android:id="@+id/BtnGetPhotoCamera"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Camera"
+                android:layout_marginRight="20dp"
+                />
+
+            <Button
+                android:id="@+id/BtnGetPhotoGalery"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Gallerie" />
+    </LinearLayout>
+
         <Button
             android:id="@+id/submit_recipe_creator"
             android:layout_width="250dp"
@@ -244,10 +280,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.496"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/scrollEtape"
-
+            app:layout_constraintTop_toBottomOf="@id/imageViewRecipePicture"
             app:layout_constraintVertical_bias="0.278" />
-
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

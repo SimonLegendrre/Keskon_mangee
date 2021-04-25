@@ -1,19 +1,30 @@
 package com.example.keskonmange;
 
+import android.Manifest;
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
 import android.os.Bundle;
+import android.provider.FontRequest;
+import android.provider.MediaStore;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import androidx.annotation.Nullable;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.core.widget.NestedScrollView;
 
 import com.basgeekball.awesomevalidation.AwesomeValidation;
@@ -62,6 +73,12 @@ public class  FillInCreate extends OptionsMenuActivity {
     // Ce code permet de rajouter l'ID de l'utilisateur qui crée la recette au champ de la recette
     private FirebaseFirestore fstore = FirebaseFirestore.getInstance();
     private FirebaseAuth fAuth = FirebaseAuth.getInstance();
+
+    // Ajout d'une photo dans le fill in create
+    ImageView RecipeImage;
+    Button GetPhotoCameraBtn, GetPhotoGaleryBtn;
+    public static final int CAMERA_PERM = 101;
+    public static final int CAMERA_REQUEST_CODE = 102;
 
     AwesomeValidation awesomeValidation;
     AwesomeValidation awesomeValidationEtapes;
@@ -288,8 +305,79 @@ public class  FillInCreate extends OptionsMenuActivity {
         });
 
 
-        // FIN
+        /*
+        Ajout d'une photo via la caméro ou la gallerie:
+         */
+        RecipeImage = findViewById(R.id.imageViewRecipePicture); // L'image sera montré dans cet objet
+        GetPhotoCameraBtn = findViewById(R.id.BtnGetPhotoCamera);
+        GetPhotoGaleryBtn = findViewById(R.id.BtnGetPhotoGalery);
 
+
+        // CAMERA:
+        GetPhotoCameraBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // on va demander à l'utilisateur s'il accepte que l'application ouvre la caméra pour prendre la photo
+                askCameraPerssions();
+            }
+        });
+
+        // GALERY
+        GetPhotoGaleryBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // pour le moment, c est juste pour checker que fonctionne comme attendu
+                Toast.makeText(FillInCreate.this, "GALERY btn clicked", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
+
+
+
+
+
+
+        // FIN ON_CREATE
+
+    }
+
+    private void askCameraPerssions() {
+        // on check si le user accepte qu'on utilise la camero
+        if(ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED){
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA}, CAMERA_PERM);
+        }else{ // On ouvre la camera
+            OpenCamera();
+        }
+    }
+
+    @Override // will give specific permission code to get into camera and get grant result
+    public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
+        if(requestCode==CAMERA_PERM){
+            if(grantResults.length>0 && grantResults[0]==PackageManager.PERMISSION_GRANTED){
+                // openCamera()
+            }else{
+                Toast.makeText(this, "Il faut la permission  à l'accès appareil photo", Toast.LENGTH_SHORT).show();
+            }
+        }
+    }
+
+
+    private void OpenCamera(){
+        // une fois que les permissions sont OK, alors on peut ouvrir la caméra à proprement parlé
+        Toast.makeText(this, "ACTIVATION OPENCAMERA", Toast.LENGTH_SHORT).show();
+        Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        startActivityForResult(cameraIntent, CAMERA_REQUEST_CODE);
+    }
+
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) { // permet d'avoir l'image qui s'affiche sur Fill_in_create quand c'est ajouté
+        //super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == CAMERA_REQUEST_CODE) { // Check s'il s'agit bien d'une request afin d'ouvrir l'appareil photo
+            Bitmap image = (Bitmap) data.getExtras().get("data");
+            RecipeImage.setImageBitmap(image);
+        }
     }
 
     public void SaveRecipe(View view) {
