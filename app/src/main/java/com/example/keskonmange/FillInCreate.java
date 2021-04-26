@@ -4,13 +4,12 @@ import android.Manifest;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
-import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
-import android.provider.FontRequest;
+import android.os.Environment;
 import android.provider.MediaStore;
 import android.view.View;
 import android.widget.AdapterView;
@@ -25,6 +24,7 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import androidx.core.content.FileProvider;
 import androidx.core.widget.NestedScrollView;
 
 import com.basgeekball.awesomevalidation.AwesomeValidation;
@@ -39,7 +39,11 @@ import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
+import java.io.File;
+import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 
 public class  FillInCreate extends OptionsMenuActivity {
 
@@ -77,8 +81,9 @@ public class  FillInCreate extends OptionsMenuActivity {
     // Ajout d'une photo dans le fill in create
     ImageView RecipeImage;
     Button GetPhotoCameraBtn, GetPhotoGaleryBtn;
-    public static final int CAMERA_PERM = 101;
+    public static final int CAMERA_PERM_CODE = 101;
     public static final int CAMERA_REQUEST_CODE = 102;
+    String currentPhotoPath;
 
     AwesomeValidation awesomeValidation;
     AwesomeValidation awesomeValidationEtapes;
@@ -317,8 +322,9 @@ public class  FillInCreate extends OptionsMenuActivity {
         GetPhotoCameraBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Toast.makeText(FillInCreate.this, "CAMERA btn clicked", Toast.LENGTH_SHORT).show();
                 // on va demander à l'utilisateur s'il accepte que l'application ouvre la caméra pour prendre la photo
-                askCameraPerssions();
+                askCameraPermissions();
             }
         });
 
@@ -337,32 +343,33 @@ public class  FillInCreate extends OptionsMenuActivity {
 
 
 
-
         // FIN ON_CREATE
 
     }
 
-    private void askCameraPerssions() {
+    private void askCameraPermissions() {
         // on check si le user accepte qu'on utilise la camero
         if(ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED){
-            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA}, CAMERA_PERM);
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA}, CAMERA_PERM_CODE);
         }else{ // On ouvre la camera
-            OpenCamera();
+            System.out.println("On ouvre la caméra");
+            dispatchTakePictureIntent(); // C'est cette mthode qui permet de prendre la photo
         }
     }
 
     @Override // will give specific permission code to get into camera and get grant result
     public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
-        if(requestCode==CAMERA_PERM){
+        if(requestCode== CAMERA_PERM_CODE){
             if(grantResults.length>0 && grantResults[0]==PackageManager.PERMISSION_GRANTED){
-                // openCamera()
+                System.out.println("On est dans le bon fou");
+                dispatchTakePictureIntent(); // C'est cette mthode qui permet de prendre la photo
             }else{
                 Toast.makeText(this, "Il faut la permission  à l'accès appareil photo", Toast.LENGTH_SHORT).show();
             }
         }
     }
 
-
+    /*
     private void OpenCamera(){
         // une fois que les permissions sont OK, alors on peut ouvrir la caméra à proprement parlé
         Toast.makeText(this, "ACTIVATION OPENCAMERA", Toast.LENGTH_SHORT).show();
@@ -370,15 +377,76 @@ public class  FillInCreate extends OptionsMenuActivity {
         startActivityForResult(cameraIntent, CAMERA_REQUEST_CODE);
     }
 
+     */
+
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) { // permet d'avoir l'image qui s'affiche sur Fill_in_create quand c'est ajouté
-        //super.onActivityResult(requestCode, resultCode, data);
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {  // permet d'avoir l'image qui s'affiche sur Fill_in_create quand c'est ajouté
         if (requestCode == CAMERA_REQUEST_CODE) { // Check s'il s'agit bien d'une request afin d'ouvrir l'appareil photo
-            Bitmap image = (Bitmap) data.getExtras().get("data");
-            RecipeImage.setImageBitmap(image);
+            if (resultCode == Activity.RESULT_OK) { // alors on peut créer un nouveau fichier
+                File f = new File(currentPhotoPath); // file created a certain path determined in createImageFile()
+                RecipeImage.setImageURI(Uri.fromFile(f));
+                System.out.println("ABsolute Url of Image is " + Uri.fromFile(f));
+            }
         }
     }
+
+    // source: https://developer.android.com/training/camera/photobasics
+    private File createImageFile() throws IOException {
+        // Create an image file name
+        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+        String imageFileName = "JPEG_" + timeStamp + "_";
+        File storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
+        // creation du fichier à proprement parler
+        File image = File.createTempFile(
+                imageFileName,  /* prefix */
+                ".jpg",         /* suffix */
+                storageDir      /* directory */
+        );
+
+        // Save a file: path for use with ACTION_VIEW intents
+        currentPhotoPath = image.getAbsolutePath(); // c'est cette référence qui permet de display l'imageView
+        return image;
+    }
+
+
+    // open camera and save image file into the directory
+    //static final int REQUEST_IMAGE_CAPTURE = 1;
+
+    private void dispatchTakePictureIntent() {
+        Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+        System.out.println("on est dans dispatchTakePicture");
+        // Now, need to Ensure that there's a camera activity to handle the intent
+        // ICI ce n'est pas le même code que dans le tuto mais ca permet de faire fonctionner l'application pour le moment.
+        // condition initiale mais qui allait tjr dans le else: if(takePictureIntent.resolveActivity(getPackageManager()) != null)
+        // source code: https://stackoverflow.com/questions/37620638/intent-resolveactivity-is-null-on-a-device-with-the-camera-4-2-2
+        if (getApplicationContext().getPackageManager().hasSystemFeature( PackageManager.FEATURE_CAMERA)) { // check s'il y a une camera sur l'appareil
+            System.out.println("Il y a bien une caméra");
+            // Create the File where the photo should go
+            File photoFile = null;
+            try {
+                System.out.println("photo va être créée");
+                photoFile = createImageFile(); // create imge method
+                System.out.println("photo est créée");
+            } catch (IOException ex) {
+                // Error occurred while creating the File
+                System.out.println("errror");
+            }
+            // Continue only if the File was successfully created, i.e. not null
+            if (photoFile != null) {
+                Uri photoURI = FileProvider.getUriForFile(this,
+                        "com.example.android.fileprovider",
+                        photoFile);
+                takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
+                startActivityForResult(takePictureIntent, CAMERA_REQUEST_CODE);
+            }
+        }
+        else{
+            Toast.makeText(getApplicationContext(),"PAS DE CAMERA DETECTÉ", Toast.LENGTH_SHORT).show();
+        }
+    }
+
+
 
     public void SaveRecipe(View view) {
         if(awesomeValidation.validate() && ListeIngredients.size()> 0 && ListeEtapes.size()>0){
