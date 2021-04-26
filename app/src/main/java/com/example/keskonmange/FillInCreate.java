@@ -344,8 +344,6 @@ public class  FillInCreate extends OptionsMenuActivity {
 
 
 
-
-
         // FIN ON_CREATE
 
     }
