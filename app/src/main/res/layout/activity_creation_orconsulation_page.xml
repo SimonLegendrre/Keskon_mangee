@@ -12,87 +12,153 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginTop="30dp">
+        android:layout_height="59dp"
+        android:layout_marginTop="30dp"
+        android:orientation="horizontal">
 
         <TextView
-            android:id="@+id/textView2"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="left"
+            android:layout_height="match_parent"
             android:layout_marginLeft="30dp"
-            android:text="Bonjour,\nQue souhaitez-vous faire? "
+            android:layout_marginRight="50dp"
+            android:text="Bonjour,\nQue souhaitez-vous faire ? "
             android:textColor="@color/white"
             android:textSize="20dp" />
 
+
         <Button
             android:id="@+id/button_info_creat_or_consult"
-            android:layout_width="40dp"
-            android:layout_height="wrap_content"
-            android:layout_gravity="right"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginRight="40dp"
             android:text="\?"
             android:textSize="27dp"
-            android:layout_marginLeft="80dp"/>
+            />
+
+    </LinearLayout>
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="100dp"
+        android:layout_marginBottom="30dp"
+        android:fontFamily="sans-serif-thin"
+        android:text="Qu'est-ce qu'on mange ?"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display2"
+
+        android:textColor="@color/white"
+        android:textSize="24sp"
+        android:textStyle="bold" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center">
+
+
+        <LinearLayout
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginRight="25dp">
+
+            <ImageButton
+                android:id="@+id/acceuil_to_consult_recipe_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:minWidth="80dp"
+                android:minHeight="80dp"
+                android:scaleType="fitXY"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/recipe_consult" />
+
+            <TextView
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Rechercher"
+                android:textColor="#FFFFFF"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <ImageButton
+                android:id="@+id/Consult_all_recipes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="#00FFFFFF"
+                android:minWidth="80dp"
+                android:minHeight="80dp"
+                android:scaleType="fitXY"
+                app:srcCompat="@drawable/recipe_scrolling" />
+
+
+            <TextView
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Consulter"
+                android:textColor="#FFFFFF"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/linLayout"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginLeft="25dp">
+
+
+            <ImageButton
+                android:id="@+id/acceuil_to_create_recipe_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:background="#00FFFFFF"
+                android:minWidth="80dp"
+                android:minHeight="80dp"
+                android:scaleType="fitXY"
+                app:srcCompat="@drawable/create_recipe" />
+
+
+            <TextView
+                android:id="@+id/textView2"
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Créer"
+                android:textColor="#FFFFFF"
+                android:textStyle="bold" />
+
+
+        </LinearLayout>
 
     </LinearLayout>
 
 
     <Button
-        android:id="@+id/acceuil_to_consult_recipe_button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginTop="50dp"
-        android:text="@string/button_acceuil_consult_recipe" />
-
-    <Button
-        android:id="@+id/Consult_all_recipes"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginRight="20dp"
-        android:text="Consulter toutes les recettes" />
-
-    <Button
-        android:id="@+id/acceuil_to_create_recipe_button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginRight="20dp"
-        android:text="@string/button_acceuil_create_recipe"
-        />
-
-
-    <Button
         android:id="@+id/MyProfile"
-        android:layout_width="match_parent"
+        android:drawableLeft ="@drawable/ic_my_profile"
+        android:layout_width="226dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginTop="100dp"
-        android:text="Mon profil"/>
-
-    <Button
-        android:id="@+id/LogOutButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginRight="20dp"
-        android:onClick="LogOut1"
-        android:text="Se déconnecter" />
-
+        android:layout_marginStart="90dp"
+        android:layout_marginTop="150dp"
+        android:layout_marginEnd="90dp"
+        android:text="Mon profil"
+        android:layout_gravity="center"
+        android:textColor="@color/black"
+        android:textSize="17dp" />
 
 
 </LinearLayout>

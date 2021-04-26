@@ -19,7 +19,6 @@ android {
         versionName "1.0"
         multiDexEnabled true // attention
         vectorDrawables.useSupportLibrary = true // Adri: j'ai ajouté ça pour l'imageView dans Fill_in_create
-
         testInstrumentationRunner 'androidx.test.runner.AndroidJUnitRunner'
     }
 

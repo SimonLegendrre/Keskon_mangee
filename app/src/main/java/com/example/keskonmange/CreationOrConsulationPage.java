@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 
 import com.google.firebase.auth.FirebaseAuth;
 
@@ -12,10 +13,10 @@ import com.google.firebase.auth.FirebaseAuth;
 // Pour l'explication
 
 public class CreationOrConsulationPage extends OptionsMenuActivity {
-    public Button acceuil_create_button;
-    public Button acceuil_consult_button;
+    public ImageButton acceuil_create_button;
+    public ImageButton acceuil_consult_button;
     public Button acceuil_myProfile_button;
-    public Button acceuil_Allrecipes_button;
+    public ImageButton acceuil_Allrecipes_button;
     Button info_dialog;
     Button next_info1;
     Button next_info2;
@@ -30,10 +31,10 @@ public class CreationOrConsulationPage extends OptionsMenuActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_creation_orconsulation_page);
-        acceuil_create_button = (Button) findViewById(R.id.acceuil_to_create_recipe_button);
-        acceuil_consult_button = (Button) findViewById(R.id.acceuil_to_consult_recipe_button);
+        acceuil_create_button = (ImageButton) findViewById(R.id.acceuil_to_create_recipe_button);
+        acceuil_consult_button = (ImageButton) findViewById(R.id.acceuil_to_consult_recipe_button);
         acceuil_myProfile_button = (Button) findViewById(R.id.MyProfile);
-        acceuil_Allrecipes_button = (Button) findViewById(R.id.Consult_all_recipes);
+        acceuil_Allrecipes_button = (ImageButton) findViewById(R.id.Consult_all_recipes);
         info_dialog = (Button) findViewById(R.id.button_info_creat_or_consult);
 
         // Pas encore utile
