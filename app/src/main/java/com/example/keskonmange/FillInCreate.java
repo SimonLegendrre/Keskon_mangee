@@ -382,6 +382,7 @@ public class  FillInCreate extends OptionsMenuActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {  // permet d'avoir l'image qui s'affiche sur Fill_in_create quand c'est ajouté
+        super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == CAMERA_REQUEST_CODE) { // Check s'il s'agit bien d'une request afin d'ouvrir l'appareil photo
             if (resultCode == Activity.RESULT_OK) { // alors on peut créer un nouveau fichier
                 File f = new File(currentPhotoPath); // file created a certain path determined in createImageFile()
@@ -425,6 +426,7 @@ public class  FillInCreate extends OptionsMenuActivity {
             // Create the File where the photo should go
             File photoFile = null;
             try {
+                RecipeImage.setVisibility(View.VISIBLE);
                 System.out.println("photo va être créée");
                 photoFile = createImageFile(); // create imge method
                 System.out.println("photo est créée");
