@@ -4,6 +4,7 @@ import android.Manifest;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.ContentResolver;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -13,6 +14,7 @@ import android.os.Environment;
 import android.provider.MediaStore;
 import android.util.Log;
 import android.view.View;
+import android.webkit.MimeTypeMap;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
@@ -47,6 +49,7 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class  FillInCreate extends OptionsMenuActivity {
+
 
     private EditText editTextTitre;
     //private EditText RecipeYield;
@@ -84,6 +87,7 @@ public class  FillInCreate extends OptionsMenuActivity {
     Button GetPhotoCameraBtn, GetPhotoGaleryBtn;
     public static final int CAMERA_PERM_CODE = 101;
     public static final int CAMERA_REQUEST_CODE = 102;
+    public static final int GALLERY_REQUEST_CODE = 105;
     String currentPhotoPath;
 
     AwesomeValidation awesomeValidation;
@@ -323,9 +327,8 @@ public class  FillInCreate extends OptionsMenuActivity {
         GetPhotoCameraBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(FillInCreate.this, "CAMERA btn clicked", Toast.LENGTH_SHORT).show();
-                // on va demander à l'utilisateur s'il accepte que l'application ouvre la caméra pour prendre la photo
                 askCameraPermissions();
+                //RecipeImage.setVisibility(View.VISIBLE);
             }
         });
 
@@ -333,12 +336,11 @@ public class  FillInCreate extends OptionsMenuActivity {
         GetPhotoGaleryBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                // pour le moment, c est juste pour checker que fonctionne comme attendu
-                Toast.makeText(FillInCreate.this, "GALERY btn clicked", Toast.LENGTH_SHORT).show();
+                Intent gallery_intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                startActivityForResult(gallery_intent, GALLERY_REQUEST_CODE); // donne code permattant d'aller chercher les informations dans la gallerie (plutot que l'appareil photo lui-même)
+                //RecipeImage.setVisibility(View.VISIBLE);
             }
         });
-
-
 
 
 
@@ -370,20 +372,11 @@ public class  FillInCreate extends OptionsMenuActivity {
         }
     }
 
-    /*
-    private void OpenCamera(){
-        // une fois que les permissions sont OK, alors on peut ouvrir la caméra à proprement parlé
-        Toast.makeText(this, "ACTIVATION OPENCAMERA", Toast.LENGTH_SHORT).show();
-        Intent cameraIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        startActivityForResult(cameraIntent, CAMERA_REQUEST_CODE);
-    }
-
-     */
-
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {  // permet d'avoir l'image qui s'affiche sur Fill_in_create quand c'est ajouté
         super.onActivityResult(requestCode, resultCode, data);
+        // PHOTO a partir de CAMERA
         if (requestCode == CAMERA_REQUEST_CODE) { // Check s'il s'agit bien d'une request afin d'ouvrir l'appareil photo
             if (resultCode == Activity.RESULT_OK) { // alors on peut créer un nouveau fichier
                 File f = new File(currentPhotoPath); // file created a certain path determined in createImageFile()
@@ -395,8 +388,29 @@ public class  FillInCreate extends OptionsMenuActivity {
                 Uri contentUri = Uri.fromFile(f);
                 mediaScanIntent.setData(contentUri);
                 this.sendBroadcast(mediaScanIntent);
+                RecipeImage.setVisibility(View.VISIBLE);
             }
         }
+
+        // PHOTO à partir de la GALLERY
+        if (requestCode == GALLERY_REQUEST_CODE) { // Check s'il s'agit bien d'une request afin d'ouvrir l'appareil photo
+            if (resultCode == Activity.RESULT_OK) { // alors on peut créer un nouveau fichier
+                Uri contentUri = data.getData(); // photo reference
+                String timeStamp= new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+                String imageFileName = "JPEG_" + timeStamp + "_"+ getFileExt(contentUri); // get file extensions (the type)
+                RecipeImage.setImageURI(contentUri);
+                // s'affiche dans la section LogCat (à coté de Run
+                Log.d("ImageUrlIsGotten", "onActivityResult: Gallery Image Uri: " + imageFileName);
+                RecipeImage.setVisibility(View.VISIBLE);
+            }
+        }
+
+    }
+
+    private String getFileExt(Uri contentUri) { // allow to get file type
+        ContentResolver c = getContentResolver();
+        MimeTypeMap mime = MimeTypeMap.getSingleton();
+        return mime.getExtensionFromMimeType(c.getType(contentUri));
     }
 
     // source: https://developer.android.com/training/camera/photobasics
@@ -434,7 +448,6 @@ public class  FillInCreate extends OptionsMenuActivity {
             // Create the File where the photo should go
             File photoFile = null;
             try {
-                RecipeImage.setVisibility(View.VISIBLE);
                 System.out.println("photo va être créée");
                 photoFile = createImageFile(); // create imge methodƒ
                 System.out.println("photo est créée");

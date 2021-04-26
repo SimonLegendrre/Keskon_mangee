@@ -236,7 +236,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:text="Ajoutez une photo:"
+            android:text="Ajoutez une photo à votre plat:"
             android:textColor="@color/white"
             android:textSize="20dp"
             android:textStyle="bold"
@@ -271,7 +271,7 @@
                 android:id="@+id/BtnGetPhotoCamera"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Camera"
+                android:text="Appareil photo"
                 android:layout_marginRight="20dp"
                 />
 
