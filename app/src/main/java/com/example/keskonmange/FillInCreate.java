@@ -11,6 +11,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -387,7 +388,13 @@ public class  FillInCreate extends OptionsMenuActivity {
             if (resultCode == Activity.RESULT_OK) { // alors on peut créer un nouveau fichier
                 File f = new File(currentPhotoPath); // file created a certain path determined in createImageFile()
                 RecipeImage.setImageURI(Uri.fromFile(f));
-                System.out.println("ABsolute Url of Image is " + Uri.fromFile(f));
+                // s'affiche dans la section LogCat (à coté de Run
+                Log.d("ImageUrlIsGotten", "Absolute Url of Image is " + Uri.fromFile(f));
+                // The following example method demonstrates how to invoke the system's media scanner to add your photo to the Media Provider's database, making it available in the Android Gallery application and to other apps.
+                Intent mediaScanIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
+                Uri contentUri = Uri.fromFile(f);
+                mediaScanIntent.setData(contentUri);
+                this.sendBroadcast(mediaScanIntent);
             }
         }
     }
@@ -397,7 +404,8 @@ public class  FillInCreate extends OptionsMenuActivity {
         // Create an image file name
         String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
         String imageFileName = "JPEG_" + timeStamp + "_";
-        File storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES);
+        //File storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES); // specifies directory in which the files is gonna be saved
+        File storageDir= Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
         // creation du fichier à proprement parler
         File image = File.createTempFile(
                 imageFileName,  /* prefix */
@@ -428,7 +436,7 @@ public class  FillInCreate extends OptionsMenuActivity {
             try {
                 RecipeImage.setVisibility(View.VISIBLE);
                 System.out.println("photo va être créée");
-                photoFile = createImageFile(); // create imge method
+                photoFile = createImageFile(); // create imge methodƒ
                 System.out.println("photo est créée");
             } catch (IOException ex) {
                 // Error occurred while creating the File
