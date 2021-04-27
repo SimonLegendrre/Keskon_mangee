@@ -127,7 +127,10 @@ public class DetailedDescription extends OptionsMenuActivity {
 
                 // Code pour ajouter la photo
 
-                if (RecipeImageId.charAt(0) == 'J') {
+                if(RecipeImageId.isEmpty()){
+                    RecipeImage.setVisibility(View.GONE);
+                }
+                else if (RecipeImageId.charAt(0) == 'J') {
                     StorageReference image = storageReference.child("pictures/" + RecipeImageId);
                     image.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                         @Override
@@ -138,11 +141,7 @@ public class DetailedDescription extends OptionsMenuActivity {
                 } else if (RecipeImageId.charAt(0) == 'h') {
                     String imageUri = RecipeImageId;
                     Picasso.get().load(imageUri).into(RecipeImage);
-
-                } else if (RecipeImageId.isEmpty()) {
-                    RecipeImage.setVisibility(View.GONE);
                 }
-
 
                 textViewData.setText(data);
             }
