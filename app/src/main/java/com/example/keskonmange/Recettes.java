@@ -20,6 +20,8 @@ public class Recettes {
     private String userID = ""; // userID ajouté pour associer à chaque recette l'ID de l'utilisateur qui la crée
     private Double note;
 
+    private String imageRef;
+
 
     public Recettes(){
         // Obligatoire de crée un object vide pour que ca fonctionne
@@ -29,7 +31,7 @@ public class Recettes {
 
     public Recettes(String cookTime, List<String> description, String keywords, String name,
                     String prepTime, List<String>recipeIngredients, List<String> recipeInstructions,
-                    String recipeYield, String totalTime, String userID, Double note){
+                    String recipeYield, String totalTime, String userID, Double note, String imageRef){
         this.cookTime=cookTime;
         this.description = description;
         this.keywords =keywords;
@@ -43,6 +45,7 @@ public class Recettes {
         //this.documentId = documentId;
         this.userID = userID;
         this.note = note;
+        this.imageRef =imageRef;
 
     }
 
@@ -94,5 +97,9 @@ public class Recettes {
 
     public String getTotalTime() {
         return totalTime;
+    }
+
+    public String getImageRef() {
+        return imageRef;
     }
 }

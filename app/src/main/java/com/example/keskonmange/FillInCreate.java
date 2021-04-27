@@ -41,6 +41,8 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import java.io.File;
 import java.io.IOException;
@@ -48,7 +50,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class  FillInCreate extends OptionsMenuActivity {
+public class FillInCreate extends OptionsMenuActivity {
 
 
     private EditText editTextTitre;
@@ -75,6 +77,10 @@ public class  FillInCreate extends OptionsMenuActivity {
     String userId;
     private NestedScrollView Ingredients;
 
+    // TEST SIMON
+    StorageReference storageReference;
+    // FIN TEST SIMON
+
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private CollectionReference AllRecipe = db.collection("Recettes");
 
@@ -98,8 +104,6 @@ public class  FillInCreate extends OptionsMenuActivity {
     // Création de BDD nécessaire pour l'autcomplétion.
     ArrayList<String> IngredientsKKM = new ArrayList<>();
     private CollectionReference IngredientsKKMCollection = db.collection("Ingredients");
-
-
 
 
     @Override
@@ -153,21 +157,24 @@ public class  FillInCreate extends OptionsMenuActivity {
         DocumentReference documentReference = fstore.collection("Users").document(userId);
         fstore = FirebaseFirestore.getInstance();
 
+        // TEST SIMON
+        storageReference = FirebaseStorage.getInstance().getReference();
+        // FIN TEST SIMON
 
 
         // Awesome validation
         awesomeValidation = new AwesomeValidation(ValidationStyle.BASIC);
         awesomeValidationIngredients = new AwesomeValidation(ValidationStyle.BASIC);
         awesomeValidationEtapes = new AwesomeValidation(ValidationStyle.BASIC);
-        awesomeValidation.addValidation(this,R.id.nom_recette, RegexTemplate.NOT_EMPTY,R.string.invalid_titre);
+        awesomeValidation.addValidation(this, R.id.nom_recette, RegexTemplate.NOT_EMPTY, R.string.invalid_titre);
         //awesomeValidation.addValidation(this,R.id.description, RegexTemplate.NOT_EMPTY,R.string.invalid_description);
-        awesomeValidationIngredients.addValidation(this, R.id.ingredients, RegexTemplate.NOT_EMPTY,R.string.invalid_ingredient);
-        awesomeValidationEtapes.addValidation(this, R.id.description, RegexTemplate.NOT_EMPTY,R.string.invalid_recipe_description);
+        awesomeValidationIngredients.addValidation(this, R.id.ingredients, RegexTemplate.NOT_EMPTY, R.string.invalid_ingredient);
+        awesomeValidationEtapes.addValidation(this, R.id.description, RegexTemplate.NOT_EMPTY, R.string.invalid_recipe_description);
 
 
         ListeEtapes = new ArrayList<String>();
         // fait le lien entre le XML EditText et arrayList "listEtapes"
-        arrayAdapterListeEtapes = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1, ListeEtapes);
+        arrayAdapterListeEtapes = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, ListeEtapes);
         //Bouton pour ajouter une étape dans la recette
         buttonAjouterEtape.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -185,8 +192,9 @@ public class  FillInCreate extends OptionsMenuActivity {
                     //On vide EditText
                     editTextDescription.getText().clear();
 
+                } else {
+                    return;
                 }
-                else{return;}
             }
         });
         //L'utilisateur peut supprimer une étape de la recette en appuyant longtemps dessus
@@ -206,7 +214,7 @@ public class  FillInCreate extends OptionsMenuActivity {
                                 ListeEtapes.remove(quelle_etape);
                                 listViewEtapes.setAdapter(arrayAdapterListeEtapes);
                                 arrayAdapterListeEtapes.notifyDataSetChanged();
-                                if (ListeEtapes.size()==0) {
+                                if (ListeEtapes.size() == 0) {
                                     Etapes.setVisibility(View.GONE);
                                 }
                             }
@@ -231,15 +239,14 @@ public class  FillInCreate extends OptionsMenuActivity {
             @Override
             public void onClick(View v) {
 
-                if(awesomeValidationIngredients.validate()) {
+                if (awesomeValidationIngredients.validate()) {
                     Ingredients.setVisibility(View.VISIBLE);
                     // stock  les Strings
                     String strIngredient = AtcIngredients.getText().toString().toLowerCase().trim();
                     // on ajoute le editText format String dans le ArrayList
-                    if (!ListeIngredients.contains(strIngredient)){
+                    if (!ListeIngredients.contains(strIngredient)) {
                         ListeIngredients.add(strIngredient);
-                    }
-                    else{ // si c'est le cas, on notifie l'utilisateur
+                    } else { // si c'est le cas, on notifie l'utilisateur
                         Toast.makeText(getApplicationContext(), "Vous avez déjà ajouté cet ingrédient",
                                 Toast.LENGTH_LONG).show();
                     }
@@ -249,19 +256,14 @@ public class  FillInCreate extends OptionsMenuActivity {
                     arrayAdapterListeIngredients.notifyDataSetChanged();
                     // on vide EditText
                     AtcIngredients.getText().clear();
+                } else {
+                    return;
                 }
-                else{return;}
 
             }
         });
 
         // On clique sur l'ingrédient qu'on souhaite supprimer et un message s'affiche pour vérifier si on est sûr de vouloir supprimer l'ingrédient sélectionné.
-        listViewIngredients.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Toast.makeText(getApplicationContext(), "Vous avez clické sur l'ingrédient: " + arrayAdapterListeIngredients.getItem(position), Toast.LENGTH_LONG).show();
-            }
-        });
 
         listViewIngredients.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
@@ -279,7 +281,7 @@ public class  FillInCreate extends OptionsMenuActivity {
                                 ListeIngredients.remove(which_item);
                                 listViewIngredients.setAdapter(arrayAdapterListeIngredients);
                                 arrayAdapterListeIngredients.notifyDataSetChanged();
-                                if (ListeIngredients.size()==0){
+                                if (ListeIngredients.size() == 0) {
                                     Ingredients.setVisibility(View.GONE);
                                 }
                             }
@@ -289,8 +291,6 @@ public class  FillInCreate extends OptionsMenuActivity {
                 return true;
             }
         });
-
-
 
 
         // get info
@@ -343,16 +343,15 @@ public class  FillInCreate extends OptionsMenuActivity {
         });
 
 
-
         // FIN ON_CREATE
 
     }
 
     private void askCameraPermissions() {
         // on check si le user accepte qu'on utilise la camero
-        if(ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED){
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.CAMERA}, CAMERA_PERM_CODE);
-        }else{ // On ouvre la camera
+        } else { // On ouvre la camera
             System.out.println("On ouvre la caméra");
             dispatchTakePictureIntent(); // C'est cette mthode qui permet de prendre la photo
         }
@@ -360,11 +359,11 @@ public class  FillInCreate extends OptionsMenuActivity {
 
     @Override // will give specific permission code to get into camera and get grant result
     public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
-        if(requestCode== CAMERA_PERM_CODE){
-            if(grantResults.length>0 && grantResults[0]==PackageManager.PERMISSION_GRANTED){
+        if (requestCode == CAMERA_PERM_CODE) {
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 System.out.println("On est dans le bon fou");
                 dispatchTakePictureIntent(); // C'est cette mthode qui permet de prendre la photo
-            }else{
+            } else {
                 Toast.makeText(this, "Il faut la permission  à l'accès appareil photo", Toast.LENGTH_SHORT).show();
             }
         }
@@ -387,6 +386,10 @@ public class  FillInCreate extends OptionsMenuActivity {
                 mediaScanIntent.setData(contentUri);
                 this.sendBroadcast(mediaScanIntent);
                 RecipeImage.setVisibility(View.VISIBLE);
+
+                // TEST SIMON ajoute l'image à Firebase, dans la section Storage. Voir la méthode détaillée plus bas
+                AddToDataBase(f.getName(), contentUri);
+                // FIN test Simon
             }
         }
 
@@ -394,16 +397,24 @@ public class  FillInCreate extends OptionsMenuActivity {
         if (requestCode == GALLERY_REQUEST_CODE) { // Check s'il s'agit bien d'une request afin d'ouvrir l'appareil photo
             if (resultCode == Activity.RESULT_OK) { // alors on peut créer un nouveau fichier
                 Uri contentUri = data.getData(); // photo reference
-                String timeStamp= new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
-                String imageFileName = "JPEG_" + timeStamp + "_"+ getFileExt(contentUri); // get file extensions (the type)
+                String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+                String imageFileName = "JPEG_" + timeStamp + "_" + getFileExt(contentUri); // get file extensions (the type)
+
                 RecipeImage.setImageURI(contentUri);
                 // s'affiche dans la section LogCat (à coté de Run
                 Log.d("ImageUrlIsGotten", "onActivityResult: Gallery Image Uri: " + imageFileName);
-                RecipeImage.setVisibility(View.VISIBLE);
+                //RecipeImage.setVisibility(View.VISIBLE);
+
+                // TEST SIMON
+                AddToDataBase(imageFileName, contentUri);
+                // FIN test Simon
+
             }
         }
 
+
     }
+
 
     private String getFileExt(Uri contentUri) { // allow to get file type
         ContentResolver c = getContentResolver();
@@ -417,7 +428,7 @@ public class  FillInCreate extends OptionsMenuActivity {
         String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
         String imageFileName = "JPEG_" + timeStamp + "_";
         //File storageDir = getExternalFilesDir(Environment.DIRECTORY_PICTURES); // specifies directory in which the files is gonna be saved
-        File storageDir= Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
+        File storageDir = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES);
         // creation du fichier à proprement parler
         File image = File.createTempFile(
                 imageFileName,  /* prefix */
@@ -427,7 +438,9 @@ public class  FillInCreate extends OptionsMenuActivity {
 
         // Save a file: path for use with ACTION_VIEW intents
         currentPhotoPath = image.getAbsolutePath(); // c'est cette référence qui permet de display l'imageView
+        System.out.println("TEST 8 DE SIMON" + currentPhotoPath);
         return image;
+
     }
 
 
@@ -441,7 +454,7 @@ public class  FillInCreate extends OptionsMenuActivity {
         // ICI ce n'est pas le même code que dans le tuto mais ca permet de faire fonctionner l'application pour le moment.
         // condition initiale mais qui allait tjr dans le else: if(takePictureIntent.resolveActivity(getPackageManager()) != null)
         // source code: https://stackoverflow.com/questions/37620638/intent-resolveactivity-is-null-on-a-device-with-the-camera-4-2-2
-        if (getApplicationContext().getPackageManager().hasSystemFeature( PackageManager.FEATURE_CAMERA)) { // check s'il y a une camera sur l'appareil
+        if (getApplicationContext().getPackageManager().hasSystemFeature(PackageManager.FEATURE_CAMERA)) { // check s'il y a une camera sur l'appareil
             System.out.println("Il y a bien une caméra");
             // Create the File where the photo should go
             File photoFile = null;
@@ -461,60 +474,83 @@ public class  FillInCreate extends OptionsMenuActivity {
                 takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
                 startActivityForResult(takePictureIntent, CAMERA_REQUEST_CODE);
             }
-        }
-        else{
-            Toast.makeText(getApplicationContext(),"PAS DE CAMERA DETECTÉ", Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(getApplicationContext(), "PAS DE CAMERA DETECTÉ", Toast.LENGTH_SHORT).show();
         }
     }
 
 
+    public void AddToDataBase(String nameRecipe, Uri contentUri) {
+
+        StorageReference image = storageReference.child("pictures/" + nameRecipe);
+        image.putFile(contentUri);
+
+
+        // Adding Recipe
+        String cookTime = CookTime.getText().toString();
+        // description déjà créé + haut
+        String keywords = "";
+        String name = editTextTitre.getText().toString();
+        name = name.replaceAll("\\s+", " ");
+        String id_recipe = name.replaceAll(" ", "_").toLowerCase();
+        String prepTime = PrepTimme.getText().toString();
+        ArrayList<String> recipeIngredients = new ArrayList<String>();
+        ArrayList<String> recipeInstructions = new ArrayList<String>();
+        ArrayList<String> description = new ArrayList<String>();
+        description = ListeIngredients;
+        recipeInstructions = ListeEtapes; // A changer dans le futur pour avoir un tableau de strings avec les differentes etapes - Normalement ok
+
+
+        //String recipeYield = RecipeYield.getText().toString();
+        String recipeYield = "";
+        //Temps total de la recette
+        Integer tempsTotal = Integer.valueOf(PrepTimme.getText().toString()) + Integer.valueOf(CookTime.getText().toString());
+        String totalTime = tempsTotal.toString();
+
+        String userID = userId;
+        Double note = null;
+
+        String imageRef = nameRecipe;
+
+        Recettes recette = new Recettes(cookTime, description, keywords, name, prepTime,
+                recipeIngredients, recipeInstructions, recipeYield, totalTime, userID, note, imageRef); // User ID ajouté pour ajouter l'ID utilisatuer
+
+        AllRecipe.document(id_recipe).set(recette);
+
+
+    }
 
     public void SaveRecipe(View view) {
-        if(awesomeValidation.validate() && ListeIngredients.size()> 0 && ListeEtapes.size()>0){
-
-            // Adding Recipe
-            String cookTime = CookTime.getText().toString();
-            // description déjà créé + haut
-            String keywords ="";
+        if (awesomeValidation.validate() && ListeIngredients.size() > 0 && ListeEtapes.size() > 0) {
             String name = editTextTitre.getText().toString();
-            name = name.replaceAll("\\s+", " " );
+            name = name.replaceAll("\\s+", " ");
             String id_recipe = name.replaceAll(" ", "_").toLowerCase();
-            String prepTime = PrepTimme.getText().toString();
-            ArrayList<String> recipeIngredients = new ArrayList<String>();
-            ArrayList<String> recipeInstructions = new ArrayList<String>();
-            ArrayList<String> description = new ArrayList<String>();
-            description = ListeIngredients;
-            recipeInstructions = ListeEtapes; // A changer dans le futur pour avoir un tableau de strings avec les differentes etapes - Normalement ok
-            System.out.println("recipe instruction test: "+ recipeInstructions.toString());
 
-            //String recipeYield = RecipeYield.getText().toString();
-            String recipeYield = "";
-            //Temps total de la recette
+            DocumentReference document = db.collection("Recettes").document(id_recipe);
+            document.update("cookTime", CookTime.getText().toString());
+            document.update("description", ListeIngredients);
+            document.update("recipeInstructions", ListeEtapes);
+            document.update("prepTime", PrepTimme.getText().toString());
             Integer tempsTotal = Integer.valueOf(PrepTimme.getText().toString()) + Integer.valueOf(CookTime.getText().toString());
             String totalTime = tempsTotal.toString();
+            document.update("totalTime", totalTime);
 
-            String userID = userId;
-            Double note = null ;
-
-            Recettes recette = new Recettes(cookTime, description, keywords, name, prepTime,
-                    recipeIngredients, recipeInstructions,recipeYield, totalTime, userID, note); // User ID ajouté pour ajouter l'ID utilisatuer
-
-            AllRecipe.document(id_recipe).set(recette);
 
             // Rediriger vers le menu lorsque l'on clique
-            Toast.makeText(getApplicationContext(),"Recette créée",Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), "Recette créée", Toast.LENGTH_SHORT).show();
             Intent intent = new Intent(FillInCreate.this, CreationOrConsulationPage.class);
             startActivity(intent);
             finish();
-
-        }
-        else{
-            if (ListeIngredients.size()!=0 || ListeEtapes.size()!=0){
-                Toast.makeText(getApplicationContext(),"Vous n'avez pas rempli tous les champs", Toast.LENGTH_SHORT).show();
+        } else {
+            if (ListeIngredients.size() != 0 || ListeEtapes.size() != 0) {
+                Toast.makeText(getApplicationContext(), "Vous n'avez pas rempli tous les champs", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(getApplicationContext(), "Vous n'avez pas entré d'ingrédient", Toast.LENGTH_SHORT).show();
             }
-            else {Toast.makeText(getApplicationContext(),"Vous n'avez pas entré d'ingrédient",Toast.LENGTH_SHORT).show();}
 
         }
+
+
     }
 
 

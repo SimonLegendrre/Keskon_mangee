@@ -2,9 +2,11 @@ package com.example.keskonmange;
 
 import android.app.Dialog;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -23,12 +25,18 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
 public class DetailedDescription extends OptionsMenuActivity {
+
+    ImageView RecipeImage;
+    StorageReference storageReference;
 
 
     // Ce code permet de rajouter l'ID de l'utilisateur qui crée la recette au champ de la recette
@@ -59,6 +67,9 @@ public class DetailedDescription extends OptionsMenuActivity {
         // User ID
         userId = Objects.requireNonNull(fAuth.getCurrentUser()).getUid();
         TextViewNote = findViewById(R.id.average_note);
+
+        RecipeImage = findViewById(R.id.imageViewRecipePicture);
+        storageReference = FirebaseStorage.getInstance().getReference();
 
         // Initialiser variable pop-up
 
@@ -96,6 +107,7 @@ public class DetailedDescription extends OptionsMenuActivity {
                 tab = (ArrayList<String>) documentSnapshot.get("recipeInstructions");
                 String tempsPrep = documentSnapshot.getString("prepTime");
                 String tempsTotal = documentSnapshot.getString("totalTime");
+                String RecipeImageId = documentSnapshot.getString("imageRef");
 
 
                 for (int i = 0; i < tab.size(); i++) {
@@ -113,13 +125,32 @@ public class DetailedDescription extends OptionsMenuActivity {
 
                 data += "Etapes à suivre : " + "\n\n" + description;
 
+                // Code pour ajouter la photo
+
+                if (RecipeImageId.charAt(0) == 'J') {
+                    StorageReference image = storageReference.child("pictures/" + RecipeImageId);
+                    image.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                        @Override
+                        public void onSuccess(Uri uri) {
+                            Picasso.get().load(uri).into(RecipeImage);
+                        }
+                    });
+                } else if (RecipeImageId.charAt(0) == 'h') {
+                    String imageUri = RecipeImageId;
+                    Picasso.get().load(imageUri).into(RecipeImage);
+
+                } else if (RecipeImageId.isEmpty()) {
+                    RecipeImage.setVisibility(View.GONE);
+                }
+
 
                 textViewData.setText(data);
-
             }
+
         });
 
-        // Code pour faire calculer la note moyenne 
+
+        // Code pour faire calculer la note moyenne
 
 
         AllNote.addSnapshotListener(this, new EventListener<QuerySnapshot>() {
@@ -169,7 +200,6 @@ public class DetailedDescription extends OptionsMenuActivity {
                     startActivity(intent);
                     finish();
                 }
-
 
             });
 
