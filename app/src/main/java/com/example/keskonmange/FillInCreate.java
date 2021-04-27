@@ -415,7 +415,6 @@ public class FillInCreate extends OptionsMenuActivity {
 
     }
 
-
     private String getFileExt(Uri contentUri) { // allow to get file type
         ContentResolver c = getContentResolver();
         MimeTypeMap mime = MimeTypeMap.getSingleton();
