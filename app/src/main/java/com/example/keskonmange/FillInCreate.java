@@ -95,6 +95,9 @@ public class FillInCreate extends OptionsMenuActivity {
     public static final int CAMERA_REQUEST_CODE = 102;
     public static final int GALLERY_REQUEST_CODE = 105;
     String currentPhotoPath;
+    String CurrentfileNamePhoto;
+    Uri CurrentUriPhoto;
+
 
     AwesomeValidation awesomeValidation;
     AwesomeValidation awesomeValidationEtapes;
@@ -387,8 +390,12 @@ public class FillInCreate extends OptionsMenuActivity {
                 this.sendBroadcast(mediaScanIntent);
                 RecipeImage.setVisibility(View.VISIBLE);
 
+                // Test KIKI
+                CurrentfileNamePhoto = f.getName();
+                CurrentUriPhoto = contentUri;
+
                 // TEST SIMON ajoute l'image à Firebase, dans la section Storage. Voir la méthode détaillée plus bas
-                AddToDataBase(f.getName(), contentUri);
+                //AddToDataBase(f.getName(), contentUri);
                 // FIN test Simon
             }
         }
@@ -405,8 +412,12 @@ public class FillInCreate extends OptionsMenuActivity {
                 Log.d("ImageUrlIsGotten", "onActivityResult: Gallery Image Uri: " + imageFileName);
                 //RecipeImage.setVisibility(View.VISIBLE);
 
+                // Test KIKI
+                CurrentfileNamePhoto = imageFileName;
+                CurrentUriPhoto = contentUri;
+
                 // TEST SIMON
-                AddToDataBase(imageFileName, contentUri);
+                //AddToDataBase(imageFileName, contentUri);
                 // FIN test Simon
 
             }
@@ -481,46 +492,12 @@ public class FillInCreate extends OptionsMenuActivity {
 
     public void AddToDataBase(String nameRecipe, Uri contentUri) {
 
-        StorageReference image = storageReference.child("pictures/" + nameRecipe);
-        image.putFile(contentUri);
-
-
-        // Adding Recipe
-        String cookTime = CookTime.getText().toString();
-        // description déjà créé + haut
-        String keywords = "";
-        String name = editTextTitre.getText().toString();
-        name = name.replaceAll("\\s+", " ");
-        String id_recipe = name.replaceAll(" ", "_").toLowerCase();
-        String prepTime = PrepTimme.getText().toString();
-        ArrayList<String> recipeIngredients = new ArrayList<String>();
-        ArrayList<String> recipeInstructions = new ArrayList<String>();
-        ArrayList<String> description = new ArrayList<String>();
-        description = ListeIngredients;
-        recipeInstructions = ListeEtapes; // A changer dans le futur pour avoir un tableau de strings avec les differentes etapes - Normalement ok
-
-
-        //String recipeYield = RecipeYield.getText().toString();
-        String recipeYield = "";
-        //Temps total de la recette
-        Integer tempsTotal = Integer.valueOf(PrepTimme.getText().toString()) + Integer.valueOf(CookTime.getText().toString());
-        String totalTime = tempsTotal.toString();
-
-        String userID = userId;
-        Double note = null;
-
-        String imageRef = nameRecipe;
-
-        Recettes recette = new Recettes(cookTime, description, keywords, name, prepTime,
-                recipeIngredients, recipeInstructions, recipeYield, totalTime, userID, note, imageRef); // User ID ajouté pour ajouter l'ID utilisatuer
-
-        AllRecipe.document(id_recipe).set(recette);
-
-
     }
 
+    // Method OnClick : lorsqu'on appuie sur 'Enregistrer ma recette'
     public void SaveRecipe(View view) {
         if (awesomeValidation.validate() && ListeIngredients.size() > 0 && ListeEtapes.size() > 0) {
+            /*
             String name = editTextTitre.getText().toString();
             name = name.replaceAll("\\s+", " ");
             String id_recipe = name.replaceAll(" ", "_").toLowerCase();
@@ -533,6 +510,46 @@ public class FillInCreate extends OptionsMenuActivity {
             Integer tempsTotal = Integer.valueOf(PrepTimme.getText().toString()) + Integer.valueOf(CookTime.getText().toString());
             String totalTime = tempsTotal.toString();
             document.update("totalTime", totalTime);
+             */
+
+            // Adding Recipe
+            String cookTime = CookTime.getText().toString();
+            // description déjà créé + haut
+            String keywords = "";
+            String name = editTextTitre.getText().toString();
+            name = name.replaceAll("\\s+", " ");
+            String id_recipe = name.replaceAll(" ", "_").toLowerCase();
+            String prepTime = PrepTimme.getText().toString();
+            ArrayList<String> recipeIngredients = new ArrayList<String>();
+            ArrayList<String> recipeInstructions = new ArrayList<String>();
+            ArrayList<String> description = new ArrayList<String>();
+            description = ListeIngredients;
+            recipeInstructions = ListeEtapes; // A changer dans le futur pour avoir un tableau de strings avec les differentes etapes - Normalement ok
+
+
+            //String recipeYield = RecipeYield.getText().toString();
+            String recipeYield = "";
+            //Temps total de la recette
+            Integer tempsTotal = Integer.valueOf(PrepTimme.getText().toString()) + Integer.valueOf(CookTime.getText().toString());
+            String totalTime = tempsTotal.toString();
+
+            String userID = userId;
+            Double note = null;
+
+
+            if (CurrentfileNamePhoto!= null ) { //&& CurrentfileNamePhoto.isEmpty()
+                StorageReference image = storageReference.child("pictures/" + CurrentfileNamePhoto);
+                image.putFile(CurrentUriPhoto);
+            } else {
+                CurrentfileNamePhoto = "";
+            }
+
+            String imageRef = CurrentfileNamePhoto;
+
+            Recettes recette = new Recettes(cookTime, description, keywords, name, prepTime,
+                    recipeIngredients, recipeInstructions, recipeYield, totalTime, userID, note, imageRef); // User ID ajouté pour ajouter l'ID utilisatuer
+
+            AllRecipe.document(id_recipe).set(recette);
 
 
             // Rediriger vers le menu lorsque l'on clique
@@ -541,14 +558,15 @@ public class FillInCreate extends OptionsMenuActivity {
             startActivity(intent);
             finish();
         } else {
-            if (ListeIngredients.size() != 0 || ListeEtapes.size() != 0) {
-                Toast.makeText(getApplicationContext(), "Vous n'avez pas rempli tous les champs", Toast.LENGTH_SHORT).show();
-            } else {
-                Toast.makeText(getApplicationContext(), "Vous n'avez pas entré d'ingrédient", Toast.LENGTH_SHORT).show();
+
+            if (ListeIngredients.size() == 0){
+                Toast.makeText(getApplicationContext(), "Vous n'avez pas entré d'ingrédients", Toast.LENGTH_SHORT).show();}
+            else if (ListeEtapes.size() == 0) {
+                Toast.makeText(getApplicationContext(), "Vous n'avez pas entré d'étape", Toast.LENGTH_SHORT).show(); }
+            else{
+                Toast.makeText(this, "Il y a un problème d'encodage", Toast.LENGTH_SHORT).show();
             }
-
         }
-
 
     }
 
