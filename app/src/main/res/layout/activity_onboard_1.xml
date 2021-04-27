@@ -52,7 +52,7 @@
             android:id="@+id/textView9"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="Les plus cordons bleus peuvent même ajouter leurs propores recettes ! "
+            android:text="Les plus cordons bleus peuvent même ajouter leurs propres recettes ! "
             android:textColor="#000000"
             android:textSize="19sp"
             app:layout_constraintBottom_toBottomOf="parent"
