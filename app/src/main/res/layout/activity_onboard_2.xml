@@ -20,7 +20,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:text="Consulter des recettes sur base des ingrédients que vous possédez ! "
+        android:text="Consultez des recettes sur base des ingrédients que vous possédez ! "
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
         android:textColor="#FFFFFF"
         android:textSize="29sp"
@@ -29,7 +29,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Une fois vos ingrédients rentrés, nous vous donnons les recettes directement réalisable. Aussi, nous vous proposerons des recettes necéssitant au maximum deux ingrédients de plus."
+        android:text="Une fois vos ingrédients rentrés, nous vous donnons les recettes directement réalisables. Aussi, nous vous proposerons des recettes necéssitant au maximum deux ingrédients de plus."
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:textColor="#4DB6AC"
         android:gravity="center"></TextView>

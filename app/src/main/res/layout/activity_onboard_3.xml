@@ -20,7 +20,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
-        android:text="Créez vos propres recettes et partagez les avec les autres membres de la communauté"
+        android:text="Créez vos propres recettes et partagez-les avec les autres membres de la communauté"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
         android:textColor="#FFFFFF"
         android:textSize="29sp"
@@ -29,7 +29,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Trouvez un nom évocateur, détaillez les ingrédients un par un et ajouter une déscription des étapes à suivre et le tour est joué ! "
+        android:text="Trouvez un nom évocateur, détaillez les ingrédients un par un et ajoutez une déscription des étapes à suivre et le tour est joué ! "
         android:textColor="#4DB6AC"
         android:textSize="22sp"
         android:gravity="center"></TextView>
