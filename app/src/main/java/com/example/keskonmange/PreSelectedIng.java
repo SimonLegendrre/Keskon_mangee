@@ -102,7 +102,7 @@ public class PreSelectedIng extends OptionsMenuActivity {
                 new AlertDialog.Builder(PreSelectedIng.this)
                         .setIcon(android.R.drawable.ic_delete)
                         .setTitle("Supprimer " + ingredients_list.get(position).toString() + " ?")
-                        .setMessage("Voules-vous supprimer cet ingrédient de la recette?")
+                        .setMessage("Voules-vous supprimer '" +  ingredients_list.get(position).toString() + "' de vos ingrédients pré-sélectionné ?")
                         // Si l'utilisateur clique sur OUI, l'étape est supprimée.
                         .setPositiveButton("Oui", new DialogInterface.OnClickListener() {
                             @Override

@@ -1,9 +1,12 @@
 package com.example.keskonmange;
 
+import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
@@ -139,6 +142,28 @@ public class Choix_ing_consult extends OptionsMenuActivity {
         // fait le lien entre le XML EditText et arrayList "ingredientList"
         arrayAdapterIngredient = new ArrayAdapter<>(this,
                 android.R.layout.simple_list_item_1, ingredientList);
+
+        listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                //Une nouvelle fenêtre s'ouvre et affiche un message pour vérifier
+                new AlertDialog.Builder(Choix_ing_consult.this)
+                        .setIcon(android.R.drawable.ic_delete)
+                        .setTitle("Supprimer " + ingredientList.get(position).toString() + " ?")
+                        .setMessage("Voules-vous supprimer cet ingrédient de votre recherche ?")
+                        // Si l'utilisateur clique sur OUI, l'étape est supprimée.
+                        .setPositiveButton("Oui", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                ingredientList.remove(position);
+                                arrayAdapterIngredient.notifyDataSetChanged();
+                            }
+                        })
+                        .setNegativeButton("Non", null)
+                        .show();
+                return false;
+            }
+        });
 
         awesomeValidation = new AwesomeValidation(ValidationStyle.BASIC);
         awesomeValidation.addValidation(this, R.id.et_ing, RegexTemplate.NOT_EMPTY, R.string.invalid_ingredient);

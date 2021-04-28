@@ -66,7 +66,7 @@ public class Register extends AppCompatActivity {
 
         // Prendre en compte si l'utilisateur a déjà un compte. Dans ce cas, on ne veut pas qu'il tombe sur l'écran de Registration
 
-        if (fAuth.getCurrentUser() != null && user.isEmailVerified()) {
+        if (fAuth.getCurrentUser()!= null && user.isEmailVerified() ){
             startActivity(new Intent(getApplicationContext(), MainActivity.class));
             finish();
         }
@@ -80,18 +80,18 @@ public class Register extends AppCompatActivity {
                 String fullName = mFullname.getText().toString();
 
 
-                if (TextUtils.isEmpty(email)) {
+                if (TextUtils.isEmpty(email)){
                     mEmail.setError("Une adresse email est requise.");
                     return;
                 }
 
-                if (TextUtils.isEmpty(password)) {
+                if (TextUtils.isEmpty(password)){
                     mPassowrd.setError("Un mot de passe est requis");
                     return;
                 }
 
                 // Ici on va mettre des conditions sur la format du mot de passe. On va commencer on disant qu'il faut au moins une longueur de 6 charactères
-                if (password.length() < 6) {
+                if (password.length()<6){
                     mPassowrd.setError("Le mot de passe doit faire au moins 6 charactères");
                     return;
                 }
@@ -99,7 +99,7 @@ public class Register extends AppCompatActivity {
                 progressB.setVisibility(View.VISIBLE);
 
                 // Ici on va registrer le user in Firebase
-                fAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                fAuth.createUserWithEmailAndPassword(email, password). addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     private static final String TAG = "succès registration";
 
                     @Override
@@ -115,9 +115,12 @@ public class Register extends AppCompatActivity {
                             }).addOnFailureListener(new OnFailureListener() {
                                 @Override
                                 public void onFailure(@NonNull Exception e) {
-                                    Log.d(TAG, "Problème encouru. L'email n'a pas été envoyé. " + e.getMessage()); // le message sera potentiellement en anglais s'il y a ce probleme
+                                    Log.d(TAG, "Problème encouru. L'email n'a pas été envoyé. " +e.getMessage()); // le message sera potentiellement en anglais s'il y a ce probleme
                                 }
                             });
+
+
+
 
 
                             Toast.makeText(Register.this, "Utilisteur créé", Toast.LENGTH_SHORT).show(); //LENGTH_SHORT ==> short period of time
@@ -137,12 +140,12 @@ public class Register extends AppCompatActivity {
                             documentReference.set(user).addOnSuccessListener(new OnSuccessListener<Void>() {
                                 @Override
                                 public void onSuccess(Void aVoid) {
-                                    Log.d(TAG, "Succès: Le profil a été créé pour l'utilisateur " + userID);
+                                    Log.d(TAG, "Succès: Le profil a été créé pour l'utilisateur "+userID);
                                 }
                             });
                             startActivity(new Intent(getApplicationContext(), Login.class));
-                        } else {
-                            Toast.makeText(Register.this, "Erreur lors de la création de compte. " + task.getException().getMessage(), Toast.LENGTH_SHORT).show();
+                        }else {
+                            Toast.makeText(Register.this, "Erreur lors de la création de compte. "+ task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                             progressB.setVisibility(View.GONE); // si on ne met pas ça, la progress bar va continuer sans arrêt.
                         }
                     }

@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -29,8 +30,6 @@ public class CreationOrConsulationPage extends OptionsMenuActivity {
 
     private final FirebaseFirestore db = FirebaseFirestore.getInstance();
     private FirebaseAuth fAuth = FirebaseAuth.getInstance();
-    String userId = fAuth.getCurrentUser().getUid();
-    private DocumentReference document = db.collection("Users").document(userId);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +38,27 @@ public class CreationOrConsulationPage extends OptionsMenuActivity {
          */
 
         super.onCreate(savedInstanceState);
+
+        FirebaseUser userIdCheck = fAuth.getCurrentUser();
+
+        if (userIdCheck == null) {
+            Intent intent = new Intent(CreationOrConsulationPage.this, Register.class);
+            startActivity(intent);
+            finish();
+        }
+
+        else{
+
+
+        String userId = fAuth.getCurrentUser().getUid();
+        DocumentReference document = db.collection("Users").document(userId);
+
+
+        System.out.println(userId + "TEST DE LA VIE");
+
+        if (userId == null) {
+
+        }
 
         document.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
@@ -54,8 +74,6 @@ public class CreationOrConsulationPage extends OptionsMenuActivity {
         acceuil_consult_button = (ImageButton) findViewById(R.id.acceuil_to_consult_recipe_button);
         acceuil_Allrecipes_button = (ImageButton) findViewById(R.id.Consult_all_recipes);
         info_dialog = (ImageButton) findViewById(R.id.button_info_creat_or_consult);
-
-
 
 
         acceuil_create_button.setOnClickListener(new View.OnClickListener() {
@@ -126,13 +144,10 @@ public class CreationOrConsulationPage extends OptionsMenuActivity {
                 });
 
 
-
-
-
-
-
             }
         });
+
+    }
 
 
     }

@@ -229,7 +229,7 @@ public class ModifMyRecipe extends OptionsMenuActivity {
         RecipeImage.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
-                TestMethod(); // CETTE METHODE EST TOUT EN BAS
+                ModifyPhoto(); // CETTE METHODE EST TOUT EN BAS
                 return false;
             }
         });
@@ -239,7 +239,7 @@ public class ModifMyRecipe extends OptionsMenuActivity {
             @Override
             public void onClick(View v) {
 
-                TestMethod(); // CETTE METHODE EST TOUT EN BAS
+                ModifyPhoto(); // CETTE METHODE EST TOUT EN BAS
             }
 
         });
@@ -490,7 +490,7 @@ public class ModifMyRecipe extends OptionsMenuActivity {
         }
     }
 
-    public void TestMethod() {
+    public void ModifyPhoto() {
 
         final Dialog dialog = new Dialog(ModifMyRecipe.this);
         dialog.setContentView(R.layout.dialog_modif_image);
