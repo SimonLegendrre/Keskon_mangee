@@ -235,7 +235,7 @@ public class Choice_recipe_consult extends OptionsMenuActivity {
                     listView1.setVisibility(View.GONE);
 
                     Dialog no_recipes_dialog = new Dialog(Choice_recipe_consult.this);
-                    no_recipes_dialog.setContentView(R.layout.activity_choice_recipe_consult_dialog);
+                    no_recipes_dialog.setContentView(R.layout.dialog_choice_recipe_consult);
                     no_recipes_dialog.show();
 
                     stop_no_recipes = (Button) no_recipes_dialog.findViewById(R.id.btn_stop_no_recipes);

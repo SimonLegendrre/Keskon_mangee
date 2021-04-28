@@ -27,12 +27,12 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <include layout="@layout/content_main" />
+        <include layout="@layout/content_main" />
 
 
-    <TextView
-        android:layout_width="70dp"
-        android:layout_height="29dp"
-        android:text="TextView" />
+        <TextView
+            android:layout_width="70dp"
+            android:layout_height="29dp"
+            android:text="TextView" />
 
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>

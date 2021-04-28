@@ -1,22 +1,17 @@
 package com.example.keskonmange;
 
-import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.appcompat.widget.Toolbar;
 
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-
 public class MainActivity extends OptionsMenuActivity {
 
-    FirebaseAuth firebaseAuth;
+    //FirebaseAuth firebaseAuth;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -29,11 +24,17 @@ public class MainActivity extends OptionsMenuActivity {
             A mon avis, il y a moyen d'ooptimiser le code car pour le moment, c'est juste du copier/coller
          */
 
+
+        /*
         firebaseAuth = FirebaseAuth.getInstance();
         FirebaseUser user = firebaseAuth.getCurrentUser();
         if(!user.isEmailVerified()) { // if the email is NOT verified, goes to MY Pprofile where account verification is required
             startActivity(new Intent(getApplicationContext(), AuthenticatorApp.class));
         }
+
+         */
+
+
 
 
         /*

@@ -20,7 +20,6 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
@@ -37,7 +36,6 @@ public class AuthenticatorApp extends OptionsMenuActivity {
     private FirebaseFirestore fstore = FirebaseFirestore.getInstance();
     private FirebaseAuth fAuth = FirebaseAuth.getInstance();
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
-    private CollectionReference AllRecipe = db.collection("Recettes");
     private Button ConsultMyREcipes, ReconnectionAttempt;
     Button Choice_pre_ing;
 
