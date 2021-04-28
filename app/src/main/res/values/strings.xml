@@ -5,6 +5,7 @@
     <!-- Strings used for fragments for navigation -->
     <string name="page_de_creation_de_recette">Aller à la page de création de recette</string>
     <string name="invalid_name">Veuillez remplir le champ</string>
+    <string name="invalid_recipeYield">Veuillez remplir ce champ</string>
     <string name="invalid_ingredient">Veuilez entrer un ingrédient</string>
     <string name="invalid_recipe_description">Veuillez remplir le champ</string>
     <string name="remplissez_ici_les_informations_correspondant_votre_recette">Remplissez ici les informations correspondant à votre recette</string>

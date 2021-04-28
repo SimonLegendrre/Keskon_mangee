@@ -174,7 +174,7 @@ public class FillInCreate extends OptionsMenuActivity {
         awesomeValidationIngredients = new AwesomeValidation(ValidationStyle.BASIC);
         awesomeValidationEtapes = new AwesomeValidation(ValidationStyle.BASIC);
         awesomeValidation.addValidation(this, R.id.nom_recette, RegexTemplate.NOT_EMPTY, R.string.invalid_titre);
-        //awesomeValidation.addValidation(this,R.id.description, RegexTemplate.NOT_EMPTY,R.string.invalid_description);
+        awesomeValidation.addValidation(this,R.id.recipe_yield, RegexTemplate.NOT_EMPTY, R.string.invalid_recipeYield);
         awesomeValidationIngredients.addValidation(this, R.id.ingredients, RegexTemplate.NOT_EMPTY, R.string.invalid_ingredient);
         awesomeValidationEtapes.addValidation(this, R.id.description, RegexTemplate.NOT_EMPTY, R.string.invalid_recipe_description);
 
