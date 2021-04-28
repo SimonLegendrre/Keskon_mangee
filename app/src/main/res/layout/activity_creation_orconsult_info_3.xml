@@ -13,7 +13,7 @@
         android:background="@drawable/white_back_popup_message"
         android:gravity="center"
         android:padding="20dp"
-        android:text="CREER UNE RECETTE, vous permet d'entrer vos recettes afin de les rendre accessible à toute la communauté"
+        android:text="Vous pourrez consulter, ici, toutes les recettes que contient l'app. "
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         android:textColor="#050000"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -34,16 +34,17 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.243"
-        app:srcCompat="@drawable/info_3" />
+        app:srcCompat="@drawable/nav" />
 
     <Button
-        android:id="@+id/next_info3"
+        android:id="@+id/info_finish"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="20dp"
         android:layout_marginRight="20dp"
         android:background="@color/white"
-        android:text="Suivant "
+        android:text="Ok !"
+        android:layout_marginBottom="40dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView10"

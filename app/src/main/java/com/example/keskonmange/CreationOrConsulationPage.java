@@ -6,8 +6,13 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 // Dès maintenant, on extends par la classe OptionsMenuActivity et non AuthenticatorApp : Voir classe OptionsMenuActivity
 // Pour l'explication
@@ -15,13 +20,17 @@ import com.google.firebase.auth.FirebaseAuth;
 public class CreationOrConsulationPage extends OptionsMenuActivity {
     public ImageButton acceuil_create_button;
     public ImageButton acceuil_consult_button;
-    public Button acceuil_myProfile_button;
     public ImageButton acceuil_Allrecipes_button;
-    Button info_dialog;
+    ImageButton info_dialog;
     Button next_info1;
     Button next_info2;
-    Button next_info3;
     Button finish_info;
+    TextView TvBonjour;
+
+    private final FirebaseFirestore db = FirebaseFirestore.getInstance();
+    private FirebaseAuth fAuth = FirebaseAuth.getInstance();
+    String userId = fAuth.getCurrentUser().getUid();
+    private DocumentReference document = db.collection("Users").document(userId);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,17 +39,24 @@ public class CreationOrConsulationPage extends OptionsMenuActivity {
          */
 
         super.onCreate(savedInstanceState);
+
+        document.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                String name = documentSnapshot.getString("FullName");
+                TvBonjour = (TextView) findViewById(R.id.bonjour);
+                TvBonjour.setText("Bonjour " + name);
+            }
+        });
+
         setContentView(R.layout.activity_creation_orconsulation_page);
         acceuil_create_button = (ImageButton) findViewById(R.id.acceuil_to_create_recipe_button);
         acceuil_consult_button = (ImageButton) findViewById(R.id.acceuil_to_consult_recipe_button);
-        acceuil_myProfile_button = (Button) findViewById(R.id.MyProfile);
         acceuil_Allrecipes_button = (ImageButton) findViewById(R.id.Consult_all_recipes);
-        info_dialog = (Button) findViewById(R.id.button_info_creat_or_consult);
-
-        // Pas encore utile
+        info_dialog = (ImageButton) findViewById(R.id.button_info_creat_or_consult);
 
 
-        //
+
 
         acceuil_create_button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -59,13 +75,15 @@ public class CreationOrConsulationPage extends OptionsMenuActivity {
         });
 
 
-        acceuil_myProfile_button.setOnClickListener(new View.OnClickListener() {
+        /*acceuil_myProfile_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v3) {
                 Intent intent3 = new Intent(CreationOrConsulationPage.this, AuthenticatorApp.class);
                 startActivity(intent3);
             }
         });
+
+         */
 
         acceuil_Allrecipes_button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -94,20 +112,12 @@ public class CreationOrConsulationPage extends OptionsMenuActivity {
                             @Override
                             public void onClick(View v) {
                                 info_kkm.setContentView(R.layout.activity_creation_orconsult_info_3);
-                                next_info3 = (Button) info_kkm.findViewById(R.id.next_info3);
+                                finish_info = (Button) info_kkm.findViewById(R.id.info_finish);
 
-                                next_info3.setOnClickListener(new View.OnClickListener() {
+                                finish_info.setOnClickListener(new View.OnClickListener() {
                                     @Override
                                     public void onClick(View v) {
-                                        info_kkm.setContentView(R.layout.activity_creation_orconsult_info_4);
-                                        finish_info = (Button) info_kkm.findViewById(R.id.close_dialog);
-
-                                        finish_info.setOnClickListener(new View.OnClickListener() {
-                                            @Override
-                                            public void onClick(View v) {
-                                                info_kkm.dismiss();
-                                            }
-                                        });
+                                        info_kkm.dismiss();
                                     }
                                 });
                             }

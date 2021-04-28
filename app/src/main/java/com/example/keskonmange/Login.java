@@ -116,7 +116,8 @@ public class Login extends AppCompatActivity {
 
                                         } else {
                                             Toast.makeText(Login.this, "Heureux de vous revoir!", Toast.LENGTH_SHORT).show(); //LENGTH_SHORT ==> short period of time
-                                            startActivity(new Intent(getApplicationContext(), CreationOrConsulationPage.class));
+                                            Intent intent = new Intent(Login.this, CreationOrConsulationPage.class);
+                                            startActivity(intent);
                                         }
                                         finish();
                                     }

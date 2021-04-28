@@ -14,7 +14,7 @@
         android:background="@drawable/white_back_popup_message"
         android:gravity="center"
         android:padding="20dp"
-        android:text="En cliquant sur CONSULTER TOUTES LES RECETTES, vous avez accès à toutes les recettes disponnibles"
+        android:text="En cliquant sur CREER, vous pourrez partager vos délicieuses recettes à la communauté."
         android:textAppearance="@style/TextAppearance.AppCompat.Medium"
         android:textColor="#050000"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -35,7 +35,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.243"
-        app:srcCompat="@drawable/info_2" />
+        app:srcCompat="@drawable/creation" />
 
     <Button
         android:id="@+id/next_info2"
@@ -45,6 +45,7 @@
         android:layout_marginRight="16dp"
         android:background="@color/white"
         android:text="suivant"
+        android:layout_marginBottom="40dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView10"
