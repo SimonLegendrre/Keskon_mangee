@@ -33,9 +33,11 @@ import androidx.core.widget.NestedScrollView;
 import com.basgeekball.awesomevalidation.AwesomeValidation;
 import com.basgeekball.awesomevalidation.ValidationStyle;
 import com.basgeekball.awesomevalidation.utility.RegexTemplate;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
@@ -420,7 +422,7 @@ public class FillInCreate extends OptionsMenuActivity {
                 RecipeImage.setImageURI(contentUri);
                 // s'affiche dans la section LogCat (à coté de Run
                 Log.d("ImageUrlIsGotten", "onActivityResult: Gallery Image Uri: " + imageFileName);
-                //RecipeImage.setVisibility(View.VISIBLE);
+                RecipeImage.setVisibility(View.VISIBLE);
 
                 // Test KIKI
                 CurrentfileNamePhoto = imageFileName;
@@ -432,7 +434,6 @@ public class FillInCreate extends OptionsMenuActivity {
 
             }
         }
-
 
     }
 
@@ -500,27 +501,9 @@ public class FillInCreate extends OptionsMenuActivity {
     }
 
 
-    public void AddToDataBase(String nameRecipe, Uri contentUri) {
-
-    }
-
     // Method OnClick : lorsqu'on appuie sur 'Enregistrer ma recette'
     public void SaveRecipe(View view) {
         if (awesomeValidation.validate() && ListeIngredients.size() > 0 && ListeEtapes.size() > 0) {
-            /*
-            String name = editTextTitre.getText().toString();
-            name = name.replaceAll("\\s+", " ");
-            String id_recipe = name.replaceAll(" ", "_").toLowerCase();
-
-            DocumentReference document = db.collection("Recettes").document(id_recipe);
-            document.update("cookTime", CookTime.getText().toString());
-            document.update("description", ListeIngredients);
-            document.update("recipeInstructions", ListeEtapes);
-            document.update("prepTime", PrepTimme.getText().toString());
-            Integer tempsTotal = Integer.valueOf(PrepTimme.getText().toString()) + Integer.valueOf(CookTime.getText().toString());
-            String totalTime = tempsTotal.toString();
-            document.update("totalTime", totalTime);
-             */
 
             // Adding Recipe
             String cookTime = CookTime.getText().toString();
@@ -560,6 +543,18 @@ public class FillInCreate extends OptionsMenuActivity {
                     recipeIngredients, recipeInstructions, recipeYield, totalTime, userID, note, imageRef); // User ID ajouté pour ajouter l'ID utilisatuer
 
             AllRecipe.document(id_recipe).set(recette);
+            userId = fAuth.getCurrentUser().getUid();
+            DocumentReference documentUser = fstore.collection("Users").document(userId);
+
+            documentUser.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                @Override
+                public void onSuccess(DocumentSnapshot documentSnapshot) {
+                    ArrayList<String> MyRecipes = new ArrayList<>();
+                    MyRecipes = (ArrayList<String>) documentSnapshot.get("MyRecipes");
+                    MyRecipes.add(id_recipe);
+                    documentUser.update("MyRecipes", MyRecipes);
+                }
+            });
 
 
             // Rediriger vers le menu lorsque l'on clique
@@ -579,6 +574,8 @@ public class FillInCreate extends OptionsMenuActivity {
         }
 
     }
+
+
 
 
 }

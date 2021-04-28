@@ -25,4 +25,11 @@
         android:layout_below="@+id/bt_cam"
         android:text="Appareil photo" />
 
+    <Button
+        android:id="@+id/bt_delete"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/bt_gallery"
+        android:text="Supprimer ma photo" />
+
 </RelativeLayout>

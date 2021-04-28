@@ -67,6 +67,7 @@
             app:layout_constraintTop_toBottomOf="@id/TextViewExplicationsPhoto"
             app:layout_constraintVertical_bias="0.278"
             app:srcCompat="@drawable/ic_launcher_background"
+            android:layout_gravity="center_horizontal"
             tools:ignore="VectorDrawableCompat" />
 
         <Button
@@ -74,7 +75,7 @@
             android:layout_width="wrap_content"
             android:layout_height="35dp"
             android:layout_gravity="right"
-            android:text="Modifier ma photo"
+            android:text="Ajouter une photo"
             android:textSize="10dp" />
 
 
@@ -90,7 +91,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical|center_horizontal"
-            android:text="supprimer ma recette" />
+            android:text="Supprimer ma recette" />
 
 
 

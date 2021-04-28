@@ -30,6 +30,7 @@ import androidx.core.content.ContextCompat;
 import androidx.core.content.FileProvider;
 
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -48,6 +49,8 @@ public class ModifMyRecipe extends OptionsMenuActivity {
 
     // Faire appel à la db
     private final FirebaseFirestore db = FirebaseFirestore.getInstance();
+    private FirebaseAuth fAuth = FirebaseAuth.getInstance();
+    String userId = fAuth.getCurrentUser().getUid();
     // String représentant la recette qui nous intéresse pour cette activité
     String recipe;
     // Initialisation ListView, TextView et Button
@@ -90,6 +93,7 @@ public class ModifMyRecipe extends OptionsMenuActivity {
         button_update_recipe = findViewById(R.id.update_modif);
         button_delete = findViewById(R.id.btn_delete);
         button_modif_image = findViewById(R.id.modif_image);
+        button_modif_image.setVisibility(View.GONE);
         RecipeImage = findViewById(R.id.imageViewRecipePicture);
         storageReference = FirebaseStorage.getInstance().getReference();
 
@@ -116,9 +120,9 @@ public class ModifMyRecipe extends OptionsMenuActivity {
                 listViewIngre.setAdapter(adapter);
                 listViewStep.setAdapter(adapter2);
 
-                listViewIngre.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                listViewIngre.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
                     @Override
-                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
 
                         // Afficher le pop-up pour modifier l'ingrédient
 
@@ -153,13 +157,14 @@ public class ModifMyRecipe extends OptionsMenuActivity {
                         });
 
                         dialog.show();
-
+                        return false;
                     }
                 });
 
-                listViewStep.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+                listViewStep.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
                     @Override
-                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
 
                         // Afficher le pop-up pour modifier l'ingrédient
 
@@ -192,12 +197,18 @@ public class ModifMyRecipe extends OptionsMenuActivity {
                         });
 
                         dialog2.show();
-
+                        return false;
                     }
                 });
 
+
                 String RecipeImageId = documentSnapshot.getString("imageRef");
-                if (RecipeImageId.charAt(0) == 'J') {
+
+                if (RecipeImageId.equals("")) {
+                    RecipeImage.setVisibility(View.GONE);
+                    button_modif_image.setVisibility(View.VISIBLE);
+
+                } else if (RecipeImageId.charAt(0) == 'J') {
                     StorageReference image = storageReference.child("pictures/" + RecipeImageId);
                     image.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
                         @Override
@@ -209,48 +220,30 @@ public class ModifMyRecipe extends OptionsMenuActivity {
                     String imageUri = RecipeImageId;
                     Picasso.get().load(imageUri).into(RecipeImage);
 
-                } else if (RecipeImageId.isEmpty()) {
-                    RecipeImage.setVisibility(View.GONE);
                 }
 
             }
 
         });
 
+        RecipeImage.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                TestMethod(); // CETTE METHODE EST TOUT EN BAS
+                return false;
+            }
+        });
+
+
         button_modif_image.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                final Dialog dialog = new Dialog(ModifMyRecipe.this);
-                dialog.setContentView(R.layout.dialog_modif_image);
-                TextView textView = (TextView) dialog.findViewById(R.id.txtmessage);
-                textView.setText("Voulez-vous accéder à votre gallerie ou prendre une nouvelle photo ?");
-                Button bt_gallery = (Button) dialog.findViewById(R.id.bt_gallery);
-                Button bt_cam = (Button) dialog.findViewById(R.id.bt_cam);
-                dialog.show();
-
-                bt_gallery.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        askCameraPermissions();
-                        dialog.dismiss();
-
-                    }
-                });
-
-                bt_cam.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        Intent gallery_intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-                        startActivityForResult(gallery_intent, GALLERY_REQUEST_CODE); // donne code permattant d'aller chercher les informations dans la gallerie (plutot que l'appareil photo lui-même)
-                        dialog.dismiss();
-                        //RecipeImage.setVisibility(View.VISIBLE);
-                    }
-                });
-
+                TestMethod(); // CETTE METHODE EST TOUT EN BAS
             }
 
         });
+
 
         textModifIng.setText("Cliquez maintenant sur un ingrédient ou une étape de votre recette pour la modifier. Une fois fait, cliquez" +
                 " sur 'Mettre à jour ma recette' pour enregistrer vos modification. \n\n " + "Modifier les ingrédients : \n");
@@ -259,7 +252,6 @@ public class ModifMyRecipe extends OptionsMenuActivity {
         button_add_ing.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
 
 
                 final Dialog dialog = new Dialog(ModifMyRecipe.this);
@@ -336,6 +328,17 @@ public class ModifMyRecipe extends OptionsMenuActivity {
                                 Toast.makeText(ModifMyRecipe.this, "Votre recette a bel " +
                                         "et bien été supprimée", Toast.LENGTH_SHORT).show();
                                 document.delete();
+
+                                DocumentReference documentUser = db.collection("Users").document(userId);
+                                documentUser.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                                    @Override
+                                    public void onSuccess(DocumentSnapshot documentSnapshot) {
+                                        ArrayList<String> MyRecipes = new ArrayList<>();
+                                        MyRecipes = (ArrayList<String>) documentSnapshot.get("MyRecipes");
+                                        MyRecipes.remove(recipe);
+                                        documentUser.update("MyRecipes", MyRecipes);
+                                    }
+                                });
                                 Intent intent = new Intent(ModifMyRecipe.this, CreationOrConsulationPage.class);
                                 startActivity(intent);
                                 finish();
@@ -391,7 +394,7 @@ public class ModifMyRecipe extends OptionsMenuActivity {
 
                 // TEST SIMON ajoute l'image à Firebase, dans la section Storage. Voir la méthode détaillée plus bas
                 recipe = getIntent().getStringExtra("recipe_to_pass");
-                StorageReference image = storageReference.child("pictures/" + f.getName() );
+                StorageReference image = storageReference.child("pictures/" + f.getName());
                 image.putFile(contentUri);
                 DocumentReference document = db.collection("Recettes").document(recipe);
                 document.update("imageRef", f.getName());
@@ -415,7 +418,7 @@ public class ModifMyRecipe extends OptionsMenuActivity {
 
                 // TEST SIMON
                 recipe = getIntent().getStringExtra("recipe_to_pass");
-                StorageReference image = storageReference.child("pictures/" + imageFileName );
+                StorageReference image = storageReference.child("pictures/" + imageFileName);
                 image.putFile(contentUri);
                 DocumentReference document = db.collection("Recettes").document(recipe);
                 document.update("imageRef", imageFileName);
@@ -427,7 +430,6 @@ public class ModifMyRecipe extends OptionsMenuActivity {
         }
 
     }
-
 
 
     private String getFileExt(Uri contentUri) { // allow to get file type
@@ -488,6 +490,48 @@ public class ModifMyRecipe extends OptionsMenuActivity {
         }
     }
 
+    public void TestMethod() {
+
+        final Dialog dialog = new Dialog(ModifMyRecipe.this);
+        dialog.setContentView(R.layout.dialog_modif_image);
+        TextView textView = (TextView) dialog.findViewById(R.id.txtmessage);
+        textView.setText("Voulez-vous accéder à votre gallerie ou prendre une nouvelle photo ?");
+        Button bt_gallery = (Button) dialog.findViewById(R.id.bt_gallery);
+        Button bt_cam = (Button) dialog.findViewById(R.id.bt_cam);
+        Button bt_delete = (Button) dialog.findViewById(R.id.bt_delete);
+        dialog.show();
+
+        bt_gallery.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                askCameraPermissions();
+                dialog.dismiss();
+                RecipeImage.setVisibility(View.VISIBLE);
+
+            }
+        });
+
+        bt_cam.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent gallery_intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                startActivityForResult(gallery_intent, GALLERY_REQUEST_CODE); // donne code permattant d'aller chercher les informations dans la gallerie (plutot que l'appareil photo lui-même)
+                dialog.dismiss();
+                RecipeImage.setVisibility(View.VISIBLE);
+            }
+        });
+
+        bt_delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DocumentReference document = db.collection("Recettes").document(recipe);
+                document.update("imageRef", "");
+                dialog.dismiss();
+                RecipeImage.setVisibility(View.GONE);
+            }
+        });
+
+    }
 
 
 }

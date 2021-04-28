@@ -26,8 +26,6 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 
@@ -104,8 +102,6 @@ public class AuthenticatorApp extends OptionsMenuActivity {
 
         // retrieve the data from the DB
         DocumentReference documentReference = fstore.collection("Users").document(userId);
-
-
         documentReference.addSnapshotListener(this, new EventListener<DocumentSnapshot>() {
             @Override
             public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException error) {
@@ -117,13 +113,11 @@ public class AuthenticatorApp extends OptionsMenuActivity {
 
         // Définition des ArrayList et de l'adapteur : l'adapteur permet de transformer un ArrayList en ListView dans le XML.
 
-        ListView text_my_recipes;
-        TextView noRecipeText;
-        text_my_recipes = findViewById(R.id.text_my_recipes);
-        noRecipeText = findViewById(R.id.text_no_recipe);
+        ListView ListMyRecipes;
+        ListMyRecipes = findViewById(R.id.text_my_recipes);
+
 
         ArrayList<String> recipes_list = new ArrayList<>();
-        ArrayList<String> recipes_list_id = new ArrayList<>();
         ArrayAdapter adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, recipes_list);
 
         // Initialisation d'un String  que l'on va Intent dans une autre activité. Pour permettre de savoir dans l'autre activité d'où on vient.
@@ -132,66 +126,62 @@ public class AuthenticatorApp extends OptionsMenuActivity {
 
         String MyProfileActi = "MyProfile";
 
-
         // Méthode setOnclickListener Pour effectuer les différentes actions lorsque l'on clique sur le bouton "Consulter mes recettes" :
 
         // D'abord, affichage du ListView avec mes recettes SSI j'ai déjà crée une recette.
-        ConsultMyREcipes.setOnClickListener(new View.OnClickListener() {
+
+        document.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
-            public void onClick(View v) {
-                ConsultMyREcipes.setEnabled(false);
+            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                ArrayList<String> MyRecipes = new ArrayList<>();
+                ArrayList<String> recipes_list_id = new ArrayList<>();
+                MyRecipes = (ArrayList<String>) documentSnapshot.get("MyRecipes");
 
-                AllRecipe.whereEqualTo("userID", userId)
-                        .get()
-                        .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                if (MyRecipes.size() == 0) {
+                    ConsultMyREcipes.setVisibility(View.GONE);
+                } else {
+
+                    ArrayList<String> finalMyRecipes = MyRecipes;
+                    for (String rec : finalMyRecipes) {
+                        recipes_list_id.add(rec);
+
+                        DocumentReference documentRecipe = db.collection("Recettes").document(rec);
+                        documentRecipe.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                             @Override
-                            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-
-                                //Si on n'a pas créé de recette
-                                if (queryDocumentSnapshots.isEmpty()) {
-                                    noRecipeText.setText("Vous n'avez pas créé de recette.");
-                                }
-
-                                //Si on en a créé des recettes
-                                else {
-
-                                    String titre;
-                                    String id_recipe;
-
-                                    for (QueryDocumentSnapshot documentSnapshot : queryDocumentSnapshots) {
-
-                                        Recettes recette = documentSnapshot.toObject(Recettes.class);
-                                        recette.setDocumentId(documentSnapshot.getId());
-                                        //String documentId = recette.getDocumentId();
-                                        titre = recette.getName();
-                                        id_recipe = recette.getDocumentId();
-                                        //DocumentReference document = db.collection("Recette").document(id_recipe);
-                                        recipes_list.add(titre);
-                                        recipes_list_id.add(id_recipe);
-
-                                    }
-
-                                    // Création du listView via Adapter
-                                    text_my_recipes.setAdapter(adapter);
-
-                                    // Action lorsque l'on clique sur la recette sur laquelle on est intéressé.
-                                    text_my_recipes.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                                        @Override
-                                        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                                            Intent intent = new Intent(AuthenticatorApp.this, DetailedDescription.class);
-                                            intent.putExtra("recipe_to_pass", recipes_list_id.get(position));
-                                            intent.putExtra("from_which_acti", MyProfileActi);
-                                            startActivity(intent);
-                                        }
-                                    });
-                                }
+                            public void onSuccess(DocumentSnapshot documentSnapshot) {
+                                String name = documentSnapshot.getString("name");
+                                recipes_list.add(name);
+                                adapter.notifyDataSetChanged();
                             }
                         });
+                    }
 
+
+                    ConsultMyREcipes.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            ConsultMyREcipes.setEnabled(false);
+                            // Création du listView via Adapter
+                            ListMyRecipes.setAdapter(adapter);
+                            // Action lorsque l'on clique sur la recette sur laquelle on est intéressé.
+                            ListMyRecipes.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                                @Override
+                                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                                    Intent intent = new Intent(AuthenticatorApp.this, DetailedDescription.class);
+                                    String RecipeToPass = recipes_list.get(position).replaceAll(" ", "_").toLowerCase(); ;
+                                    intent.putExtra("recipe_to_pass", RecipeToPass);
+                                    intent.putExtra("from_which_acti", MyProfileActi);
+                                    startActivity(intent);
+                                }
+                            });
+
+                        }
+                    });
+
+                }
 
             }
         });
-
 
     }
 
