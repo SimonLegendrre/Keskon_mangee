@@ -108,14 +108,14 @@ public class DetailedDescription extends OptionsMenuActivity {
                 String tempsPrep = documentSnapshot.getString("prepTime");
                 String tempsTotal = documentSnapshot.getString("totalTime");
                 String RecipeImageId = documentSnapshot.getString("imageRef");
-
+                String NombrePersonne = documentSnapshot.getString("recipeYield");
 
                 for (int i = 0; i < tab.size(); i++) {
                     description += "Etape " + String.valueOf(i + 1) + ": " + tab.get(i) + "\n\n";
                 }
 
-                data += titre + "\n\n Ingrédients: \n";
-                List<String> ingredient = (List<String>) documentSnapshot.get("description");
+                data += titre + "\n\n Ingrédients pour "+ NombrePersonne + " personne(s) : \n";
+                List<String> ingredient = (List<String>) documentSnapshot.get("recipeIngredients");
 
                 for (String ing : ingredient) {
                     data += "\n- " + ing;

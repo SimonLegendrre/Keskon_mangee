@@ -63,10 +63,11 @@
             android:hint="Nombre de personne"
             android:inputType="number"
             android:padding="10dp"
-            android:visibility="gone"
+            android:visibility="visible"
             app:layout_constraintBottom_toTopOf="@+id/PrepTime"
-            app:layout_constraintTop_toBottomOf="@+id/nom_recette"
-            tools:layout_editor_absoluteX="40dp" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/nom_recette" />
 
         <EditText
             android:id="@+id/PrepTime"
@@ -79,6 +80,8 @@
             android:inputType="number"
             android:padding="10dp"
             app:layout_constraintBottom_toTopOf="@+id/CookTime"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/recipe_yield" />
 
         <EditText
@@ -91,6 +94,8 @@
             android:hint="Temps de cuisson (en minutes)"
             android:inputType="number"
             android:padding="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/PrepTime" />
 
         <TextView
@@ -102,6 +107,8 @@
             android:textColor="@color/white"
             android:textSize="20dp"
             android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/CookTime" />
 
         <AutoCompleteTextView
@@ -122,6 +129,36 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/TextViewExplicationsIngredients" />
 
+        <EditText
+            android:id="@+id/quantité"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="19dp"
+            android:background="@android:color/white"
+            android:ems="10"
+            android:hint="Quantité"
+            android:inputType="number"
+            android:padding="10dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ingredients" />
+
+        <EditText
+
+            android:padding="10dp"
+            android:id="@+id/unité_de_mesure"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="19dp"
+            android:background="@android:color/white"
+            android:ems="10"
+            android:hint="Unité"
+            android:inputType="textPersonName"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/quantité"
+            app:layout_constraintTop_toBottomOf="@+id/ingredients" />
+
         <Button
             android:id="@+id/btn_ajouterIngredient"
             android:layout_width="wrap_content"
@@ -130,7 +167,7 @@
             android:text="Ajouter ingrédient à la recette"
             android:textSize="10dp"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/ingredients" />
+            app:layout_constraintTop_toBottomOf="@+id/quantité" />
 
 
         <androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
@@ -173,6 +210,8 @@
             android:textColor="@color/white"
             android:textSize="20dp"
             android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/scrollIngredients" />
 
         <EditText
@@ -240,6 +279,8 @@
             android:textColor="@color/white"
             android:textSize="20dp"
             android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/scrollEtape" />
 
         <ImageView
@@ -261,26 +302,27 @@
             android:id="@+id/linear_layout_2_boutons"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center_horizontal"
             android:layout_marginTop="10dp"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal"
             app:layout_constraintBottom_toTopOf="@+id/submit_recipe_creator"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageViewRecipePicture">
 
             <Button
                 android:id="@+id/BtnGetPhotoCamera"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Appareil photo"
                 android:layout_marginRight="20dp"
-                />
+                android:text="Appareil photo" />
 
             <Button
                 android:id="@+id/BtnGetPhotoGalery"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Gallerie" />
-    </LinearLayout>
+        </LinearLayout>
 
         <Button
             android:id="@+id/submit_recipe_creator"
@@ -296,6 +338,8 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/linear_layout_2_boutons"
             app:layout_constraintVertical_bias="0.278" />
+
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

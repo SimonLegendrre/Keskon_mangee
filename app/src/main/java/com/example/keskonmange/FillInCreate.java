@@ -54,11 +54,12 @@ public class FillInCreate extends OptionsMenuActivity {
 
 
     private EditText editTextTitre;
-    //private EditText RecipeYield;
-    private EditText PrepTimme;
+    private EditText RecipeYield;
+    private EditText PrepTime;
     private EditText CookTime;
     private AutoCompleteTextView AtcIngredients;
-
+    private EditText Quantity;
+    private EditText Mesure;
 
     private EditText editTextDescription;
     public Button buttonAjouterEtape;
@@ -66,6 +67,7 @@ public class FillInCreate extends OptionsMenuActivity {
     private Button buttonGetInfo;
     public Button stop_info;
 
+    ArrayList<String> ListeDescription;
     ArrayList<String> ListeEtapes;
     ArrayAdapter<String> arrayAdapterListeEtapes;
     ListView listViewEtapes;
@@ -134,9 +136,9 @@ public class FillInCreate extends OptionsMenuActivity {
         //Le nom de la recette
         editTextTitre = findViewById(R.id.nom_recette);
         //Le nombre de personne
-        //RecipeYield = findViewById(R.id.recipe_yield);
+        RecipeYield = findViewById(R.id.recipe_yield);
         //Temps de préparation
-        PrepTimme = findViewById(R.id.PrepTime);
+        PrepTime = findViewById(R.id.PrepTime);
         //Temps de cuisson
         CookTime = findViewById(R.id.CookTime);
 
@@ -149,6 +151,8 @@ public class FillInCreate extends OptionsMenuActivity {
         AtcIngredients = findViewById(R.id.ingredients);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, IngredientsKKM);
         AtcIngredients.setAdapter(adapter);
+        Quantity = findViewById(R.id.quantité);
+        Mesure = findViewById(R.id.unité_de_mesure);
         buttonAjouterIngredient = (Button) findViewById(R.id.btn_ajouterIngredient);
         buttonGetInfo = (Button) findViewById(R.id.get_info_fill_in);
         listViewIngredients = findViewById(R.id.list_ingredients);
@@ -233,6 +237,7 @@ public class FillInCreate extends OptionsMenuActivity {
 
 
         ListeIngredients = new ArrayList<String>();
+        ListeDescription = new ArrayList<String>();
         // fait le lien entre le XML EditText et arrayList "ingredientList"
         arrayAdapterListeIngredients = new ArrayAdapter<>(this,
                 android.R.layout.simple_list_item_1, ListeIngredients);
@@ -246,9 +251,12 @@ public class FillInCreate extends OptionsMenuActivity {
                     Ingredients.setVisibility(View.VISIBLE);
                     // stock  les Strings
                     String strIngredient = AtcIngredients.getText().toString().toLowerCase().trim();
+                    String strQuantity = Quantity.getText().toString() + " " + Mesure.getText().toString();
                     // on ajoute le editText format String dans le ArrayList
                     if (!ListeIngredients.contains(strIngredient)) {
-                        ListeIngredients.add(strIngredient);
+                        ListeDescription.add(strIngredient);
+                        strQuantity += " " + strIngredient;
+                        ListeIngredients.add(strQuantity);
                     } else { // si c'est le cas, on notifie l'utilisateur
                         Toast.makeText(getApplicationContext(), "Vous avez déjà ajouté cet ingrédient",
                                 Toast.LENGTH_LONG).show();
@@ -259,6 +267,8 @@ public class FillInCreate extends OptionsMenuActivity {
                     arrayAdapterListeIngredients.notifyDataSetChanged();
                     // on vide EditText
                     AtcIngredients.getText().clear();
+                    Quantity.getText().clear();
+                    Mesure.getText().clear();
                 } else {
                     return;
                 }
@@ -519,18 +529,18 @@ public class FillInCreate extends OptionsMenuActivity {
             String name = editTextTitre.getText().toString();
             name = name.replaceAll("\\s+", " ");
             String id_recipe = name.replaceAll(" ", "_").toLowerCase();
-            String prepTime = PrepTimme.getText().toString();
+            String prepTime = PrepTime.getText().toString();
             ArrayList<String> recipeIngredients = new ArrayList<String>();
             ArrayList<String> recipeInstructions = new ArrayList<String>();
             ArrayList<String> description = new ArrayList<String>();
-            description = ListeIngredients;
+            description = ListeDescription;
+            recipeIngredients = ListeIngredients;
             recipeInstructions = ListeEtapes; // A changer dans le futur pour avoir un tableau de strings avec les differentes etapes - Normalement ok
 
 
-            //String recipeYield = RecipeYield.getText().toString();
-            String recipeYield = "";
+            String recipeYield = RecipeYield.getText().toString();
             //Temps total de la recette
-            Integer tempsTotal = Integer.valueOf(PrepTimme.getText().toString()) + Integer.valueOf(CookTime.getText().toString());
+            Integer tempsTotal = Integer.valueOf(PrepTime.getText().toString()) + Integer.valueOf(CookTime.getText().toString());
             String totalTime = tempsTotal.toString();
 
             String userID = userId;
