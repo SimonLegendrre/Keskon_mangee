@@ -173,6 +173,7 @@ public class DetailedDescription extends OptionsMenuActivity {
                     ratingBarall.setRating((float) AvgNote);
                 } else {
                     TextViewNote.setText("Cette recette n'a pas encore été notée");
+                    ratingBarall.setVisibility((View.GONE));
                 }
                 document.update("note", AvgNote);
             }

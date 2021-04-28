@@ -29,7 +29,7 @@
         <Button
             android:id="@+id/add_ing"
             android:layout_width="wrap_content"
-            android:layout_height="35dp"
+            android:layout_height="40dp"
             android:layout_gravity="right"
             android:text="Ajouter un ingrédient"
             android:textSize="10dp" />
@@ -50,7 +50,7 @@
         <Button
             android:id="@+id/add_step"
             android:layout_width="wrap_content"
-            android:layout_height="35dp"
+            android:layout_height="40dp"
             android:layout_gravity="right"
             android:text="Ajouter une étape"
             android:textSize="10dp" />
@@ -73,7 +73,7 @@
         <Button
             android:id="@+id/modif_image"
             android:layout_width="wrap_content"
-            android:layout_height="35dp"
+            android:layout_height="40dp"
             android:layout_gravity="right"
             android:text="Ajouter une photo"
             android:textSize="10dp" />

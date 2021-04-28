@@ -18,7 +18,7 @@
             android:layout_marginHorizontal="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Vous pouvez ici naviguer parmis toutes les recettes disponibles sur Keskonmange!"
+            android:text="Vous pouvez ici naviguer parmi toutes les recettes disponibles sur Keskonmange!"
             android:textSize="20dp"
             android:textStyle="bold" />
 
@@ -26,7 +26,9 @@
             android:id="@+id/list_all_recipes"
             android:layout_width="match_parent"
             android:layout_height="518dp"
-            android:visibility="visible" />
+            android:visibility="visible"
+            android:dividerHeight="8.0sp"
+            android:divider="@android:color/transparent"/>/>
 
     </LinearLayout>
 </ScrollView>
