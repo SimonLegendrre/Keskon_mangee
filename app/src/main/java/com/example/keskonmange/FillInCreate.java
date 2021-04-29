@@ -22,6 +22,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -182,6 +183,8 @@ public class FillInCreate extends OptionsMenuActivity {
         awesomeValidationEtapes = new AwesomeValidation(ValidationStyle.BASIC);
         awesomeValidation.addValidation(this, R.id.nom_recette, RegexTemplate.NOT_EMPTY, R.string.invalid_titre);
         awesomeValidation.addValidation(this, R.id.recipe_yield, RegexTemplate.NOT_EMPTY, R.string.invalid_recipeYield);
+        awesomeValidation.addValidation(this, R.id.PrepTime, RegexTemplate.NOT_EMPTY, R.string.invalid_prepTime);
+        awesomeValidation.addValidation(this, R.id.CookTime, RegexTemplate.NOT_EMPTY, R.string.invalid_cookTime);
         awesomeValidationIngredients.addValidation(this, R.id.ingredients, RegexTemplate.NOT_EMPTY, R.string.invalid_ingredient);
         awesomeValidationEtapes.addValidation(this, R.id.description, RegexTemplate.NOT_EMPTY, R.string.invalid_recipe_description);
 

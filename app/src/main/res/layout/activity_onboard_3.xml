@@ -1,22 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="16dp"
-    android:background="@color/purple_500">
+    android:background="@color/purple_700">
 
     <ImageView
+        android:id="@+id/photo2"
         android:layout_width="148dp"
         android:layout_height="129dp"
         android:layout_gravity="center"
         android:layout_marginTop="40dp"
         android:background="@drawable/white_back_popup_message"
-        android:src="@drawable/logo_5"></ImageView>
+        android:src="@drawable/logo_5"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"></ImageView>
 
     <TextView
+        android:id="@+id/description3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
@@ -24,19 +29,22 @@
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
         android:textColor="#FFFFFF"
         android:textSize="29sp"
-        android:gravity="center"></TextView>
+        android:gravity="center"
+        app:layout_constraintTop_toBottomOf="@id/photo2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"></TextView>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:gravity="center"
         android:text="Trouvez un nom évocateur, détaillez les ingrédients un par un et ajoutez une déscription des étapes à suivre et le tour est joué ! "
         android:textColor="#4DB6AC"
         android:textSize="22sp"
-        android:gravity="center"></TextView>
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/description3"></TextView>
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -50,7 +58,7 @@
                 android:id="@+id/previous_button_oboard_3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@color/purple_500"
+                android:background="@color/purple_700"
                 android:text="Precedent"
                 android:textSize="20dp"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -63,7 +71,7 @@
                 android:id="@+id/finish_button_onboard_3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:background="@color/purple_500"
+                android:background="@color/purple_700"
                 android:text="fin"
                 android:textColor="#121111"
                 android:textSize="20dp"
@@ -73,7 +81,5 @@
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-    </androidx.constraintlayout.widget.ConstraintLayout>
 
-
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

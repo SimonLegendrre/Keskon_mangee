@@ -1,55 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:layout_gravity="center"
+    android:padding="10dp"
     android:background="@drawable/white_back_popup_message"
     android:orientation="vertical"
-    android:padding="10dp"
-    android:layout_marginLeft="10dp"
-    android:layout_marginRight="10dp"
     tools:ignore="ExtraText">
 
 
     <TextView
         android:id="@+id/textView8"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
-        android:textSize="30dp"
+        android:layout_width="338dp"
+        android:layout_height="85dp"
+        android:layout_marginTop="20dp"
         android:text="Afin de créer une recette, vous devez : "
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-        android:textColor="@color/black" />
+        android:textColor="@color/black"
+        android:textSize="30dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/textView5"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="30dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="5dp"
         android:text="- Nommer votre recette"
         android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-        android:textSize="15dp" />
+        android:textSize="15dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textView8" />
 
     <TextView
         android:id="@+id/textView7"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="30dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="5dp"
         android:text="- Donner une brève description des étapes à suivre"
         android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-        android:textSize="15dp" />
+        android:textSize="15dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textView5" />
 
     <TextView
         android:id="@+id/textView6"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="30dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="5dp"
         android:text="- Ajouter chacun des ingrédients un par un "
         android:textAppearance="@style/TextAppearance.AppCompat.Body2"
-        android:textSize="15dp" />
-
+        android:textSize="15dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textView7" />
 
 
     <Button
@@ -58,8 +67,10 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="10dp"
+        android:text="ok !"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textView6" />
 
-        android:text="ok !" />
 
-
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

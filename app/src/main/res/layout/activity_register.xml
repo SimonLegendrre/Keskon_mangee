@@ -14,7 +14,8 @@
         android:layout_height="wrap_content"
         android:text="Veuillez vous authentifier"
         android:layout_gravity="center_horizontal"
-        android:textSize="25dp" />
+        android:textSize="25dp"
+        android:layout_marginTop="10dp"/>
 
     <TextView
         android:layout_marginTop="30dp"
@@ -23,6 +24,7 @@
         android:layout_height="wrap_content"
         android:text="Créer un nouveau compte"
         android:textSize="20dp"
+        android:layout_marginLeft="20dp"
         />
 
     <EditText
@@ -35,7 +37,7 @@
         android:layout_marginEnd="20dp"
         android:layout_marginRight="20dp"
         android:inputType="textPersonName"
-        android:hint="NOM Prénom"
+        android:hint="Prénom NOM"
         />
 
     <EditText

@@ -7,28 +7,35 @@
     android:orientation="vertical"
     tools:context=".Recipes_Scrolling">
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
         <TextView
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="20dp"
-            android:layout_marginHorizontal="10dp"
+            android:id="@+id/texteDescription"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginHorizontal="10dp"
+            android:layout_marginTop="10dp"
             android:text="Vous pouvez ici naviguer parmi toutes les recettes disponibles sur Keskonmange!"
             android:textSize="20dp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <ListView
             android:id="@+id/list_all_recipes"
             android:layout_width="match_parent"
             android:layout_height="518dp"
+            android:layout_marginTop="10dp"
             android:visibility="visible"
             android:dividerHeight="8.0sp"
-            android:divider="@android:color/transparent"/>/>
+            android:divider="@android:color/transparent"
+            app:layout_constraintTop_toBottomOf="@id/texteDescription"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>/>
 
-    </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
