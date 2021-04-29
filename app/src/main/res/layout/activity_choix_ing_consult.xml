@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center"
+    android:background="@color/purple_700"
+    android:paddingLeft="20dp"
+    android:paddingRight="20dp">
+
+
+    <TextView
+        android:id="@+id/textView12"
+        android:layout_width="365dp"
+        android:layout_height="43dp"
+        android:layout_marginTop="88dp"
+        android:gravity="center"
+        android:paddingLeft="1dp"
+        android:text="Ajoutez ci-dessous les ingrédients que vous possédez."
+        android:textAppearance="@style/TextAppearance.AppCompat.Body2"
+        android:textColor="#FFFFFF"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <AutoCompleteTextView
+        android:id="@+id/et_ing"
+        android:layout_width="370dp"
+        android:layout_height="38dp"
+        android:background="@color/white"
+        android:completionHint="Clcikez sur un des ingrédients du dessus"
+        android:completionThreshold="2"
+        android:hint="Ingrédient"
+        android:lines="1"
+        android:maxLines="1"
+        android:padding="10dp"
+        android:paddingLeft="20dp"
+        android:singleLine="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.512"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.237" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="373dp"
+        android:layout_height="55dp"
+        android:gravity="center"
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.578"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/et_ing"
+        app:layout_constraintVertical_bias="0.056">
+
+        <Button
+            android:id="@+id/btn_add_ing"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="Ajouter"
+            android:textSize="10sp" />
+
+        <Button
+            android:id="@+id/btn_rm_ing"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="Supprimer"
+            android:textSize="10dp" />
+
+        <Button
+            android:id="@+id/btn_search_recipe"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="rechercher"
+            android:textSize="10dp" />
+
+        <Button
+            android:id="@+id/btn_pre_selected"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="Condiments"
+            android:textSize="10dp" />
+
+    </LinearLayout>
+
+    <ListView
+        android:id="@+id/list_ing"
+        android:layout_width="370dp"
+        android:layout_height="427dp"
+        android:layout_marginTop="24dp"
+        android:background="@color/white"
+        android:visibility="visible"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.463"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
+
+    <Button
+        android:id="@+id/no_idea"
+        android:layout_width="106dp"
+        android:layout_height="49dp"
+        android:text="pas d'idée ?"
+        app:layout_constraintBottom_toTopOf="@+id/textView12"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.363" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

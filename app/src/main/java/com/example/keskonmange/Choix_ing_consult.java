@@ -65,7 +65,7 @@ public class Choix_ing_consult extends OptionsMenuActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.acyivity_choix_ing_consult);
+        setContentView(R.layout.activity_choix_ing_consult);
 
 
         // On test le paramètre isInformed du currenr user afin de voir si on le display les infos concernant les ingrédients préselectionnés.
@@ -138,7 +138,7 @@ public class Choix_ing_consult extends OptionsMenuActivity {
         buttonRemoveIng = (Button) findViewById(R.id.btn_rm_ing);
         buttonSearchRecipe = (Button) findViewById(R.id.btn_search_recipe);
         buttonPreSelected = (Button) findViewById(R.id.btn_pre_selected);
-        //no_idea = (Button) findViewById(R.id.button_no_idea);
+        no_idea = (Button) findViewById(R.id.no_idea);
 
         ingredientList = new ArrayList<String>();
         // fait le lien entre le XML EditText et arrayList "ingredientList"
@@ -302,7 +302,7 @@ public class Choix_ing_consult extends OptionsMenuActivity {
             }
         });
 
-       /* no_idea.setOnClickListener(new View.OnClickListener() {
+        no_idea.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(getApplicationContext(), Recipes_Scrolling.class);
@@ -310,7 +310,7 @@ public class Choix_ing_consult extends OptionsMenuActivity {
             }
         });
 
-        */
+
 
     }
 

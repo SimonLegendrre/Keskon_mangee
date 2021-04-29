@@ -26,7 +26,6 @@ public class CreationOrConsulationPage extends OptionsMenuActivity {
     public ImageButton acceuil_Allrecipes_button;
     ImageButton info_dialog;
     Button next_info1;
-    Button next_info2;
     Button finish_info;
     TextView TvBonjour;
 
@@ -126,20 +125,13 @@ public class CreationOrConsulationPage extends OptionsMenuActivity {
                         @Override
                         public void onClick(View v) {
                             info_kkm.setContentView(R.layout.activity_creation_orconsult_info_2);
-                            next_info2 = (Button) info_kkm.findViewById(R.id.next_info2);
+                            finish_info = (Button) info_kkm.findViewById(R.id.button_finish);
 
-                            next_info2.setOnClickListener(new View.OnClickListener() {
+                            finish_info.setOnClickListener(new View.OnClickListener() {
                                 @Override
                                 public void onClick(View v) {
-                                    info_kkm.setContentView(R.layout.activity_creation_orconsult_info_3);
-                                    finish_info = (Button) info_kkm.findViewById(R.id.info_finish);
+                                    info_kkm.dismiss();
 
-                                    finish_info.setOnClickListener(new View.OnClickListener() {
-                                        @Override
-                                        public void onClick(View v) {
-                                            info_kkm.dismiss();
-                                        }
-                                    });
                                 }
                             });
                         }
