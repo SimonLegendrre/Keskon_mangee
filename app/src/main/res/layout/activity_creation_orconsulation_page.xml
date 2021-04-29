@@ -42,7 +42,7 @@
             android:layout_height="56dp"
             android:layout_marginRight="35dp"
             android:background="@drawable/white_back_popup_message"
-            android:src="@drawable/q_mark_info_foreground"
+            app:srcCompat="@drawable/q_mark_info_foreground"
             android:textSize="27dp"
 
             app:layout_constraintBottom_toBottomOf="parent"
@@ -55,27 +55,28 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="389dp"
-        android:layout_height="347dp"
+        android:layout_width="404dp"
+        android:layout_height="180dp"
         android:layout_gravity="center"
-        android:layout_marginRight="5dp"
         android:layout_marginLeft="5dp"
+        android:layout_marginRight="5dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.428"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.671">
+        app:layout_constraintVertical_bias="0.565">
 
 
         <ImageButton
             android:id="@+id/acceuil_to_create_recipe_button"
             android:layout_width="132dp"
             android:layout_height="130dp"
+            android:layout_marginRight="5dp"
             android:background="#00FFFFFF"
             android:minWidth="80dp"
             android:minHeight="80dp"
             android:scaleType="fitXY"
-            android:layout_marginRight="5dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.937"
@@ -85,10 +86,10 @@
             app:srcCompat="@drawable/create_recipe" />
 
         <TextView
-            android:layout_width="135dp"
-            android:layout_height="22dp"
+            android:layout_width="132dp"
+            android:layout_height="24dp"
             android:gravity="center"
-            android:text="Consulter"
+            android:text="Créer"
             android:textColor="#FFFFFF"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -106,6 +107,7 @@
             android:minWidth="80dp"
             android:minHeight="80dp"
             android:scaleType="fitXY"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.503"
@@ -118,12 +120,12 @@
             android:id="@+id/acceuil_to_consult_recipe_button"
             android:layout_width="147dp"
             android:layout_height="124dp"
+            android:layout_marginLeft="5dp"
             android:layout_marginTop="4dp"
             android:background="@android:color/transparent"
             android:minWidth="80dp"
             android:minHeight="80dp"
             android:scaleType="fitXY"
-            android:layout_marginLeft="5dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.066"
@@ -136,17 +138,16 @@
             android:id="@+id/textView2"
             android:layout_width="147dp"
             android:layout_height="29dp"
-            android:layout_marginTop="4dp"
             android:gravity="center"
-            android:text="Créer"
+            android:text="Consulter"
             android:textColor="#FFFFFF"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.086"
+            app:layout_constraintHorizontal_bias="0.085"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.433" />
+            app:layout_constraintTop_toBottomOf="@+id/acceuil_to_consult_recipe_button"
+            app:layout_constraintVertical_bias="0.0" />
 
         <TextView
             android:layout_width="111dp"
@@ -155,6 +156,7 @@
             android:text="Navigation"
             android:textColor="#FFFFFF"
             android:textStyle="bold"
+            android:visibility="gone"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.503"

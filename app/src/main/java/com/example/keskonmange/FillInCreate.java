@@ -20,6 +20,7 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -69,7 +70,7 @@ public class FillInCreate extends OptionsMenuActivity {
     private EditText editTextDescription;
     public Button buttonAjouterEtape;
     public Button buttonAjouterIngredient;
-    private Button buttonGetInfo;
+    private ImageButton buttonGetInfo;
     public Button stop_info;
 
     ArrayList<String> ListeDescription;
@@ -160,7 +161,7 @@ public class FillInCreate extends OptionsMenuActivity {
         Quantity = findViewById(R.id.quantité);
         Mesure = findViewById(R.id.unité_de_mesure);
         buttonAjouterIngredient = (Button) findViewById(R.id.btn_ajouterIngredient);
-        buttonGetInfo = (Button) findViewById(R.id.get_info_fill_in);
+        buttonGetInfo = (ImageButton) findViewById(R.id.get_info_fill_in);
         listViewIngredients = findViewById(R.id.list_ingredients);
         Ingredients = findViewById(R.id.scrollIngredients);
         // Ce code permet de rajouter l'ID de l'utilisateur qui crée la recette au champ de la recette
