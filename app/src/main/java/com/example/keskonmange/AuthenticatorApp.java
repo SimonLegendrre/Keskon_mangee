@@ -143,6 +143,7 @@ public class AuthenticatorApp extends OptionsMenuActivity {
                     for (String rec : finalMyRecipes) {
                         recipes_list_id.add(rec);
 
+                        // DEFENSIF : AJOUTER UNE CONDITION, AU CAS OU LE DOCUMENT A ETE SUPPRIMER MANUELLEMENT
                         DocumentReference documentRecipe = db.collection("Recettes").document(rec);
                         documentRecipe.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
                             @Override

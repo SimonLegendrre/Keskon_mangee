@@ -24,6 +24,7 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
@@ -33,7 +34,9 @@ import androidx.core.widget.NestedScrollView;
 import com.basgeekball.awesomevalidation.AwesomeValidation;
 import com.basgeekball.awesomevalidation.ValidationStyle;
 import com.basgeekball.awesomevalidation.utility.RegexTemplate;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
@@ -118,6 +121,7 @@ public class FillInCreate extends OptionsMenuActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fill_in_create);
 
+
         // Importation de la BDD incluant tous les ingrédients de KKM (sert à approvisioner l'array IngredientsKKM
         IngredientsKKMCollection
                 .addSnapshotListener(this, new EventListener<QuerySnapshot>() {
@@ -176,7 +180,7 @@ public class FillInCreate extends OptionsMenuActivity {
         awesomeValidationIngredients = new AwesomeValidation(ValidationStyle.BASIC);
         awesomeValidationEtapes = new AwesomeValidation(ValidationStyle.BASIC);
         awesomeValidation.addValidation(this, R.id.nom_recette, RegexTemplate.NOT_EMPTY, R.string.invalid_titre);
-        awesomeValidation.addValidation(this,R.id.recipe_yield, RegexTemplate.NOT_EMPTY, R.string.invalid_recipeYield);
+        awesomeValidation.addValidation(this, R.id.recipe_yield, RegexTemplate.NOT_EMPTY, R.string.invalid_recipeYield);
         awesomeValidationIngredients.addValidation(this, R.id.ingredients, RegexTemplate.NOT_EMPTY, R.string.invalid_ingredient);
         awesomeValidationEtapes.addValidation(this, R.id.description, RegexTemplate.NOT_EMPTY, R.string.invalid_recipe_description);
 
@@ -428,10 +432,6 @@ public class FillInCreate extends OptionsMenuActivity {
                 CurrentfileNamePhoto = imageFileName;
                 CurrentUriPhoto = contentUri;
 
-                // TEST SIMON
-                //AddToDataBase(imageFileName, contentUri);
-                // FIN test Simon
-
             }
         }
 
@@ -505,77 +505,110 @@ public class FillInCreate extends OptionsMenuActivity {
     public void SaveRecipe(View view) {
         if (awesomeValidation.validate() && ListeIngredients.size() > 0 && ListeEtapes.size() > 0) {
 
-            // Adding Recipe
-            String cookTime = CookTime.getText().toString();
-            // description déjà créé + haut
-            String keywords = "";
-            String name = editTextTitre.getText().toString();
-            name = name.replaceAll("\\s+", " ");
-            String id_recipe = name.replaceAll(" ", "_").toLowerCase();
-            String prepTime = PrepTime.getText().toString();
-            ArrayList<String> recipeIngredients = new ArrayList<String>();
-            ArrayList<String> recipeInstructions = new ArrayList<String>();
-            ArrayList<String> description = new ArrayList<String>();
-            description = ListeDescription;
-            recipeIngredients = ListeIngredients;
-            recipeInstructions = ListeEtapes; // A changer dans le futur pour avoir un tableau de strings avec les differentes etapes - Normalement ok
+            String nameTest = editTextTitre.getText().toString();
+            nameTest = nameTest.replaceAll("\\s+", " ");
+            String id_recipeTest = nameTest.replaceAll(" ", "_").toLowerCase();
 
 
-            String recipeYield = RecipeYield.getText().toString();
-            //Temps total de la recette
-            Integer tempsTotal = Integer.valueOf(PrepTime.getText().toString()) + Integer.valueOf(CookTime.getText().toString());
-            String totalTime = tempsTotal.toString();
-
-            String userID = userId;
-            Double note = null;
-
-
-            if (CurrentfileNamePhoto!= null ) { //&& CurrentfileNamePhoto.isEmpty()
-                StorageReference image = storageReference.child("pictures/" + CurrentfileNamePhoto);
-                image.putFile(CurrentUriPhoto);
-            } else {
-                CurrentfileNamePhoto = "";
-            }
-
-            String imageRef = CurrentfileNamePhoto;
-
-            Recettes recette = new Recettes(cookTime, description, keywords, name, prepTime,
-                    recipeIngredients, recipeInstructions, recipeYield, totalTime, userID, note, imageRef); // User ID ajouté pour ajouter l'ID utilisatuer
-
-            AllRecipe.document(id_recipe).set(recette);
-            userId = fAuth.getCurrentUser().getUid();
-            DocumentReference documentUser = fstore.collection("Users").document(userId);
-
-            documentUser.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            // TEST SIMON
+            DocumentReference documentRecipe = db.collection("Recettes").document(id_recipeTest);
+            System.out.println(id_recipeTest + "TEST DE ID RECIPE");
+            documentRecipe.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
                 @Override
-                public void onSuccess(DocumentSnapshot documentSnapshot) {
-                    ArrayList<String> MyRecipes = new ArrayList<>();
-                    MyRecipes = (ArrayList<String>) documentSnapshot.get("MyRecipes");
-                    MyRecipes.add(id_recipe);
-                    documentUser.update("MyRecipes", MyRecipes);
+                public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                    if (task.isSuccessful()) {
+                        DocumentSnapshot doc = task.getResult();
+                        if (doc.exists()) {
+                            Toast.makeText(FillInCreate.this, "Cette recette existe déjà, Veuillez changer de titre.", Toast.LENGTH_SHORT).show();
+                            System.out.println("TEST 8");
+                            new AlertDialog.Builder(FillInCreate.this)
+                                    .setIcon(android.R.drawable.ic_delete)
+                                    .setTitle(" Erreur lors de l'enregistrement ")
+                                    .setMessage("Le nom de cette recette existe déjà, changez le pour enregistrer votre recette !")
+                                    // Si l'utilisateur clique sur OUI, l'étape est supprimée.
+                                    .setPositiveButton("Ok !", null)
+                                    .show();
+                            //return;
+                        } else {
+
+                            if (CurrentfileNamePhoto != null) { //&& CurrentfileNamePhoto.isEmpty()
+                                StorageReference image = storageReference.child("pictures/" + CurrentfileNamePhoto);
+                                image.putFile(CurrentUriPhoto);
+                            } else {
+                                CurrentfileNamePhoto = "";
+                            }
+
+                            // Adding Recipe
+                            String cookTime = CookTime.getText().toString();
+                            // description déjà créé + haut
+                            String keywords = "";
+                            String name = editTextTitre.getText().toString();
+                            name = name.replaceAll("\\s+", " ");
+                            String id_recipe = name.replaceAll(" ", "_").toLowerCase();
+                            String prepTime = PrepTime.getText().toString();
+                            ArrayList<String> recipeIngredients = new ArrayList<String>();
+                            ArrayList<String> recipeInstructions = new ArrayList<String>();
+                            ArrayList<String> description = new ArrayList<String>();
+                            description = ListeDescription;
+                            recipeIngredients = ListeIngredients;
+                            recipeInstructions = ListeEtapes; // A changer dans le futur pour avoir un tableau de strings avec les differentes etapes - Normalement ok
+
+
+                            String recipeYield = RecipeYield.getText().toString();
+                            //Temps total de la recette
+                            Integer tempsTotal = Integer.valueOf(PrepTime.getText().toString()) + Integer.valueOf(CookTime.getText().toString());
+                            String totalTime = tempsTotal.toString();
+
+                            String userID = userId;
+                            Double note = null;
+
+                            String imageRef = CurrentfileNamePhoto;
+
+                            Recettes recette = new Recettes(cookTime, description, keywords, name, prepTime,
+                                    recipeIngredients, recipeInstructions, recipeYield, totalTime, userID, note, imageRef); // User ID ajouté pour ajouter l'ID utilisatuer
+
+                            AllRecipe.document(id_recipe).set(recette);
+                            userId = fAuth.getCurrentUser().getUid();
+                            DocumentReference documentUser = fstore.collection("Users").document(userId);
+
+                            documentUser.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                                @Override
+                                public void onSuccess(DocumentSnapshot documentSnapshot) {
+                                    ArrayList<String> MyRecipes = new ArrayList<>();
+                                    MyRecipes = (ArrayList<String>) documentSnapshot.get("MyRecipes");
+                                    MyRecipes.add(id_recipe);
+                                    documentUser.update("MyRecipes", MyRecipes);
+                                }
+                            });
+
+                            // Rediriger vers le menu lorsque l'on clique
+                            Toast.makeText(getApplicationContext(), "Recette créée", Toast.LENGTH_SHORT).show();
+                            Intent intent = new Intent(FillInCreate.this, CreationOrConsulationPage.class);
+                            startActivity(intent);
+                            finish();
+
+                        }
+                    } else {
+                        Toast.makeText(FillInCreate.this, "Cette recette existe déjà, Veuillez changer de titre.", Toast.LENGTH_SHORT).show();
+                    }
+
                 }
             });
 
+            // FIN TEST SIMON
 
-            // Rediriger vers le menu lorsque l'on clique
-            Toast.makeText(getApplicationContext(), "Recette créée", Toast.LENGTH_SHORT).show();
-            Intent intent = new Intent(FillInCreate.this, CreationOrConsulationPage.class);
-            startActivity(intent);
-            finish();
+
         } else {
 
-            if (ListeIngredients.size() == 0){
-                Toast.makeText(getApplicationContext(), "Vous n'avez pas entré d'ingrédients", Toast.LENGTH_SHORT).show();}
-            else if (ListeEtapes.size() == 0) {
-                Toast.makeText(getApplicationContext(), "Vous n'avez pas entré d'étape", Toast.LENGTH_SHORT).show(); }
-            else{
+            if (ListeIngredients.size() == 0) {
+                Toast.makeText(getApplicationContext(), "Vous n'avez pas entré d'ingrédients", Toast.LENGTH_SHORT).show();
+            } else if (ListeEtapes.size() == 0) {
+                Toast.makeText(getApplicationContext(), "Vous n'avez pas entré d'étape", Toast.LENGTH_SHORT).show();
+            } else {
                 Toast.makeText(this, "Il y a un problème d'encodage", Toast.LENGTH_SHORT).show();
             }
         }
 
     }
-
-
-
 
 }

@@ -38,59 +38,55 @@ public class CreationOrConsulationPage extends OptionsMenuActivity {
          */
 
         super.onCreate(savedInstanceState);
-
         FirebaseUser userIdCheck = fAuth.getCurrentUser();
 
         if (userIdCheck == null) {
             Intent intent = new Intent(CreationOrConsulationPage.this, Register.class);
             startActivity(intent);
             finish();
-        }
+        } else {
 
-        else{
-
-
-        String userId = fAuth.getCurrentUser().getUid();
-        DocumentReference document = db.collection("Users").document(userId);
+            String userId = fAuth.getCurrentUser().getUid();
+            DocumentReference document = db.collection("Users").document(userId);
 
 
-        System.out.println(userId + "TEST DE LA VIE");
+            System.out.println(userId + "TEST DE LA VIE");
 
-        if (userId == null) {
+            if (userId == null) {
 
-        }
-
-        document.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
-            @Override
-            public void onSuccess(DocumentSnapshot documentSnapshot) {
-                String name = documentSnapshot.getString("FullName");
-                TvBonjour = (TextView) findViewById(R.id.bonjour);
-                TvBonjour.setText("Bonjour " + name);
             }
-        });
 
-        setContentView(R.layout.activity_creation_orconsulation_page);
-        acceuil_create_button = (ImageButton) findViewById(R.id.acceuil_to_create_recipe_button);
-        acceuil_consult_button = (ImageButton) findViewById(R.id.acceuil_to_consult_recipe_button);
-        acceuil_Allrecipes_button = (ImageButton) findViewById(R.id.Consult_all_recipes);
-        info_dialog = (ImageButton) findViewById(R.id.button_info_creat_or_consult);
+            document.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+                @Override
+                public void onSuccess(DocumentSnapshot documentSnapshot) {
+                    String name = documentSnapshot.getString("FullName");
+                    TvBonjour = (TextView) findViewById(R.id.bonjour);
+                    TvBonjour.setText("Bonjour " + name);
+                }
+            });
+
+            setContentView(R.layout.activity_creation_orconsulation_page);
+            acceuil_create_button = (ImageButton) findViewById(R.id.acceuil_to_create_recipe_button);
+            acceuil_consult_button = (ImageButton) findViewById(R.id.acceuil_to_consult_recipe_button);
+            acceuil_Allrecipes_button = (ImageButton) findViewById(R.id.Consult_all_recipes);
+            info_dialog = (ImageButton) findViewById(R.id.button_info_creat_or_consult);
 
 
-        acceuil_create_button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(CreationOrConsulationPage.this, FillInCreate.class);
-                startActivity(intent);
-            }
-        });
+            acceuil_create_button.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(CreationOrConsulationPage.this, FillInCreate.class);
+                    startActivity(intent);
+                }
+            });
 
-        acceuil_consult_button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v2) {
-                Intent intent2 = new Intent(CreationOrConsulationPage.this, Choix_ing_consult.class);
-                startActivity(intent2);
-            }
-        });
+            acceuil_consult_button.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v2) {
+                    Intent intent2 = new Intent(CreationOrConsulationPage.this, Choix_ing_consult.class);
+                    startActivity(intent2);
+                }
+            });
 
 
         /*acceuil_myProfile_button.setOnClickListener(new View.OnClickListener() {
@@ -103,52 +99,51 @@ public class CreationOrConsulationPage extends OptionsMenuActivity {
 
          */
 
-        acceuil_Allrecipes_button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent4 = new Intent(CreationOrConsulationPage.this, Recipes_Scrolling.class);
-                startActivity(intent4);
-            }
-        });
+            acceuil_Allrecipes_button.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent4 = new Intent(CreationOrConsulationPage.this, Recipes_Scrolling.class);
+                    startActivity(intent4);
+                }
+            });
 
-        info_dialog.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Dialog info_kkm = new Dialog(CreationOrConsulationPage.this);
-                info_kkm.setContentView(R.layout.activity_creation_orconsult_info_1);
-                info_kkm.show();
+            info_dialog.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Dialog info_kkm = new Dialog(CreationOrConsulationPage.this);
+                    info_kkm.setContentView(R.layout.activity_creation_orconsult_info_1);
+                    info_kkm.show();
 
-                next_info1 = (Button) info_kkm.findViewById(R.id.next_info1);
+                    next_info1 = (Button) info_kkm.findViewById(R.id.next_info1);
 
-                next_info1.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        info_kkm.setContentView(R.layout.activity_creation_orconsult_info_2);
-                        next_info2 = (Button) info_kkm.findViewById(R.id.next_info2);
+                    next_info1.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            info_kkm.setContentView(R.layout.activity_creation_orconsult_info_2);
+                            next_info2 = (Button) info_kkm.findViewById(R.id.next_info2);
 
-                        next_info2.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View v) {
-                                info_kkm.setContentView(R.layout.activity_creation_orconsult_info_3);
-                                finish_info = (Button) info_kkm.findViewById(R.id.info_finish);
+                            next_info2.setOnClickListener(new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
+                                    info_kkm.setContentView(R.layout.activity_creation_orconsult_info_3);
+                                    finish_info = (Button) info_kkm.findViewById(R.id.info_finish);
 
-                                finish_info.setOnClickListener(new View.OnClickListener() {
-                                    @Override
-                                    public void onClick(View v) {
-                                        info_kkm.dismiss();
-                                    }
-                                });
-                            }
-                        });
-                    }
-                });
+                                    finish_info.setOnClickListener(new View.OnClickListener() {
+                                        @Override
+                                        public void onClick(View v) {
+                                            info_kkm.dismiss();
+                                        }
+                                    });
+                                }
+                            });
+                        }
+                    });
 
 
-            }
-        });
+                }
+            });
 
-    }
-
+        }
 
     }
 
