@@ -99,7 +99,7 @@ public class FillInCreate extends OptionsMenuActivity {
 
     // Ajout d'une photo dans le fill in create
     ImageView RecipeImage;
-    Button GetPhotoCameraBtn, GetPhotoGaleryBtn;
+    ImageButton GetPhotoCameraBtn, GetPhotoGaleryBtn;
     public static final int CAMERA_PERM_CODE = 101;
     public static final int CAMERA_REQUEST_CODE = 102;
     public static final int GALLERY_REQUEST_CODE = 105;
