@@ -49,6 +49,7 @@ public class Choix_ing_consult extends OptionsMenuActivity {
     public Button buttonPreSelected;
     Button button_yes;
     Button button_no;
+    Button no_idea;
 
 
     // Création de BDD nécessaire pour l'autcomplétion.
@@ -137,6 +138,7 @@ public class Choix_ing_consult extends OptionsMenuActivity {
         buttonRemoveIng = (Button) findViewById(R.id.btn_rm_ing);
         buttonSearchRecipe = (Button) findViewById(R.id.btn_search_recipe);
         buttonPreSelected = (Button) findViewById(R.id.btn_pre_selected);
+        no_idea = (Button) findViewById(R.id.no_idea);
 
         ingredientList = new ArrayList<String>();
         // fait le lien entre le XML EditText et arrayList "ingredientList"
@@ -299,6 +301,16 @@ public class Choix_ing_consult extends OptionsMenuActivity {
                 });
             }
         });
+
+        no_idea.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), Recipes_Scrolling.class);
+                startActivity(intent);
+            }
+        });
+
+
 
     }
 

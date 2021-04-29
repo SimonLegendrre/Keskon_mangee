@@ -14,7 +14,7 @@
         android:id="@+id/textView12"
         android:layout_width="365dp"
         android:layout_height="43dp"
-        android:layout_marginTop="88dp"
+        android:layout_marginTop="76dp"
         android:gravity="center"
         android:paddingLeft="1dp"
         android:text="Ajoutez ci-dessous les ingrédients que vous possédez."
@@ -22,6 +22,7 @@
         android:textColor="#FFFFFF"
         android:textSize="14sp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.565"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

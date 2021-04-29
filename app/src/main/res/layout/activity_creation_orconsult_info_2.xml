@@ -38,13 +38,13 @@
         app:srcCompat="@drawable/creation" />
 
     <Button
-        android:id="@+id/next_info2"
+        android:id="@+id/button_finish"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
         android:layout_marginRight="16dp"
         android:background="@color/white"
-        android:text="suivant"
+        android:text="OK ! "
         android:layout_marginBottom="40dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
