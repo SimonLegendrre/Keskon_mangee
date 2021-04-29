@@ -3,6 +3,8 @@ package com.example.keskonmange;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -206,6 +208,15 @@ public class AuthenticatorApp extends OptionsMenuActivity {
         Intent reconnectionIntent = new Intent(AuthenticatorApp.this, Login.class);
         startActivity(reconnectionIntent);
         finish();
+    }
+
+
+    // Enlever dans la toolbar la possibilité d'aller sur CreationOrConsultationPage
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        MenuItem menu1 = menu.findItem(R.id.action_MyProfile);
+        menu1.setVisible(false);
+        return true;
     }
 
 }

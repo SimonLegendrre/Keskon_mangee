@@ -3,6 +3,8 @@ package com.example.keskonmange;
 import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -28,8 +30,12 @@ public class CreationOrConsulationPage extends OptionsMenuActivity {
     Button finish_info;
     TextView TvBonjour;
 
+
+
     private final FirebaseFirestore db = FirebaseFirestore.getInstance();
     private FirebaseAuth fAuth = FirebaseAuth.getInstance();
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -145,6 +151,14 @@ public class CreationOrConsulationPage extends OptionsMenuActivity {
 
         }
 
+    }
+
+    // Enlever dans la toolbar la possibilité d'aller sur CreationOrConsultationPage
+    @Override
+    public boolean onPrepareOptionsMenu(Menu menu) {
+        MenuItem menu1 = menu.findItem(R.id.action_Menu);
+        menu1.setVisible(false);
+        return true;
     }
 
 
