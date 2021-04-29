@@ -39,7 +39,7 @@
         android:layout_marginEnd="57dp"
         android:layout_marginRight="57dp"
         android:layout_marginBottom="112dp"
-        android:src="@mipmap/ic_launcher_foreground"
+        app:srcCompat="@mipmap/ic_launcher_foreground"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
