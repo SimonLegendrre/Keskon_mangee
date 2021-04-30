@@ -13,6 +13,7 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.webkit.MimeTypeMap;
 import android.widget.AdapterView;
@@ -59,18 +60,22 @@ import java.util.Date;
 public class FillInCreate extends OptionsMenuActivity {
 
 
-    private EditText editTextTitre;
-    private EditText RecipeYield;
-    private EditText PrepTime;
-    private EditText CookTime;
-    private AutoCompleteTextView AtcIngredients;
-    private EditText Quantity;
-    private EditText Mesure;
+    private EditText editTextTitre; // titre de la recette
+    private EditText RecipeYield; // Nombre de personnes
+    private EditText PrepTime; // temps de préparations
+    private EditText CookTime; // temps de cuission
+    private AutoCompleteTextView AtcIngredients; // ingrédients à remplir (autcomplete)
 
-    private EditText editTextDescription;
-    public Button buttonAjouterEtape;
-    public Button buttonAjouterIngredient;
-    private ImageButton buttonGetInfo;
+    private EditText Quantity; // quantités d'ingrédients
+    //private EditText Mesure; // unité de l'ingrédient
+    private AutoCompleteTextView AtcUnity;
+    // Get String Array that is in the Strings.xml file
+    private String[] ListMesure;
+
+    private EditText editTextDescription; // description d'une étape
+    public Button buttonAjouterEtape; // ajouter cette étaoe
+    public Button buttonAjouterIngredient; // ajout cet ingrédient
+    private ImageButton buttonGetInfo; //
     public Button stop_info;
 
     ArrayList<String> ListeDescription;
@@ -112,7 +117,7 @@ public class FillInCreate extends OptionsMenuActivity {
     AwesomeValidation awesomeValidationIngredients;
 
 
-    // Création de BDD nécessaire pour l'autcomplétion.
+    // Création de BDD nécessaire pour l'autcomplétion des ingrédients.
     ArrayList<String> IngredientsKKM = new ArrayList<>();
     private CollectionReference IngredientsKKMCollection = db.collection("Ingredients");
 
@@ -122,6 +127,8 @@ public class FillInCreate extends OptionsMenuActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_fill_in_create);
 
+        // Atucomplete unités de mesure
+        ListMesure = getResources().getStringArray(R.array.IngredientsUnit);
 
         // Importation de la BDD incluant tous les ingrédients de KKM (sert à approvisioner l'array IngredientsKKM
         IngredientsKKMCollection
@@ -158,8 +165,34 @@ public class FillInCreate extends OptionsMenuActivity {
         AtcIngredients = findViewById(R.id.ingredients);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, IngredientsKKM);
         AtcIngredients.setAdapter(adapter);
+
         Quantity = findViewById(R.id.quantité);
-        Mesure = findViewById(R.id.unité_de_mesure);
+
+
+
+        //Mesure = findViewById(R.id.unité_de_mesure);
+        AtcUnity = (AutoCompleteTextView) findViewById(R.id.unité_de_mesure);
+        ArrayAdapter<String> adapter1 = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, ListMesure);
+        AtcUnity.setAdapter(adapter1);
+        //AtcUnity.showDropDown();
+
+        AtcUnity.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                AtcUnity.showDropDown();
+                return false;
+            }
+        });
+
+        AtcUnity.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AtcUnity.showDropDown();
+            }
+        });
+
+
+
         buttonAjouterIngredient = (Button) findViewById(R.id.btn_ajouterIngredient);
         buttonGetInfo = (ImageButton) findViewById(R.id.get_info_fill_in);
         listViewIngredients = findViewById(R.id.list_ingredients);
@@ -260,7 +293,8 @@ public class FillInCreate extends OptionsMenuActivity {
                     Ingredients.setVisibility(View.VISIBLE);
                     // stock  les Strings
                     String strIngredient = AtcIngredients.getText().toString().toLowerCase().trim();
-                    String strQuantity = Quantity.getText().toString() + " " + Mesure.getText().toString();
+                    //String strQuantity = Quantity.getText().toString() + " " + Mesure.getText().toString();
+                    String strQuantity = Quantity.getText().toString().toLowerCase().trim() + " " + AtcUnity.getText().toString().toLowerCase().trim();
                     // on ajoute le editText format String dans le ArrayList
                     if (!ListeIngredients.contains(strIngredient)) {
                         ListeDescription.add(strIngredient);
@@ -277,7 +311,8 @@ public class FillInCreate extends OptionsMenuActivity {
                     // on vide EditText
                     AtcIngredients.getText().clear();
                     Quantity.getText().clear();
-                    Mesure.getText().clear();
+                    //Mesure.getText().clear();
+                    AtcUnity.getText().clear();
                 } else {
                     return;
                 }

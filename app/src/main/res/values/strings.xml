@@ -34,6 +34,22 @@
     <string name="invalid_description">"Veuillez entrer une description "</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-
+    <string-array name="IngredientsUnit">
+        <item>cl</item>
+        <item>centilitre(s)</item>
+        <item>L</item>
+        <item>litre(s)</item>
+        <item> gramme(s)</item>
+        <item>g</item>
+        <item> décigramme(s)</item>
+        <item>kilo(s)</item>
+        <item>kg</item>
+        <item>c.a.s.</item>
+        <item>cuillerée(s) à soupe</item>
+        <item>c.a.c.</item>
+        <item>cuillerée(s) à café</item>
+        <item>tasse(s)</item>
+        <item>unité(s)</item>
+    </string-array>
 
 </resources>
