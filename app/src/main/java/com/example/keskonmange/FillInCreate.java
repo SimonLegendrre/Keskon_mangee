@@ -179,6 +179,7 @@ public class FillInCreate extends OptionsMenuActivity {
         AtcUnity.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
+                AtcUnity.setDropDownHeight(500);
                 AtcUnity.showDropDown();
                 return false;
             }
