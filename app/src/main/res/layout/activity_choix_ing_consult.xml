@@ -29,7 +29,7 @@
         android:id="@+id/et_ing"
         android:layout_width="364dp"
         android:layout_height="48dp"
-        android:background="@color/white"
+        android:background="@drawable/rounded_corner"
         android:completionHint="Clcikez sur un des ingrédients du dessus"
         android:completionThreshold="2"
         android:hint="Ingrédient"
