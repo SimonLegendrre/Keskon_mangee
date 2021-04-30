@@ -17,7 +17,6 @@ public class MainActivity extends OptionsMenuActivity {
         setSupportActionBar(toolbar);
 
 
-
         /*
         1)  Cette page-ci est la page d'accueil pour le moment. On veut donc que, lorsque l'email n'est pas vérifié,
             la personne soit redirrigé vers la page qui dit que le compte n'est pas vérifié

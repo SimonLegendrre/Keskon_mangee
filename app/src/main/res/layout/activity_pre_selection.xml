@@ -6,26 +6,33 @@
     android:layout_height="match_parent"
     tools:context=".PreSelectedIng">
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:paddingTop="20dp"
         android:orientation="vertical">
 
         <TextView
+            android:id="@+id/txtmessage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="20dp"
-            android:textStyle="bold"
             android:layout_marginHorizontal="10dp"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
-            android:text="Ajoutez ici tous les ingrédients que vous avez à disposition"
-            />
+            android:text="Ajoutez ici tous les ingrédients que vous avez toujours à disposition"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <AutoCompleteTextView
             android:id="@+id/AtcTV_et_ing"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
             android:background="@android:color/white"
             android:completionHint="Clickez sur un des ingrédients du dessus"
             android:completionThreshold="2"
@@ -34,44 +41,64 @@
             android:lines="1"
             android:maxLines="1"
             android:padding="10dp"
-            android:singleLine="true" />
+            android:singleLine="true"
+            app:layout_constraintTop_toBottomOf="@+id/txtmessage"
+            tools:layout_editor_absoluteX="20dp" />
 
         <LinearLayout
+            android:id="@+id/linearLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center">
+            android:layout_gravity="center"
+            android:layout_marginTop="12dp"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/AtcTV_et_ing">
+
 
             <Button
                 android:id="@+id/btn_add_ing"
-                android:layout_width="wrap_content"
+                android:layout_width="107dp"
                 android:layout_height="wrap_content"
                 android:text="Ajouter"
-                android:textSize="10dp" />
+                android:textSize="10sp" />
 
             <Button
                 android:id="@+id/btn_rm_ing"
-                android:layout_width="wrap_content"
+                android:layout_width="107dp"
                 android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
                 android:text="Supprimer"
-                android:textSize="10dp" />
+                android:textSize="10sp"
+                android:layout_marginStart="17dp" />
+
             <Button
                 android:id="@+id/btn_return_menu"
-                android:layout_width="wrap_content"
+                android:layout_width="107dp"
                 android:layout_height="wrap_content"
-                android:text="Retourner au menu"
-                android:onClick="back_menu"
-                android:textSize="10dp" />
+                android:layout_marginLeft="20dp"
+                android:text="Retour au menu"
+                android:textSize="10sp"
+                android:layout_marginStart="17dp" />
 
 
         </LinearLayout>
 
         <ListView
             android:id="@+id/list_ing"
-            android:layout_width="wrap_content"
-            android:layout_height="508dp"
-            android:visibility="visible"></ListView>
+            android:layout_width="match_parent"
+            android:layout_height="390dp"
+            android:layout_marginTop="12dp"
+            android:visibility="visible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.6"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/linearLayout" />
 
-    </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
 </ScrollView>

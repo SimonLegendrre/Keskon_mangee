@@ -121,7 +121,7 @@ public class DetailedDescription extends OptionsMenuActivity {
                     data += "\n- " + ing;
                 }
 
-                data += "\n\n Pour cette recette, il y aura un temps de préparation de " + tempsPrep + " pour un temps total de " + tempsTotal + " cuisson comprise" + "\n\n";
+                data += "\n\n Pour cette recette, il y aura un temps de préparation de " + tempsPrep + "inutes pour un temps total de " + tempsTotal + "inutes, cuisson comprise" + "\n\n";
 
                 data += "Etapes à suivre : " + "\n\n" + description;
 

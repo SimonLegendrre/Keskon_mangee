@@ -22,7 +22,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -511,7 +510,7 @@ public class FillInCreate extends OptionsMenuActivity {
 
             String nameTest = editTextTitre.getText().toString();
             nameTest = nameTest.replaceAll("\\s+", " ");
-            String id_recipeTest = nameTest.replaceAll(" ", "_").toLowerCase();
+            String id_recipeTest = nameTest.trim().replaceAll(" ", "_").toLowerCase();
 
 
             // TEST SIMON
@@ -548,8 +547,8 @@ public class FillInCreate extends OptionsMenuActivity {
                             String keywords = "";
                             String name = editTextTitre.getText().toString();
                             name = name.replaceAll("\\s+", " ");
-                            String id_recipe = name.replaceAll(" ", "_").toLowerCase();
-                            String prepTime = PrepTime.getText().toString();
+                            String id_recipe = name.trim().replaceAll(" ", "_").toLowerCase();
+                            String prepTime = PrepTime.getText().toString() + "M";
                             ArrayList<String> recipeIngredients = new ArrayList<String>();
                             ArrayList<String> recipeInstructions = new ArrayList<String>();
                             ArrayList<String> description = new ArrayList<String>();
@@ -561,7 +560,7 @@ public class FillInCreate extends OptionsMenuActivity {
                             String recipeYield = RecipeYield.getText().toString();
                             //Temps total de la recette
                             Integer tempsTotal = Integer.valueOf(PrepTime.getText().toString()) + Integer.valueOf(CookTime.getText().toString());
-                            String totalTime = tempsTotal.toString();
+                            String totalTime = tempsTotal.toString() + "M";
 
                             String userID = userId;
                             Double note = null;

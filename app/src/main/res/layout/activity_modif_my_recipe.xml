@@ -7,24 +7,33 @@
     android:orientation="vertical"
     tools:context=".ModifMyRecipe">
 
-    <LinearLayout
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        tools:ignore="ExtraText">
+        android:paddingLeft="20dp"
+        android:paddingTop="20dp"
+        android:paddingRight="20dp">
 
         <TextView
             android:id="@+id/txt_modif_ing"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="17sp"
-            tools:ignore="MissingConstraints" />
-
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <ListView
             android:id="@+id/modif_ing"
             android:layout_width="match_parent"
-            android:layout_height="150dp" />
+            android:layout_height="150dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txt_modif_ing" />
 
         <Button
             android:id="@+id/add_ing"
@@ -32,69 +41,136 @@
             android:layout_height="40dp"
             android:layout_gravity="right"
             android:text="Ajouter un ingrédient"
-            android:textSize="10dp" />
+            android:textSize="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/modif_ing" />
 
         <TextView
             android:id="@+id/txt_modif_step"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textSize="17sp"
-            tools:ignore="MissingConstraints" />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.048"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/add_ing" />
 
         <ListView
             android:id="@+id/modif_step"
             android:layout_width="match_parent"
-            android:layout_height="150dp" />
+            android:layout_height="150dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/txt_modif_step" />
 
 
         <Button
             android:id="@+id/add_step"
             android:layout_width="wrap_content"
             android:layout_height="40dp"
-            android:layout_gravity="right"
             android:text="Ajouter une étape"
-            android:textSize="10dp" />
+            android:textSize="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/modif_step" />
 
         <ImageView
             android:id="@+id/imageViewRecipePicture"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="19dp"
-            app:layout_constraintBottom_toTopOf="@id/add_step"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/TextViewExplicationsPhoto"
-            app:layout_constraintVertical_bias="0.278"
-            app:srcCompat="@drawable/ic_launcher_background"
             android:layout_gravity="center_horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/add_step"
+            app:srcCompat="@drawable/ic_launcher_background"
             tools:ignore="VectorDrawableCompat" />
 
-        <Button
-            android:id="@+id/modif_image"
-            android:layout_width="wrap_content"
-            android:layout_height="40dp"
-            android:layout_gravity="right"
-            android:text="Ajouter une photo"
-            android:textSize="10dp" />
 
+        <TextView
+            android:id="@+id/TextViewAjouterPhoto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="Ajoutez une photo à votre plat:"
+            android:textColor="@color/white"
+            android:textSize="20dp"
+            android:gravity="center"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/imageViewRecipePicture" />
+
+
+        <LinearLayout
+            android:id="@+id/linear_layout_2_boutons"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal"
+            android:gravity="center"
+            app:layout_constraintBottom_toTopOf="@+id/update_modif"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/TextViewAjouterPhoto">
+
+            <ImageButton
+                android:id="@+id/BtnGetPhotoCamera"
+                android:layout_width="105dp"
+                android:layout_height="58dp"
+                android:background="@color/purple_700"
+                android:paddingRight="20dp"
+                app:srcCompat="@drawable/ic_camera" />
+
+            <ImageButton
+                android:id="@+id/BtnGetPhotoGalery"
+                android:layout_width="112dp"
+                android:layout_height="58dp"
+                android:background="@color/purple_700"
+                app:srcCompat="@drawable/ic_gallery" />
+
+        </LinearLayout>
+
+        <!--
+                <Button
+                    android:id="@+id/modif_image"
+                    android:layout_width="wrap_content"
+                    android:layout_height="40dp"
+                    android:text="Ajouter une photo"
+                    android:textSize="10dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="1.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/imageViewRecipePicture" />-->
 
         <Button
             android:id="@+id/update_modif"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical|center_horizontal"
-            android:text="Enregistrer mes modifications" />
+            android:layout_marginTop="20dp"
+            android:text="Enregistrer mes modifications"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.496"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linear_layout_2_boutons" />
 
         <Button
             android:id="@+id/btn_delete"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical|center_horizontal"
-            android:text="Supprimer ma recette" />
+            android:text="Supprimer ma recette"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/update_modif" />
 
 
-
-    </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </ScrollView>

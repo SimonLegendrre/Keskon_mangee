@@ -19,6 +19,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -64,7 +65,10 @@ public class ModifMyRecipe extends OptionsMenuActivity {
     Button button_add_step;
     Button button_update_recipe;
     Button button_delete;
-    Button button_modif_image;
+    Button button_modif_image; // DEGAGER
+
+    ImageButton button_photo; //
+    ImageButton button_gallery; //
 
     ImageView RecipeImage;
     StorageReference storageReference;
@@ -92,8 +96,14 @@ public class ModifMyRecipe extends OptionsMenuActivity {
         button_add_step = findViewById(R.id.add_step);
         button_update_recipe = findViewById(R.id.update_modif);
         button_delete = findViewById(R.id.btn_delete);
-        button_modif_image = findViewById(R.id.modif_image);
-        button_modif_image.setVisibility(View.GONE);
+        //button_modif_image = findViewById(R.id.modif_image); // DEGAGER
+        button_photo = findViewById(R.id.BtnGetPhotoCamera);
+        button_gallery = findViewById(R.id.BtnGetPhotoGalery);
+
+        //button_modif_image.setVisibility(View.GONE); // DEGAGER
+        button_gallery.setVisibility(View.GONE);
+        button_photo.setVisibility(View.GONE);
+
         RecipeImage = findViewById(R.id.imageViewRecipePicture);
         storageReference = FirebaseStorage.getInstance().getReference();
 
@@ -206,7 +216,8 @@ public class ModifMyRecipe extends OptionsMenuActivity {
 
                 if (RecipeImageId.equals("")) {
                     RecipeImage.setVisibility(View.GONE);
-                    button_modif_image.setVisibility(View.VISIBLE);
+                    button_gallery.setVisibility(View.VISIBLE);
+                    button_photo.setVisibility(View.VISIBLE);
 
                 } else if (RecipeImageId.charAt(0) == 'J') {
                     StorageReference image = storageReference.child("pictures/" + RecipeImageId);
@@ -234,6 +245,25 @@ public class ModifMyRecipe extends OptionsMenuActivity {
             }
         });
 
+        button_gallery.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent gallery_intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                startActivityForResult(gallery_intent, GALLERY_REQUEST_CODE); // donne code permattant d'aller chercher les informations dans la gallerie (plutot que l'appareil photo lui-même)
+                RecipeImage.setVisibility(View.VISIBLE);
+            }
+        });
+
+        button_photo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                askCameraPermissions();
+                RecipeImage.setVisibility(View.VISIBLE);
+            }
+        });
+
+        /*
+
 
         button_modif_image.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -243,6 +273,8 @@ public class ModifMyRecipe extends OptionsMenuActivity {
             }
 
         });
+
+         */
 
 
         textModifIng.setText("Cliquez maintenant sur un ingrédient ou une étape de votre recette pour la modifier. Une fois fait, cliquez" +

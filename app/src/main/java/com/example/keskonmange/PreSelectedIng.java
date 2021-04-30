@@ -91,7 +91,7 @@ public class PreSelectedIng extends OptionsMenuActivity {
         arrayAdapterIngredient = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, ingredients_list);
         listView.setAdapter(arrayAdapterIngredient);
         awesomeValidation = new AwesomeValidation(ValidationStyle.BASIC);
-        awesomeValidation.addValidation(this, R.id.et_ing, RegexTemplate.NOT_EMPTY, R.string.invalid_ingredient);
+        awesomeValidation.addValidation(this, R.id.AtcTV_et_ing, RegexTemplate.NOT_EMPTY, R.string.invalid_ingredient);
 
 
         listView.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
@@ -136,7 +136,7 @@ public class PreSelectedIng extends OptionsMenuActivity {
                     // on vide EditText
                     AtcIngredients.getText().clear();
 
-                    Toast.makeText(PreSelectedIng.this, "Les ingrédients ont bien été enregistré", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(PreSelectedIng.this, "L'ingrédient a bien été ajouté !'", Toast.LENGTH_SHORT).show();
                     Map<String, Object> ingredients = new HashMap<>();
                     ingredients.put("ingredients", ingredients_list);
                     document.update(ingredients);
