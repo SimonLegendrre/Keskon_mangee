@@ -61,11 +61,10 @@ public class ModifMyRecipe extends OptionsMenuActivity {
     private TextView textModifIng;
     private TextView textModifStep;
 
-    Button button_add_ing;
-    Button button_add_step;
+    ImageButton button_add_ing;
+    ImageButton button_add_step;
     Button button_update_recipe;
     Button button_delete;
-    Button button_modif_image; // DEGAGER
 
     ImageButton button_photo; //
     ImageButton button_gallery; //
@@ -250,7 +249,7 @@ public class ModifMyRecipe extends OptionsMenuActivity {
             public void onClick(View v) {
                 Intent gallery_intent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
                 startActivityForResult(gallery_intent, GALLERY_REQUEST_CODE); // donne code permattant d'aller chercher les informations dans la gallerie (plutot que l'appareil photo lui-même)
-                RecipeImage.setVisibility(View.VISIBLE);
+
             }
         });
 
@@ -258,7 +257,7 @@ public class ModifMyRecipe extends OptionsMenuActivity {
             @Override
             public void onClick(View v) {
                 askCameraPermissions();
-                RecipeImage.setVisibility(View.VISIBLE);
+
             }
         });
 
@@ -424,7 +423,6 @@ public class ModifMyRecipe extends OptionsMenuActivity {
                 this.sendBroadcast(mediaScanIntent);
                 RecipeImage.setVisibility(View.VISIBLE);
 
-                // TEST SIMON ajoute l'image à Firebase, dans la section Storage. Voir la méthode détaillée plus bas
                 recipe = getIntent().getStringExtra("recipe_to_pass");
                 StorageReference image = storageReference.child("pictures/" + f.getName());
                 image.putFile(contentUri);
@@ -432,7 +430,6 @@ public class ModifMyRecipe extends OptionsMenuActivity {
                 document.update("imageRef", f.getName());
 
 
-                // FIN test Simon
             }
         }
 
@@ -448,7 +445,6 @@ public class ModifMyRecipe extends OptionsMenuActivity {
                 Log.d("ImageUrlIsGotten", "onActivityResult: Gallery Image Uri: " + imageFileName);
                 //RecipeImage.setVisibility(View.VISIBLE);
 
-                // TEST SIMON
                 recipe = getIntent().getStringExtra("recipe_to_pass");
                 StorageReference image = storageReference.child("pictures/" + imageFileName);
                 image.putFile(contentUri);
@@ -456,7 +452,6 @@ public class ModifMyRecipe extends OptionsMenuActivity {
                 document.update("imageRef", imageFileName);
 
 
-                // FIN test Simon
 
             }
         }
