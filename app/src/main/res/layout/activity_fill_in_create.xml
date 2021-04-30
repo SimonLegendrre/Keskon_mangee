@@ -213,8 +213,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:text="Indiquez ici les étapes de la recette:"
             android:gravity="center"
+            android:text="Indiquez ici les étapes de la recette:"
             android:textColor="@color/white"
             android:textSize="8pt"
             app:layout_constraintEnd_toEndOf="parent"
@@ -283,10 +283,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
+            android:gravity="center"
             android:text="Ajoutez une photo à votre plat:"
             android:textColor="@color/white"
             android:textSize="8pt"
-            android:gravity="center"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/scrollEtape" />
@@ -318,20 +318,20 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageViewRecipePicture">
 
-            <Button
+            <ImageButton
                 android:id="@+id/BtnGetPhotoCamera"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginRight="20dp"
-                android:textStyle="bold"
-                android:text="Appareil photo" />
+                android:background="@color/purple_700"
+                app:srcCompat="@drawable/ic_camera" />
 
-            <Button
+            <ImageButton
                 android:id="@+id/BtnGetPhotoGalery"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textStyle="bold"
-                android:text="Gallerie" />
+                android:background="@color/purple_700"
+                app:srcCompat="@drawable/ic_gallery" />
         </LinearLayout>
 
         <Button
