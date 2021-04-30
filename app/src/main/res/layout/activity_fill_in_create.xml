@@ -148,18 +148,19 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/ingredients" />
 
-        <EditText
-
+        <AutoCompleteTextView
             android:id="@+id/unité_de_mesure"
-            android:layout_width="110dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="19dp"
             android:background="@drawable/rounded_corner"
             android:ems="10"
+            android:completionThreshold="1"
             android:hint="Unité"
-            android:inputType="textPersonName"
+            android:lines="1"
             android:padding="10dp"
+            android:singleLine="true"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toEndOf="@+id/quantité"
