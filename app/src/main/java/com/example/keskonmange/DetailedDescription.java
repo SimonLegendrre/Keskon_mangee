@@ -45,7 +45,10 @@ public class DetailedDescription extends OptionsMenuActivity {
 
     // Initialisation base de données
     private final FirebaseFirestore db = FirebaseFirestore.getInstance();
-    private TextView textViewData;
+    private TextView textViewTitre;
+    private TextView textViewIngredients;
+    private TextView textViewTemps;
+    private TextView textViewEtape;
     TextView TextViewNote;
     // Rating bar initialisation
     RatingBar ratingBar;
@@ -74,7 +77,10 @@ public class DetailedDescription extends OptionsMenuActivity {
         // Initialiser variable pop-up
 
         // Declarer les views
-        textViewData = findViewById(R.id.text_description);
+        textViewTitre = findViewById(R.id.text_titre_recette);
+        textViewIngredients = findViewById(R.id.text_ingredients);
+        textViewTemps = findViewById(R.id.text_temps);
+        textViewEtape = findViewById(R.id.text_etapes);
         ratingBar = findViewById(R.id.rating_bar);
         ratingBarall = findViewById(R.id.rating_bar_all);
         RatingButton = findViewById(R.id.button_ratting);
@@ -99,9 +105,11 @@ public class DetailedDescription extends OptionsMenuActivity {
         document.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
-
-                String data = "";
+                
                 String titre = documentSnapshot.getString("name");
+                String ingredients = "";
+                String temps = "";
+                String etapesASuivre = "";
                 String description = "";
                 ArrayList<String> tab = new ArrayList<>();
                 tab = (ArrayList<String>) documentSnapshot.get("recipeInstructions");
@@ -114,16 +122,16 @@ public class DetailedDescription extends OptionsMenuActivity {
                     description += "Etape " + String.valueOf(i + 1) + ": " + tab.get(i) + "\n\n";
                 }
 
-                data += titre + "\n\n Ingrédients pour "+ NombrePersonne + " personne(s) : \n";
+                ingredients += "\n\n Ingrédients pour "+ NombrePersonne + " personne(s) : \n";
                 List<String> ingredient = (List<String>) documentSnapshot.get("recipeIngredients");
 
                 for (String ing : ingredient) {
-                    data += "\n- " + ing;
+                    ingredients += "\n- " + ing;
                 }
 
-                data += "\n\n Pour cette recette, il y aura un temps de préparation de " + tempsPrep + "inutes pour un temps total de " + tempsTotal + "inutes, cuisson comprise" + "\n\n";
+                temps += "\n\n Pour cette recette, il y aura un temps de préparation de " + tempsPrep + "inutes pour un temps total de " + tempsTotal + "inutes, cuisson comprise" + "\n\n";
 
-                data += "Etapes à suivre : " + "\n\n" + description;
+                etapesASuivre += "Etapes à suivre : " + "\n\n" + description;
 
                 // Code pour ajouter la photo
 
@@ -143,7 +151,10 @@ public class DetailedDescription extends OptionsMenuActivity {
                     Picasso.get().load(imageUri).into(RecipeImage);
                 }
 
-                textViewData.setText(data);
+                textViewTitre.setText(titre);
+                textViewIngredients.setText(ingredients);
+                textViewTemps.setText(temps);
+                textViewEtape.setText(etapesASuivre);
             }
 
         });
