@@ -132,16 +132,20 @@ public class PreSelectedIng extends OptionsMenuActivity {
                 if (awesomeValidation.validate()) {
                     // stock  les Strings
                     String strIngredient = AtcIngredients.getText().toString();
-                    // on ajouter le editText format String dans le ArrayList
-                    ingredients_list.add(strIngredient);
+                    // on vérifie si l'ingrédient n'a pas déjà été entré.
+                    if (!ingredients_list.contains(strIngredient)){
+                        // on ajouter le editText format String dans le ArrayList
+                        ingredients_list.add(strIngredient);
+                        Toast.makeText(PreSelectedIng.this, "L'ingrédient a bien été ajouté !'", Toast.LENGTH_SHORT).show();
+                    } else{
+                        Toast.makeText(getApplicationContext(), "Vous avez déjà rajouté cet ingrédient", Toast.LENGTH_LONG).show();
+                    }
                     // on update arrayAdapter
                     listView.setAdapter(arrayAdapterIngredient);
                     // on update Listview grace à ArrayAdapter
                     arrayAdapterIngredient.notifyDataSetChanged();
                     // on vide EditText
                     AtcIngredients.getText().clear();
-
-                    Toast.makeText(PreSelectedIng.this, "L'ingrédient a bien été ajouté !'", Toast.LENGTH_SHORT).show();
                     Map<String, Object> ingredients = new HashMap<>();
                     ingredients.put("ingredients", ingredients_list);
                     document.update(ingredients);
