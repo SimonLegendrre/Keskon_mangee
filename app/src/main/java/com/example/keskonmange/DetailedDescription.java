@@ -100,8 +100,6 @@ public class DetailedDescription extends OptionsMenuActivity {
         recipe = StringUtils.stripAccents(recipetest);
 
 
-
-
         //Collection Note
         CollectionReference AllNote = db.collection("Recettes").document(recipe).collection("Note");
 
