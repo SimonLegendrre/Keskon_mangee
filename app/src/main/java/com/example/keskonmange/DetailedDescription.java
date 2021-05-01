@@ -29,6 +29,8 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.squareup.picasso.Picasso;
 
+import org.apache.commons.lang3.StringUtils;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
@@ -45,11 +47,12 @@ public class DetailedDescription extends OptionsMenuActivity {
 
     // Initialisation base de données
     private final FirebaseFirestore db = FirebaseFirestore.getInstance();
-    private TextView textViewTitre;
-    private TextView textViewIngredients;
-    private TextView textViewTemps;
-    private TextView textViewEtape;
+    private TextView textViewData;
     TextView TextViewNote;
+    TextView textViewTitre;
+    TextView textViewIngredients;
+    TextView textViewTemps;
+    TextView textViewEtape;
     // Rating bar initialisation
     RatingBar ratingBar;
     RatingBar ratingBarall;
@@ -90,11 +93,19 @@ public class DetailedDescription extends OptionsMenuActivity {
         // seront différentes. Par exemple, si nous arrivons sur cette activité via "AuthenticatorApp", nous ne pourrons pas noter une recette
         // Notez que recipe est l'ID de la recette que l'on veut décrire
 
-        recipe = getIntent().getStringExtra("recipe_to_pass");
+        String recipetest = getIntent().getStringExtra("recipe_to_pass").replaceAll("[()']", "_")
+                .replaceAll("\\s+", " ").replaceAll("\"", "").replace("-", "_");
         origine = getIntent().getStringExtra("from_which_acti");
+
+        recipe = StringUtils.stripAccents(recipetest);
+
+
+
 
         //Collection Note
         CollectionReference AllNote = db.collection("Recettes").document(recipe).collection("Note");
+
+        System.out.println("REPARER" + recipe);
 
 
         // Choisir le bon document que l'on veut décrire en détail. recipe est l'ID de la recette que l'on veut décrire
@@ -105,18 +116,24 @@ public class DetailedDescription extends OptionsMenuActivity {
         document.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
             public void onSuccess(DocumentSnapshot documentSnapshot) {
-                
+
                 String titre = documentSnapshot.getString("name");
                 String ingredients = "";
                 String temps = "";
                 String etapesASuivre = "";
+                System.out.println("le test du titre" + titre);
                 String description = "";
                 ArrayList<String> tab = new ArrayList<>();
                 tab = (ArrayList<String>) documentSnapshot.get("recipeInstructions");
                 String tempsPrep = documentSnapshot.getString("prepTime");
                 String tempsTotal = documentSnapshot.getString("totalTime");
+                String tamere = documentSnapshot.getString("tamere");
+                System.out.println(tamere + "SimonTest");
+
                 String RecipeImageId = documentSnapshot.getString("imageRef");
+                System.out.println("Le test de la ref de l'image" + RecipeImageId);
                 String NombrePersonne = documentSnapshot.getString("recipeYield");
+                System.out.println(RecipeImageId + "TEST POUR REPARER");
 
                 for (int i = 0; i < tab.size(); i++) {
                     description += "Etape " + String.valueOf(i + 1) + ": " + tab.get(i) + "\n\n";
@@ -135,8 +152,9 @@ public class DetailedDescription extends OptionsMenuActivity {
 
                 // Code pour ajouter la photo
 
-                if(RecipeImageId.isEmpty()){
+                if(RecipeImageId ==null | RecipeImageId ==""){
                     RecipeImage.setVisibility(View.GONE);
+                    System.out.println("On rentre la dedans ou pas ?");
                 }
                 else if (RecipeImageId.charAt(0) == 'J') {
                     StorageReference image = storageReference.child("pictures/" + RecipeImageId);

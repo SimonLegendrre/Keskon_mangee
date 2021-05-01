@@ -9,6 +9,7 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/purple_700"
         android:paddingLeft="20dp"
         android:paddingRight="20dp"
         android:paddingTop="20dp"
@@ -20,6 +21,7 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="10dp"
             android:layout_marginTop="10dp"
+            android:textColor="@color/white"
             android:layout_marginBottom="10dp"
             android:text="Ajoutez ici tous les ingrédients que vous avez toujours à disposition"
             android:textSize="20dp"
@@ -33,7 +35,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="12dp"
-            android:background="@android:color/white"
+            android:background="@drawable/rounded_corner"
             android:completionHint="Clickez sur un des ingrédients du dessus"
             android:completionThreshold="2"
             android:hint="Ingrédient"
@@ -50,7 +52,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginTop="12dp"
+            android:layout_marginTop="28dp"
             android:gravity="center_horizontal"
             android:orientation="horizontal"
             app:layout_constraintEnd_toEndOf="parent"
@@ -58,30 +60,20 @@
             app:layout_constraintTop_toBottomOf="@+id/AtcTV_et_ing">
 
 
-            <Button
+            <ImageButton
                 android:id="@+id/btn_add_ing"
                 android:layout_width="107dp"
                 android:layout_height="wrap_content"
-                android:text="Ajouter"
-                android:textSize="10sp" />
+                android:layout_marginRight="90dp"
+                android:background="@color/purple_700"
+                app:srcCompat="@drawable/add_ingredient" />
 
-            <Button
+            <ImageButton
                 android:id="@+id/btn_rm_ing"
                 android:layout_width="107dp"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:text="Supprimer"
-                android:textSize="10sp"
-                android:layout_marginStart="17dp" />
-
-            <Button
-                android:id="@+id/btn_return_menu"
-                android:layout_width="107dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="20dp"
-                android:text="Retour au menu"
-                android:textSize="10sp"
-                android:layout_marginStart="17dp" />
+                android:background="@color/purple_700"
+                app:srcCompat="@drawable/ic_delete_pre_selected" />
 
 
         </LinearLayout>

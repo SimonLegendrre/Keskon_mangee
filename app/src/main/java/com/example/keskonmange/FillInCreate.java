@@ -13,7 +13,6 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.util.Log;
-import android.view.MotionEvent;
 import android.view.View;
 import android.webkit.MimeTypeMap;
 import android.widget.AdapterView;
@@ -73,8 +72,8 @@ public class FillInCreate extends OptionsMenuActivity {
     private String[] ListMesure;
 
     private EditText editTextDescription; // description d'une étape
-    public Button buttonAjouterEtape; // ajouter cette étaoe
-    public Button buttonAjouterIngredient; // ajout cet ingrédient
+    public ImageButton buttonAjouterEtape; // ajouter cette étaoe
+    public ImageButton buttonAjouterIngredient; // ajout cet ingrédient
     private ImageButton buttonGetInfo; //
     public Button stop_info;
 
@@ -158,7 +157,7 @@ public class FillInCreate extends OptionsMenuActivity {
 
         //Les étapes
         editTextDescription = findViewById(R.id.description);
-        buttonAjouterEtape = (Button) findViewById(R.id.btn_ajouterEtape);
+        buttonAjouterEtape = (ImageButton) findViewById(R.id.btn_ajouterEtape);
         listViewEtapes = findViewById(R.id.list_etapes);
         Etapes = findViewById(R.id.scrollEtape);
         //Les ingredients (format = autocomplete)
@@ -176,6 +175,7 @@ public class FillInCreate extends OptionsMenuActivity {
         AtcUnity.setAdapter(adapter1);
         //AtcUnity.showDropDown();
 
+        /*
         AtcUnity.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
@@ -184,6 +184,8 @@ public class FillInCreate extends OptionsMenuActivity {
                 return false;
             }
         });
+        */
+
 
         AtcUnity.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -194,7 +196,9 @@ public class FillInCreate extends OptionsMenuActivity {
 
 
 
-        buttonAjouterIngredient = (Button) findViewById(R.id.btn_ajouterIngredient);
+
+
+        buttonAjouterIngredient = (ImageButton) findViewById(R.id.btn_ajouterIngredient);
         buttonGetInfo = (ImageButton) findViewById(R.id.get_info_fill_in);
         listViewIngredients = findViewById(R.id.list_ingredients);
         Ingredients = findViewById(R.id.scrollIngredients);

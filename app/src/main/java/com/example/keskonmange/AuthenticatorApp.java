@@ -102,6 +102,9 @@ public class AuthenticatorApp extends OptionsMenuActivity {
 
         // retrieve the data from the DB
         DocumentReference documentReference = fstore.collection("Users").document(userId);
+        if (documentReference==null){
+
+        }
         documentReference.addSnapshotListener(this, new EventListener<DocumentSnapshot>() {
             @Override
             public void onEvent(@Nullable DocumentSnapshot documentSnapshot, @Nullable FirebaseFirestoreException error) {

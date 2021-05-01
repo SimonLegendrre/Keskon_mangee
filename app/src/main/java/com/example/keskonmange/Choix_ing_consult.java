@@ -10,6 +10,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -37,16 +38,15 @@ import java.util.ArrayList;
 
 public class Choix_ing_consult extends OptionsMenuActivity {
 
-    public Button buttonAddIng;
-    public Button buttonRemoveIng;
-    public Button buttonSearchRecipe;
+    public ImageButton buttonAddIng;
+    public ImageButton buttonSearchRecipe;
+    public ImageButton buttonPreSelected;
 
     AutoCompleteTextView AtcIngredients;
     ListView listView;
     ArrayList<String> ingredientList;
     ArrayAdapter<String> arrayAdapterIngredient;
     AwesomeValidation awesomeValidation;
-    public Button buttonPreSelected;
     Button button_yes;
     Button button_no;
     Button no_idea;
@@ -134,11 +134,10 @@ public class Choix_ing_consult extends OptionsMenuActivity {
         AtcIngredients.setAdapter(adapter);
 
         listView = findViewById(R.id.list_ing);
-        buttonAddIng = (Button) findViewById(R.id.btn_add_ing);
-        buttonRemoveIng = (Button) findViewById(R.id.btn_rm_ing);
-        buttonSearchRecipe = (Button) findViewById(R.id.btn_search_recipe);
-        buttonPreSelected = (Button) findViewById(R.id.btn_pre_selected);
-        no_idea = (Button) findViewById(R.id.no_idea);
+        buttonAddIng = (ImageButton) findViewById(R.id.btn_add_ing);
+        buttonSearchRecipe = (ImageButton) findViewById(R.id.btn_search_recipe);
+        buttonPreSelected = (ImageButton) findViewById(R.id.btn_pre_selected);
+        //no_idea = (Button) findViewById(R.id.no_idea);
 
         ingredientList = new ArrayList<String>();
         // fait le lien entre le XML EditText et arrayList "ingredientList"
@@ -199,19 +198,6 @@ public class Choix_ing_consult extends OptionsMenuActivity {
             }
         });
 
-        buttonRemoveIng.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (ingredientList.size() > 0) {
-                    ingredientList.remove(ingredientList.size() - 1);
-                    listView.setAdapter(arrayAdapterIngredient);
-                    arrayAdapterIngredient.notifyDataSetChanged();
-                } else {
-                    Toast.makeText(getApplicationContext(), "Vous n'avez pas entré d'ingrédient", Toast.LENGTH_SHORT).show();
-                }
-
-            }
-        });
 
         buttonSearchRecipe.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -239,6 +225,8 @@ public class Choix_ing_consult extends OptionsMenuActivity {
 
                                 }
                             }
+
+
                         }
                     });
 
@@ -292,15 +280,24 @@ public class Choix_ing_consult extends OptionsMenuActivity {
                                 }
                                 dialog.show();
                             } else {
+                                System.out.println("Beaucoup moins BG");
                                 Toast.makeText(Choix_ing_consult.this, "Vous n'avez pas encore ajouté d'ingrédients permanants", Toast.LENGTH_SHORT).show();
 
                             }
+                        }
+
+                        else{
+                            System.out.println("LE TEST DU BG");
+                            Toast.makeText(Choix_ing_consult.this, "Il y a eu un problème, probablement la base de données est down", Toast.LENGTH_SHORT).show();
                         }
 
                     }
                 });
             }
         });
+
+
+        /*
 
         no_idea.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -309,6 +306,7 @@ public class Choix_ing_consult extends OptionsMenuActivity {
                 startActivity(intent);
             }
         });
+        */
 
 
 

@@ -106,7 +106,8 @@ public class Recipes_Scrolling extends OptionsMenuActivity {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                         Intent intent = new Intent(Recipes_Scrolling.this, DetailedDescription.class);
-                        intent.putExtra("recipe_to_pass", recipes_list_id.get(position));
+                        String TestToPass = recipes_list.get(position).replaceAll(" ", "_").toLowerCase();
+                        intent.putExtra("recipe_to_pass", TestToPass);
                         intent.putExtra("from_which_acti", Recipe_scrolling_acti);
                         startActivity(intent);
                     }

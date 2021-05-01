@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -49,6 +50,12 @@ public class Choice_recipe_consult extends OptionsMenuActivity {
     ListView listView2;
     ListView listView3;
     Button stop_no_recipes;
+    ImageButton bt_one_more;
+    ImageButton bt_two_more;
+    ImageButton bt_all_recipes;
+    TextView textMatch;
+    TextView textPlus1;
+    TextView textPlus2;
 
 
     @Override
@@ -64,6 +71,49 @@ public class Choice_recipe_consult extends OptionsMenuActivity {
         listView1 = findViewById(R.id.list_recipes);
         listView2 = findViewById(R.id.list_recipe_plus1);
         listView3 = findViewById(R.id.list_recipe_plus2);
+
+        bt_one_more = findViewById(R.id.button_plus1);
+        bt_two_more = findViewById(R.id.button_plus2);
+        textMatch = findViewById(R.id.match_recipes);
+        textPlus1 = findViewById(R.id.plus1_recipes);
+        textPlus2 = findViewById(R.id.plus2_recipes);
+        bt_all_recipes = findViewById(R.id.button_all_recipes);
+
+        textPlus1.setText("En ajoutant 1 ingrédient en plus:");
+        textPlus2.setText("En ajoutant 2 ingrédients en plus:");
+
+
+        bt_two_more.setVisibility(View.GONE);
+        listView2.setVisibility(View.GONE);
+        listView3.setVisibility(View.GONE);
+        textPlus1.setVisibility(View.GONE);
+        textPlus2.setVisibility(View.GONE);
+
+        bt_all_recipes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Choice_recipe_consult.this, Recipes_Scrolling.class);
+                startActivity(intent);
+            }
+        });
+
+
+        bt_one_more.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                textPlus1.setVisibility(View.VISIBLE);
+                bt_two_more.setVisibility(View.VISIBLE);
+                listView2.setVisibility(View.VISIBLE);
+            }
+        });
+
+        bt_two_more.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                textPlus2.setVisibility(View.VISIBLE);
+                listView2.setVisibility(View.VISIBLE);
+            }
+        });
 
         // Lieux de stockage des notes
         ArrayList<String> NoteList1 = new ArrayList<>();
@@ -227,12 +277,13 @@ public class Choice_recipe_consult extends OptionsMenuActivity {
 
                 System.out.println("before condition");
 
-                if (recipes_list1.isEmpty()){
+                if (recipes_list1.isEmpty()){ // CHECK SI ON PEUT PAS FAIRE QUELQUE CHOSE DE MIEUX ICI, PCQ C'EST COCHON
 
                     // Losqu'il n'y a pas de recette avec exactement ce qui a été entré, on ne veut pas voir la section avec ce qui devrait être montré pour celle là. On met alors en GONE
                     TextView TVexactResult = findViewById(R.id.match_recipes);
                     TVexactResult.setVisibility(View.GONE);
                     listView1.setVisibility(View.GONE);
+                    bt_one_more.setVisibility(View.GONE);
 
                     Dialog no_recipes_dialog = new Dialog(Choice_recipe_consult.this);
                     no_recipes_dialog.setContentView(R.layout.dialog_choice_recipe_consult);
@@ -258,8 +309,8 @@ public class Choice_recipe_consult extends OptionsMenuActivity {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                         Intent intent = new Intent(Choice_recipe_consult.this, DetailedDescription.class);
-                        intent.putExtra("recipe_to_pass", recipes_list_id1.get(position));
-                        System.out.println("Exact result ID: "+ recipes_list_id1.get(position));
+                        String TestToPass = recipes_list1.get(position).replaceAll(" ", "_").toLowerCase();
+                        intent.putExtra("recipe_to_pass", TestToPass);
                         // Dans detailed description, en fonction d'ou on vient, on affiche des choses différents:
                         intent.putExtra("from_which_acti", Choice_recipe_acti);
                         System.out.println("Exact result ID: "+ Choice_recipe_acti);
@@ -273,7 +324,8 @@ public class Choice_recipe_consult extends OptionsMenuActivity {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                         Intent intent = new Intent(Choice_recipe_consult.this, DetailedDescription.class);
-                        intent.putExtra("recipe_to_pass", recipes_list_id2.get(position));
+                        String TestToPass = recipes_list2.get(position).replaceAll(" ", "_").toLowerCase();
+                        intent.putExtra("recipe_to_pass", TestToPass);
                         System.out.println("Exact result ID: "+ recipes_list_id2.get(position));
                         intent.putExtra("from_which_acti", Choice_recipe_acti);
                         System.out.println("Exact result ID: "+ Choice_recipe_acti);
@@ -287,7 +339,8 @@ public class Choice_recipe_consult extends OptionsMenuActivity {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                         Intent intent = new Intent(Choice_recipe_consult.this, DetailedDescription.class);
-                        intent.putExtra("recipe_to_pass", recipes_list_id3.get(position));
+                        String TestToPass = recipes_list3.get(position).replaceAll(" ", "_").toLowerCase();
+                        intent.putExtra("recipe_to_pass", TestToPass);
                         intent.putExtra("from_which_acti", Choice_recipe_acti);
                         startActivity(intent);
                         Toast.makeText(Choice_recipe_consult.this, recipes_list3.get(position), Toast.LENGTH_SHORT).show();

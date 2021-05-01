@@ -2,13 +2,12 @@ package com.example.keskonmange;
 
 import android.app.AlertDialog;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
-import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -33,9 +32,8 @@ import java.util.Map;
 
 public class PreSelectedIng extends OptionsMenuActivity {
 
-    public Button buttonAddIng;
-    public Button buttonRemoveIng;
-    public Button buttonBackMenu;
+    public ImageButton buttonAddIng;
+    public ImageButton buttonRemoveIng;
     private AutoCompleteTextView AtcIngredients;
     ListView listView;
 
@@ -81,9 +79,8 @@ public class PreSelectedIng extends OptionsMenuActivity {
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, IngredientsKKM);
         AtcIngredients.setAdapter(adapter);
 
-        buttonAddIng = (Button) findViewById(R.id.btn_add_ing);
-        buttonBackMenu = (Button) findViewById(R.id.btn_return_menu);
-        buttonRemoveIng = (Button) findViewById(R.id.btn_rm_ing);
+        buttonAddIng = (ImageButton) findViewById(R.id.btn_add_ing);
+        buttonRemoveIng = (ImageButton) findViewById(R.id.btn_rm_ing);
 
         ingredients_list = (ArrayList<String>) getIntent().getSerializableExtra("ingredient_pre_to_pass");
 
@@ -163,16 +160,6 @@ public class PreSelectedIng extends OptionsMenuActivity {
 
             }
         });
-
-        buttonBackMenu.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(PreSelectedIng.this, CreationOrConsulationPage.class);
-                startActivity(intent);
-                finish();
-            }
-        });
-
 
     }
 

@@ -77,6 +77,7 @@
             android:id="@+id/add_step"
             android:layout_width="wrap_content"
             android:layout_height="40dp"
+            android:layout_marginTop="12dp"
             android:background="@color/purple_700"
             android:text="Ajouter une étape"
             android:textSize="10dp"

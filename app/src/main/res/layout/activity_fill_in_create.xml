@@ -166,17 +166,18 @@
             app:layout_constraintStart_toEndOf="@+id/quantité"
             app:layout_constraintTop_toBottomOf="@+id/ingredients" />
 
-        <Button
+
+        <ImageButton
             android:id="@+id/btn_ajouterIngredient"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:text="Ajouter ingrédient à la recette"
-            android:textSize="10dp"
-            android:textStyle="bold"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginRight="10dp"
+            android:background="@color/purple_700"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/quantité" />
-
+            app:layout_constraintTop_toBottomOf="@+id/quantité"
+            app:srcCompat="@drawable/add_ingredient" />
 
         <androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
             xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -237,16 +238,17 @@
             app:layout_constraintTop_toBottomOf="@+id/TextViewExplicationsDescription" />
 
 
-        <Button
+        <ImageButton
             android:id="@+id/btn_ajouterEtape"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:text="Ajouter étape à la recette"
-            android:textSize="10dp"
-            android:textStyle="bold"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginRight="10dp"
+            android:background="@color/purple_700"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/description"></Button>
+            app:layout_constraintTop_toBottomOf="@+id/description"
+            app:srcCompat="@drawable/add_ingredient" />
 
         <androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
             xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -332,7 +334,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@color/purple_700"
-                app:srcCompat="@drawable/ic_gallery" />
+                app:srcCompat="@drawable/ic_gallery"
+          />
         </LinearLayout>
 
         <Button

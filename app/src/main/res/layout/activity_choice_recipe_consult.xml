@@ -1,72 +1,138 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Choice_recipe_consult">
+    android:background="@color/white"
+    android:orientation="vertical"
+    android:paddingLeft="20dp"
+    android:paddingTop="20dp"
+    android:paddingRight="20dp">
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        android:paddingLeft="10dp"
-        android:paddingRight="10dp"
-        android:background="@color/white"
-        tools:ignore="ExtraText">
+        tools:context=".Choice_recipe_consult">
 
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
 
 
         <TextView
-            android:layout_marginTop="20dp"
             android:id="@+id/match_recipes"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:text="Ce que vous pouvez faire avec les ingrédients de votre frigo:"
-            android:textSize="15dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:text="Ce que vous pouvez faire avec les ingrédients de votre frigo: Cliquez sur la recette
+qui vous intéresse, ou cliquez sur le logo + si vous voulez des recettes avec un ingrédient en plus que ce que vous disposez !\n
+Régalez vous !"
+            android:textColor="@color/purple_700"
+            android:textSize="20dp"
             android:textStyle="bold"
-
-            ></TextView>
-
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.135"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <ListView
             android:id="@+id/list_recipes"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="150dp"
-            android:visibility="visible" />
+            android:layout_marginTop="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/match_recipes" />
+
+        <ImageButton
+            android:id="@+id/button_plus1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginRight="10dp"
+            android:background="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/list_recipes"
+            app:srcCompat="@drawable/ic_more_recipe" />
+
+
+        <ImageButton
+            android:id="@+id/button_all_recipes"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="316dp"
+            android:layout_marginRight="316dp"
+            android:background="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/list_recipes"
+            app:srcCompat="@drawable/ic_recipe_scrolling" />
 
         <TextView
             android:id="@+id/plus1_recipes"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:text="En ajoutant 1 ingrédient en plus:"
-            android:textSize="15dp"
+            android:layout_height="wrap_content"
+            android:textColor="@color/purple_700"
+            android:textSize="20dp"
             android:textStyle="bold"
-            ></TextView>
-
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.135"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/button_plus1" />
 
         <ListView
             android:id="@+id/list_recipe_plus1"
             android:layout_width="match_parent"
             android:layout_height="150dp"
-            android:visibility="visible" />
+            android:layout_marginTop="8dp"
+            android:visibility="visible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/plus1_recipes" />
+
+        <ImageButton
+            android:id="@+id/button_plus2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginRight="10dp"
+            android:background="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/list_recipe_plus1"
+            app:srcCompat="@drawable/ic_more_recipe" />
 
         <TextView
             android:id="@+id/plus2_recipes"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:text="En ajoutant 2 ingrédients en plus:"
-            android:textSize="15dp"
+            android:layout_height="wrap_content"
+            android:textColor="@color/purple_700"
+            android:textSize="20dp"
             android:textStyle="bold"
-            ></TextView>
-
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.135"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/button_plus2" />
 
         <ListView
             android:id="@+id/list_recipe_plus2"
             android:layout_width="match_parent"
             android:layout_height="150dp"
-            android:visibility="visible" />
+            android:layout_marginTop="8dp"
+            android:visibility="visible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/plus2_recipes" />
 
-    </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
-</ScrollView>
+    </ScrollView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
