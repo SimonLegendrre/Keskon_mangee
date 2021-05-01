@@ -1,6 +1,8 @@
 package com.example.keskonmange;
 
+import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -135,6 +137,28 @@ public class CreationOrConsulationPage extends OptionsMenuActivity {
 
         }
 
+
+
+    }
+
+    @Override
+    public void onBackPressed() {
+        new AlertDialog.Builder(CreationOrConsulationPage.this)
+                .setIcon(android.R.drawable.ic_delete)
+                .setTitle("Quitter ?")
+                .setMessage("Voules-vous supprimer quitter l'application ?")
+                // Si l'utilisateur clique sur OUI, l'étape est supprimée.
+                .setPositiveButton("Oui", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Intent homeIntent = new Intent(Intent.ACTION_MAIN);
+                        homeIntent.addCategory( Intent.CATEGORY_HOME );
+                        homeIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                        startActivity(homeIntent);
+                    }
+                })
+                .setNegativeButton("Non", null)
+                .show();
     }
 
 
