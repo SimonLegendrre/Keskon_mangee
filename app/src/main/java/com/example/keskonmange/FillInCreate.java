@@ -83,6 +83,7 @@ public class FillInCreate extends OptionsMenuActivity {
     ListView listViewEtapes;
     private NestedScrollView Etapes;
 
+    // Liste des ingrédients
     ArrayList<String> ListeIngredients;
     ArrayAdapter<String> arrayAdapterListeIngredients;
     ListView listViewIngredients;
@@ -117,7 +118,9 @@ public class FillInCreate extends OptionsMenuActivity {
 
 
     // Création de BDD nécessaire pour l'autcomplétion des ingrédients.
-    ArrayList<String> IngredientsKKM = new ArrayList<>();
+    //ArrayList<String> IngredientsKKM = new ArrayList<>();
+
+    String[] IngredientsKKM ;
     private CollectionReference IngredientsKKMCollection = db.collection("Ingredients");
 
 
@@ -128,7 +131,10 @@ public class FillInCreate extends OptionsMenuActivity {
 
         // Atucomplete unités de mesure
         ListMesure = getResources().getStringArray(R.array.IngredientsUnit);
+        // Liste des ingrédients importé
+        IngredientsKKM = getResources().getStringArray(R.array.IngredientsList);
 
+        /* J'ai laissé pour le moment en commentaire avant suppression définitive
         // Importation de la BDD incluant tous les ingrédients de KKM (sert à approvisioner l'array IngredientsKKM
         IngredientsKKMCollection
                 .addSnapshotListener(this, new EventListener<QuerySnapshot>() {
@@ -146,6 +152,8 @@ public class FillInCreate extends OptionsMenuActivity {
                     }
                 });
 
+         */
+
         //Le nom de la recette
         editTextTitre = findViewById(R.id.nom_recette);
         //Le nombre de personne
@@ -161,8 +169,9 @@ public class FillInCreate extends OptionsMenuActivity {
         listViewEtapes = findViewById(R.id.list_etapes);
         Etapes = findViewById(R.id.scrollEtape);
         //Les ingredients (format = autocomplete)
+
         AtcIngredients = findViewById(R.id.ingredients);
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, IngredientsKKM);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, IngredientsKKM); // changer source IngredientsKKM
         AtcIngredients.setAdapter(adapter);
 
         Quantity = findViewById(R.id.quantité);
@@ -175,16 +184,7 @@ public class FillInCreate extends OptionsMenuActivity {
         AtcUnity.setAdapter(adapter1);
         //AtcUnity.showDropDown();
 
-        /*
-        AtcUnity.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                AtcUnity.setDropDownHeight(500);
-                AtcUnity.showDropDown();
-                return false;
-            }
-        });
-        */
+
 
 
         AtcUnity.setOnClickListener(new View.OnClickListener() {

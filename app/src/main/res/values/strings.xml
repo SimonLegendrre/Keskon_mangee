@@ -50,6 +50,4995 @@
         <item>cuillerée(s) à café</item>
         <item>tasse(s)</item>
         <item>unité(s)</item>
+    </string-array >
+
+    <string-array name="IngredientsList">
+        <item>
+Mogettes de Vendée I.G.P U Saveurs
+</item>
+        <item>
+chicorée
+</item>
+        <item>
+fruits secs
+</item>
+        <item>
+cassoulet
+</item>
+        <item>
+beurre
+</item>
+        <item>
+poivre de sichuan
+</item>
+        <item>
+noix de coco
+</item>
+        <item>
+sauce à l\'oseille
+</item>
+        <item>
+	cumin
+</item>
+        <item>
+	saumon
+</item>
+        <item>
+	Maury
+</item>
+        <item>
+	gésiers
+</item>
+        <item>
+	vin
+</item>
+        <item>
+	caramel
+</item>
+        <item>
+	pâte à pizza
+</item>
+        <item>
+	Lambig
+</item>
+        <item>
+	ricotta
+</item>
+        <item>
+	poudre de piment de cayenne
+</item>
+        <item>
+	nouilles soba
+</item>
+        <item>
+	piccalilli
+</item>
+        <item>
+	canard
+</item>
+        <item>
+	pâte
+</item>
+        <item>
+	chocolat amer
+</item>
+        <item>
+	coriandre en grains
+</item>
+        <item>
+	mesclun
+</item>
+        <item>
+	toastinette
+</item>
+        <item>
+	moscatel
+</item>
+        <item>
+	aneth
+</item>
+        <item>
+	basse-côte
+</item>
+        <item>
+	poularde
+</item>
+        <item>
+	basilic citron
+</item>
+        <item>
+	sauce tomate
+</item>
+        <item>
+	sandre
+</item>
+        <item>
+	parmesan râpé
+</item>
+        <item>
+	bordeaux
+</item>
+        <item>
+	sbrinz
+</item>
+        <item>
+	rumsteak
+</item>
+        <item>
+	chair à saucisse
+</item>
+        <item>
+	rutabaga
+</item>
+        <item>
+	poivre blanc
+</item>
+        <item>
+	feuille de cari
+</item>
+        <item>
+	farine de blé noir
+</item>
+        <item>
+	cabillaud
+</item>
+        <item>
+	fécule de maïs
+</item>
+        <item>
+	noix de cajou
+</item>
+        <item>
+	tomme québécoise
+</item>
+        <item>
+	huile de sésame
+</item>
+        <item>
+	mousseux
+</item>
+        <item>
+	cuisse de poulet
+</item>
+        <item>
+	Guinness
+</item>
+        <item>
+	brandy
+</item>
+        <item>
+	piment
+</item>
+        <item>
+	oeuf Plein Air Calibre mixte U
+</item>
+        <item>
+	épaule
+</item>
+        <item>
+	HERTA® LE BON VEGETAL® Bouchées Grillées Soja &amp; Blé
+</item>
+        <item>
+	jambon fumé
+</item>
+        <item>
+	margarine
+</item>
+        <item>
+	chou vert
+</item>
+        <item>
+	vinaigre de vin
+</item>
+        <item>
+	rumsteck
+</item>
+        <item>
+	truffe noire du périgord
+</item>
+        <item>
+	fromages italiens
+</item>
+        <item>
+	Ras el Hanout
+</item>
+        <item>
+	banon
+</item>
+        <item>
+	ail
+</item>
+        <item>
+	vinaigre
+</item>
+        <item>
+	Emmental Savoie IGP U Saveurs
+</item>
+        <item>
+	sauce Raclette Entremont®
+</item>
+        <item>
+	crème fouettée
+</item>
+        <item>
+	oignon frit séché
+</item>
+        <item>
+	sauce d\'huître
+</item>
+        <item>
+crépinette
+</item>
+        <item>
+farine
+</item>
+        <item>
+raclette
+</item>
+        <item>
+muffin
+</item>
+        <item>
+Poivrons U BIO
+</item>
+        <item>
+rigatoni
+</item>
+        <item>
+fromage à raclette
+</item>
+        <item>
+châtaigne
+</item>
+        <item>
+faisselle
+</item>
+        <item>
+saumon fumé
+</item>
+        <item>
+fromage
+</item>
+        <item>
+vanille
+</item>
+        <item>
+pâtes fraîches
+</item>
+        <item>
+viandox
+</item>
+        <item>
+poivre vert
+</item>
+        <item>
+vinaigrette
+</item>
+        <item>
+poule
+</item>
+        <item>
+yaourt
+</item>
+        <item>
+mascarpone
+</item>
+        <item>
+aiguillette de dinde
+</item>
+        <item>
+confiture de fruits rouges
+</item>
+        <item>
+fonio
+</item>
+        <item>
+andouille
+</item>
+        <item>
+pain brioché
+</item>
+        <item>
+veau
+</item>
+        <item>
+framboises
+</item>
+        <item>
+lait concentré non sucré
+</item>
+        <item>
+cacao amer
+</item>
+        <item>
+huile de pépin de raisin
+</item>
+        <item>
+haddock
+</item>
+        <item>
+porc
+</item>
+        <item>
+coulommier
+</item>
+        <item>
+chair à saucisses U BBC
+</item>
+        <item>
+marjolaine
+</item>
+        <item>
+perdrix
+</item>
+        <item>
+gouda
+</item>
+        <item>
+livarot
+</item>
+        <item>
+Pavé de saumon
+</item>
+        <item>
+mousse de foie
+</item>
+        <item>
+fécule
+</item>
+        <item>
+pinot noir
+</item>
+        <item>
+vacherin
+</item>
+        <item>
+piment d\'Espelette
+</item>
+        <item>
+	safran
+</item>
+        <item>
+	baie de genévrier
+</item>
+        <item>
+	escalope de dinde
+</item>
+        <item>
+	scamorza
+</item>
+        <item>
+	speck
+</item>
+        <item>
+	savora
+</item>
+        <item>
+	queue de langouste
+</item>
+        <item>
+	chocolat en poudre
+</item>
+        <item>
+	linguine
+</item>
+        <item>
+	baies de goji
+</item>
+        <item>
+	baba
+</item>
+        <item>
+	coeur de canard
+</item>
+        <item>
+	gros sel
+</item>
+        <item>
+	sésame
+</item>
+        <item>
+	mozzarella
+</item>
+        <item>
+	roquette
+</item>
+        <item>
+	sirop de Liège
+</item>
+        <item>
+	langue écarlate
+</item>
+        <item>
+	pancetta
+</item>
+        <item>
+	riz surinam
+</item>
+        <item>
+	fleur d\'oranger
+</item>
+        <item>
+pied-de-mouton
+</item>
+        <item>
+Fond de Volaille MAGGI®
+</item>
+        <item>
+pomme de terre rouge
+</item>
+        <item>
+kechek
+</item>
+        <item>
+piment fort
+</item>
+        <item>
+olives
+</item>
+        <item>
+guacamole
+</item>
+        <item>
+grenade
+</item>
+        <item>
+potiron
+</item>
+        <item>
+fromage râpé
+</item>
+        <item>
+congre
+</item>
+        <item>
+muscade
+</item>
+        <item>
+lait végétal
+</item>
+        <item>
+saucisson à l\'ail
+</item>
+        <item>
+	wasabi
+</item>
+        <item>
+	HERTA® LE BON VEGETAL® Saucisses Crues Nature Soja
+</item>
+        <item>
+	ris de veau
+</item>
+        <item>
+	banane plantain
+</item>
+        <item>
+	sirop de cassis
+</item>
+        <item>
+	gruyère
+</item>
+        <item>
+	jarret de porc
+</item>
+        <item>
+	pamplemousse
+</item>
+        <item>
+	tilsit
+</item>
+        <item>
+	sirop de menthe
+</item>
+        <item>
+	vive
+</item>
+        <item>
+	crème épaisse
+</item>
+        <item>
+	bouquet garni
+</item>
+        <item>
+	cédrat
+</item>
+        <item>
+	travers de porc
+</item>
+        <item>
+	boyau pour saucisse
+</item>
+        <item>
+	Lardons Fumés HERTA®
+</item>
+        <item>
+	courge spaghetti
+</item>
+        <item>
+	lard
+</item>
+        <item>
+	pêche
+</item>
+        <item>
+	mozzarella di buffala
+</item>
+        <item>
+	épluchures
+</item>
+        <item>
+	courgette
+</item>
+        <item>
+	chocolat noir
+</item>
+        <item>
+	capellini
+</item>
+        <item>
+	pousse de lotus
+</item>
+        <item>
+	cracker
+</item>
+        <item>
+	tomate séchée à l\'huile d\'olive
+</item>
+        <item>
+	raisin muscat
+</item>
+        <item>
+	biscuit amaretti
+</item>
+        <item>
+	aneth séchée
+</item>
+        <item>
+	téquila
+</item>
+        <item>
+	truite
+</item>
+        <item>
+	faux-filet
+</item>
+        <item>
+	aiguillette de canard
+</item>
+        <item>
+	légumes
+</item>
+        <item>
+	coquelet l\'étal du volailler
+</item>
+        <item>
+grenadier
+</item>
+        <item>
+bergamote
+</item>
+        <item>
+papillons
+</item>
+        <item>
+pèpè
+</item>
+        <item>
+foie gras de canard du Sud-Ouest cru surgelé
+</item>
+        <item>
+apérifruit
+</item>
+        <item>
+purée de piment
+</item>
+        <item>
+oeuf
+</item>
+        <item>
+Lardons Nature HERTA®
+</item>
+        <item>
+rue
+</item>
+        <item>
+tagliatelles fraîches
+</item>
+        <item>
+graines de nigelle
+</item>
+        <item>
+oignon blanc
+</item>
+        <item>
+germe de luzerne
+</item>
+        <item>
+cervelas
+</item>
+        <item>
+noix de grenoble
+</item>
+        <item>
+crème fraîche liquide Milsani®️
+</item>
+        <item>
+Halloumi
+</item>
+        <item>
+houmous
+</item>
+        <item>
+quenelle
+</item>
+        <item>
+purée de carotte
+</item>
+        <item>
+confiture de fraises
+</item>
+        <item>
+crème de mûre
+</item>
+        <item>
+magret de canard séché
+</item>
+        <item>
+carrelet
+</item>
+        <item>
+tahin
+</item>
+        <item>
+pâte à crêpe
+</item>
+        <item>
+sauce Arrabiata
+</item>
+        <item>
+feuille de riz
+</item>
+        <item>
+filet de poulets U BBC
+</item>
+        <item>
+escalope de veau
+</item>
+        <item>
+tarama
+</item>
+        <item>
+boulette de boeuf
+</item>
+        <item>
+sauce harissa
+</item>
+        <item>
+vieille
+</item>
+        <item>
+graine de fenouil
+</item>
+        <item>
+carotte
+</item>
+        <item>
+beurre d\'escargot
+</item>
+        <item>
+	herbes aromatiques
+</item>
+        <item>
+	oignon jaune
+</item>
+        <item>
+	jumbo
+</item>
+        <item>
+	confiture
+</item>
+        <item>
+	confiture de myrtilles
+</item>
+        <item>
+	lentilles
+</item>
+        <item>
+	cidre
+</item>
+        <item>
+	lardons
+</item>
+        <item>
+	filet de poulet
+</item>
+        <item>
+	graines de sésame noir
+</item>
+        <item>
+	carré frais
+</item>
+        <item>
+	boulettes de viande
+</item>
+        <item>
+	graines de courge
+</item>
+        <item>
+	pastis
+</item>
+        <item>
+	sauce huître
+</item>
+        <item>
+	patrelle
+</item>
+        <item>
+	moutarde
+</item>
+        <item>
+	petit pain individuel
+</item>
+        <item>
+	poivre long
+</item>
+        <item>
+	jus de fruit de la passion
+</item>
+        <item>
+	mélange d\'épices massala
+</item>
+        <item>
+bûche chavroux
+</item>
+        <item>
+couenne de panne
+</item>
+        <item>
+noix de muscade moulue
+</item>
+        <item>
+igname
+</item>
+        <item>
+fregola sarda
+</item>
+        <item>
+champignon de Paris brun
+</item>
+        <item>
+butternut
+</item>
+        <item>
+feuille de blé
+</item>
+        <item>
+caviar
+</item>
+        <item>
+saucisse de Montbéliard
+</item>
+        <item>
+dorade
+</item>
+        <item>
+boudin blanc
+</item>
+        <item>
+oeuf de lump
+</item>
+        <item>
+HERTA® LE BON VEGETAL® Escalope Soja &amp; Blé
+</item>
+        <item>
+blette
+</item>
+        <item>
+beurre demi-sel
+</item>
+        <item>
+Fond de Veau MAGGI®
+</item>
+        <item>
+saint-nectaire
+</item>
+        <item>
+marc
+</item>
+        <item>
+tofu
+</item>
+        <item>
+mayonnaise au citron
+</item>
+        <item>
+Abats
+</item>
+        <item>
+pâtes
+</item>
+        <item>
+endive
+</item>
+        <item>
+malibu coco
+</item>
+        <item>
+brick
+</item>
+        <item>
+nouilles aux oeufs
+</item>
+        <item>
+beurre blanc
+</item>
+        <item>
+citronnelle
+</item>
+        <item>
+épeautre
+</item>
+        <item>
+lasagnettes
+</item>
+        <item>
+calvados
+</item>
+        <item>
+purée de noix de cajou
+</item>
+        <item>
+sucre
+</item>
+        <item>
+chou-fleur
+</item>
+        <item>
+Monbazillac
+</item>
+        <item>
+ossau iraty
+</item>
+        <item>
+mirabelle
+</item>
+        <item>
+spaghetti
+</item>
+        <item>
+roquefort
+</item>
+        <item>
+raisins secs
+</item>
+        <item>
+grondin
+</item>
+        <item>
+sirop d\'agave
+</item>
+        <item>
+	noix de macadamia
+</item>
+        <item>
+	pomme de terre
+</item>
+        <item>
+	vieux lille
+</item>
+        <item>
+	épices pour tajine
+</item>
+        <item>
+	nem
+</item>
+        <item>
+	bergerac
+</item>
+        <item>
+	Moutarde au piment d\'Espelette
+</item>
+        <item>
+concentré pour soupe chinoise
+</item>
+        <item>
+truffe blanche d\'alba
+</item>
+        <item>
+	langue de mouton
+</item>
+        <item>
+	chocolat pâtissier
+</item>
+        <item>
+	julienne de légumes
+</item>
+        <item>
+	mélange 5 baies
+</item>
+        <item>
+	jalapeno
+</item>
+        <item>
+	ortie
+</item>
+        <item>
+	filet mignon
+</item>
+        <item>
+	fruit de mer
+</item>
+        <item>
+	vinaigre aromatisé
+</item>
+        <item>
+	sauce Tempura
+</item>
+        <item>
+	pistaches
+</item>
+        <item>
+	chips
+</item>
+        <item>
+	lemon-grass
+</item>
+        <item>
+	pâte filo
+</item>
+        <item>
+	vin rosé
+</item>
+        <item>
+	sancerre
+</item>
+        <item>
+	sole portion
+</item>
+        <item>
+	poivre de Cayenne
+</item>
+        <item>
+	lotus
+</item>
+        <item>
+	sauce Sriracha
+</item>
+        <item>
+	crépine
+</item>
+        <item>
+	boulgour
+</item>
+        <item>
+	chou-rave
+</item>
+        <item>
+	épaule de biche
+</item>
+        <item>
+	sauce cocktail
+</item>
+        <item>
+	nappage chocolat
+</item>
+        <item>
+	poulet entier
+</item>
+        <item>
+	tacos
+</item>
+        <item>
+	colin
+</item>
+        <item>
+	Gorgonzola Doux Igor®
+</item>
+        <item>
+	chipolata
+</item>
+        <item>
+	jambonneau
+</item>
+        <item>
+	lait entier
+</item>
+        <item>
+	fève
+</item>
+        <item>
+	calamar
+</item>
+        <item>
+	coeur de palmier
+</item>
+        <item>
+	choucroute
+</item>
+        <item>
+	levure de boulanger fraîche
+</item>
+        <item>
+	levure
+</item>
+        <item>
+	mouton
+</item>
+        <item>
+	pois chiches
+</item>
+        <item>
+	Confiture de framboise
+</item>
+        <item>
+	riz gluant
+</item>
+        <item>
+	bourguignon
+</item>
+        <item>
+	aiguillette de poulet
+</item>
+        <item>
+	boursault
+</item>
+        <item>
+	épices tandoori
+</item>
+        <item>
+	confiture de cerise
+</item>
+        <item>
+	cerfeuil
+</item>
+        <item>
+	écrevisse
+</item>
+        <item>
+	nuoc mam
+</item>
+        <item>
+	graisse végétale
+</item>
+        <item>
+	Martini
+</item>
+        <item>
+	pâte feuilletée
+</item>
+        <item>
+	citron confit
+</item>
+        <item>
+	couscous
+</item>
+        <item>
+	jus de cuisson
+</item>
+        <item>
+	court-bouillon
+</item>
+        <item>
+	rocamadour
+</item>
+        <item>
+	écorce d\'orange
+</item>
+        <item>
+huître
+</item>
+        <item>
+rascasse
+</item>
+        <item>
+gressin
+</item>
+        <item>
+madeleine
+</item>
+        <item>
+sauce burger
+</item>
+        <item>
+salade frisée
+</item>
+        <item>
+lotte
+</item>
+        <item>
+citron vert
+</item>
+        <item>
+lieu noir
+</item>
+        <item>
+fève de tonka
+</item>
+        <item>
+Riz rond 100% japonais Akafuji®
+</item>
+        <item>
+poudre de coco
+</item>
+        <item>
+baie moulu
+</item>
+        <item>
+cancoillotte
+</item>
+        <item>
+fond d\'artichaut
+</item>
+        <item>
+	paupiette
+</item>
+        <item>
+	pâte grecque
+</item>
+        <item>
+	sirop d\'érable
+</item>
+        <item>
+sauce au poivre
+</item>
+        <item>
+farfalle
+</item>
+        <item>
+sauce bourguignonne
+</item>
+        <item>
+lait fermenté
+</item>
+        <item>
+jambon
+</item>
+        <item>
+sauce barbecue
+</item>
+        <item>
+sauté de dinde
+</item>
+        <item>
+cornette
+</item>
+        <item>
+huile d\'olive
+</item>
+        <item>
+	sauce pour nem
+</item>
+        <item>
+	ketchup
+</item>
+        <item>
+	alcool de poire
+</item>
+        <item>
+	saucisse sèche
+</item>
+        <item>
+	thé vert
+</item>
+        <item>
+	fromage ail et fines herbes
+</item>
+        <item>
+	chanterelle
+</item>
+        <item>
+	thym citron
+</item>
+        <item>
+	tahini
+</item>
+        <item>
+	baguette
+</item>
+        <item>
+	jus d\'abricot
+</item>
+        <item>
+cassis
+</item>
+        <item>
+porcelet
+</item>
+        <item>
+picodon
+</item>
+        <item>
+seigle
+</item>
+        <item>
+aillet
+</item>
+        <item>
+martini blanc
+</item>
+        <item>
+oignon cébette
+</item>
+        <item>
+lait en poudre
+</item>
+        <item>
+crème fraîche allégée
+</item>
+        <item>
+pignons
+</item>
+        <item>
+jaune d\'oeuf
+</item>
+        <item>
+	sorbet au citron vert
+</item>
+        <item>
+	nouilles de riz
+</item>
+        <item>
+	souris d\'agneau
+</item>
+        <item>
+Vache qui rit®
+</item>
+        <item>
+tabasco
+</item>
+        <item>
+saucisse de Francfort
+</item>
+        <item>
+grappa
+</item>
+        <item>
+saumon fumé Norvège U
+</item>
+        <item>
+riz noir
+</item>
+        <item>
+tranche de jambon blanc bio Monique Ranou®
+</item>
+        <item>
+leffe
+</item>
+        <item>
+soubressade
+</item>
+        <item>
+crépidule
+</item>
+        <item>
+poivron rouge
+</item>
+        <item>
+filet de porc
+</item>
+        <item>
+saucisse de Strasbourg
+</item>
+        <item>
+charcuterie
+</item>
+        <item>
+sauce piquante
+</item>
+        <item>
+algue japonaise
+</item>
+        <item>
+palourde
+</item>
+        <item>
+paleron
+</item>
+        <item>
+rhubarbe
+</item>
+        <item>
+ouassou
+</item>
+        <item>
+lard fumé
+</item>
+        <item>
+anisette
+</item>
+        <item>
+coppa
+</item>
+        <item>
+graines de sésame
+</item>
+        <item>
+kumquat
+</item>
+        <item>
+Vouvray
+</item>
+        <item>
+kari gosse
+</item>
+        <item>
+panne
+</item>
+        <item>
+pain complet
+</item>
+        <item>
+comté
+</item>
+        <item>
+jus citron
+</item>
+        <item>
+huile de tournesol
+</item>
+        <item>
+coq
+</item>
+        <item>
+châtaigne d\'eau
+</item>
+        <item>
+	gin
+</item>
+        <item>
+	patate douce
+</item>
+        <item>
+	chocolat blanc
+</item>
+        <item>
+	côte de boeuf
+</item>
+        <item>
+	bulot
+</item>
+        <item>
+	chips tortilla
+</item>
+        <item>
+	saumon au naturel
+</item>
+        <item>
+	quorn
+</item>
+        <item>
+	Comté AOP U Saveurs
+</item>
+        <item>
+	riz
+</item>
+        <item>
+	pieds
+</item>
+        <item>
+	vinaigre de mangue
+</item>
+        <item>
+	feuilleté
+</item>
+        <item>
+	tsuyu (bouillon au poisson volant)
+</item>
+        <item>
+	cuisse de lapin
+</item>
+        <item>
+	liseron d\'eau
+</item>
+        <item>
+griotte
+</item>
+        <item>
+Beaumes de Venise
+</item>
+        <item>
+graines d\'anis
+</item>
+        <item>
+	veau spécial Blanquettes/sautés Tendriade
+</item>
+        <item>
+	saucisson à cuire lyonnais
+</item>
+        <item>
+	cantal SDNR
+</item>
+        <item>
+	tilapia
+</item>
+        <item>
+	pot-au-feu
+</item>
+        <item>
+	béchamel
+</item>
+        <item>
+	appenzeller
+</item>
+        <item>
+	bavette
+</item>
+        <item>
+	anchois
+</item>
+        <item>
+	sauté de porc
+</item>
+        <item>
+	brousse
+</item>
+        <item>
+	girofle
+</item>
+        <item>
+	tortellini
+</item>
+        <item>
+	jus de pomme
+</item>
+        <item>
+	graisse d\'oie
+</item>
+        <item>
+soja
+</item>
+        <item>
+pâte à choux
+</item>
+        <item>
+morue
+</item>
+        <item>
+rognons
+</item>
+        <item>
+pain viennois
+</item>
+        <item>
+trévise
+</item>
+        <item>
+boursin
+</item>
+        <item>
+pommeau
+</item>
+        <item>
+foie de veau
+</item>
+        <item>
+bouillon de poule
+</item>
+        <item>
+nouilles udon
+</item>
+        <item>
+anis
+</item>
+        <item>
+champagne
+</item>
+        <item>
+rose
+</item>
+        <item>
+torsette
+</item>
+        <item>
+baies roses
+</item>
+        <item>
+Fleurs
+</item>
+        <item>
+feta
+</item>
+        <item>
+riz basmati
+</item>
+        <item>
+cube pot au feu
+</item>
+        <item>
+scarole
+</item>
+        <item>
+langue
+</item>
+        <item>
+pâtes au quinoa
+</item>
+        <item>
+rate
+</item>
+        <item>
+galanga
+</item>
+        <item>
+mélange d\'épices pour chili
+</item>
+        <item>
+	fenugreek
+</item>
+        <item>
+	avoine
+</item>
+        <item>
+	crottin de Chavignol
+</item>
+        <item>
+	crevette tigrée
+</item>
+        <item>
+	Sauce basque
+</item>
+        <item>
+	paprika
+</item>
+        <item>
+	melon
+</item>
+        <item>
+	poulpe
+</item>
+        <item>
+	gîte
+</item>
+        <item>
+	gari
+</item>
+        <item>
+	bette à carde
+</item>
+        <item>
+	feuille de vigne
+</item>
+        <item>
+	échalote
+</item>
+        <item>
+	cheveux d\'ange
+</item>
+        <item>
+jarret de veau
+</item>
+        <item>
+mogette
+</item>
+        <item>
+knacki
+</item>
+        <item>
+gelée au madère
+</item>
+        <item>
+siave
+</item>
+        <item>
+monterey jack
+</item>
+        <item>
+graines d\'anis vert
+</item>
+        <item>
+	oignon rose
+</item>
+        <item>
+	crème allégée
+</item>
+        <item>
+	haricots secs
+</item>
+        <item>
+	liqueur
+</item>
+        <item>
+	rhum vieux
+</item>
+        <item>
+	chouchen
+</item>
+        <item>
+	canneloni
+</item>
+        <item>
+	sauceline
+</item>
+        <item>
+	joue
+</item>
+        <item>
+	filet d\'agneau
+</item>
+        <item>
+charbon actif
+</item>
+        <item>
+gras double
+</item>
+        <item>
+cresson
+</item>
+        <item>
+huile de truffe
+</item>
+        <item>
+cuisse de poulet U
+</item>
+        <item>
+couscous en sachets cuisson
+</item>
+        <item>
+étoile de badiane
+</item>
+        <item>
+sherry
+</item>
+        <item>
+viande d\'autruche
+</item>
+        <item>
+	tilleul
+</item>
+        <item>
+	épices à pain d\'épices
+</item>
+        <item>
+blanc de poulet
+</item>
+        <item>
+Confiture d\'orange
+</item>
+        <item>
+	vermicelles
+</item>
+        <item>
+	haricot lingot
+</item>
+        <item>
+	grillade de veau
+</item>
+        <item>
+	babybel
+</item>
+        <item>
+	SEL DES ALPES aux Herbes Bio - fort
+</item>
+        <item>
+	crème balsamique
+</item>
+        <item>
+	Saint Morêt
+</item>
+        <item>
+	mâche
+</item>
+        <item>
+	ciboulette
+</item>
+        <item>
+	taleggio
+</item>
+        <item>
+	vodka
+</item>
+        <item>
+	toast
+</item>
+        <item>
+	riesling
+</item>
+        <item>
+	feuille de nori
+</item>
+        <item>
+	réglisse
+</item>
+        <item>
+	topinambour
+</item>
+        <item>
+	scampi
+</item>
+        <item>
+	pâte à beignet
+</item>
+        <item>
+	Macis
+</item>
+        <item>
+	pâté de foie
+</item>
+        <item>
+	polenta
+</item>
+        <item>
+	avocat
+</item>
+        <item>
+	farine de maïs
+</item>
+        <item>
+	cacahuètes
+</item>
+        <item>
+	litchi au sirop
+</item>
+        <item>
+	escalope
+</item>
+        <item>
+	pâte de curry
+</item>
+        <item>
+	tome de brebis
+</item>
+        <item>
+	haricot mange-tout
+</item>
+        <item>
+	tomme des Pyrénées IGP 28% U
+</item>
+        <item>
+	banane
+</item>
+        <item>
+	naveline (choucroute de navets)
+</item>
+        <item>
+	pâte de soja fermentée
+</item>
+        <item>
+	haricots rouges
+</item>
+        <item>
+	rôti de porc
+</item>
+        <item>
+	jarret de boeuf
+</item>
+        <item>
+	etorki
+</item>
+        <item>
+	lait demi-écrémé
+</item>
+        <item>
+	vin rouge
+</item>
+        <item>
+	graines de coriandre
+</item>
+        <item>
+	fruits
+</item>
+        <item>
+	Lait de coco REAL THAI® (200 ml)
+</item>
+        <item>
+	sauge
+</item>
+        <item>
+	renne
+</item>
+        <item>
+	sar
+</item>
+        <item>
+	thym
+</item>
+        <item>
+	conchiglione
+</item>
+        <item>
+	sauce tamari
+</item>
+        <item>
+	huile de coco
+</item>
+        <item>
+	tomate confite à l’huile
+</item>
+        <item>
+	hâché
+</item>
+        <item>
+	fusilli
+</item>
+        <item>
+	blanc de dinde
+</item>
+        <item>
+	sumac
+</item>
+        <item>
+	confiture d\'airelles
+</item>
+        <item>
+HERTA® LE BON VEGETAL® Steak Cru
+</item>
+        <item>
+romarin
+</item>
+        <item>
+merluchon
+</item>
+        <item>
+escalope « La belle du boucher » Tendriade
+</item>
+        <item>
+pilon de poulet
+</item>
+        <item>
+poivre 5 baies
+</item>
+        <item>
+groseille
+</item>
+        <item>
+morilles
+</item>
+        <item>
+cube Maggi
+</item>
+        <item>
+asperge blanche
+</item>
+        <item>
+poire
+</item>
+        <item>
+vol-au-vent
+</item>
+        <item>
+abondance
+</item>
+        <item>
+cuisse de grenouille
+</item>
+        <item>
+sanguin
+</item>
+        <item>
+lentilles vertes
+</item>
+        <item>
+lapin entier
+</item>
+        <item>
+petit pain à burger
+</item>
+        <item>
+fleur de sel
+</item>
+        <item>
+jus de citron
+</item>
+        <item>
+saumonette
+</item>
+        <item>
+Boudin blanc à la truffe Deluxe
+</item>
+        <item>
+champignon frais
+</item>
+        <item>
+gingembre
+</item>
+        <item>
+marrons entiers épluchés surgelés
+</item>
+        <item>
+sucre fin
+</item>
+        <item>
+queue d\'écrevisse
+</item>
+        <item>
+	canneberge
+</item>
+        <item>
+	miel
+</item>
+        <item>
+	pain
+</item>
+        <item>
+	fromage grana padano
+</item>
+        <item>
+	crème fraîche
+</item>
+        <item>
+	tomates concassées
+</item>
+        <item>
+	noix de pécan
+</item>
+        <item>
+	sauce brune
+</item>
+        <item>
+	massalé
+</item>
+        <item>
+	feuillets à raviolis
+</item>
+        <item>
+	râble de lapin
+</item>
+        <item>
+	tomate verte
+</item>
+        <item>
+	sot-l\'y-laisse
+</item>
+        <item>
+nugget
+</item>
+        <item>
+chou de bruxelles
+</item>
+        <item>
+collier d\'agneau
+</item>
+        <item>
+	Bouillon Liquide Thaï MAGGI®
+</item>
+        <item>
+	rôti de biche
+</item>
+        <item>
+	pied de veau
+</item>
+        <item>
+	provolone
+</item>
+        <item>
+	sauce okonomiyaki
+</item>
+        <item>
+	beurre salé
+</item>
+        <item>
+	edam
+</item>
+        <item>
+	Saveur à l\'Ancienne Sauce Champignons MAGGI®
+</item>
+        <item>
+câpres au vinaigre
+</item>
+        <item>
+rôti de boeuf
+</item>
+        <item>
+farine de châtaigne
+</item>
+        <item>
+oie
+</item>
+        <item>
+Fond pour Rôtis MAGGI
+</item>
+        <item>
+ramen
+</item>
+        <item>
+joue de porc
+</item>
+        <item>
+Confiture de pomme
+</item>
+        <item>
+céréale
+</item>
+        <item>
+moelle de boeuf
+</item>
+        <item>
+gésier de volaille
+</item>
+        <item>
+gnocchi
+</item>
+        <item>
+arôme Maggi
+</item>
+        <item>
+glaçons
+</item>
+        <item>
+haricot
+</item>
+        <item>
+cacao
+</item>
+        <item>
+onglet
+</item>
+        <item>
+coquelet
+</item>
+        <item>
+sauce hoisin
+</item>
+        <item>
+rôti de veau
+</item>
+        <item>
+marsala
+</item>
+        <item>
+champignon
+</item>
+        <item>
+côtelette d\'agneau
+</item>
+        <item>
+	guignolet
+</item>
+        <item>
+	sauté de veau
+</item>
+        <item>
+	fruit de la passion
+</item>
+        <item>
+	olives noires
+</item>
+        <item>
+	saké
+</item>
+        <item>
+	pâte à ravioli
+</item>
+        <item>
+	daikon
+</item>
+        <item>
+	champignon de Paris
+</item>
+        <item>
+	galette de blé
+</item>
+        <item>
+	chutney au gingembre
+</item>
+        <item>
+	mulet
+</item>
+        <item>
+	Ratafia
+</item>
+        <item>
+	épinards
+</item>
+        <item>
+	sucre de canne
+</item>
+        <item>
+	fruit à pain
+</item>
+        <item>
+	galettes (bretonnes)
+</item>
+        <item>
+	tourteau
+</item>
+        <item>
+	chocolat
+</item>
+        <item>
+	germes de soja
+</item>
+        <item>
+	asperge verte
+</item>
+        <item>
+	branche de sapin
+</item>
+        <item>
+	plum sauce
+</item>
+        <item>
+	lieu jaune
+</item>
+        <item>
+	roucaou
+</item>
+        <item>
+	fenouil
+</item>
+        <item>
+	ail semoule
+</item>
+        <item>
+	marmelade d\'orange
+</item>
+        <item>
+sauce thaï
+</item>
+        <item>
+petit suisse
+</item>
+        <item>
+sucre en morceaux
+</item>
+        <item>
+chair persillée
+</item>
+        <item>
+coquillettes
+</item>
+        <item>
+grand-marnier
+</item>
+        <item>
+sauce pimentée
+</item>
+        <item>
+brioche
+</item>
+        <item>
+pariétaire
+</item>
+        <item>
+Fleur de Maïs Maïzena®
+</item>
+        <item>
+boyau
+</item>
+        <item>
+mini mais
+</item>
+        <item>
+poivron jaune
+</item>
+        <item>
+aile de poulet
+</item>
+        <item>
+vinaigre de xérès
+</item>
+        <item>
+pecorino romano
+</item>
+        <item>
+oignon grelot
+</item>
+        <item>
+oignon au vinaigre
+</item>
+        <item>
+poivre en grains
+</item>
+        <item>
+sirop de citrons
+</item>
+        <item>
+bière
+</item>
+        <item>
+crème végétale
+</item>
+        <item>
+litchi
+</item>
+        <item>
+brocoli
+</item>
+        <item>
+farine complète
+</item>
+        <item>
+sauce bolognaise
+</item>
+        <item>
+berkoukes
+</item>
+        <item>
+coeur de porc
+</item>
+        <item>
+petit beurre
+</item>
+        <item>
+Chablis
+</item>
+        <item>
+céréales
+</item>
+        <item>
+tandoori
+</item>
+        <item>
+feuilles de guascas
+</item>
+        <item>
+semoule fine
+</item>
+        <item>
+plie
+</item>
+        <item>
+coriandre
+</item>
+        <item>
+crème semi-épaisse
+</item>
+        <item>
+poisson
+</item>
+        <item>
+mont d\'or
+</item>
+        <item>
+	pain pour hamburger
+</item>
+        <item>
+	armagnac
+</item>
+        <item>
+	saint-felicien
+</item>
+        <item>
+	mérou
+</item>
+        <item>
+	chèvre
+</item>
+        <item>
+	angostura
+</item>
+        <item>
+	saint-marcellin
+</item>
+        <item>
+	blanquette de dinde
+</item>
+        <item>
+	crème chantilly
+</item>
+        <item>
+	tuc
+</item>
+        <item>
+	Sakura Denbu (poudre rose à base de soka)
+</item>
+        <item>
+	sauce soja
+</item>
+        <item>
+	pointe d\'asperge
+</item>
+        <item>
+tête de veau
+</item>
+        <item>
+HERTA® LE BON VEGETAL® Carré gourmand Tomates et Mozzarella
+</item>
+        <item>
+basilic
+</item>
+        <item>
+épices marocaines
+</item>
+        <item>
+petits pois
+</item>
+        <item>
+poireau
+</item>
+        <item>
+confit de canard
+</item>
+        <item>
+raifort
+</item>
+        <item>
+blanc d\'oeuf
+</item>
+        <item>
+	coeur de veau
+</item>
+        <item>
+	flocon de purée
+</item>
+        <item>
+	sucre glace
+</item>
+        <item>
+	soda
+</item>
+        <item>
+	sauce napolitaine
+</item>
+        <item>
+	purée de tomate en bouteille
+</item>
+        <item>
+	bouchée à la reine
+</item>
+        <item>
+	brandade
+</item>
+        <item>
+	câpres
+</item>
+        <item>
+	sauce Yakitori
+</item>
+        <item>
+	kub or
+</item>
+        <item>
+	Cambozola
+</item>
+        <item>
+	clémentine
+</item>
+        <item>
+	huile d\'argan
+</item>
+        <item>
+épices cajun
+</item>
+        <item>
+liant
+</item>
+        <item>
+passata
+</item>
+        <item>
+doubanjiang
+</item>
+        <item>
+petit salé
+</item>
+        <item>
+jambon cru
+</item>
+        <item>
+farine de pois chiches
+</item>
+        <item>
+yaourt à la grecque
+</item>
+        <item>
+jambon de virginie
+</item>
+        <item>
+persil
+</item>
+        <item>
+pâtes à lasagnes U
+</item>
+        <item>
+vinaigre balsamique
+</item>
+        <item>
+Moutarde blanche
+</item>
+        <item>
+pâtes à lasagne
+</item>
+        <item>
+sauce de rôti
+</item>
+        <item>
+Divers
+</item>
+        <item>
+vermicelles de riz
+</item>
+        <item>
+quetsche
+</item>
+        <item>
+agneau
+</item>
+        <item>
+sucre en poudre
+</item>
+        <item>
+macreuse
+</item>
+        <item>
+artichaut
+</item>
+        <item>
+pointe d\'asperge verte
+</item>
+        <item>
+	chapon
+</item>
+        <item>
+	lactaire délicieux
+</item>
+        <item>
+	tomme
+</item>
+        <item>
+	serpolet
+</item>
+        <item>
+	épices
+</item>
+        <item>
+	feta marinée
+</item>
+        <item>
+	gaufre
+</item>
+        <item>
+	verveine
+</item>
+        <item>
+	coeur de cabillaud
+</item>
+        <item>
+	risotto
+</item>
+        <item>
+	yet
+</item>
+        <item>
+	fondue de tomate
+</item>
+        <item>
+	paupiette de veau
+</item>
+        <item>
+	bleu d\'Auvergne
+</item>
+        <item>
+gros lardons fumés Filière U
+</item>
+        <item>
+sel
+</item>
+        <item>
+chayote
+</item>
+        <item>
+boeuf haché
+</item>
+        <item>
+Confiture de cassis
+</item>
+        <item>
+miso
+</item>
+        <item>
+baie rouge
+</item>
+        <item>
+spéculoos
+</item>
+        <item>
+Riz japonais Koshihikari (dép. Tokushima)
+</item>
+        <item>
+coulis de fruits rouges
+</item>
+        <item>
+mélange d\'herbes pour poisson
+</item>
+        <item>
+	pappardelles
+</item>
+        <item>
+	flageolet
+</item>
+        <item>
+	tapenade verte
+</item>
+        <item>
+	surimi
+</item>
+        <item>
+	pain au lait
+</item>
+        <item>
+	mortadelle
+</item>
+        <item>
+	Banyuls
+</item>
+        <item>
+	beaufort
+</item>
+        <item>
+	épaule d\'agneau
+</item>
+        <item>
+café
+</item>
+        <item>
+mousseron
+</item>
+        <item>
+riz rond
+</item>
+        <item>
+coeur de mouton
+</item>
+        <item>
+viande d’agneau
+</item>
+        <item>
+poudre de noisette
+</item>
+        <item>
+lambis
+</item>
+        <item>
+haricots verts
+</item>
+        <item>
+panga
+</item>
+        <item>
+bleu de gex
+</item>
+        <item>
+dindonneau
+</item>
+        <item>
+queue
+</item>
+        <item>
+sucre vanillé
+</item>
+        <item>
+nori
+</item>
+        <item>
+pavot
+</item>
+        <item>
+perche
+</item>
+        <item>
+quenelle de veau
+</item>
+        <item>
+carambole
+</item>
+        <item>
+coulis
+</item>
+        <item>
+biche
+</item>
+        <item>
+chaource
+</item>
+        <item>
+tacaud
+</item>
+        <item>
+poivre au citron
+</item>
+        <item>
+whisky
+</item>
+        <item>
+ouzo
+</item>
+        <item>
+sauce hamburger
+</item>
+        <item>
+graisse de canard
+</item>
+        <item>
+biscotte
+</item>
+        <item>
+cuisse de dinde
+</item>
+        <item>
+sauce pistou
+</item>
+        <item>
+épaule de veau
+</item>
+        <item>
+chipiron
+</item>
+        <item>
+cannelle
+</item>
+        <item>
+airelles
+</item>
+        <item>
+schnaps
+</item>
+        <item>
+cinq parfums
+</item>
+        <item>
+navet
+</item>
+        <item>
+barbeau
+</item>
+        <item>
+takuan
+</item>
+        <item>
+sel aux herbes
+</item>
+        <item>
+pain de seigle
+</item>
+        <item>
+tomate séchée
+</item>
+        <item>
+saucisson sec
+</item>
+        <item>
+marrons
+</item>
+        <item>
+Alcool
+</item>
+        <item>
+sauce salsa
+</item>
+        <item>
+agar-agar
+</item>
+        <item>
+bleu des causses
+</item>
+        <item>
+huile de friture
+</item>
+        <item>
+coude
+</item>
+        <item>
+jus de rôti
+</item>
+        <item>
+épices à colombo
+</item>
+        <item>
+viande de grison
+</item>
+        <item>
+briochette
+</item>
+        <item>
+Bouillon Liquide Volaille MAGGI®
+</item>
+        <item>
+pâté
+</item>
+        <item>
+rillettes
+</item>
+        <item>
+boudin antillais
+</item>
+        <item>
+couenne
+</item>
+        <item>
+tournedos
+</item>
+        <item>
+rhum
+</item>
+        <item>
+pruneau
+</item>
+        <item>
+raisin noir
+</item>
+        <item>
+melfor
+</item>
+        <item>
+Philadelphia
+</item>
+        <item>
+turbot
+</item>
+        <item>
+picon
+</item>
+        <item>
+cola
+</item>
+        <item>
+farine de sarrasin
+</item>
+        <item>
+vinaigre d\'alcool
+</item>
+        <item>
+	génépi
+</item>
+        <item>
+	feuille de manioc
+</item>
+        <item>
+	lait de soja
+</item>
+        <item>
+	mélange d\'épices mexicaines
+</item>
+        <item>
+fumet de poisson
+</item>
+        <item>
+bigorneau
+</item>
+        <item>
+pain de mie
+</item>
+        <item>
+steak haché
+</item>
+        <item>
+gorgonzola
+</item>
+        <item>
+extrait de vanille
+</item>
+        <item>
+couteau
+</item>
+        <item>
+aïoli
+</item>
+        <item>
+crabe
+</item>
+        <item>
+malibu
+</item>
+        <item>
+feuilles de citronnelle
+</item>
+        <item>
+vet-tsin
+</item>
+        <item>
+bouillon de boeuf
+</item>
+        <item>
+crevettes
+</item>
+        <item>
+noisette d\'agneau
+</item>
+        <item>
+	canette
+</item>
+        <item>
+	baudroie
+</item>
+        <item>
+	coing
+</item>
+        <item>
+	sabre
+</item>
+        <item>
+	espadon
+</item>
+        <item>
+	crème de coco
+</item>
+        <item>
+	sauce hollandaise
+</item>
+        <item>
+	chutney papaye
+</item>
+        <item>
+	beurre allégé
+</item>
+        <item>
+	moutarde à l\'ancienne
+</item>
+        <item>
+viande
+</item>
+        <item>
+limande
+</item>
+        <item>
+épices pour poisson
+</item>
+        <item>
+noilly prat
+</item>
+        <item>
+laitue
+</item>
+        <item>
+camembert
+</item>
+        <item>
+madère
+</item>
+        <item>
+haricot mungo
+</item>
+        <item>
+sauce ketchup
+</item>
+        <item>
+sucrine
+</item>
+        <item>
+crevette bouquet
+</item>
+        <item>
+pleurote
+</item>
+        <item>
+beurre de cacahuètes
+</item>
+        <item>
+bar
+</item>
+        <item>
+nougat
+</item>
+        <item>
+oeufs de saumon
+</item>
+        <item>
+huile
+</item>
+        <item>
+petit piment
+</item>
+        <item>
+ratatouille
+</item>
+        <item>
+sébaste
+</item>
+        <item>
+betterave
+</item>
+        <item>
+sucre semoule
+</item>
+        <item>
+mahi mahi
+</item>
+        <item>
+Passetougrain
+</item>
+        <item>
+végétaline
+</item>
+        <item>
+haricot blanc
+</item>
+        <item>
+galette
+</item>
+        <item>
+marlin
+</item>
+        <item>
+arôme
+</item>
+        <item>
+farce
+</item>
+        <item>
+Kororima
+</item>
+        <item>
+lait écrémé
+</item>
+        <item>
+carvi
+</item>
+        <item>
+maroilles
+</item>
+        <item>
+figue
+</item>
+        <item>
+brochet
+</item>
+        <item>
+thon blanc
+</item>
+        <item>
+huile d’olive Simplement bon et bio®️
+</item>
+        <item>
+gelée
+</item>
+        <item>
+bison
+</item>
+        <item>
+épices pour pizza
+</item>
+        <item>
+foie
+</item>
+        <item>
+bacon
+</item>
+        <item>
+noix de saint-jacques
+</item>
+        <item>
+spigol
+</item>
+        <item>
+curaçao
+</item>
+        <item>
+palette
+</item>
+        <item>
+tomates pelées
+</item>
+        <item>
+sylvaner
+</item>
+        <item>
+os à moelle
+</item>
+        <item>
+chêne
+</item>
+        <item>
+bourgogne
+</item>
+        <item>
+saucisse de Toulouse
+</item>
+        <item>
+carde
+</item>
+        <item>
+dakatine
+</item>
+        <item>
+sauce sukiyaki
+</item>
+        <item>
+fumet
+</item>
+        <item>
+caloupilé
+</item>
+        <item>
+andouillette
+</item>
+        <item>
+girolle
+</item>
+        <item>
+girelle
+</item>
+        <item>
+merlan
+</item>
+        <item>
+Poitrine Fumée Tranches Fines HERTA®
+</item>
+        <item>
+Pipe Rigate
+</item>
+        <item>
+confit d\'oignon
+</item>
+        <item>
+	tortils
+</item>
+        <item>
+	escalopes de poulet blanc extras fines U
+</item>
+        <item>
+	concombre
+</item>
+        <item>
+	galette de riz
+</item>
+        <item>
+	massala
+</item>
+        <item>
+	navarin de veau
+</item>
+        <item>
+	lentilles corail
+</item>
+        <item>
+	macédoine
+</item>
+        <item>
+	fettucine
+</item>
+        <item>
+	ghee
+</item>
+        <item>
+	loup de mer
+</item>
+        <item>
+	truffe
+</item>
+        <item>
+	fleuron feuilleté
+</item>
+        <item>
+	carpe
+</item>
+        <item>
+	curé nantais
+</item>
+        <item>
+	mayonnaise
+</item>
+        <item>
+	concentré de tomates
+</item>
+        <item>
+	poudre à chili
+</item>
+        <item>
+	huile de colza
+</item>
+        <item>
+	munster
+</item>
+        <item>
+	pecorino
+</item>
+        <item>
+	céleri
+</item>
+        <item>
+	maïs
+</item>
+        <item>
+	lait concentré
+</item>
+        <item>
+	sauce provençale
+</item>
+        <item>
+	zeste d\'orange
+</item>
+        <item>
+HERTA® LE BON VEGETAL® Haché cru Soja
+</item>
+        <item>
+râble de lièvre
+</item>
+        <item>
+graines germées
+</item>
+        <item>
+mirin
+</item>
+        <item>
+spaghettini
+</item>
+        <item>
+double concentré de tomates
+</item>
+        <item>
+arachide
+</item>
+        <item>
+maquereau
+</item>
+        <item>
+HERTA® LE BON VEGETAL® Emincés nature Soja
+</item>
+        <item>
+côte de veau
+</item>
+        <item>
+HERTA® LE BON VEGETAL® Steak Gourmand Poivre et Persil
+</item>
+        <item>
+cantal
+</item>
+        <item>
+tapioca
+</item>
+        <item>
+tapenade
+</item>
+        <item>
+salade mélangée
+</item>
+        <item>
+noix de pétoncle
+</item>
+        <item>
+cerf
+</item>
+        <item>
+cheval
+</item>
+        <item>
+côte d\'agneau
+</item>
+        <item>
+	herbes de Provence
+</item>
+        <item>
+	ficelle
+</item>
+        <item>
+	absinthe
+</item>
+        <item>
+	farine de tapioca
+</item>
+        <item>
+	brique
+</item>
+        <item>
+	sauce satay
+</item>
+        <item>
+	parmesan
+</item>
+        <item>
+	fumet de crustacé
+</item>
+        <item>
+	tortilla
+</item>
+        <item>
+	contre-filet
+</item>
+        <item>
+	farine de manioc
+</item>
+        <item>
+	brie de coulommiers
+</item>
+        <item>
+	pastèque
+</item>
+        <item>
+	feuillet
+</item>
+        <item>
+	Pomme de terre vapeur-rissolées U Bio
+</item>
+        <item>
+	beurre d\'arachide
+</item>
+        <item>
+mélange 4 épices
+</item>
+        <item>
+rognon de veau
+</item>
+        <item>
+huile végétale
+</item>
+        <item>
+mûres
+</item>
+        <item>
+piperade
+</item>
+        <item>
+crozet
+</item>
+        <item>
+olive verte
+</item>
+        <item>
+vin blanc
+</item>
+        <item>
+navarin d\'agneau
+</item>
+        <item>
+	pistou
+</item>
+        <item>
+	satay
+</item>
+        <item>
+	rosette
+</item>
+        <item>
+	seitan
+</item>
+        <item>
+	huile d\'arachide
+</item>
+        <item>
+croûtons
+</item>
+        <item>
+haché de veau
+</item>
+        <item>
+petit pain suédois
+</item>
+        <item>
+rôti de dindonneau
+</item>
+        <item>
+gélatine
+</item>
+        <item>
+jambon sec
+</item>
+        <item>
+pâte brisée
+</item>
+        <item>
+langouste
+</item>
+        <item>
+graines de tournesol
+</item>
+        <item>
+mélisse
+</item>
+        <item>
+orange
+</item>
+        <item>
+muscadet
+</item>
+        <item>
+hareng
+</item>
+        <item>
+persillade
+</item>
+        <item>
+aileron de poulet
+</item>
+        <item>
+pois mange-tout
+</item>
+        <item>
+aromate
+</item>
+        <item>
+merguez
+</item>
+        <item>
+salade
+</item>
+        <item>
+trompette de la mort
+</item>
+        <item>
+perles du Japon
+</item>
+        <item>
+cream cheese
+</item>
+        <item>
+eau
+</item>
+        <item>
+purée de marron
+</item>
+        <item>
+zaatar
+</item>
+        <item>
+thon
+</item>
+        <item>
+ananas
+</item>
+        <item>
+raie
+</item>
+        <item>
+granola
+</item>
+        <item>
+boudin noir
+</item>
+        <item>
+manioc
+</item>
+        <item>
+Sauce Sriracha GO-TAN®
+</item>
+        <item>
+cranberries
+</item>
+        <item>
+sauce pizza
+</item>
+        <item>
+lièvre
+</item>
+        <item>
+relish
+</item>
+        <item>
+ventrèche
+</item>
+        <item>
+langue de veau
+</item>
+        <item>
+blé
+</item>
+        <item>
+curcuma
+</item>
+        <item>
+Apremont
+</item>
+        <item>
+chutney mangue
+</item>
+        <item>
+radis
+</item>
+        <item>
+sauce Emmental Entremont®
+</item>
+        <item>
+blanc de poireaux
+</item>
+        <item>
+rouille
+</item>
+        <item>
+feuille de laurier
+</item>
+        <item>
+orge
+</item>
+        <item>
+basilic frais
+</item>
+        <item>
+Xérès
+</item>
+        <item>
+pigeonneau
+</item>
+        <item>
+pintadeau
+</item>
+        <item>
+salami
+</item>
+        <item>
+crème d\'amande
+</item>
+        <item>
+	rouy
+</item>
+        <item>
+	épice Rabelais
+</item>
+        <item>
+	glace
+</item>
+        <item>
+	liqueur d\'orange
+</item>
+        <item>
+emmental
+</item>
+        <item>
+gruyère suisse
+</item>
+        <item>
+estragon
+</item>
+        <item>
+langoustine
+</item>
+        <item>
+penne
+</item>
+        <item>
+bière brune
+</item>
+        <item>
+oignon nouveau
+</item>
+        <item>
+sang
+</item>
+        <item>
+jambon blanc
+</item>
+        <item>
+coquille saint-jacques
+</item>
+        <item>
+wonton
+</item>
+        <item>
+harissa
+</item>
+        <item>
+Confiture de figue
+</item>
+        <item>
+saumon frais
+</item>
+        <item>
+oignon rouge
+</item>
+        <item>
+saint-pierre
+</item>
+        <item>
+reblochon
+</item>
+        <item>
+fromage blanc
+</item>
+        <item>
+crevette grise
+</item>
+        <item>
+Reblochon de Savoie
+</item>
+        <item>
+Pommes de terre U BIO
+</item>
+        <item>
+lait de coco
+</item>
+        <item>
+étrille
+</item>
+        <item>
+amandes entières
+</item>
+        <item>
+montepulciano
+</item>
+        <item>
+brède Mafane
+</item>
+        <item>
+mie de pain
+</item>
+        <item>
+knack
+</item>
+        <item>
+Planta Fin Culinesse
+</item>
+        <item>
+joue de lotte
+</item>
+        <item>
+artichaut violet
+</item>
+        <item>
+Pineau blanc des Charentes
+</item>
+        <item>
+Fromage Saint Agur
+</item>
+        <item>
+fromage de chèvre
+</item>
+        <item>
+loup
+</item>
+        <item>
+crème fleurette
+</item>
+        <item>
+lait
+</item>
+        <item>
+bleu
+</item>
+        <item>
+cognac
+</item>
+        <item>
+telline
+</item>
+        <item>
+pintade
+</item>
+        <item>
+piment de Cayenne
+</item>
+        <item>
+tortilla souples U
+</item>
+        <item>
+beurre doux
+</item>
+        <item>
+yuzu
+</item>
+        <item>
+saucisson
+</item>
+        <item>
+blanquette de veau
+</item>
+        <item>
+yaourt brassé
+</item>
+        <item>
+cardamome
+</item>
+        <item>
+farine de blé
+</item>
+        <item>
+lavande
+</item>
+        <item>
+boeuf
+</item>
+        <item>
+miettes de crabe
+</item>
+        <item>
+Bouillon KUB OR MAGGI
+</item>
+        <item>
+pélardon
+</item>
+        <item>
+marcassin
+</item>
+        <item>
+Sauce soja citronnée Ponzu Kikkoman®
+</item>
+        <item>
+oreilles
+</item>
+        <item>
+jus d\'ananas
+</item>
+        <item>
+	bouillon
+</item>
+        <item>
+	sanglier
+</item>
+        <item>
+	panse
+</item>
+        <item>
+	vinaigre de framboise
+</item>
+        <item>
+	kiri
+</item>
+        <item>
+	gélatine en poudre
+</item>
+        <item>
+	crème
+</item>
+        <item>
+	mimolette
+</item>
+        <item>
+	steak
+</item>
+        <item>
+	côte de porc
+</item>
+        <item>
+	tendron de veau
+</item>
+        <item>
+	orecchiette
+</item>
+        <item>
+	limoncello
+</item>
+        <item>
+	pain de campagne
+</item>
+        <item>
+	Bouillon KUB Volaille MAGGI®
+</item>
+        <item>
+	Noix concassé
+</item>
+        <item>
+	sauce forestière
+</item>
+        <item>
+	pois
+</item>
+        <item>
+	thé
+</item>
+        <item>
+	raviole
+</item>
+        <item>
+	thon rouge
+</item>
+        <item>
+	sauce armoricaine
+</item>
+        <item>
+	coques
+</item>
+        <item>
+	empereur
+</item>
+        <item>
+	liant instantané
+</item>
+        <item>
+	batavia
+</item>
+        <item>
+	farine semi complète
+</item>
+        <item>
+	vermicelles de soja
+</item>
+        <item>
+	chili
+</item>
+        <item>
+	torsades
+</item>
+        <item>
+	moutarde de Meaux
+</item>
+        <item>
+	maïzena
+</item>
+        <item>
+	grenadine
+</item>
+        <item>
+	courge
+</item>
+        <item>
+	curry
+</item>
+        <item>
+	cerneau de noix
+</item>
+        <item>
+	feuille de combava
+</item>
+        <item>
+	chou
+</item>
+        <item>
+	pétale de fleur
+</item>
+        <item>
+	poitrine de porc
+</item>
+        <item>
+	crème d\'anchois
+</item>
+        <item>
+yaourt nature
+</item>
+        <item>
+pâte d\'arachide
+</item>
+        <item>
+	grains de genévrier
+</item>
+        <item>
+	boisson pétillante au cola
+</item>
+        <item>
+	cacahuète grillée
+</item>
+        <item>
+	Magret de canard fumé
+</item>
+        <item>
+	vinaigre de riz
+</item>
+        <item>
+	shiitake
+</item>
+        <item>
+	colorant alimentaire
+</item>
+        <item>
+	ciboule
+</item>
+        <item>
+	collet fumé
+</item>
+        <item>
+	poivre du moulin
+</item>
+        <item>
+	mandarine
+</item>
+        <item>
+	gombo
+</item>
+        <item>
+	macaroni
+</item>
+        <item>
+	piment vert
+</item>
+        <item>
+	cardon
+</item>
+        <item>
+	kéfir
+</item>
+        <item>
+	filo
+</item>
+        <item>
+	poudre à colombo
+</item>
+        <item>
+	carré d\'agneau
+</item>
+        <item>
+sirop de canne
+</item>
+        <item>
+riz sauvage
+</item>
+        <item>
+Golden curry mild S&amp;B®
+</item>
+        <item>
+pousse de bambou
+</item>
+        <item>
+époisses
+</item>
+        <item>
+gingembre confit
+</item>
+        <item>
+fécule de pomme de terre
+</item>
+        <item>
+sauce poisson
+</item>
+        <item>
+tomates séchées
+</item>
+        <item>
+muscovado
+</item>
+        <item>
+krisprolls
+</item>
+        <item>
+Cognac Fine Champagne
+</item>
+        <item>
+salers
+</item>
+        <item>
+café en poudre
+</item>
+        <item>
+noix
+</item>
+        <item>
+arôme vanille
+</item>
+        <item>
+sel au piment d\'Espelette
+</item>
+        <item>
+	coeur d\'artichaut
+</item>
+        <item>
+thiof
+</item>
+        <item>
+HERTA® LE BON VEGETAL® Pavés Gourmands Courgette et Fromage
+</item>
+        <item>
+graines de grenade
+</item>
+        <item>
+gewurztraminer
+</item>
+        <item>
+corned beef
+</item>
+        <item>
+croissant
+</item>
+        <item>
+moutarde de Dijon
+</item>
+        <item>
+canard confit
+</item>
+        <item>
+pois cassés
+</item>
+        <item>
+lait d\'avoine
+</item>
+        <item>
+	pont l\'évêque
+</item>
+        <item>
+skyr bio Les 2 Vaches®
+</item>
+        <item>
+graine de moutarde
+</item>
+        <item>
+flétan
+</item>
+        <item>
+Saucisses de veau Tendriade
+</item>
+        <item>
+caille
+</item>
+        <item>
+cigale de mer
+</item>
+        <item>
+feuilles de coriandre
+</item>
+        <item>
+steak de soja
+</item>
+        <item>
+jus d\'agrumes
+</item>
+        <item>
+	chutney
+</item>
+        <item>
+	serran
+</item>
+        <item>
+	pesto rosso
+</item>
+        <item>
+	tamarin
+</item>
+        <item>
+	Tokay
+</item>
+        <item>
+	piquillo
+</item>
+        <item>
+	Volailles
+</item>
+        <item>
+	arôme amande amère
+</item>
+        <item>
+	bonite
+</item>
+        <item>
+	sauce sichuan
+</item>
+        <item>
+	dashi
+</item>
+        <item>
+	selle d\'agneau
+</item>
+        <item>
+poivron vert
+</item>
+        <item>
+levure de boulanger
+</item>
+        <item>
+sarrasin
+</item>
+        <item>
+feuille de brick
+</item>
+        <item>
+silure
+</item>
+        <item>
+échine de porc
+</item>
+        <item>
+chou blanc
+</item>
+        <item>
+asperge
+</item>
+        <item>
+combava
+</item>
+        <item>
+ormeau
+</item>
+        <item>
+Beni Shôga (gingembre mariné)
+</item>
+        <item>
+morbier
+</item>
+        <item>
+épinards frais
+</item>
+        <item>
+saindoux
+</item>
+        <item>
+épices à volaille
+</item>
+        <item>
+mélange 5 épices
+</item>
+        <item>
+pain à hot-dog
+</item>
+        <item>
+levure chimique
+</item>
+        <item>
+amandes
+</item>
+        <item>
+jeunes pousses
+</item>
+        <item>
+pâtes à l\'encre de seiche
+</item>
+        <item>
+	tétragone
+</item>
+        <item>
+	gambas
+</item>
+        <item>
+	gigot d\'agneau
+</item>
+        <item>
+filet de poisson
+</item>
+        <item>
+muscade rapée
+</item>
+        <item>
+fraises
+</item>
+        <item>
+bouquet garni Kania
+</item>
+        <item>
+frisée
+</item>
+        <item>
+pickles
+</item>
+        <item>
+jambon de Parme
+</item>
+        <item>
+osso bucco de veau
+</item>
+        <item>
+mangue
+</item>
+        <item>
+champignon noir
+</item>
+        <item>
+cointreau
+</item>
+        <item>
+matière grasse
+</item>
+        <item>
+romaine
+</item>
+        <item>
+entrecôte
+</item>
+        <item>
+flûte
+</item>
+        <item>
+bonnet
+</item>
+        <item>
+nectarine
+</item>
+        <item>
+fond de veau
+</item>
+        <item>
+bouillon de légumes
+</item>
+        <item>
+bouchée feuilletée
+</item>
+        <item>
+saucisse de morteau
+</item>
+        <item>
+daurade
+</item>
+        <item>
+fourme d\'ambert
+</item>
+        <item>
+	fromages suisses
+</item>
+        <item>
+	bolet
+</item>
+        <item>
+	sardine
+</item>
+        <item>
+	bouillon de volaille
+</item>
+        <item>
+	dinde
+</item>
+        <item>
+	truite saumonée
+</item>
+        <item>
+	gingembre en poudre
+</item>
+        <item>
+	gruyère râpé
+</item>
+        <item>
+	Sauce soja classique Kikkoman®
+</item>
+        <item>
+	Fines herbes
+</item>
+        <item>
+	Riz
+</item>
+        <item>
+	mélange d\'épices 5 parfums
+</item>
+        <item>
+vergeoise
+</item>
+        <item>
+oiseau sans tête
+</item>
+        <item>
+autres
+</item>
+        <item>
+sirop
+</item>
+        <item>
+quinoa
+</item>
+        <item>
+Fond de Veau Dégraissé MAGGI®
+</item>
+        <item>
+jus d\'orange
+</item>
+        <item>
+	huile de noix
+</item>
+        <item>
+	merlu
+</item>
+        <item>
+	tomates cerise
+</item>
+        <item>
+	feuille de citronnier
+</item>
+        <item>
+	céleri-rave
+</item>
+        <item>
+	ravioli
+</item>
+        <item>
+	Blini
+</item>
+        <item>
+	galette de blé complet
+</item>
+        <item>
+	burrata
+</item>
+        <item>
+	rouget
+</item>
+        <item>
+	farine de riz
+</item>
+        <item>
+	cinq-épices
+</item>
+        <item>
+	riz thaï
+</item>
+        <item>
+	sauce worcestershire
+</item>
+        <item>
+	pain de mie complet
+</item>
+        <item>
+	fruits rouges
+</item>
+        <item>
+	amandes effilées
+</item>
+        <item>
+	haricot plat
+</item>
+        <item>
+	pois gourmands
+</item>
+        <item>
+	Gendarme
+</item>
+        <item>
+	semoule moyenne
+</item>
+        <item>
+	frite
+</item>
+        <item>
+	moelle
+</item>
+        <item>
+	crème liquide
+</item>
+        <item>
+	fond de volaille
+</item>
+        <item>
+	coeur
+</item>
+        <item>
+	riz pour risotto
+</item>
+        <item>
+	nouilles
+</item>
+        <item>
+	millet
+</item>
+        <item>
+	sauce maggi
+</item>
+        <item>
+	djansan
+</item>
+        <item>
+	saté
+</item>
+        <item>
+	épices à couscous
+</item>
+        <item>
+	crêpe
+</item>
+        <item>
+	prune
+</item>
+        <item>
+	sauce teriyaki
+</item>
+        <item>
+	cèpes
+</item>
+        <item>
+	feuille de won-ton
+</item>
+        <item>
+	escalope de porc
+</item>
+        <item>
+	cube de bouillon
+</item>
+        <item>
+	cuisse de canard
+</item>
+        <item>
+	homard
+</item>
+        <item>
+	cumin en poudre
+</item>
+        <item>
+	raisin
+</item>
+        <item>
+	pain pita
+</item>
+        <item>
+	HERTA® LE BON VEGETAL® Boulettes aux Légumes
+</item>
+        <item>
+	parures
+</item>
+        <item>
+	sauce anglaise
+</item>
+        <item>
+	anis étoilé
+</item>
+        <item>
+	collier de boeuf
+</item>
+        <item>
+	julienne
+</item>
+        <item>
+	magret séché
+</item>
+        <item>
+	pâte sablée
+</item>
+        <item>
+	huile de noisette
+</item>
+        <item>
+	pimiento del piquillo
+</item>
+        <item>
+	panure
+</item>
+        <item>
+	zeste de citron
+</item>
+        <item>
+	sauce nuoc mam
+</item>
+        <item>
+	riz blanc
+</item>
+        <item>
+	crème de riz
+</item>
+        <item>
+	levure de boulanger sèche
+</item>
+        <item>
+	sucre roux
+</item>
+        <item>
+	hydromel
+</item>
+        <item>
+	Huile d\'olive Verge Extra U Saveurs
+</item>
+        <item>
+lentin
+</item>
+        <item>
+purée de tomate
+</item>
+        <item>
+chevreuil
+</item>
+        <item>
+pâte de crevette
+</item>
+        <item>
+pulpe de tomate
+</item>
+        <item>
+salicorne
+</item>
+        <item>
+poulet
+</item>
+        <item>
+protéine de soja
+</item>
+        <item>
+nouilles chinoises
+</item>
+        <item>
+bouillon de veau
+</item>
+        <item>
+magret fumé
+</item>
+        <item>
+noix de veau
+</item>
+        <item>
+noix de coco rapée
+</item>
+        <item>
+bûche de chèvre
+</item>
+        <item>
+oignon
+</item>
+        <item>
+cassonade
+</item>
+        <item>
+sauce asiatique
+</item>
+        <item>
+fajitas
+</item>
+        <item>
+sarriette
+</item>
+        <item>
+Sauternes
+</item>
+        <item>
+grenadin de veau
+</item>
+        <item>
+huile de palme
+</item>
+        <item>
+bière blonde
+</item>
+        <item>
+genièvre
+</item>
+        <item>
+clovisse
+</item>
+        <item>
+bicarbonate
+</item>
+        <item>
+barde de lard
+</item>
+        <item>
+sauce aigre douce
+</item>
+        <item>
+Crème légère &amp; Basilic Infusé Elle &amp; Vire
+</item>
+        <item>
+requin
+</item>
+        <item>
+panko (chapelure japonaise)
+</item>
+        <item>
+chouchou
+</item>
+        <item>
+Sambal Oelek
+</item>
+        <item>
+extrait de coco
+</item>
+        <item>
+raviole de Royans
+</item>
+        <item>
+escalope de poulet
+</item>
+        <item>
+céleri branche
+</item>
+        <item>
+courgette ronde
+</item>
+        <item>
+sole
+</item>
+        <item>
+pak choi
+</item>
+        <item>
+Condiments
+</item>
+        <item>
+glutamate
+</item>
+        <item>
+datte
+</item>
+        <item>
+flocons d\'avoine
+</item>
+        <item>
+	bifteck haché
+</item>
+        <item>
+	confiture d\'abricot
+</item>
+        <item>
+chermoula
+</item>
+        <item>
+sauce béarnaise
+</item>
+        <item>
+chèvre frais
+</item>
+        <item>
+praire
+</item>
+        <item>
+tomate
+</item>
+        <item>
+sucre brun
+</item>
+        <item>
+poudre de colombo
+</item>
+        <item>
+compote
+</item>
+        <item>
+chester
+</item>
+        <item>
+bleu de Bresse
+</item>
+        <item>
+gâteaux
+</item>
+        <item>
+boudin
+</item>
+        <item>
+papier sulfurisé
+</item>
+        <item>
+Magret de Canard
+</item>
+        <item>
+coco plat
+</item>
+        <item>
+boudoir
+</item>
+        <item>
+viande hachée
+</item>
+        <item>
+encornet
+</item>
+        <item>
+brie de meaux
+</item>
+        <item>
+origan
+</item>
+        <item>
+miel liquide
+</item>
+        <item>
+tamari
+</item>
+        <item>
+potimarron
+</item>
+        <item>
+brocciu
+</item>
+        <item>
+Cabécou
+</item>
+        <item>
+pain aux céréales
+</item>
+        <item>
+semoule
+</item>
+        <item>
+Thon Listao Naturel Pêche U
+</item>
+        <item>
+feuille de curry
+</item>
+        <item>
+blanc de faisan
+</item>
+        <item>
+panais
+</item>
+        <item>
+noisettes
+</item>
+        <item>
+ratte
+</item>
+        <item>
+coeur de volaille
+</item>
+        <item>
+sel de céleri
+</item>
+        <item>
+chou rouge
+</item>
+        <item>
+pissenlit
+</item>
+        <item>
+fond
+</item>
+        <item>
+herbes
+</item>
+        <item>
+dos de cabillaud
+</item>
+        <item>
+purée d\'oignon
+</item>
+        <item>
+	tapenade noire
+</item>
+        <item>
+	chapelure
+</item>
+        <item>
+	beef steak
+</item>
+        <item>
+	ail en poudre
+</item>
+        <item>
+	cornichon au vinaigre
+</item>
+        <item>
+	vacherin Fribourgeois
+</item>
+        <item>
+	confiture de groseille
+</item>
+        <item>
+	crevette rose
+</item>
+        <item>
+	jambon ibérique
+</item>
+        <item>
+	crème fraîche épaisse
+</item>
+        <item>
+	extrait de vanille liquide
+</item>
+        <item>
+	eau de fleur d\'oranger
+</item>
+        <item>
+porto
+</item>
+        <item>
+cottage cheese
+</item>
+        <item>
+kiwi
+</item>
+        <item>
+wasa
+</item>
+        <item>
+bois d\'Inde
+</item>
+        <item>
+	Huile d\'olive vierge extra U SAVEURS®
+</item>
+        <item>
+amaretto
+</item>
+        <item>
+oseille
+</item>
+        <item>
+pâtes tricolores
+</item>
+        <item>
+haricot coco
+</item>
+        <item>
+oeuf de caille
+</item>
+        <item>
+crottin de chèvre
+</item>
+        <item>
+sel et poivre
+</item>
+        <item>
+lasagnes
+</item>
+        <item>
+purée
+</item>
+        <item>
+Sauce blanche
+</item>
+        <item>
+niébé
+</item>
+        <item>
+pâtisson
+</item>
+        <item>
+Beurre spécial cuisson Elle &amp; Vire
+</item>
+        <item>
+vinaigre aromatisé aux noix
+</item>
+        <item>
+riz long
+</item>
+        <item>
+vinaigre de cidre
+</item>
+        <item>
+garam masala
+</item>
+        <item>
+vin blanc sec
+</item>
+        <item>
+fond de rôti
+</item>
+        <item>
+épices indiennes
+</item>
+        <item>
+raisin blanc
+</item>
+        <item>
+cressonnette
+</item>
+        <item>
+menthe
+</item>
+        <item>
+bourbon
+</item>
+        <item>
+épices à paella
+</item>
+        <item>
+moules
+</item>
+        <item>
+flocons de bonite
+</item>
+        <item>
+filet de boeuf
+</item>
+        <item>
+abricots moelleux U
+</item>
+        <item>
+fromage frais
+</item>
+        <item>
+kadaif
+</item>
+        <item>
+pomme
+</item>
+        <item>
+feuille de Kaffir
+</item>
+        <item>
+langoustine surgelée entière crue
+</item>
+        <item>
+graines de lin
+</item>
+        <item>
+lait d\'amande
+</item>
+        <item>
+	chorizo
+</item>
+        <item>
+	dés de jambon
+</item>
+        <item>
+	pigeon
+</item>
+        <item>
+	confit de courgettes
+</item>
+        <item>
+	casarecce
+</item>
+        <item>
+	sauce italienne
+</item>
+        <item>
+	pesto
+</item>
+        <item>
+	oursin
+</item>
+        <item>
+	citrouille
+</item>
+        <item>
+	saucisse
+</item>
+        <item>
+	cervelle
+</item>
+        <item>
+	tripes
+</item>
+        <item>
+	cive
+</item>
+        <item>
+	myrtilles
+</item>
+        <item>
+	vermouth
+</item>
+        <item>
+	carpaccio
+</item>
+        <item>
+	sucre blond
+</item>
+        <item>
+	Foie gras
+</item>
+        <item>
+	kirsch
+</item>
+        <item>
+	feuille de Tito
+</item>
+        <item>
+	poitrine d\'agneau
+</item>
+        <item>
+christophine
+</item>
+        <item>
+sauce Worcester
+</item>
+        <item>
+coulis de tomate
+</item>
+        <item>
+lait de riz
+</item>
+        <item>
+colorant
+</item>
+        <item>
+confiture de banane
+</item>
+        <item>
+barbue
+</item>
+        <item>
+abricot
+</item>
+        <item>
+haricots noirs
+</item>
+        <item>
+pâte à pain
+</item>
+        <item>
+pâte à brioche
+</item>
+        <item>
+anis en poudre
+</item>
+        <item>
+cheddar
+</item>
+        <item>
+petit os de veau
+</item>
+        <item>
+pois écossés
+</item>
+        <item>
+anguille
+</item>
+        <item>
+laurier
+</item>
+        <item>
+clou de girofle
+</item>
+        <item>
+poitrine fumée
+</item>
+        <item>
+feuille de bananier
+</item>
+        <item>
+pousses d\'épinard
+</item>
+        <item>
+	salsifis
+</item>
+        <item>
+	cerises
+</item>
+        <item>
+	moutarde à l\'estragon
+</item>
+        <item>
+Pili Pili
+</item>
+        <item>
+seiche
+</item>
+        <item>
+escargot
+</item>
+        <item>
+lime
+</item>
+        <item>
+pain d\'épices
+</item>
+        <item>
+	jus de veau
+</item>
+        <item>
+	tofu soyeux
+</item>
+        <item>
+	crème fraîche liquide
+</item>
+        <item>
+	tagliatelles
+</item>
+        <item>
+	poivron
+</item>
+        <item>
+	papaye
+</item>
+        <item>
+	haricot azuki
+</item>
+        <item>
+	salpêtre
+</item>
+        <item>
+	chou chinois
+</item>
+        <item>
+	pineau des charentes
+</item>
+        <item>
+	muscat
+</item>
+        <item>
+	Crème légère &amp; Ail Confit Infusé
+</item>
+        <item>
+	kombu
+</item>
+        <item>
+	saucisse cocktail
+</item>
+        <item>
+	quatre-épices
+</item>
+        <item>
+	chou romanesco
+</item>
+        <item>
+	Cocktail de fruits de mer 500 GR Crust’Océan®️
+</item>
+        <item>
+	faisan
+</item>
+        <item>
+	feuille de salam
+</item>
+        <item>
+	lardons fumés
+</item>
+        <item>
+	cornichons
+</item>
+        <item>
+	citron
+</item>
+        <item>
+	lapin
+</item>
+        <item>
+	miel d\'acacia
+</item>
+        <item>
+Bresse Bleu
+</item>
+        <item>
+aubergine
+</item>
+        <item>
+mélange d\'épices indiennes
+</item>
+        <item>
+	beurre tendre
+</item>
+        <item>
+	sangria
+</item>
+        <item>
+	orange amère
+</item>
+        <item>
+	diot
+</item>
+        <item>
+	graines de cumin
+</item>
+        <item>
+	poivre
+</item>
+        <item>
+	plat de côte
+</item>
+        <item>
+	poudre d\'amandes
+</item>
+        <item>
+eau gazeuse
+</item>
+        <item>
+fromages hollandais
+</item>
+        <item>
+Rosbif
+</item>
     </string-array>
 
 </resources>

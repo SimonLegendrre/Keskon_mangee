@@ -47,7 +47,9 @@ public class PreSelectedIng extends OptionsMenuActivity {
     ArrayList<String> ingredients_list;
 
     // Création de BDD nécessaire pour l'autcomplétion.
-    ArrayList<String> IngredientsKKM = new ArrayList<>();
+    //ArrayList<String> IngredientsKKM = new ArrayList<>();
+    String[] IngredientsKKM;
+
     private CollectionReference IngredientsKKMCollection = db.collection("Ingredients");
 
 
@@ -57,6 +59,8 @@ public class PreSelectedIng extends OptionsMenuActivity {
         setContentView(R.layout.activity_pre_selection);
 
         listView = findViewById(R.id.list_ing);
+
+        /*
         // Importation de la BDD incluant tous les ingrédients de KKM (sert à approvisioner l'array IngredientsKKM
         // Util pour l'autcomplete
         IngredientsKKMCollection
@@ -74,6 +78,10 @@ public class PreSelectedIng extends OptionsMenuActivity {
 
                     }
                 });
+
+         */
+        // Liste des ingrédients importé
+        IngredientsKKM = getResources().getStringArray(R.array.IngredientsList);
 
         AtcIngredients = (AutoCompleteTextView) findViewById(R.id.AtcTV_et_ing);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, IngredientsKKM);

@@ -7,10 +7,11 @@ class IngredientsKKM {
     Pour le moment il est seulement composé d'un nom
      */
 
-    public String name;
+    public String IngredientName;
 
 
     public IngredientsKKM(String name) {
-        this.name = name;
+
+        this.IngredientName = name;
     }
 }

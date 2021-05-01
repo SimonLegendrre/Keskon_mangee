@@ -53,7 +53,8 @@ public class Choix_ing_consult extends OptionsMenuActivity {
 
 
     // Création de BDD nécessaire pour l'autcomplétion.
-    ArrayList<String> IngredientsKKM = new ArrayList<>();
+    //ArrayList<String> IngredientsKKM = new ArrayList<>();
+    String[] IngredientsKKM;
 
     private FirebaseFirestore db = FirebaseFirestore.getInstance();
     private CollectionReference IngredientsKKMCollection = db.collection("Ingredients");
@@ -108,9 +109,8 @@ public class Choix_ing_consult extends OptionsMenuActivity {
             }
         });
 
-
+        /*
         // Importation de la BDD incluant tous les ingrédients de KKM (sert à approvisioner l'array IngredientsKKM
-
         IngredientsKKMCollection
                 .addSnapshotListener(this, new EventListener<QuerySnapshot>() {
                     @Override
@@ -126,7 +126,8 @@ public class Choix_ing_consult extends OptionsMenuActivity {
 
                     }
                 });
-
+         */
+        IngredientsKKM = getResources().getStringArray(R.array.IngredientsList);
 
         //Les ingredients (format = autocomplete)
         AtcIngredients = findViewById(R.id.et_ing);
