@@ -36,7 +36,7 @@ Régalez vous !"
 
         <ListView
             android:id="@+id/list_recipes"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="150dp"
             android:layout_marginTop="8dp"
             app:layout_constraintEnd_toEndOf="parent"
