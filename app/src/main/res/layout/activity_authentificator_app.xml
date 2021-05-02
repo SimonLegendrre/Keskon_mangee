@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     xmlns:tools="http://schemas.android.com/tools"
@@ -17,10 +17,14 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
+        android:layout_marginTop="20dp"
         android:text="Votre email n'a pas été vérifié !"
         android:textColor="@android:color/holo_red_dark"
         android:textSize="20dp"
-        android:textStyle="bold" />
+        android:textStyle="bold"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
 
     <Button
         android:id="@+id/ButtonVerifyAccount"
@@ -28,17 +32,25 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
+        android:layout_marginTop="20dp"
         android:text="Envoyer nouvel email de vérification"
         android:textColor="@android:color/holo_red_dark"
-        android:layout_marginBottom="20dp" />
+        android:layout_marginBottom="20dp"
+        app:layout_constraintTop_toBottomOf="@id/TextViewVerifyAccount"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
 
     <TextView
         android:id="@+id/textViewProfileTitle"
         android:layout_gravity="center_horizontal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
         android:textSize="30sp"
-        android:text="@string/votre_profil" />
+        android:text="@string/votre_profil"
+        app:layout_constraintTop_toBottomOf="@id/ButtonVerifyAccount"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
 
     <!-- Pour le moment, l'image est en GONE, on la remettra lorsqu'on pourra ajouter une photo de profil -->
     <ImageView
@@ -50,7 +62,10 @@
         tools:layout_editor_absoluteX="47dp"
         tools:layout_editor_absoluteY="99dp"
         android:visibility="gone"
-        android:contentDescription="@string/todo2" />
+        android:contentDescription="@string/todo2"
+        app:layout_constraintTop_toBottomOf="@id/textViewProfileTitle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
 
     <TextView
         android:layout_marginTop="20dp"
@@ -60,7 +75,10 @@
         android:textSize="20sp"
         android:text="@string/nom_et_pr_nom"
         android:textStyle="bold"
-        android:layout_marginBottom="15dp"/>
+        android:layout_marginBottom="15dp"
+        app:layout_constraintTop_toBottomOf="@id/imageViewProfilPicture"
+        app:layout_constraintStart_toStartOf="parent" />
+
     <TextView
         android:id="@+id/textViewProfileEmail"
         android:layout_width="wrap_content"
@@ -68,34 +86,46 @@
         android:textSize="20sp"
         android:textStyle="bold"
         android:layout_marginBottom="15dp"
-        android:text="@string/email" />
+        android:text="@string/email"
+        app:layout_constraintTop_toBottomOf="@id/textViewProfileName"
+        app:layout_constraintStart_toStartOf="parent"/>
 
     <Button
         android:id="@+id/Consult_my_recipes"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:text="@string/Consult_my_recipes" />
+        android:layout_marginTop="10dp"
+        android:text="@string/Consult_my_recipes"
+        app:layout_constraintTop_toBottomOf="@id/textViewProfileEmail"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
 
     <Button
         android:id="@+id/choice_pre_ing"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:onClick="choice_pre_ing"
-        android:text="Choisir mes ingrédients permanents" />
+        android:layout_marginTop="5dp"
+        android:text="Choisir mes ingrédients permanents"
+        app:layout_constraintTop_toBottomOf="@id/Consult_my_recipes"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
 
     <TextView
 
         android:id="@+id/InformationIfVerificationAlreadySent"
-        android:layout_marginTop="30dp"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="30dp"
         android:text="Si vous avez déjà demandé un envoi d'email de vérification, vous pouvez vous connecter en appuyant sur le bouton suivant "
         android:textColor="@android:color/holo_red_dark"
         android:textSize="20dp"
         android:visibility="gone"
-         />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/choice_pre_ing" />
 
     <Button
         android:layout_marginTop="10dp"
@@ -107,6 +137,9 @@
         android:text="Tenter de se reconnecter"
         android:textColor="@android:color/holo_red_dark"
         android:onClick="ReconnectionAttempt"
+        app:layout_constraintTop_toBottomOf="@id/InformationIfVerificationAlreadySent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         />
 
     <ListView
@@ -114,13 +147,18 @@
         android:layout_width="match_parent"
         android:layout_height="320dp"
         android:textSize="20sp"
-        tools:ignore="MissingConstraints" />
+        app:layout_constraintTop_toBottomOf="@id/choice_pre_ing"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
 
     <TextView
         android:id="@+id/text_no_recipe"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="20sp"/>
+        android:textSize="20sp"
+        app:layout_constraintTop_toBottomOf="@id/choice_pre_ing"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
 
 
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -56,6 +56,8 @@ public class Choice_recipe_consult extends OptionsMenuActivity {
     TextView textMatch;
     TextView textPlus1;
     TextView textPlus2;
+    TextView textInfoPlus1;
+    TextView textInfoPlus2;
 
 
     @Override
@@ -77,6 +79,8 @@ public class Choice_recipe_consult extends OptionsMenuActivity {
         textMatch = findViewById(R.id.match_recipes);
         textPlus1 = findViewById(R.id.plus1_recipes);
         textPlus2 = findViewById(R.id.plus2_recipes);
+        textInfoPlus1 = findViewById(R.id.btn_plus1_explication);
+        textInfoPlus2 = findViewById(R.id.btn_plus2_explication);
         bt_all_recipes = findViewById(R.id.button_all_recipes);
 
         textPlus1.setText("En ajoutant 1 ingrédient en plus:");
@@ -88,6 +92,7 @@ public class Choice_recipe_consult extends OptionsMenuActivity {
         listView3.setVisibility(View.GONE);
         textPlus1.setVisibility(View.GONE);
         textPlus2.setVisibility(View.GONE);
+        textInfoPlus2.setVisibility(View.GONE);
 
         bt_all_recipes.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -101,6 +106,8 @@ public class Choice_recipe_consult extends OptionsMenuActivity {
         bt_one_more.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                textInfoPlus1.setVisibility(View.GONE);
+                textInfoPlus2.setVisibility(View.VISIBLE);
                 textPlus1.setVisibility(View.VISIBLE);
                 bt_two_more.setVisibility(View.VISIBLE);
                 listView2.setVisibility(View.VISIBLE);
@@ -110,6 +117,7 @@ public class Choice_recipe_consult extends OptionsMenuActivity {
         bt_two_more.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                textInfoPlus2.setVisibility(View.GONE);
                 textPlus2.setVisibility(View.VISIBLE);
                 listView3.setVisibility(View.VISIBLE);
             }

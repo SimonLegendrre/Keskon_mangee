@@ -47,7 +47,7 @@ public class OptionsMenuActivity extends AppCompatActivity {
 
 
             case R.id.DeconnectionFromToolbar:
-                Toast.makeText(this, "Déconnection", Toast.LENGTH_SHORT).show();
+                Toast.makeText(this, "Déconnexion", Toast.LENGTH_SHORT).show();
                 FirebaseAuth.getInstance().signOut(); //logout
                 startActivity(new Intent(getApplicationContext(), Login.class));
                 finish();
