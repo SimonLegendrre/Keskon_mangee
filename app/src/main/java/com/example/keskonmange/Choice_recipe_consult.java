@@ -111,7 +111,7 @@ public class Choice_recipe_consult extends OptionsMenuActivity {
             @Override
             public void onClick(View v) {
                 textPlus2.setVisibility(View.VISIBLE);
-                listView2.setVisibility(View.VISIBLE);
+                listView3.setVisibility(View.VISIBLE);
             }
         });
 
@@ -278,12 +278,12 @@ public class Choice_recipe_consult extends OptionsMenuActivity {
                 System.out.println("before condition");
 
                 if (recipes_list1.isEmpty()){ // CHECK SI ON PEUT PAS FAIRE QUELQUE CHOSE DE MIEUX ICI, PCQ C'EST COCHON
-
+                    System.out.println("La liste est vide");
                     // Losqu'il n'y a pas de recette avec exactement ce qui a été entré, on ne veut pas voir la section avec ce qui devrait être montré pour celle là. On met alors en GONE
                     TextView TVexactResult = findViewById(R.id.match_recipes);
                     TVexactResult.setVisibility(View.GONE);
                     listView1.setVisibility(View.GONE);
-                    bt_one_more.setVisibility(View.GONE);
+                    //bt_one_more.setVisibility(View.GONE);
 
                     Dialog no_recipes_dialog = new Dialog(Choice_recipe_consult.this);
                     no_recipes_dialog.setContentView(R.layout.dialog_choice_recipe_consult);
@@ -351,6 +351,9 @@ public class Choice_recipe_consult extends OptionsMenuActivity {
             }
 
         });
+
+
+
 
 
     }
