@@ -17,11 +17,7 @@ import com.basgeekball.awesomevalidation.utility.RegexTemplate;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.FirebaseFirestoreException;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -107,7 +103,7 @@ public class PreSelectedIng extends OptionsMenuActivity {
                 new AlertDialog.Builder(PreSelectedIng.this)
                         .setIcon(android.R.drawable.ic_delete)
                         .setTitle("Supprimer " + ingredients_list.get(position).toString() + " ?")
-                        .setMessage("Voules-vous supprimer '" +  ingredients_list.get(position).toString() + "' de vos ingrédients pré-sélectionné ?")
+                        .setMessage("Voules-vous supprimer '" +  ingredients_list.get(position).toString() + "' de vos ingrédients pré-sélectionnés ?")
                         // Si l'utilisateur clique sur OUI, l'étape est supprimée.
                         .setPositiveButton("Oui", new DialogInterface.OnClickListener() {
                             @Override
@@ -160,13 +156,27 @@ public class PreSelectedIng extends OptionsMenuActivity {
         buttonRemoveIng.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 if (ingredients_list.size() > 0) {
-                    ingredients_list.remove(ingredients_list.size() - 1);
-                    Map<String, Object> ingredients = new HashMap<>();
-                    ingredients.put("ingredients", ingredients_list);
-                    document.update(ingredients);
-                    arrayAdapterIngredient.notifyDataSetChanged();
-                } else {
+                    new AlertDialog.Builder(PreSelectedIng.this)
+                            .setIcon(android.R.drawable.ic_delete)
+                            .setTitle("Tout supprimer?")
+                            .setMessage("Voules-vous supprimer vraiment supprimer tout vos ingrédients pré-sélectionnés ?")
+                            // Si l'utilisateur clique sur OUI, l'étape est supprimée.
+                            .setPositiveButton("Oui", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    ingredients_list.clear();
+                                    Map<String, Object> ingredients = new HashMap<>();
+                                    ingredients.put("ingredients", ingredients_list);
+                                    document.update(ingredients);
+                                    arrayAdapterIngredient.notifyDataSetChanged();
+
+                                }
+                            })
+                            .setNegativeButton("Non", null)
+                            .show();
+                }else {
                     Toast.makeText(getApplicationContext(), "Vous n'avez pas entré d'ingrédient", Toast.LENGTH_SHORT).show();
                 }
 

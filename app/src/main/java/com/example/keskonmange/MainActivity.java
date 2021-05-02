@@ -1,12 +1,16 @@
 package com.example.keskonmange;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.appcompat.widget.Toolbar;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
 public class MainActivity extends OptionsMenuActivity {
 
-    //FirebaseAuth firebaseAuth;
+    FirebaseAuth firebaseAuth;
 
 
     @Override
@@ -24,14 +28,20 @@ public class MainActivity extends OptionsMenuActivity {
          */
 
 
-        /*
         firebaseAuth = FirebaseAuth.getInstance();
         FirebaseUser user = firebaseAuth.getCurrentUser();
-        if(!user.isEmailVerified()) { // if the email is NOT verified, goes to MY Pprofile where account verification is required
+
+        if (user == null) {
+            Intent intent = new Intent(getApplicationContext(), Register.class);
+            startActivity(intent);
+            finish();
+        } else if (!user.isEmailVerified()) { // if the email is NOT verified, goes to MY Pprofile where account verification is required
             startActivity(new Intent(getApplicationContext(), AuthenticatorApp.class));
         }
 
-         */
+
+
+
 
 
 

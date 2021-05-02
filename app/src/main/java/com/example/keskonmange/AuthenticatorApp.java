@@ -52,6 +52,7 @@ public class AuthenticatorApp extends OptionsMenuActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_authentificator_app);
         fullName = findViewById(R.id.textViewProfileName);
         email = findViewById(R.id.textViewProfileEmail);
@@ -59,7 +60,6 @@ public class AuthenticatorApp extends OptionsMenuActivity {
         ConsultMyREcipes = findViewById(R.id.Consult_my_recipes);
         ReconnectionAttempt = findViewById(R.id.ButtonReconnectionAttempt);
         Choice_pre_ing = findViewById(R.id.choice_pre_ing);
-        fstore = FirebaseFirestore.getInstance();
 
 
         // vérification de compte
@@ -97,12 +97,14 @@ public class AuthenticatorApp extends OptionsMenuActivity {
                     });
                 }
             });
+
+
         }
 
 
         // retrieve the data from the DB
         DocumentReference documentReference = fstore.collection("Users").document(userId);
-        if (documentReference==null){
+        if (documentReference == null) {
 
         }
         documentReference.addSnapshotListener(this, new EventListener<DocumentSnapshot>() {
@@ -172,7 +174,8 @@ public class AuthenticatorApp extends OptionsMenuActivity {
                                 @Override
                                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                                     Intent intent = new Intent(AuthenticatorApp.this, DetailedDescription.class);
-                                    String RecipeToPass = recipes_list.get(position).replaceAll(" ", "_").toLowerCase(); ;
+                                    String RecipeToPass = recipes_list.get(position).replaceAll(" ", "_").toLowerCase();
+                                    ;
                                     intent.putExtra("recipe_to_pass", RecipeToPass);
                                     intent.putExtra("from_which_acti", MyProfileActi);
                                     startActivity(intent);
@@ -187,7 +190,30 @@ public class AuthenticatorApp extends OptionsMenuActivity {
             }
         });
 
+        Choice_pre_ing.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                document.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                        if (task.isSuccessful()) {
+                            DocumentSnapshot documentSnapshot = task.getResult();
+                            if (documentSnapshot.exists()) {
+                                ArrayList<String> ingredients_list_pre_selected = (ArrayList<String>) documentSnapshot.get("ingredients");
+                                Intent intent2 = new Intent(AuthenticatorApp.this, PreSelectedIng.class);
+                                intent2.putExtra("ingredient_pre_to_pass", ingredients_list_pre_selected);
+                                startActivity(intent2);
+                            }
+                        }
+                    }
+                });
+
+            }
+        });
+
     }
+
+    /*
 
     public void choice_pre_ing(View view) {
         document.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
@@ -206,6 +232,8 @@ public class AuthenticatorApp extends OptionsMenuActivity {
         });
     }
 
+     */
+
 
     public void ReconnectionAttempt(View view) {
         Intent reconnectionIntent = new Intent(AuthenticatorApp.this, Login.class);
@@ -217,9 +245,26 @@ public class AuthenticatorApp extends OptionsMenuActivity {
     // Enlever dans la toolbar la possibilité d'aller sur CreationOrConsultationPage
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
-        MenuItem menu1 = menu.findItem(R.id.action_MyProfile);
-        menu1.setVisible(false);
-        return true;
+        if (user.isEmailVerified()) {
+            MenuItem menu1 = menu.findItem(R.id.action_MyProfile);
+            menu1.setVisible(false);
+            return true;
+        } else {
+            return true;
+        }
+
+    }
+
+
+    @Override
+    public void onBackPressed() {
+        System.out.println("Le test malin" + user);
+        if (!user.isEmailVerified()) {
+            Intent intent = new Intent(AuthenticatorApp.this, Login.class);
+            startActivity(intent);
+            finish();
+        }
+
     }
 
 }

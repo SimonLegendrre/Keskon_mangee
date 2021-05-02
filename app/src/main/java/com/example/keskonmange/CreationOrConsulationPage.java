@@ -32,10 +32,8 @@ public class CreationOrConsulationPage extends OptionsMenuActivity {
     TextView TvBonjour;
 
 
-
     private final FirebaseFirestore db = FirebaseFirestore.getInstance();
     private FirebaseAuth fAuth = FirebaseAuth.getInstance();
-
 
 
     @Override
@@ -47,8 +45,14 @@ public class CreationOrConsulationPage extends OptionsMenuActivity {
         super.onCreate(savedInstanceState);
         FirebaseUser userIdCheck = fAuth.getCurrentUser();
 
-        if (userIdCheck == null) {
-            Intent intent = new Intent(CreationOrConsulationPage.this, Register.class);
+        System.out.println("test malin 2 est ce qu'on arrive ici ?" + fAuth.toString());
+
+        if (fAuth == null) {
+            Intent intent = new Intent(CreationOrConsulationPage.this, Login.class);
+            startActivity(intent);
+            finish();
+        } else if (userIdCheck == null) {
+            Intent intent = new Intent(CreationOrConsulationPage.this, AuthenticatorApp.class);
             startActivity(intent);
             finish();
         } else {
@@ -96,8 +100,6 @@ public class CreationOrConsulationPage extends OptionsMenuActivity {
             });
 
 
-
-
             acceuil_Allrecipes_button.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -138,7 +140,6 @@ public class CreationOrConsulationPage extends OptionsMenuActivity {
         }
 
 
-
     }
 
     @Override
@@ -152,7 +153,7 @@ public class CreationOrConsulationPage extends OptionsMenuActivity {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         Intent homeIntent = new Intent(Intent.ACTION_MAIN);
-                        homeIntent.addCategory( Intent.CATEGORY_HOME );
+                        homeIntent.addCategory(Intent.CATEGORY_HOME);
                         homeIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                         startActivity(homeIntent);
                     }
