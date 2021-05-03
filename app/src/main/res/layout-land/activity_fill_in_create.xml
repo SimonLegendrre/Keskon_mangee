@@ -1,70 +1,367 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/parentScrollView"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:padding="20dp"
-    android:background="?attr/colorPrimary"
     tools:context=".FillInCreate">
 
-
-    <TextView
-        android:id="@+id/textView3"
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginHorizontal="20dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginRight="20dp"
-        android:text="@string/remplissez_ici_les_informations_correspondant_votre_recette"
-        android:textColor="@color/white"
-        android:textSize="20sp" />
+        android:background="@color/purple_700"
+        android:padding="40dp">
 
-    <EditText
-        android:id="@+id/nom_recette"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:autofillHints=""
-        android:background="@android:color/white"
-        android:hint="@string/nom_de_recette"
-        android:inputType="textPersonName"
-        android:padding="10dp" />
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="260dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top"
 
-    <EditText
-        android:id="@+id/ingredient"
-        android:background="@android:color/white"
-        android:padding="10dp"
-        android:layout_width="match_parent"
-        android:hint="@string/ingr_dients_s_par_par_un_point_virgule"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:inputType="text"
-        android:autofillHints="" />
+            android:layout_marginStart="4dp"
+            android:layout_marginLeft="4dp"
+            android:layout_marginTop="4dp"
+            android:fontFamily="sans-serif"
+            android:text="@string/remplissez_ici_les_informations_correspondant_votre_recette"
+            android:textColor="@color/white"
+            android:textSize="8pt"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
-        android:id="@+id/description"
-        android:background="@android:color/white"
-        android:padding="10dp"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        android:hint="@string/description"
-        android:inputType="textPersonName"
-        android:autofillHints="" />
+        <ImageButton
+            android:id="@+id/get_info_fill_in"
+            android:layout_width="49dp"
+            android:layout_height="57dp"
+            android:background="@drawable/white_back_popup_message"
+            android:textSize="2dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="1.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0"
+            app:srcCompat="@drawable/q_mark_info_foreground" />
 
-    <Button
-        android:id="@+id/submit_recipe_creator"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_marginTop="20dp"
-        android:background="@android:color/white"
-        android:text="@string/submit" />
+        <EditText
+            android:id="@+id/nom_recette"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:background="@drawable/rounded_corner"
+            android:ems="10"
+            android:hint="Nom de recette"
+            android:inputType="textPersonName"
+            android:padding="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.45"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
+        <EditText
+            android:id="@+id/recipe_yield"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="19dp"
+            android:background="@drawable/rounded_corner"
+            android:ems="10"
+            android:hint="Nombre de personne"
+            android:inputType="number"
+            android:padding="10dp"
+            android:visibility="visible"
+            app:layout_constraintBottom_toTopOf="@+id/PrepTime"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/nom_recette" />
+
+        <EditText
+            android:id="@+id/PrepTime"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="19dp"
+            android:background="@drawable/rounded_corner"
+            android:ems="10"
+            android:hint="Temps de préparation (en minutes)"
+            android:inputType="number"
+            android:padding="10dp"
+            app:layout_constraintBottom_toTopOf="@+id/CookTime"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/recipe_yield" />
+
+        <EditText
+            android:id="@+id/CookTime"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="19dp"
+            android:background="@drawable/rounded_corner"
+            android:ems="10"
+            android:hint="Temps de cuisson (en minutes)"
+            android:inputType="number"
+            android:padding="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/PrepTime" />
+
+        <TextView
+            android:id="@+id/TextViewExplicationsIngredients"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:gravity="center"
+            android:text="Indiquez ici les ingrédients:"
+            android:textColor="@color/white"
+            android:textSize="8pt"
+
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/CookTime" />
+
+        <AutoCompleteTextView
+            android:id="@+id/ingredients"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="19dp"
+            android:background="@drawable/rounded_corner"
+            android:completionHint="Clicker sur un des ingrédients ci-dessus"
+            android:completionThreshold="2"
+            android:ems="10"
+            android:hint="Ingrédients"
+            android:inputType="text"
+            android:lines="1"
+            android:padding="10dp"
+            android:singleLine="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/TextViewExplicationsIngredients" />
+
+        <EditText
+            android:id="@+id/quantité"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="19dp"
+            android:background="@drawable/rounded_corner"
+            android:ems="10"
+            android:hint="Quantité"
+            android:inputType="number"
+            android:padding="10dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ingredients" />
+
+        <AutoCompleteTextView
+            android:id="@+id/unité_de_mesure"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="19dp"
+            android:background="@drawable/rounded_corner"
+            android:ems="10"
+            android:completionThreshold="1"
+            android:hint="Unité"
+            android:lines="1"
+            android:padding="10dp"
+            android:singleLine="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/quantité"
+            app:layout_constraintTop_toBottomOf="@+id/ingredients" />
 
 
-</LinearLayout>
+        <ImageButton
+            android:id="@+id/btn_ajouterIngredient"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginRight="10dp"
+            android:background="@color/purple_700"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/quantité"
+            app:srcCompat="@drawable/add_ingredient" />
+
+        <androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:id="@+id/scrollIngredients"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="10dp"
+            android:orientation="vertical"
+            android:visibility="gone"
+            app:layout_constraintBottom_toTopOf="@+id/TextViewExplicationsDescription"
+            app:layout_constraintTop_toBottomOf="@+id/btn_ajouterIngredient"
+            tools:context=".FillInCreate">
+
+            <LinearLayout
+
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="10dp"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toTopOf="@id/TextViewExplicationsDescription"
+                app:layout_constraintTop_toBottomOf="@id/btn_ajouterIngredient">
+
+                <ListView
+                    android:id="@+id/list_ingredients"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:background="@android:color/white"
+                    android:visibility="visible"></ListView>
+            </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
+
+        <TextView
+            android:id="@+id/TextViewExplicationsDescription"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:gravity="center"
+            android:text="Indiquez ici les étapes de la recette:"
+            android:textColor="@color/white"
+            android:textSize="8pt"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/scrollIngredients" />
+
+        <EditText
+            android:id="@+id/description"
+            android:layout_width="match_parent"
+            android:layout_height="80dp"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/rounded_corner"
+            android:ems="10"
+            android:hint="Prochaine étape de la recette"
+            android:inputType="textMultiLine"
+            android:padding="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/TextViewExplicationsDescription" />
+
+
+        <ImageButton
+            android:id="@+id/btn_ajouterEtape"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginRight="10dp"
+            android:background="@color/purple_700"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/description"
+            app:srcCompat="@drawable/add_ingredient" />
+
+        <androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:id="@+id/scrollEtape"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="5dp"
+            android:orientation="vertical"
+            android:visibility="gone"
+            app:layout_constraintBottom_toTopOf="@+id/TextViewExplicationsPhoto"
+            app:layout_constraintTop_toBottomOf="@+id/btn_ajouterEtape"
+            tools:context=".FillInCreate">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="10dp"
+                android:orientation="vertical"
+                app:layout_constraintBottom_toTopOf="@+id/submit_recipe_creator"
+                app:layout_constraintTop_toBottomOf="@+id/btn_ajouterEtape">
+
+
+                <ListView
+                    android:id="@+id/list_etapes"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:background="@android:color/white"
+                    android:visibility="visible"></ListView>
+            </LinearLayout>
+        </androidx.core.widget.NestedScrollView>
+
+        <TextView
+            android:id="@+id/TextViewExplicationsPhoto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:gravity="center"
+            android:text="Ajoutez une photo à votre plat:"
+            android:textColor="@color/white"
+            android:textSize="8pt"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/scrollEtape" />
+
+        <ImageView
+            android:id="@+id/imageViewRecipePicture"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="19dp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toTopOf="@id/linear_layout_2_boutons"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/TextViewExplicationsPhoto"
+            app:layout_constraintVertical_bias="0.278"
+            app:srcCompat="@drawable/ic_launcher_background"
+            tools:ignore="VectorDrawableCompat" />
+
+        <LinearLayout
+            android:id="@+id/linear_layout_2_boutons"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toTopOf="@+id/submit_recipe_creator"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageViewRecipePicture">
+
+            <ImageButton
+                android:id="@+id/BtnGetPhotoCamera"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="20dp"
+                android:background="@color/purple_700"
+                app:srcCompat="@drawable/ic_camera" />
+
+            <ImageButton
+                android:id="@+id/BtnGetPhotoGalery"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/purple_700"
+                app:srcCompat="@drawable/ic_gallery"
+                />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/submit_recipe_creator"
+            android:layout_width="250dp"
+            android:layout_height="55dp"
+            android:layout_marginTop="19dp"
+            android:layout_marginBottom="50dp"
+            android:onClick="SaveRecipe"
+            android:text="@string/enregister_nouvelle_recette"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.496"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/linear_layout_2_boutons"
+            app:layout_constraintVertical_bias="0.278" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</ScrollView>
+
+
+
+
+
+
+

@@ -450,6 +450,17 @@ public class Choice_recipe_consult extends OptionsMenuActivity {
         return costs[s2.length()];
     }
 
+    @Override
+    public void onBackPressed() {
+        System.out.println("Le test malin" + user);
+        if (!user.isEmailVerified()) {
+            Intent intent = new Intent(Choice_recipe_consult.this, CreationOrConsulationPage.class);
+            startActivity(intent);
+            finish();
+        }
+
+    }
+
     public void printSimilarity(String s, String t) {
         System.out.println(String.format(
                 "%.3f is the similarity between \"%s\" and \"%s\"", similarity(s, t), s, t));

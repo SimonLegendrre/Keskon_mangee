@@ -86,7 +86,7 @@
         <ListView
             android:id="@+id/list_ing"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="120dp"
             android:layout_marginTop="12dp"
             android:background="@color/white"
             android:visibility="visible"
@@ -98,5 +98,6 @@
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-
 </ScrollView>
+
+
