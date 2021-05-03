@@ -93,8 +93,9 @@ public class DetailedDescription extends OptionsMenuActivity {
         // seront différentes. Par exemple, si nous arrivons sur cette activité via "AuthenticatorApp", nous ne pourrons pas noter une recette
         // Notez que recipe est l'ID de la recette que l'on veut décrire
 
-        String recipetest = getIntent().getStringExtra("recipe_to_pass").replaceAll("[()']", "_")
-                .replaceAll("\\s+", " ").replaceAll("\"", "").replace("-", "_");
+        String recipetest = getIntent().getStringExtra("recipe_to_pass").replaceAll("[()',.]", "_")
+                .replaceAll("\\s+", " ").replaceAll("\"", "").replace("-", "_").replaceAll("_{2,}", "_")
+                .replaceAll("/", "_");
         origine = getIntent().getStringExtra("from_which_acti");
 
         recipe = StringUtils.stripAccents(recipetest);
