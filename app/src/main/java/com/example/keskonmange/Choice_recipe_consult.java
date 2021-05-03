@@ -210,7 +210,9 @@ public class Choice_recipe_consult extends OptionsMenuActivity {
                         if(recette.getNote() != null && !recette.getNote().isNaN()) {
                             System.out.println(recette.getNote());
                             System.out.println("Il y a une note");
-                            float note = recette.getNote().floatValue();
+                            double note = recette.getNote().doubleValue();
+                            note = (double) Math.round(note * 100d) / 100d;
+                            System.out.println("Note du chien: " + note);
                             //ratingBar.setRating(note);
                             NoteList1.add("Note moyenne: "+note+"/5");
                         }
@@ -234,7 +236,10 @@ public class Choice_recipe_consult extends OptionsMenuActivity {
                         if(recette.getNote() != null && !recette.getNote().isNaN()) {
                             System.out.println(recette.getNote());
                             System.out.println("Il y a une note");
-                            float note = recette.getNote().floatValue();
+                            //float note = recette.getNote().floatValue();
+                            double note = recette.getNote().doubleValue();
+                            note = (double) Math.round(note * 100d) / 100d;
+                            System.out.println("Note du chien: " + note);
                             //ratingBar.setRating(note);
                             NoteList2.add("Note moyenne: "+note+"/5");
                         }
@@ -259,7 +264,10 @@ public class Choice_recipe_consult extends OptionsMenuActivity {
                         if(recette.getNote() != null && !recette.getNote().isNaN()) {
                             System.out.println(recette.getNote());
                             System.out.println("Il y a une note");
-                            float note = recette.getNote().floatValue();
+                            //float note = recette.getNote().floatValue();
+                            double note = recette.getNote().doubleValue();
+                            note = (double) Math.round(note * 100d) / 100d;
+                            System.out.println("Note du chien: " + note);
                             //ratingBar.setRating(note);
                             NoteList3.add("Note moyenne: "+note+"/5");
                         }

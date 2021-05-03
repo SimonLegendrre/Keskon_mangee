@@ -80,8 +80,10 @@ public class Recipes_Scrolling extends OptionsMenuActivity {
 
                     if(recette.getNote() != null && !recette.getNote().isNaN()) {
 
-                        float note = recette.getNote().floatValue();
+                        //float note = recette.getNote().floatValue();
+                        double note = recette.getNote().doubleValue();
                         //ratingBar.setRating(note);
+                        note = (double)Math.round(note * 100d) / 100d;
                         NoteLists.add("Note moyenne: "+note+"/5");
                     }
                     else{ // pour le moment, quand il n'y a pas de rating, elle vaut zéro
