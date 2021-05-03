@@ -52,6 +52,7 @@ import com.google.firebase.storage.StorageReference;
 
 import java.io.File;
 import java.io.IOException;
+import java.text.Normalizer;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -586,7 +587,10 @@ public class FillInCreate extends OptionsMenuActivity {
                             // description déjà créé + haut
                             String keywords = "";
                             String name = editTextTitre.getText().toString();
+                            // myString =  Normalizer.normalize(myString, Normalizer.Form.NFD).replaceAll("[^\\p{ASCII}]", "");
                             name = name.replaceAll("\\s+", " ");
+                            name = Normalizer.normalize(name, Normalizer.Form.NFD).replaceAll("[^\\p{ASCII}]", "");
+                            System.out.println("NOM DU CHIEN: " + name);
                             String id_recipe = name.trim().replaceAll(" ", "_").toLowerCase();
                             String prepTime = PrepTime.getText().toString() + "M";
                             ArrayList<String> recipeIngredients = new ArrayList<String>();
